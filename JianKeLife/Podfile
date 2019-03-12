@@ -1,0 +1,13 @@
+platform :ios, '8.0'
+
+target 'JianKeLife' do
+pod 'AFNetworking'
+pod 'MJRefresh'
+pod 'MBProgressHUD'
+pod 'IQKeyboardManager'
+pod 'Masonry'
+pod 'SDWebImage'
+pod 'MJExtension'
+pod 'AMapLocation'
+pod 'DateTools'
+end
