@@ -21,6 +21,14 @@
         self.interactivePopGestureRecognizer.delegate = (id)weakSelf;
         self.delegate = (id)weakSelf;
     }
+    
+//    [[UINavigationBar appearance]setBackgroundImage:[UIImage createImageWithColor:ThemeColor] forBarMetrics:UIBarMetricsDefault];
+//    NSDictionary *dic = @{NSForegroundColorAttributeName:WhiteColor};
+//    [[UINavigationBar appearance] setTitleTextAttributes:dic];
+//    [[UINavigationBar appearance]setTintColor:WhiteColor];
+//    [[UIBarButtonItem appearance]setTitleTextAttributes:dic forState:UIControlStateNormal];
+//    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+//    [UIApplication sharedApplication].applicationSupportsShakeToEdit = YES;
 }
 
 //==========================================================滑动返回卡住问题解决

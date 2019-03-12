@@ -12,6 +12,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BaseMainVC : UIViewController
 
+/**
+ 创建返回按钮
+ */
+-(void)setBackNavigationBarItem;
+/**
+ 导航栏按钮的点击事件
+ 
+ @param button 被点击的导航栏按钮 tag：9999 表示返回按钮
+ */
+-(void)BarbuttonClick:(UIButton *)button;
+
+- (void)dealloc;
 @end
 
 NS_ASSUME_NONNULL_END

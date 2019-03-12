@@ -37,6 +37,8 @@
 		0461701E222D195400E46B40 /* XDeviceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 04617016222D195400E46B40 /* XDeviceHelper.m */; };
 		0461701F222D195400E46B40 /* XCommonHepler.m in Sources */ = {isa = PBXBuildFile; fileRef = 04617017222D195400E46B40 /* XCommonHepler.m */; };
 		04617020222D195400E46B40 /* XPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04617018222D195400E46B40 /* XPlaceHolderTextView.m */; };
+		0476AA0C22375C7500EF7C8E /* libTalkingData.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0476AA0B22375C7500EF7C8E /* libTalkingData.a */; };
+		0476AA102237611C00EF7C8E /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0476AA0E2237611C00EF7C8E /* UIImage+Extension.m */; };
 		04E60746222FB528003B94ED /* BaseWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E60745222FB528003B94ED /* BaseWebView.m */; };
 		509B42847CE7DD718A1221F4 /* libPods-JianKeLife.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 54FBC33EDED39BD59DC1715A /* libPods-JianKeLife.a */; };
 /* End PBXBuildFile section */
@@ -103,6 +105,10 @@
 		04617018222D195400E46B40 /* XPlaceHolderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPlaceHolderTextView.m; sourceTree = "<group>"; };
 		04617022222D1C3900E46B40 /* BaseMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseMacros.h; sourceTree = "<group>"; };
 		04617024222D1E1E00E46B40 /* AppUitls.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppUitls.h; sourceTree = "<group>"; };
+		0476AA0A22375C7500EF7C8E /* TalkingData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TalkingData.h; sourceTree = "<group>"; };
+		0476AA0B22375C7500EF7C8E /* libTalkingData.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTalkingData.a; sourceTree = "<group>"; };
+		0476AA0E2237611C00EF7C8E /* UIImage+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extension.m"; sourceTree = "<group>"; };
+		0476AA0F2237611C00EF7C8E /* UIImage+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extension.h"; sourceTree = "<group>"; };
 		04E60744222FB528003B94ED /* BaseWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseWebView.h; sourceTree = "<group>"; };
 		04E60745222FB528003B94ED /* BaseWebView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseWebView.m; sourceTree = "<group>"; };
 		403636099D7088BD3E92CABD /* Pods-JianKeLife.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JianKeLife.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JianKeLife/Pods-JianKeLife.debug.xcconfig"; sourceTree = "<group>"; };
@@ -115,6 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0476AA0C22375C7500EF7C8E /* libTalkingData.a in Frameworks */,
 				509B42847CE7DD718A1221F4 /* libPods-JianKeLife.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -213,6 +220,7 @@
 		04616FD3222D027C00E46B40 /* SDKFile */ = {
 			isa = PBXGroup;
 			children = (
+				0476AA0922375C7500EF7C8E /* TalkingData */,
 			);
 			path = SDKFile;
 			sourceTree = "<group>";
@@ -290,6 +298,7 @@
 		04616FE0222D09BD00E46B40 /* UIKIT */ = {
 			isa = PBXGroup;
 			children = (
+				0476AA0D2237611C00EF7C8E /* UIImage+Extension */,
 				04617005222D186C00E46B40 /* UITabBar+MKExtension */,
 				04616FF4222D14C600E46B40 /* UIView+Extension */,
 				04616FED222D0C1600E46B40 /* UIImageView+Extension */,
@@ -375,6 +384,24 @@
 				04617024222D1E1E00E46B40 /* AppUitls.h */,
 			);
 			path = "Constant(常量)";
+			sourceTree = "<group>";
+		};
+		0476AA0922375C7500EF7C8E /* TalkingData */ = {
+			isa = PBXGroup;
+			children = (
+				0476AA0A22375C7500EF7C8E /* TalkingData.h */,
+				0476AA0B22375C7500EF7C8E /* libTalkingData.a */,
+			);
+			path = TalkingData;
+			sourceTree = "<group>";
+		};
+		0476AA0D2237611C00EF7C8E /* UIImage+Extension */ = {
+			isa = PBXGroup;
+			children = (
+				0476AA0E2237611C00EF7C8E /* UIImage+Extension.m */,
+				0476AA0F2237611C00EF7C8E /* UIImage+Extension.h */,
+			);
+			path = "UIImage+Extension";
 			sourceTree = "<group>";
 		};
 		5D1F48A2220535CB6A26320E /* Pods */ = {
@@ -525,6 +552,7 @@
 				04616FFD222D14C600E46B40 /* UIView+DragAndReset.m in Sources */,
 				04616FCB222CF66700E46B40 /* main.m in Sources */,
 				04617001222D185900E46B40 /* NSObject+Json.m in Sources */,
+				0476AA102237611C00EF7C8E /* UIImage+Extension.m in Sources */,
 				04616FE8222D09D900E46B40 /* UINavigationBar+SetElement.m in Sources */,
 				04616FFB222D14C600E46B40 /* UIView+Rotate.m in Sources */,
 				04616FD9222D076800E46B40 /* ProgressHUD.m in Sources */,
@@ -689,6 +717,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/JianKeLife/SDKFile/TalkingData",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xsj.JianKeLife;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -709,6 +741,10 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/JianKeLife/SDKFile/TalkingData",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xsj.JianKeLife;
 				PRODUCT_NAME = "$(TARGET_NAME)";

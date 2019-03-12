@@ -17,6 +17,7 @@
 #import "IQKeyboardManager.h"
 #import "MJRefresh.h"
 #import "DateTools.h"
+#import "TalkingData.h"
 
 #import "BaseMacros.h"
 #import "AppUitls.h"
@@ -27,6 +28,7 @@
 #import "UIView+Extension.h"
 #import "UINavigationBar+SetElement.h"
 #import "NSObject+Json.h"
+#import "UIImage+Extension.h"
 
 
 
