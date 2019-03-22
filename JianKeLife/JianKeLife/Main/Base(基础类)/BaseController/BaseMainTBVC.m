@@ -8,6 +8,11 @@
 
 #import "BaseMainTBVC.h"
 #import "BaseMainNC.h"
+#import "HomeVC.h"
+#import "ConnectionsVC.h"
+#import "TaskVC.h"
+#import "MyVC.h"
+
 
 @interface BaseMainTBVC ()
 
@@ -17,13 +22,26 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-     [self addChildViewControllers];
+    [UITabBar appearance].translucent = NO;
+    
+    [self addChildViewControllers];
 }
 
 #pragma mark - 自定义tabbar
 - (void)addChildViewControllers
 {
+    HomeVC *homeVC = [[HomeVC alloc]init];
+    [self setChildViewController:homeVC Image:@"icon_home_unselect" selectedImage:@"icon_home_select" title:@"首页"];
     
+    
+    TaskVC *taskVC = [[TaskVC alloc]init];
+    [self setChildViewController:taskVC Image:@"icon_task_unselect" selectedImage:@"icon_task_select" title:@"任务"];
+    
+    ConnectionsVC *connectionsVC = [[ConnectionsVC alloc]init];
+    [self setChildViewController:connectionsVC Image:@"icon_relationship_unselect" selectedImage:@"icon_relationship_select" title:@"人脉"];
+
+    MyVC *myVC = [[MyVC alloc]init];
+    [self setChildViewController:myVC Image:@"icon_me_unselect" selectedImage:@"icon_me_select" title:@"我的"];
 }
 #pragma mark - 初始化设置ChildViewControllers
 /**
@@ -44,8 +62,25 @@
     UIImage *mySelectedImage = [UIImage imageNamed:selectedImage];
     mySelectedImage = [mySelectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     Vc.tabBarItem.selectedImage = mySelectedImage;
-    Vc.title = title;
+    [Vc.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:LabelMainColor,NSFontAttributeName:[UIFont systemFontOfSize:AdaptationWidth(10)]} forState:UIControlStateNormal];
+    [Vc.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:blueColor,NSFontAttributeName:[UIFont systemFontOfSize:AdaptationWidth(10)]} forState:UIControlStateSelected];
+    Vc.tabBarItem.title = title;
     [self addChildViewController:NA_VC];
 }
-
++ (void)initialize
+{
+    UITabBarItem *tabBarItem = [UITabBarItem appearanceWhenContainedInInstancesOfClasses:@[self]];
+    
+    NSMutableDictionary *dictNormal = [NSMutableDictionary dictionary];
+    dictNormal[NSForegroundColorAttributeName] = AppMainColor;
+    dictNormal[NSFontAttributeName] = [UIFont systemFontOfSize:11];
+    
+    NSMutableDictionary *dictSelected = [NSMutableDictionary dictionary];
+    dictSelected[NSForegroundColorAttributeName] = AppMainColor;
+    dictSelected[NSFontAttributeName] = [UIFont systemFontOfSize:11];
+    
+    [tabBarItem setTitleTextAttributes:dictNormal forState:UIControlStateNormal];
+    [tabBarItem setTitleTextAttributes:dictSelected forState:UIControlStateSelected];
+    
+}
 @end

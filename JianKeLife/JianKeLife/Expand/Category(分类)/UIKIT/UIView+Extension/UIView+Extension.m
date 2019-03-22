@@ -130,12 +130,12 @@ static char AddressKey;
     [self.layer setMasksToBounds:YES];
     [self.layer setCornerRadius:value];
 }
-//-(void)setCornerRad:(CGFloat)cornerRad
-//{
-//    self.layer.cornerRadius = cornerRad;
-//    self.layer.masksToBounds = YES;
-//
-//}
+#pragma mark - ***** 边框 ******
+- (void)setBorderWidth:(CGFloat)width andColor:(UIColor*)color{
+    self.layer.masksToBounds = YES;
+    self.layer.borderWidth = width;
+    self.layer.borderColor = color.CGColor;
+}
 -(CGFloat)cornerRad
 {
     return self.cornerRad;

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="HomeHotCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="166" height="215"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="166" height="215"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="R7m-2h-VYm">
+                        <rect key="frame" x="0.0" y="0.0" width="166" height="126"/>
+                        <color key="backgroundColor" red="1" green="0.4039215686" blue="0.4039215686" alpha="1" colorSpace="calibratedRGB"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="招商银行信用" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g5C-Nf-FrY">
+                        <rect key="frame" x="10" y="134" width="146" height="19"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.22745098039215686" green="0.22745098039215686" blue="0.22745098039215686" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="返佣￥" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xOo-GM-hn0">
+                        <rect key="frame" x="10" y="163.5" width="37" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="1" green="0.40392156862745099" blue="0.40392156862745099" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1sY-4O-80y">
+                        <rect key="frame" x="49" y="160" width="73" height="22"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                        <color key="textColor" red="1" green="0.40392156862745099" blue="0.40392156862745099" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="R7m-2h-VYm" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="0LY-Yh-X10"/>
+                <constraint firstAttribute="trailing" secondItem="R7m-2h-VYm" secondAttribute="trailing" id="0Sc-un-spw"/>
+                <constraint firstItem="g5C-Nf-FrY" firstAttribute="top" secondItem="R7m-2h-VYm" secondAttribute="bottom" constant="8" id="TPe-uh-Wup"/>
+                <constraint firstItem="R7m-2h-VYm" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="XI4-ee-tF8"/>
+                <constraint firstItem="1sY-4O-80y" firstAttribute="leading" secondItem="xOo-GM-hn0" secondAttribute="trailing" constant="2" id="XQv-u7-f55"/>
+                <constraint firstItem="R7m-2h-VYm" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="126:215" id="bl1-bU-78w"/>
+                <constraint firstItem="g5C-Nf-FrY" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="cR3-vP-FXZ"/>
+                <constraint firstItem="xOo-GM-hn0" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="csq-mP-dwt"/>
+                <constraint firstItem="1sY-4O-80y" firstAttribute="centerY" secondItem="xOo-GM-hn0" secondAttribute="centerY" id="ohM-GZ-hJg"/>
+                <constraint firstAttribute="trailing" secondItem="g5C-Nf-FrY" secondAttribute="trailing" constant="10" id="qDX-Ec-5IF"/>
+                <constraint firstItem="xOo-GM-hn0" firstAttribute="top" secondItem="g5C-Nf-FrY" secondAttribute="bottom" constant="10" id="qch-8O-fKE"/>
+            </constraints>
+            <size key="customSize" width="158" height="139"/>
+            <connections>
+                <outlet property="cellImage" destination="R7m-2h-VYm" id="Q57-if-hNa"/>
+                <outlet property="cellMoney" destination="1sY-4O-80y" id="PWQ-LA-sqv"/>
+                <outlet property="cellTitle" destination="g5C-Nf-FrY" id="Rkb-2q-lxF"/>
+            </connections>
+            <point key="canvasLocation" x="116.8" y="130.43478260869566"/>
+        </collectionViewCell>
+    </objects>
+</document>

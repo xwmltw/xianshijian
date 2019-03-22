@@ -31,6 +31,7 @@
 - (void)setLongPressActionWithBlock:(void (^)(void))block;
 
 - (void)setCornerValue:(CGFloat)value;/*!< 圆角*/
+- (void)setBorderWidth:(CGFloat)width andColor:(UIColor*)color; /*!< 边框*/
 /**
  *  添加圆角边框
  */
@@ -45,6 +46,7 @@
  *  切某一方向的圆角
  */
 -(void)viewCutRoundedOfRectCorner:(UIRectCorner)rectCorner cornerRadii:(CGFloat)cornerRadii;
+
 /**
  *  获取view的所在控制器
  */

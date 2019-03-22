@@ -41,9 +41,9 @@ typedef NS_ENUM(NSInteger, AMapCoordinateType)
 FOUNDATION_EXTERN CLLocationCoordinate2D AMapCoordinateConvert(CLLocationCoordinate2D coordinate, AMapCoordinateType type);
 
 /**
- * @brief 判断目标经纬度是否在大陆以及港、澳地区。输入参数为高德坐标系。此方法为粗略判断，在边界地区可能会不准确。
+ * @brief 判断目标经纬度处是否有高德数据。输入参数为高德坐标系。此方法为粗略判断，在边界地区可能会不准确。
  * @param coordinate 待判断的目标经纬度
- * @return 是否在大陆以及港、澳地区
+ * @return 布尔值。YES:有数据，NO:没数据
  */
 FOUNDATION_EXTERN BOOL AMapDataAvailableForCoordinate(CLLocationCoordinate2D coordinate);
 

@@ -8,6 +8,7 @@
 
 #import "BaseMainVC.h"
 #import "XControllerViewHelper.h"
+#import "LoginVC.h"
 @interface BaseMainVC ()
 
 @end
@@ -29,7 +30,7 @@
     NSLog(@"栈顶控制器为%@\n当前显示控制器为%@", [viewCtrl class], [self class]);
 #endif
     NSString *title = self.title.length ? self.title : NSStringFromClass([self class]);
-//    [TalkingData trackPageBegin:title];
+    [TalkingData trackPageBegin:title];
 }
 /**
  *  点击屏幕空白区域，放弃桌面编辑状态
@@ -40,13 +41,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //打开手势返回
-    if (self.navigationController != nil && self.navigationController.viewControllers.count > 1) {
-        self.navigationItem.leftBarButtonItem = self.editButtonItem;
-        //        self.navigationItem.rightBarButtonItem =self.rBarButtonItem;
-//        self.navigationController.navigationBar.backgroundColor =ThemeColor;
-        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor],
-                                                                          NSFontAttributeName : [UIFont fontWithName:@"Helvetica-Bold" size:17]}];
-    }
+//    if (self.navigationController != nil && self.navigationController.viewControllers.count > 1) {
+//        self.navigationItem.leftBarButtonItem = self.editButtonItem;
+//        //        self.navigationItem.rightBarButtonItem =self.rBarButtonItem;
+////        self.navigationController.navigationBar.backgroundColor =ThemeColor;
+//        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor],
+//                                                                          NSFontAttributeName : [UIFont fontWithName:@"Helvetica-Bold" size:17]}];
+//    }
+    
+    [self setBackNavigationBarItem];
 }
 /**
  创建返回按钮
@@ -54,7 +57,7 @@
 -(void)setBackNavigationBarItem{
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 64, 44)];
     view.userInteractionEnabled = YES;
-    UIImageView *imageV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"btn_back"]];
+    UIImageView *imageV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_back"]];
     imageV.frame = CGRectMake(0, 8, 28, 28);
     imageV.userInteractionEnabled = YES;
     [view addSubview:imageV];
@@ -78,6 +81,22 @@
     [self.navigationController popViewControllerAnimated:YES];
     //    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     
+}
+
+/**
+ 是否 登录
+ */
+- (void)getBlackLogin:(UIViewController *)controller{
+    
+    [XAlertView alertWithTitle:@"提示" message:@"您还没有登录唷~请前往登录!" cancelButtonTitle:@"取消" confirmButtonTitle:@"登录" viewController:controller completion:^(UIAlertAction *action, NSInteger buttonIndex) {
+        
+        if (buttonIndex == 1) {
+            LoginVC *vc = [[LoginVC alloc]init];
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        return ;
+    }];
 }
 - (void)dealloc{
     [XNotificationCenter removeObserver:self];

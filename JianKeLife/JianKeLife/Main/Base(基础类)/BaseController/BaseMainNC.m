@@ -16,19 +16,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //=============================自定义返回按钮，开启原生滑动返回功能
     __weak BaseMainNC *weakSelf = self;
     if ([self respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.interactivePopGestureRecognizer.delegate = (id)weakSelf;
         self.delegate = (id)weakSelf;
     }
-    
-//    [[UINavigationBar appearance]setBackgroundImage:[UIImage createImageWithColor:ThemeColor] forBarMetrics:UIBarMetricsDefault];
-//    NSDictionary *dic = @{NSForegroundColorAttributeName:WhiteColor};
-//    [[UINavigationBar appearance] setTitleTextAttributes:dic];
-//    [[UINavigationBar appearance]setTintColor:WhiteColor];
-//    [[UIBarButtonItem appearance]setTitleTextAttributes:dic forState:UIControlStateNormal];
-//    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-//    [UIApplication sharedApplication].applicationSupportsShakeToEdit = YES;
+    self.navigationBar.translucent = NO;//导航栏底色会闪一下，是黑色一闪而过
+    [[UINavigationBar appearance] setShadowImage:[UIImage new]];
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage createImageWithColor:[UIColor whiteColor]] forBarMetrics:UIBarMetricsDefault];
+    NSDictionary *dic = @{NSForegroundColorAttributeName :LabelMainColor,NSFontAttributeName :[UIFont systemFontOfSize:AdaptationWidth(17)]};
+    [[UINavigationBar appearance] setTitleTextAttributes:dic];
+    [[UIBarButtonItem appearance] setTitleTextAttributes:dic forState:UIControlStateNormal];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 }
 
 //==========================================================滑动返回卡住问题解决

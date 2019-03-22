@@ -1,4 +1,4 @@
-//
+ //
 //  BaseMacros.h
 //  JianKeLife
 //
@@ -33,10 +33,13 @@
 #define XCGColorWithRGBA(r,g,b,a) [[UIColor colorWithRed:(r/255.0) green:(g/255.0) blue:(b/255.0) alpha:(a)].CGcolor]//通过R,G,B,A设置边框颜色
 #define XColorWithRGB(r,g,b)  [UIColor colorWithRed:(r/255.0) green:(g/255.0) blue:(b/255.0) alpha:1]//通过R,G,B
 #define AppMainColor  [UIColor colorWithRed:(56.0/255.0) green:(123.0/255.0) blue:(230.0/255.0) alpha:1]//通过R,G,B
-#define LabelMainColor  [UIColor colorWithRed:(22.0/255.0) green:(28.0/255.0) blue:(42.0/255.0) alpha:1]//通过R,G,B
-#define LabelAssistantColor  [UIColor colorWithRed:(89.0/255.0) green:(99.0/255.0) blue:(109.0/255.0) alpha:1]//通过R,G,B
+#define LabelMainColor  [UIColor colorWithRed:(58.0/255.0) green:(58.0/255.0) blue:(58.0/255.0) alpha:1]//通过R,G,B
+#define RedColor  [UIColor colorWithRed:(255.0/255.0) green:(103.0/255.0) blue:(103.0/255.0) alpha:1]//通过R,G,B
+#define blueColor  [UIColor colorWithRed:(146.0/255.0) green:(206.0/255.0) blue:(252.0/255.0) alpha:1]//通过R,G,B
+#define LabelAssistantColor  [UIColor colorWithRed:(171.0/255.0) green:(171.0/255.0) blue:(171.0/255.0) alpha:1]//通过R,G,B
 #define LabelShallowColor  [UIColor colorWithRed:(157.0/255.0) green:(157.0/255.0) blue:(157.0/255.0) alpha:1]//通过R,G,B
-#define LineColor  [UIColor colorWithRed:(221.0/255.0) green:(221.0/255.0) blue:(221.0/255.0) alpha:1]//通过R,G,B
+#define LineColor  [UIColor colorWithRed:(238.0/255.0) green:(238.0/255.0) blue:(238.0/255.0) alpha:1]//通过R,G,B
+#define BackgroundColor  [UIColor colorWithRed:(248.0/255.0) green:(248.0/255.0) blue:(248.0/255.0) alpha:1]//通过R,G,B
 /** 通知 */
 #define XNotificationCenter [NSNotificationCenter defaultCenter]
 #define WDUserDefaults       [NSUserDefaults standardUserDefaults]

@@ -11,8 +11,9 @@
 #import <AMapLocationKit/AMapLocationKit.h>
 #import "UserLocation.h"
 #import "BaseMainTBVC.h"
+#import "WXApi.h"
 
-@interface AppDelegate ()
+@interface AppDelegate ()<WXApiDelegate>
 
 @end
 
@@ -26,9 +27,9 @@
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
+    
+    
     BaseMainTBVC * tbVC = [[BaseMainTBVC alloc]init];
-    //    [tbVC.tabBar setBackgroundImage:[UIImage imageNamed:@"ele_night_back_sky"]];
-    //    [tbVC.tabBar setBackgroundColor:[UIColor blueColor]];
     self.window.rootViewController =tbVC;
     [self.window makeKeyAndVisible];
     return YES;
@@ -46,6 +47,9 @@
     [AMapServices sharedServices].apiKey = AMapKey;
     [[UserLocation sharedInstance]UserLocation];
     
+    //微信
+    
+    [WXApi registerApp:@"wx534af151026110af"];
 //    // 极光推送
 //    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];//清楚badage
 //    //Required
@@ -73,6 +77,73 @@
 //                 apsForProduction:YES
 //            advertisingIdentifier:nil];
     
+}
+#pragma - 微信
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    return  [WXApi handleOpenURL:url delegate:self];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [WXApi handleOpenURL:url delegate:self];
+}
+-(void) onReq:(BaseReq*)req
+{
+    if([req isKindOfClass:[GetMessageFromWXReq class]])
+    {
+        // 微信请求App提供内容， 需要app提供内容后使用sendRsp返回
+        NSString *strTitle = [NSString stringWithFormat:@"微信请求App提供内容"];
+        NSString *strMsg = @"微信请求App提供内容，App要调用sendResp:GetMessageFromWXResp返回给微信";
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle message:strMsg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        alert.tag = 1000;
+        [alert show];
+      
+    }
+    else if([req isKindOfClass:[ShowMessageFromWXReq class]])
+    {
+        ShowMessageFromWXReq* temp = (ShowMessageFromWXReq*)req;
+        WXMediaMessage *msg = temp.message;
+        
+        //显示微信传过来的内容
+        WXAppExtendObject *obj = msg.mediaObject;
+        
+        NSString *strTitle = [NSString stringWithFormat:@"微信请求App显示内容"];
+        NSString *strMsg = [NSString stringWithFormat:@"标题：%@ \n内容：%@ \n附带信息：%@ \n缩略图:%u bytes\n\n", msg.title, msg.description, obj.extInfo, msg.thumbData.length];
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle message:strMsg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+       
+    }
+    else if([req isKindOfClass:[LaunchFromWXReq class]])
+    {
+        //从微信启动App
+        NSString *strTitle = [NSString stringWithFormat:@"从微信启动"];
+        NSString *strMsg = @"这是从微信启动的消息";
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle message:strMsg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        
+    }
+}
+
+-(void) onResp:(SendAuthResp*)resp
+{
+    if([resp isKindOfClass:[SendMessageToWXResp class]])
+    {
+        NSString *strTitle = [NSString stringWithFormat:@"发送媒体消息结果"];
+        NSString *strMsg = [NSString stringWithFormat:@"errcode:%d", resp.errCode];
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle message:strMsg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        
+    }
+    
+//    NSString *str = [NSString stringWithFormat:@"https://api.weixin.qq.com/sns/oauth2/access_token?appid=%@&secret=%@&code=%@&grant_type=authorization_code",@"wx534af151026110af",@"518a77ab116f32f00647cb9843426c15",resp.code];
+//    [NetWorkManager requestDataForPOSTWithURL:str parameters:nil Controller:self UploadProgress:nil success:^(id responseObject) {
+//        MyLog(@"%@",responseObject);
+//    } failure:^(NSError *error) {
+//
+//    }];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

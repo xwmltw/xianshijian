@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BaseMainVC : UIViewController
@@ -22,7 +23,10 @@ NS_ASSUME_NONNULL_BEGIN
  @param button 被点击的导航栏按钮 tag：9999 表示返回按钮
  */
 -(void)BarbuttonClick:(UIButton *)button;
-
+/**
+ 是否 登录
+ */
+- (void)getBlackLogin:(UIViewController *)controller;
 - (void)dealloc;
 @end
 

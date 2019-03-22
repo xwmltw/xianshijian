@@ -10,4 +10,7 @@ pod 'SDWebImage'
 pod 'MJExtension'
 pod 'AMapLocation'
 pod 'DateTools'
+pod 'WechatOpenSDK'
+pod 'SDCycleScrollView','~>1.75'
+pod 'VerifyCode'
 end

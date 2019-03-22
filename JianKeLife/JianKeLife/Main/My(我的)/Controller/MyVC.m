@@ -1,0 +1,117 @@
+//
+//  MyVC.m
+//  JianKeLife
+//
+//  Created by yanqb on 2019/3/18.
+//  Copyright © 2019年 xwm. All rights reserved.
+//
+
+#import "MyVC.h"
+#import "MyTableView.h"
+
+
+#import "MySetVC.h"
+#import "FeedbackVC.h"
+
+@interface MyVC ()
+@property (nonatomic ,strong) MyTableView *tableView;
+@end
+
+@implementation MyVC
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    statusBar.backgroundColor = blueColor;
+}
+//- (void)viewDidAppear:(BOOL)animated{
+//    [super viewDidAppear:animated];
+//    [self.navigationController setNavigationBarHidden:YES animated:NO];
+//    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+//    statusBar.backgroundColor = blueColor;
+//}
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    statusBar.backgroundColor = [UIColor clearColor];
+}
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.tableView  = [[MyTableView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight) style:UITableViewStyleGrouped];
+    self.view = self.tableView;
+    
+    [self tableViewCellPushVC];
+    [self headBtnPushVC];
+    
+    [XNotificationCenter addObserver:self selector:@selector(loginSuccessNotification:) name:LoginSuccessNotification object:nil];
+}
+- (void)tableViewCellPushVC{
+    WEAKSELF
+    [self.tableView setCellSelectBlock:^(NSInteger result) {
+        switch (result) {
+            case 0:
+            {
+     
+                FeedbackVC *vc = [[FeedbackVC alloc]init];
+                vc.hidesBottomBarWhenPushed = YES;
+                [weakSelf.navigationController pushViewController:vc animated:NO];
+            }
+                break;
+            case 1:
+            {
+                
+            }
+                break;
+            case 2:
+            {
+                
+            }
+                break;
+            case 3:
+            {
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    
+//                });
+                MySetVC *vc = [[MySetVC alloc]init];
+                vc.hidesBottomBarWhenPushed = YES;
+                vc.title = @"设置";
+                [weakSelf.navigationController pushViewController:vc animated:NO];
+            }
+                break;
+                
+            default:
+                break;
+        }
+    }];
+}
+- (void)headBtnPushVC{
+    WEAKSELF
+    [self.tableView setBtnBlock:^(UIButton *result) {
+        if (![[UserInfo sharedInstance]isSignIn]) {
+            [weakSelf getBlackLogin:weakSelf];
+        }
+        switch (result.tag) {
+            case 401:
+                
+                break;
+                
+            default:
+                break;
+        }
+    }];
+}
+
+- (void)loginSuccessNotification:(NSNotificationCenter *)sender{
+    [self.tableView reloadData];
+}
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end
