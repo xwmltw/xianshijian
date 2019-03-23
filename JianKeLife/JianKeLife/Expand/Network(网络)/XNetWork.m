@@ -60,7 +60,7 @@
             [hud hideAnimated:YES];
         }
 
-        MyLog(@"网络请求成功返回数据%@",responseObject);
+        MyLog(@"%@->返回数据%@",url,responseObject);
         ResponseModel *responseModel = [ResponseModel mj_objectWithKeyValues:responseObject];
         if (responseModel.rspCode.integerValue == 0) {
             XBlockExec(successBlock, responseModel);
@@ -72,7 +72,7 @@
         if (hud) {
             [hud hideAnimated:YES];
         }
-         MyLog(@"网络请求成功返回数据%@",error);
+          MyLog(@"%@->返回数据%@",url,error);
         
     }];
 }

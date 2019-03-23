@@ -1,8 +1,8 @@
 //
-//  HomeViewModel.h
+//  SearchVieModel.h
 //  JianKeLife
 //
-//  Created by yanqb on 2019/3/20.
+//  Created by yanqb on 2019/3/23.
 //  Copyright © 2019年 xwm. All rights reserved.
 //
 
@@ -10,19 +10,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-
-@interface HomeViewModel : NSObject
-
-@property (nonatomic ,strong) ClientGlobalInfo *clientGlobalInfo;
+@interface SearchVieModel : NSObject
+@property (nonatomic ,copy) NSString *keywords;
 @property (nonatomic, strong) PageQueryRedModel *pageQueryRedModel;
 @property (nonatomic, strong) NSMutableArray *productList;
-@property (nonatomic ,copy) XBlock responseBlock;
-@property (nonatomic ,copy) XBlock responseHotBlock;
-@property (nonatomic ,copy) XBlock responseHotWebBlock;
+@property (nonatomic ,copy) XBlock responseSearchBlock;
 @property (nonatomic ,strong) MJRefreshAutoNormalFooter *footer;
 - (MJRefreshAutoNormalFooter *)creatMjRefresh;
 - (void)footerRefresh;
-- (void)requestSpecialData:(NSInteger)index;
+- (void)requestData;
 @end
 
 NS_ASSUME_NONNULL_END

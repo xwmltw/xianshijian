@@ -9,6 +9,8 @@
 #import "HomeVC.h"
 #import "HomeCollectionView.h"
 #import "JobDetailVC.h"
+#import "SearchVC.h"
+#import "BaseWebVC.h"
 
 @interface HomeVC ()
 @property (nonatomic ,strong) HomeCollectionView *collectionView;
@@ -61,8 +63,15 @@
     };
 }
 - (void)specialViewSelect{
-    self.collectionView.hotBtnBlck = ^(UIButton *result) {
-        MyLog(@"btn点击 = %ld",(long)result.tag);
+    BLOCKSELF
+    [self.collectionView.homeViewModel setResponseHotWebBlock:^(id result) {
+        BaseWebVC *vc = [[BaseWebVC alloc]init];
+        [vc reloadForGetWebView:@"https://www.baidu.com/"];
+        vc.hidesBottomBarWhenPushed = YES;
+        [blockSelf.navigationController pushViewController:vc animated:YES];
+    }];
+    self.collectionView.homeViewModel.responseHotBlock = ^(NSMutableArray *result) {
+        MyLog(@"hot=%@",result);
     };
 }
 - (void)collectionCellSelect{
@@ -77,7 +86,9 @@
     };
 }
 - (void)btnOnClock:(UIButton *)btn{
-    
+    SearchVC *vc = [[SearchVC alloc]init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 /*
  #pragma mark - Navi;gation

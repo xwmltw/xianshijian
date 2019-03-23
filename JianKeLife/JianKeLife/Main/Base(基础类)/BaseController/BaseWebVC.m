@@ -41,6 +41,7 @@
 }
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
 {
+    self.title = self.webParentView.webView.title;//标题
     //"webViewDidFinishLoad"
 }
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation

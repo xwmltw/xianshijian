@@ -6,11 +6,11 @@
 //  Copyright © 2019年 xwm. All rights reserved.
 //
 
-#import "BaseMainNC.h"
+#import "BaseMainVC.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BaseWebVC : BaseMainNC
+@interface BaseWebVC : BaseMainVC
 @property(nonatomic,assign)CGRect viewFrame;
 
 - (void)reloadForGetWebView:(NSString *)htmlStr;

@@ -73,6 +73,9 @@
 		04871522223FAA1E00679095 /* MyTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04871521223FAA1E00679095 /* MyTableView.m */; };
 		04871525223FC1D600679095 /* MyViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04871524223FC1D600679095 /* MyViewModel.m */; };
 		04871528223FC20000679095 /* MyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04871527223FC20000679095 /* MyModel.m */; };
+		04E2FA0C22460818006EE2D5 /* SearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E2FA0B22460817006EE2D5 /* SearchVC.m */; };
+		04E2FA1022461028006EE2D5 /* SearchCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E2FA0F22461028006EE2D5 /* SearchCollectionView.m */; };
+		04E2FA13224611D3006EE2D5 /* SearchVieModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E2FA12224611D3006EE2D5 /* SearchVieModel.m */; };
 		04E60746222FB528003B94ED /* BaseWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E60745222FB528003B94ED /* BaseWebView.m */; };
 		04E771282241E56600C6E7CE /* HomeCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E771272241E56600C6E7CE /* HomeCollectionView.m */; };
 		04E771302242180000C6E7CE /* HomeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E7712F2242180000C6E7CE /* HomeViewModel.m */; };
@@ -207,6 +210,12 @@
 		04871524223FC1D600679095 /* MyViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyViewModel.m; sourceTree = "<group>"; };
 		04871526223FC20000679095 /* MyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyModel.h; sourceTree = "<group>"; };
 		04871527223FC20000679095 /* MyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyModel.m; sourceTree = "<group>"; };
+		04E2FA0A22460817006EE2D5 /* SearchVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchVC.h; sourceTree = "<group>"; };
+		04E2FA0B22460817006EE2D5 /* SearchVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchVC.m; sourceTree = "<group>"; };
+		04E2FA0E22461028006EE2D5 /* SearchCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchCollectionView.h; sourceTree = "<group>"; };
+		04E2FA0F22461028006EE2D5 /* SearchCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchCollectionView.m; sourceTree = "<group>"; };
+		04E2FA11224611D3006EE2D5 /* SearchVieModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchVieModel.h; sourceTree = "<group>"; };
+		04E2FA12224611D3006EE2D5 /* SearchVieModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchVieModel.m; sourceTree = "<group>"; };
 		04E60744222FB528003B94ED /* BaseWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseWebView.h; sourceTree = "<group>"; };
 		04E60745222FB528003B94ED /* BaseWebView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseWebView.m; sourceTree = "<group>"; };
 		04E771262241E56600C6E7CE /* HomeCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeCollectionView.h; sourceTree = "<group>"; };
@@ -755,6 +764,8 @@
 			children = (
 				04E7712E2242180000C6E7CE /* HomeViewModel.h */,
 				04E7712F2242180000C6E7CE /* HomeViewModel.m */,
+				04E2FA11224611D3006EE2D5 /* SearchVieModel.h */,
+				04E2FA12224611D3006EE2D5 /* SearchVieModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -762,6 +773,7 @@
 		0487151A223F848B00679095 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				04E2FA0D22460FFC006EE2D5 /* Search */,
 				04E771262241E56600C6E7CE /* HomeCollectionView.h */,
 				04E771272241E56600C6E7CE /* HomeCollectionView.m */,
 				04E7713122422B8300C6E7CE /* HomeHotCollectionViewCell.h */,
@@ -779,6 +791,8 @@
 				04871502223F766400679095 /* HomeVC.m */,
 				04E7714422426A7A00C6E7CE /* JobDetailVC.h */,
 				04E7714522426A7A00C6E7CE /* JobDetailVC.m */,
+				04E2FA0A22460817006EE2D5 /* SearchVC.h */,
+				04E2FA0B22460817006EE2D5 /* SearchVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -788,6 +802,15 @@
 			children = (
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		04E2FA0D22460FFC006EE2D5 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				04E2FA0E22461028006EE2D5 /* SearchCollectionView.h */,
+				04E2FA0F22461028006EE2D5 /* SearchCollectionView.m */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		04E7713922425B2500C6E7CE /* 设置 */ = {
@@ -993,12 +1016,14 @@
 				04F567A32243325C001E0CD8 /* BaseTableView.m in Sources */,
 				0411213B2240870F003D7F2D /* TaskIngTableView.m in Sources */,
 				04617019222D195400E46B40 /* DateHelper.m in Sources */,
+				04E2FA1022461028006EE2D5 /* SearchCollectionView.m in Sources */,
 				04871525223FC1D600679095 /* MyViewModel.m in Sources */,
 				04871509223F768800679095 /* TaskVC.m in Sources */,
 				04E7713422422B8300C6E7CE /* HomeHotCollectionViewCell.m in Sources */,
 				04616FFD222D14C600E46B40 /* UIView+DragAndReset.m in Sources */,
 				04616FCB222CF66700E46B40 /* main.m in Sources */,
 				04617001222D185900E46B40 /* NSObject+Json.m in Sources */,
+				04E2FA13224611D3006EE2D5 /* SearchVieModel.m in Sources */,
 				041121422240BE79003D7F2D /* TaskTableViewCell.m in Sources */,
 				0476AA102237611C00EF7C8E /* UIImage+Extension.m in Sources */,
 				04616FE8222D09D900E46B40 /* UINavigationBar+SetElement.m in Sources */,
@@ -1014,6 +1039,7 @@
 				04616FF2222D0C1600E46B40 /* UIImageView+GIF.m in Sources */,
 				045E9BC9222E68B30084B777 /* BaseMainTBVC.m in Sources */,
 				04617020222D195400E46B40 /* XPlaceHolderTextView.m in Sources */,
+				04E2FA0C22460818006EE2D5 /* SearchVC.m in Sources */,
 				0461701D222D195400E46B40 /* UserLocation.m in Sources */,
 				04616FDD222D088D00E46B40 /* NetWorkManager.m in Sources */,
 				04617004222D186300E46B40 /* UITabBar+MKExtension.m in Sources */,

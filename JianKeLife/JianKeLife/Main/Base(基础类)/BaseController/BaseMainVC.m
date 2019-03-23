@@ -98,6 +98,12 @@
         return ;
     }];
 }
+- (ClientGlobalInfo *)clientGlobalInfo{
+    if (!_clientGlobalInfo) {
+        _clientGlobalInfo = [ClientGlobalInfo getClientGlobalInfoModel];
+    }
+    return _clientGlobalInfo;
+}
 - (void)dealloc{
     [XNotificationCenter removeObserver:self];
 }

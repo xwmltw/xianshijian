@@ -31,10 +31,16 @@ static NSString *const LoginSuccessNotification = @"LoginSuccessNotification";
 #define Xget_global_info  @"/mapi/global/get_global_info" //全局
 
 #define XLogin_Register   @"/mapi/session/register_login"//登录注册
-#define  Xlogout           @"/mapi/session/logout"//r退出登录
+#define  Xlogout          @"/mapi/session/logout"//r退出登录
 #define Xget_sms_code     @"/mapi/valid/get_sms_code"//获取验证码
 #define Xedit_money_pwd   @"/mapi/session/edit_money_pwd"//修改钱包密码
+#define Xfind_money_pwd   @"/mapi/session/find_money_pwd"//找回钱包密码
 
+#define Xsubmit_feedback_log   @"/mapi/feedback/submit_feedback_log"//意见反馈
 
 #define Xproduct_list     @"/mapi/product/list"   //热门产品列表
+#define Xproduct_search   @"/mapi/product/search"//搜索产品
+
+#define Xclick_log        @"/mapi/specail_entry/click_log"//特色入口点击记录
+#define Xquery_product_list        @"/mapi/specail_entry/query_product_list"//查询产品列表
 #endif /* AppUitls_h */

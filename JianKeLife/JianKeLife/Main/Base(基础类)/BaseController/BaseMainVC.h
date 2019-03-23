@@ -12,7 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BaseMainVC : UIViewController
-
+@property (nonatomic ,strong) ClientGlobalInfo *clientGlobalInfo;
 /**
  创建返回按钮
  */

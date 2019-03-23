@@ -15,6 +15,7 @@
 @interface HomeCollectionView ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,SDCycleScrollViewDelegate>
 @property (nonatomic, strong) SDCycleScrollView *sdcycleScrollView;
 @property (nonatomic ,strong) UIScrollView *specialScrollViewl;
+@property (nonatomic ,strong) UIImageView *hotImageView;
 @end
 @implementation HomeCollectionView
 
@@ -101,10 +102,9 @@
         }
             break;
         case 2:{
-            UIImageView *imageView = [[UIImageView alloc]init];
-            [imageView setImage:[UIImage imageNamed:@"icon_cell_hot"]];
-            [view addSubview:imageView];
-            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+            [view addSubview:self.hotImageView];
+            [self.hotImageView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerY.mas_equalTo(view);
                 make.left.mas_equalTo(view).offset(AdaptationWidth(16));
             }];
@@ -181,7 +181,15 @@
 }
 #pragma  mark - btn
 - (void)btnOnClick:(UIButton *)btn{
-    XBlockExec(self.hotBtnBlck,btn);
+    
+    
+    [self.homeViewModel requestSpecialData:btn.tag-1021];
+//    self.hotBtnBlck = self.homeViewModel.responseHotBlock;
+//    BLOCKSELF
+//    [self.homeViewModel setResponseHotBlock:^(id result) {
+//        XBlockExec(blockSelf.hotBtnBlck,result);
+//    }];
+
 }
 #pragma mark -SDCycleScrollView delegate
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
@@ -256,5 +264,11 @@
     }
     return _specialScrollViewl;
 }
-
+- (UIImageView *)hotImageView{
+    if (!_hotImageView) {
+        _hotImageView = [[UIImageView alloc]init];
+        [_hotImageView setImage:[UIImage imageNamed:@"icon_cell_hot"]];
+    }
+    return _hotImageView;
+}
 @end

@@ -51,6 +51,12 @@
 }
 - (void)btnOnClock:(UIButton *)btn{
     
+    [XNetWork requestNetWorkWithUrl:Xsubmit_feedback_log andModel:@{@"content":self.textView.text} andSuccessBlock:^(ResponseModel *model) {
+        [ProgressHUD showProgressHUDInView:nil withText:@"反馈成功" afterDelay:1];
+        [self.navigationController popViewControllerAnimated:YES];
+    } andFailBlock:^(ResponseModel *model) {
+        
+    }];
     
 }
 - (void)BarbuttonClick:(UIButton *)button{

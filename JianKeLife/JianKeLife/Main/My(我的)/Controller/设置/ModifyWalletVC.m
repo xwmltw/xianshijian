@@ -9,7 +9,9 @@
 #import "ModifyWalletVC.h"
 
 @interface ModifyWalletVC ()
-
+@property (nonatomic ,strong) UITextField *oldTextField;
+@property (nonatomic ,strong) UITextField *nowTextField;
+@property (nonatomic ,strong) UITextField *againTextField;
 @end
 
 @implementation ModifyWalletVC
@@ -28,6 +30,7 @@
     oldPassword.keyboardType = UIKeyboardTypeNumberPad;
     [oldPassword setTextColor:LabelMainColor];
     [self.view addSubview:oldPassword];
+    self.oldTextField = oldPassword;
     [oldPassword mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view).offset(16);
         make.right.mas_equalTo(self.view).offset(-16);
@@ -56,6 +59,7 @@
     newPassword.keyboardType = UIKeyboardTypeNumberPad;
     [newPassword setTextColor:LabelMainColor];
     [self.view addSubview:newPassword];
+    self.nowTextField = newPassword;
     [newPassword mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view).offset(16);
         make.right.mas_equalTo(self.view).offset(-16);
@@ -85,6 +89,7 @@
     againPassword.keyboardType = UIKeyboardTypeNumberPad;
     [againPassword setTextColor:LabelMainColor];
     [self.view addSubview:againPassword];
+    self.againTextField = againPassword;
     [againPassword mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view).offset(16);
         make.right.mas_equalTo(self.view).offset(-16);
@@ -122,5 +127,26 @@
 }
 - (void)btnOnClock:(UIButton *)btn{
     
+    if (!self.oldTextField.text.length) {
+        [ProgressHUD showProgressHUDInView:nil withText:@"请输入原始密码" afterDelay:1];
+        return;
+    }
+    if (!self.nowTextField.text.length) {
+        [ProgressHUD showProgressHUDInView:nil withText:@"请输入新密码" afterDelay:1];
+        return;
+    }
+    if (!self.againTextField.text.length) {
+        [ProgressHUD showProgressHUDInView:nil withText:@"请输入确认新密码" afterDelay:1];
+        return;
+    }
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setObject:self.oldTextField.text forKey:@"orginalPwd"];
+    [dic setObject:self.nowTextField.text forKey:@"newPwd"];
+    [dic setObject:self.againTextField.text forKey:@"confirmPwd"];
+    [XNetWork requestNetWorkWithUrl:Xedit_money_pwd andModel:dic andSuccessBlock:^(ResponseModel *model) {
+        [ProgressHUD showProgressHUDInView:nil withText:@"修改成功" afterDelay:1];
+    } andFailBlock:^(ResponseModel *model) {
+        
+    }];
 }
 @end

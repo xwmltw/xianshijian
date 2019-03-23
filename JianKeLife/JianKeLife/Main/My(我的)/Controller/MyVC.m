@@ -12,6 +12,7 @@
 
 #import "MySetVC.h"
 #import "FeedbackVC.h"
+#import "BaseWebVC.h"
 
 @interface MyVC ()
 @property (nonatomic ,strong) MyTableView *tableView;
@@ -46,6 +47,10 @@
     [XNotificationCenter addObserver:self selector:@selector(loginSuccessNotification:) name:LoginSuccessNotification object:nil];
 }
 - (void)tableViewCellPushVC{
+    if (![UserInfo sharedInstance].isSignIn) {
+        [self getBlackLogin:self];
+    }
+    
     WEAKSELF
     [self.tableView setCellSelectBlock:^(NSInteger result) {
         switch (result) {
@@ -54,7 +59,7 @@
      
                 FeedbackVC *vc = [[FeedbackVC alloc]init];
                 vc.hidesBottomBarWhenPushed = YES;
-                [weakSelf.navigationController pushViewController:vc animated:NO];
+                [weakSelf.navigationController pushViewController:vc animated:YES];
             }
                 break;
             case 1:
@@ -64,7 +69,10 @@
                 break;
             case 2:
             {
-                
+                BaseWebVC *vc = [[BaseWebVC alloc]init];
+                [vc reloadForGetWebView:weakSelf.clientGlobalInfo.aboutUsUrl];
+                vc.hidesBottomBarWhenPushed = YES;
+                [weakSelf.navigationController pushViewController:vc animated:YES];
             }
                 break;
             case 3:
@@ -75,7 +83,7 @@
                 MySetVC *vc = [[MySetVC alloc]init];
                 vc.hidesBottomBarWhenPushed = YES;
                 vc.title = @"设置";
-                [weakSelf.navigationController pushViewController:vc animated:NO];
+                [weakSelf.navigationController pushViewController:vc animated:YES];
             }
                 break;
                 

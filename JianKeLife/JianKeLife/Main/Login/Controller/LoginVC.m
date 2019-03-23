@@ -9,6 +9,8 @@
 #import "LoginVC.h"
 #import "XCountDownButton.h"
 #import <VerifyCode/NTESVerifyCodeManager.h>
+#import "BaseWebVC.h"
+
 
 @interface LoginVC ()<NTESVerifyCodeManagerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
@@ -89,6 +91,10 @@
     
 }
 - (IBAction)protocolBtn:(UIButton *)sender {
+    BaseWebVC *vc = [[BaseWebVC alloc]init];
+    [vc reloadForGetWebView:self.clientGlobalInfo.registerAgreementUrl];
+    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 - (void)getVerificationCodeClick:(XCountDownButton *)btn{
     _getVerificationButton = btn;
@@ -147,14 +153,6 @@
     // App添加自己的处理逻辑
     MyLog(@"%@",message);
 }
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
