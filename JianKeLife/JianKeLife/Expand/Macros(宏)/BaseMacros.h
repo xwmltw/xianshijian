@@ -70,6 +70,9 @@ return _instance;\
 return _instance;\
 }
 
+//处理NSNull
+#define XNULL_TO_NIL(obj) ({ __typeof__ (obj) __obj = (obj); __obj == [NSNull null] ? nil : obj; })
+
 /** block self*/
 
 #define WEAKSELF typeof(self) __weak weakSelf = self;

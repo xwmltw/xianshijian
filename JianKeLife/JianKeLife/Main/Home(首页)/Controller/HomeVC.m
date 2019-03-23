@@ -58,15 +58,19 @@
     self.navigationItem.titleView = searchBtn;
 }
 - (void)scrollViewSelect{
-    self.collectionView.scrollSelectBlock = ^(NSInteger result) {
-        MyLog(@"scroll点击 = %ld",(long)result);
-    };
+    BLOCKSELF
+    [self.collectionView.homeViewModel setResponseBannerWebBlock:^(id result) {
+        BaseWebVC *vc = [[BaseWebVC alloc]init];
+        [vc reloadForGetWebView:result];
+        vc.hidesBottomBarWhenPushed = YES;
+        [blockSelf.navigationController pushViewController:vc animated:YES];
+    }];
 }
 - (void)specialViewSelect{
     BLOCKSELF
     [self.collectionView.homeViewModel setResponseHotWebBlock:^(id result) {
         BaseWebVC *vc = [[BaseWebVC alloc]init];
-        [vc reloadForGetWebView:@"https://www.baidu.com/"];
+        [vc reloadForGetWebView:result];
         vc.hidesBottomBarWhenPushed = YES;
         [blockSelf.navigationController pushViewController:vc animated:YES];
     }];

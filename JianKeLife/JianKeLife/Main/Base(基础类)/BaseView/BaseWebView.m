@@ -33,9 +33,9 @@
         preferences.minimumFontSize = kMinimumFontSize;
         configuration.preferences = preferences;
         
-        WKWebView *WK_web = [[WKWebView alloc] initWithFrame:self.bounds configuration:configuration];
+        self.webView = [[WKWebView alloc] initWithFrame:self.bounds configuration:configuration];
         
-        WK_web.UIDelegate = self;
+        self.webView.UIDelegate = self;
         UIProgressView *progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
         progressView.frame = CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, kProgressViewHeight);
         progressView.progressTintColor = [UIColor grayColor];
@@ -43,9 +43,9 @@
         
         self.progressView = progressView;
         
-        [self addSubview:WK_web];
+        [self addSubview:self.webView];
         
-        [self insertSubview:progressView aboveSubview:WK_web];
+        [self insertSubview:progressView aboveSubview:self.webView];
         
         [self.webView addObserver:self
                        forKeyPath:@"estimatedProgress"

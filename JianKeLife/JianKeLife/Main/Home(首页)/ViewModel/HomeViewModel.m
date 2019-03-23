@@ -62,6 +62,34 @@
     }
     
 }
+- (void)requestBannerData:(NSInteger)index{
+    NSNumber *adType = self.clientGlobalInfo.bannerAdList[index][@"adType"];
+    NSString *adId = self.clientGlobalInfo.bannerAdList[index][@"adId"];
+    NSString *adDetailUrl = XNULL_TO_NIL(self.clientGlobalInfo.bannerAdList[index][@"adDetailUrl"]);
+    [XNetWork requestNetWorkWithUrl:Xadvertise_access_log andModel:@{@"adId":adId} andSuccessBlock:^(ResponseModel *model) {
+        
+    } andFailBlock:^(ResponseModel *model) {
+        
+    }];
+    
+    switch (adType.integerValue) {
+            case 1:
+        {
+            XBlockExec(self.responseBannerWebBlock,adDetailUrl);
+        }
+            break;
+            case 2:
+        {
+            [[UIApplication sharedApplication]openURL:[NSURL URLWithString:adDetailUrl]];
+        }
+            break;
+          
+            
+        default:
+            break;
+    }
+    
+}
 - (MJRefreshAutoNormalFooter *)creatMjRefresh{
     self.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRefresh)];
     [self.footer setTitle:@"" forState:MJRefreshStateIdle];

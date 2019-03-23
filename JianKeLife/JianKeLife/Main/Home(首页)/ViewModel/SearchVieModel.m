@@ -21,12 +21,15 @@
     return self;
 }
 - (void)requestData{
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setObject:self.keywords forKey:@"keywords"];
+    [dic setObject:[self.pageQueryRedModel mj_keyValues] forKey:@"pageQueryReq"];
     BLOCKSELF
-    [XNetWork requestNetWorkWithUrl:Xproduct_search andModel:@{@"pageQueryReq":[self.pageQueryRedModel mj_keyValues],@"keywords":self.keywords} andSuccessBlock:^(ResponseModel *model) {
+    [XNetWork requestNetWorkWithUrl:Xproduct_search andModel:dic andSuccessBlock:^(ResponseModel *model) {
         [blockSelf.productList addObjectsFromArray:model.data[@"dataRows"]];
         XBlockExec(blockSelf.responseSearchBlock,model);
     } andFailBlock:^(ResponseModel *model) {
-        
+        [blockSelf.footer endRefreshing];
     }];
 }
 - (MJRefreshAutoNormalFooter *)creatMjRefresh{
@@ -54,5 +57,11 @@
         _pageQueryRedModel = [[PageQueryRedModel alloc]init];
     }
     return _pageQueryRedModel;
+}
+- (NSString *)keywords{
+    if (!_keywords) {
+        _keywords = @"";
+    }
+    return _keywords;
 }
 @end

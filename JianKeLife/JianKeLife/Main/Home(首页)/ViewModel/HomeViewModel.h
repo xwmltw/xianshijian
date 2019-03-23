@@ -19,10 +19,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic ,copy) XBlock responseBlock;
 @property (nonatomic ,copy) XBlock responseHotBlock;
 @property (nonatomic ,copy) XBlock responseHotWebBlock;
+@property (nonatomic ,copy) XBlock responseBannerWebBlock;
 @property (nonatomic ,strong) MJRefreshAutoNormalFooter *footer;
 - (MJRefreshAutoNormalFooter *)creatMjRefresh;
 - (void)footerRefresh;
 - (void)requestSpecialData:(NSInteger)index;
+- (void)requestBannerData:(NSInteger)index;
 @end
 
 NS_ASSUME_NONNULL_END

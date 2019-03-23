@@ -193,7 +193,7 @@
 }
 #pragma mark -SDCycleScrollView delegate
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
-    XBlockExec(self.scrollSelectBlock,index);
+    [self.homeViewModel requestBannerData:index];
 }
 - (SDCycleScrollView *)sdcycleScrollView{
     if (!_sdcycleScrollView) {
