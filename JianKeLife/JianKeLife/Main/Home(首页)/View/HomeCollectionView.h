@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface HomeCollectionView : UICollectionView
 @property (nonatomic ,copy) XIntegerBlock scrollSelectBlock;
-@property (nonatomic ,copy) XIntegerBlock  collectionSelectBlock;
+@property (nonatomic ,copy) XBlock  collectionSelectBlock;
 
 @property (nonatomic ,strong) HomeViewModel *homeViewModel;
 @end

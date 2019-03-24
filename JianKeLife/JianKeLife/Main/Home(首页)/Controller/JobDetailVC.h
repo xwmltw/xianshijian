@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JobDetailVC : BaseMainVC
-
+@property (nonatomic ,copy) NSString *productNo;
 @end
 
 NS_ASSUME_NONNULL_END

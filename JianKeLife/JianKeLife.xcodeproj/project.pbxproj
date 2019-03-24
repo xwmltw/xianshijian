@@ -88,6 +88,8 @@
 		04E7714A22426AE300C6E7CE /* JobDetailTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E7714922426AE300C6E7CE /* JobDetailTableView.m */; };
 		04F567A32243325C001E0CD8 /* BaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F567A22243325C001E0CD8 /* BaseTableView.m */; };
 		509B42847CE7DD718A1221F4 /* libPods-JianKeLife.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 54FBC33EDED39BD59DC1715A /* libPods-JianKeLife.a */; };
+		B319BF31224747B600C602EA /* ProductModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B319BF30224747B600C602EA /* ProductModel.m */; };
+		B319BF34224748F800C602EA /* JobDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B319BF33224748F800C602EA /* JobDetailViewModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -240,6 +242,10 @@
 		403636099D7088BD3E92CABD /* Pods-JianKeLife.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JianKeLife.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JianKeLife/Pods-JianKeLife.debug.xcconfig"; sourceTree = "<group>"; };
 		54FBC33EDED39BD59DC1715A /* libPods-JianKeLife.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JianKeLife.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		860F8E05AEC6477F1F3F78B0 /* Pods-JianKeLife.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JianKeLife.release.xcconfig"; path = "Pods/Target Support Files/Pods-JianKeLife/Pods-JianKeLife.release.xcconfig"; sourceTree = "<group>"; };
+		B319BF2F224747B600C602EA /* ProductModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductModel.h; sourceTree = "<group>"; };
+		B319BF30224747B600C602EA /* ProductModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductModel.m; sourceTree = "<group>"; };
+		B319BF32224748F800C602EA /* JobDetailViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobDetailViewModel.h; sourceTree = "<group>"; };
+		B319BF33224748F800C602EA /* JobDetailViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobDetailViewModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -603,7 +609,7 @@
 			isa = PBXGroup;
 			children = (
 				0487151B223F849100679095 /* Controller */,
-				0487151C223F849800679095 /* Model */,
+				B319BF2E2247479100C602EA /* Model */,
 				0487151A223F848B00679095 /* View */,
 				04871519223F848300679095 /* ViewModel */,
 			);
@@ -766,6 +772,8 @@
 				04E7712F2242180000C6E7CE /* HomeViewModel.m */,
 				04E2FA11224611D3006EE2D5 /* SearchVieModel.h */,
 				04E2FA12224611D3006EE2D5 /* SearchVieModel.m */,
+				B319BF32224748F800C602EA /* JobDetailViewModel.h */,
+				B319BF33224748F800C602EA /* JobDetailViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -795,13 +803,6 @@
 				04E2FA0B22460817006EE2D5 /* SearchVC.m */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		0487151C223F849800679095 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		04E2FA0D22460FFC006EE2D5 /* Search */ = {
@@ -858,6 +859,15 @@
 				54FBC33EDED39BD59DC1715A /* libPods-JianKeLife.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B319BF2E2247479100C602EA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B319BF2F224747B600C602EA /* ProductModel.h */,
+				B319BF30224747B600C602EA /* ProductModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -996,7 +1006,9 @@
 				04871503223F766400679095 /* HomeVC.m in Sources */,
 				04616FC0222CF66300E46B40 /* ViewController.m in Sources */,
 				0436DD1B22437EF9006476C2 /* LoginViewModel.m in Sources */,
+				B319BF34224748F800C602EA /* JobDetailViewModel.m in Sources */,
 				04E771432242623A00C6E7CE /* FeedbackVC.m in Sources */,
+				B319BF31224747B600C602EA /* ProductModel.m in Sources */,
 				041121502241065F003D7F2D /* MyPersonTableView.m in Sources */,
 				0461701F222D195400E46B40 /* XCommonHepler.m in Sources */,
 				0436DD2122438906006476C2 /* XCountDownButton.m in Sources */,

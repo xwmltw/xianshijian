@@ -121,7 +121,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.section == 2) {
-        XBlockExec(self.collectionSelectBlock ,indexPath.row);
+        XBlockExec(self.collectionSelectBlock ,self.homeViewModel.productList[indexPath.row]);
     }
     
 }

@@ -14,6 +14,7 @@
 
 @interface HomeVC ()
 @property (nonatomic ,strong) HomeCollectionView *collectionView;
+
 @end
 
 @implementation HomeVC
@@ -80,12 +81,10 @@
 }
 - (void)collectionCellSelect{
     WEAKSELF
-    self.collectionView.collectionSelectBlock = ^(NSInteger result) {
+    self.collectionView.collectionSelectBlock = ^(NSDictionary *result) {
         
         JobDetailVC *vc = [[JobDetailVC alloc]init];
-//        vc.hidesBottomBarWhenPushed = YES;
-//        self.navigationController.
-//        BaseMainNC *nav = [[BaseMainNC alloc]initWithRootViewController:vc];
+        vc.productNo = result[@"productNo"];
         [weakSelf presentViewController:vc animated:YES completion:nil];
     };
 }

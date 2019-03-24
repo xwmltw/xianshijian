@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "JobDetailViewModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JobDetailTableView : UITableView
 @property (nonatomic ,copy) XIntegerBlock jobDetailCellBlock;
+@property (nonatomic ,strong) JobDetailViewModel *jobDetailViewModel;
 @end
 
 NS_ASSUME_NONNULL_END

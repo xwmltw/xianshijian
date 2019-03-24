@@ -41,6 +41,7 @@ static NSString *const LoginSuccessNotification = @"LoginSuccessNotification";
 
 #define Xproduct_list               @"/mapi/product/list"   //热门产品列表
 #define Xproduct_search             @"/mapi/product/search"//搜索产品
+#define Xproduct_detail             @"/mapi/product/detail"//产品详情
 
 #define Xclick_log                  @"/mapi/specail_entry/click_log"//特色入口点击记录
 #define Xquery_product_list         @"/mapi/specail_entry/query_product_list"//查询产品列表

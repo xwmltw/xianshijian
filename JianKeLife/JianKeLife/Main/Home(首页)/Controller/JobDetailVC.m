@@ -20,6 +20,8 @@
     [super viewDidLoad];
     
     self.tableView = [[JobDetailTableView alloc]initWithFrame:CGRectMake(0, -20, ScreenWidth, ScreenHeight) style:UITableViewStyleGrouped];
+    self.tableView.jobDetailViewModel.productModel.productNo = self.productNo;
+     [self.tableView.jobDetailViewModel requestDetialData];
     [self.view addSubview: self.tableView];
 
     UIButton *balckBtn = [[UIButton alloc]init];
@@ -49,6 +51,19 @@
         make.width.mas_equalTo(AdaptationWidth(188));
     }];
     
+    UIButton *shareSalary = [[UIButton alloc]init];
+    [shareSalary setBackgroundImage:[UIImage imageNamed:@"Detail_share_background"] forState:UIControlStateNormal];
+    [shareSalary.titleLabel setFont:[UIFont systemFontOfSize:AdaptationWidth(12)]];
+    [shareSalary setTitle:@"领￥1.20" forState:UIControlStateNormal];
+    [shareSalary setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.view addSubview:shareSalary];
+    [shareSalary mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(shareBtn).offset(AdaptationWidth(-7));
+        make.top.mas_equalTo(shareBtn).offset(AdaptationWidth(-10));
+        make.height.mas_equalTo(AdaptationWidth(21));
+        make.width.mas_equalTo(AdaptationWidth(74));
+    }];
+    
     UIButton *recevieBtn = [[UIButton alloc]init];
     recevieBtn.tag = 1013;
     [recevieBtn setTitle:@"去领取" forState:UIControlStateNormal];
@@ -61,6 +76,14 @@
         make.height.mas_equalTo(AdaptationWidth(48));
         make.width.mas_equalTo(AdaptationWidth(188));
     }];
+     
+     [self.tableView.jobDetailViewModel setProductStateBlock:^(ProductModel *model) {
+         model.hasApplyProd.integerValue ?
+         [recevieBtn setTitle:@"已领取 去办理" forState:UIControlStateNormal] :
+         [recevieBtn setTitle:@"去领取" forState:UIControlStateNormal];
+         [shareSalary setTitle:[NSString stringWithFormat:@"领￥%.2f",[model.productShareSalary doubleValue]] forState:UIControlStateNormal];
+         
+     }];
 }
 -(void)btnOnClick:(UIButton *)btn{
     

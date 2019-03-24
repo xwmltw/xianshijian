@@ -9,7 +9,6 @@
 #import "JobDetailTableView.h"
 
 @interface JobDetailTableView ()<UITableViewDelegate ,UITableViewDataSource>
-
 @end
 
 @implementation JobDetailTableView
@@ -21,8 +20,10 @@
         self.delegate = self;
         self.dataSource = self;
         self.estimatedSectionHeaderHeight = 0;
-        
-        
+        BLOCKSELF
+        [self.jobDetailViewModel setProductDetailBlock:^(id result) {
+            [blockSelf reloadData];
+        }];
         
     }
     return self;
@@ -83,7 +84,7 @@
             }];
             
             UILabel *detailMoney = [[UILabel alloc]init];
-            detailMoney.text = @"120.00";
+            detailMoney.text =[NSString stringWithFormat:@"%.2f",[self.jobDetailViewModel.productModel.productSalary doubleValue]] ;
             [detailMoney setFont:[UIFont fontWithName:@"PingFangSC-Bold" size:AdaptationWidth(30)]];
             [detailMoney setTextColor:[UIColor whiteColor]];
             [view addSubview:detailMoney];
@@ -93,7 +94,7 @@
             }];
             
             UILabel *getNum = [[UILabel alloc]init];
-            getNum.text = @"已领取233";
+            getNum.text = [NSString stringWithFormat:@"已领取%@",self.jobDetailViewModel.productModel.prodApplyCount];
             [getNum setFont:[UIFont fontWithName:@"PingFangSC-Regular" size:AdaptationWidth(12)]];
             [getNum setTextColor:[UIColor whiteColor]];
             [view addSubview:getNum];
@@ -118,7 +119,7 @@
             
             UILabel *detailMoney = [[UILabel alloc]init];
             detailMoney.numberOfLines = 2;
-            detailMoney.text = @"招商银行信用卡办理关注评论评论评最多20字";
+            detailMoney.text = self.jobDetailViewModel.productModel.productTitle;
             [detailMoney setFont:[UIFont fontWithName:@"PingFangSC-Regular" size:AdaptationWidth(18)]];
             [detailMoney setTextColor:LabelMainColor];
             [view addSubview:detailMoney];
@@ -138,7 +139,7 @@
             }];
             
             UILabel *detailTime = [[UILabel alloc]init];
-            detailTime.text = @"领取截止至 2019/02/26";
+            detailTime.text = [NSString stringWithFormat:@"领取截止至 %@",self.jobDetailViewModel.productModel.productDeadTimeDesc];
             [detailTime setFont:[UIFont fontWithName:@"PingFangSC-Regular" size:AdaptationWidth(12)]];
             [detailTime setTextColor:LabelAssistantColor];
             [view addSubview:detailTime];
@@ -178,7 +179,7 @@
             
             UILabel *detial = [[UILabel alloc]init];
             detial.numberOfLines = 0;
-            detial.text = @"22周岁以上上海银行新用户;\n没有听过别的渠道申请过的用户；";
+            detial.text = self.jobDetailViewModel.productModel.productGroupOrientedDesc;
             [detial setFont:[UIFont fontWithName:@"PingFangSC-Regular" size:AdaptationWidth(14)]];
             [detial setTextColor:LabelMainColor];
             [view addSubview:detial];
@@ -218,7 +219,7 @@
             
             UILabel *detial = [[UILabel alloc]init];
             detial.numberOfLines = 0;
-            detial.text = @"默认文字在前，图片在后。产品详情运用内容显性化，部分内容外露，用户先获得一部分信息后，有兴趣会滑动查看更多产品详情。";
+//            detial.text = self.jobDetailViewModel.productModel.productDesc;
             [detial setFont:[UIFont fontWithName:@"PingFangSC-Regular" size:AdaptationWidth(14)]];
             [detial setTextColor:LabelMainColor];
             [view addSubview:detial];
@@ -229,6 +230,9 @@
                 make.bottom.mas_equalTo(view).offset(AdaptationWidth(-12));
                 
             }];
+            
+            NSMutableAttributedString * artical_main_text = [[NSMutableAttributedString alloc] initWithData:[[NSString stringWithFormat:@"%@",self.jobDetailViewModel.productModel.productDesc] dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+            detial.attributedText = artical_main_text;
         }
             break;
             
@@ -245,5 +249,11 @@
 //    XBlockExec(self.jobDetailCellBlock ,indexPath.row);
     
 }
-
+- (JobDetailViewModel *)jobDetailViewModel{
+    if (!_jobDetailViewModel) {
+        _jobDetailViewModel = [[JobDetailViewModel alloc]init];
+        
+    }
+    return _jobDetailViewModel;
+}
 @end
