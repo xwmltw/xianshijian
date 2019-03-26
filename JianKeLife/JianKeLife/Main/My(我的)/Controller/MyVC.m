@@ -9,10 +9,12 @@
 #import "MyVC.h"
 #import "MyTableView.h"
 
-
+#import "MyInfoVC.h"
 #import "MySetVC.h"
 #import "FeedbackVC.h"
 #import "BaseWebVC.h"
+#import "ProfitVC.h"
+#import "WalletVC.h"
 
 @interface MyVC ()
 @property (nonatomic ,strong) MyTableView *tableView;
@@ -48,6 +50,7 @@
 }
 - (void)tableViewCellPushVC{
     if (![UserInfo sharedInstance].isSignIn) {
+        
         [self getBlackLogin:self];
     }
     
@@ -99,10 +102,25 @@
             [weakSelf getBlackLogin:weakSelf];
         }
         switch (result.tag) {
-            case 401:
-                
+            case 402:
+            {
+                MyInfoVC *vc = [[MyInfoVC alloc]init];
+                vc.hidesBottomBarWhenPushed = YES;
+                [weakSelf.navigationController pushViewController:vc animated:YES];
+            }
                 break;
-                
+            case 403:{
+                ProfitVC *vc = [[ProfitVC alloc]init];
+                vc.hidesBottomBarWhenPushed = YES;
+                [weakSelf.navigationController pushViewController:vc animated:YES];
+            }
+                break ;
+            case 404:{
+                WalletVC *vc = [[WalletVC alloc]init];
+                vc.hidesBottomBarWhenPushed = YES;
+                [weakSelf.navigationController pushViewController:vc animated:YES];
+            }
+                break;
             default:
                 break;
         }

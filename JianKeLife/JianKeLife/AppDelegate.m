@@ -12,6 +12,7 @@
 #import "UserLocation.h"
 #import "BaseMainTBVC.h"
 #import "WXApi.h"
+#import <ShareSDK/ShareSDK.h>
 
 @interface AppDelegate ()<WXApiDelegate>
 
@@ -47,7 +48,18 @@
     [AMapServices sharedServices].apiKey = AMapKey;
     [[UserLocation sharedInstance]UserLocation];
     
-    //微信
+//    mob分享
+    [ShareSDK registPlatforms:^(SSDKRegister *platformsRegister) {
+        //QQ
+        [platformsRegister setupQQWithAppId:@"1108181943" appkey:@"bStYvNV1J4dd12gh"];
+        //微信
+        [platformsRegister setupWeChatWithAppId:@"wx534af151026110af" appSecret:@"518a77ab116f32f00647cb9843426c15"];
+        //新浪
+        [platformsRegister setupSinaWeiboWithAppkey:@"851868372" appSecret:@"adfd22b8a2bbe9163458aca09ac44c57" redirectUrl:@"http://www.sharesdk.cn"];
+        
+    }];
+    
+    //微信提现
     
     [WXApi registerApp:@"wx534af151026110af"];
 //    // 极光推送

@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy)NSString *token;
 + (instancetype)sharedInstance;
 - (void)saveUserInfo:(UserInfo *)model;
+- (UserInfo *)getUserInfo;
 - (BOOL)isSignIn;
 @end
 

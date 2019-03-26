@@ -30,9 +30,14 @@ static NSString *const LoginSuccessNotification = @"LoginSuccessNotification";
 
 #define Xget_global_info            @"/mapi/global/get_global_info" //全局
 #define Xadvertise_access_log       @"/mapi/global/advertise_access_log"//广告点击记录
+#define Xclick_log                  @"/mapi/specail_entry/click_log"//特色入口点击记录
+
+#define Xupload                     @"/mapi/file/upload"//上传文件
+
+#define Xquery_product_list         @"/mapi/specail_entry/query_product_list"//查询产品列表
 
 #define XLogin_Register             @"/mapi/session/register_login"//登录注册
-#define  Xlogout                    @"/mapi/session/logout"//r退出登录
+#define Xlogout                     @"/mapi/session/logout"//r退出登录
 #define Xget_sms_code               @"/mapi/valid/get_sms_code"//获取验证码
 #define Xedit_money_pwd             @"/mapi/session/edit_money_pwd"//修改钱包密码
 #define Xfind_money_pwd             @"/mapi/session/find_money_pwd"//找回钱包密码
@@ -42,7 +47,16 @@ static NSString *const LoginSuccessNotification = @"LoginSuccessNotification";
 #define Xproduct_list               @"/mapi/product/list"   //热门产品列表
 #define Xproduct_search             @"/mapi/product/search"//搜索产品
 #define Xproduct_detail             @"/mapi/product/detail"//产品详情
+#define Xproduct_apply              @"/mapi/product_apply/apply"//领取产品
+#define XqueryProductShareInfo      @"/mapi/product/queryProductShareInfo"//分享信息
 
-#define Xclick_log                  @"/mapi/specail_entry/click_log"//特色入口点击记录
-#define Xquery_product_list         @"/mapi/specail_entry/query_product_list"//查询产品列表
+#define Xget_account_info           @"/mapi/ctm/get_account_info"//获取用户账号基本信息
+#define Xedit_account_info          @"/mapi/ctm/edit_account_info"//编辑用户账号基本信息
+#define Xget_base_info              @"/mapi/ctm/get_base_info"//获取用户资料信息
+#define Xedit_head_logo             @"/mapi/ctm/edit_head_logo"//编辑头像
+
+#define Xquery_flow_list            @"/mapi/trade/query_flow_list"//交易流水查询
+#define Xquery_withdraw_cfg         @"/mapi/trade/query_withdraw_cfg"//提现o配置信息
+#define Xwechat_cash_withdraw       @"/mapi/trade/wechat_cash_withdraw"//微信提现
+
 #endif /* AppUitls_h */

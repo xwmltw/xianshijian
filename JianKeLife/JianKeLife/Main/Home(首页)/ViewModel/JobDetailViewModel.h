@@ -15,7 +15,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic ,strong) ProductModel *productModel;
 @property (nonatomic ,copy) XBlock productDetailBlock;
 @property (nonatomic ,copy) XBlock productStateBlock;
+@property (nonatomic ,copy) XBlock productShareBlock;
+@property (nonatomic ,copy) XBlock productReceiveBlock;
 - (void)requestDetialData;
+- (void)requestShareData;
+- (void)requestReceive;
+- (NSString *)getProductUrl;
 @end
 
 NS_ASSUME_NONNULL_END

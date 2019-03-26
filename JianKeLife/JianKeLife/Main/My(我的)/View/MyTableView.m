@@ -27,8 +27,13 @@
         self.backgroundColor = XColorWithRGB(248, 248, 248);
         self.delegate = self;
         self.dataSource = self;
-        self.viewModel = [[MyViewModel alloc]init];
         
+        [self.viewModel requestUserInfo];
+        BLOCKSELF
+        [self.viewModel setRequestMyInfoBlock:^(MyModel *model) {
+            [blockSelf reloadData];
+        }];
+
         
     }
     return self;
@@ -39,6 +44,8 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UIView *view = [[UIView alloc]init];
     
+     UIButton *headerBtn = [[UIButton alloc]init];
+    
     UIImageView *headerImage = [[UIImageView alloc]init];
     [headerImage setImage:[UIImage imageNamed:@"icon_my_header"]];
     [view addSubview:headerImage];
@@ -48,6 +55,9 @@
     }];
     
     if (![[UserInfo sharedInstance]isSignIn]) {
+        
+        [headerBtn setImage:[UIImage imageNamed:@"默认头像"] forState:UIControlStateNormal];
+        
         UIImageView *headerImage2 = [[UIImageView alloc]init];
         [headerImage2 setImage:[UIImage imageNamed:@"icon_my_header2"]];
         [view addSubview:headerImage2];
@@ -84,6 +94,14 @@
             make.bottom.mas_equalTo(loginBtn.mas_top).offset(AdaptationWidth(-12));
         }];
     }else{
+
+        if (self.viewModel.myModel.headLogo.length) {
+            [headerBtn sd_setImageWithURL:[NSURL URLWithString:self.viewModel.myModel.headLogo] forState:UIControlStateNormal];
+        }else{
+             [headerBtn setImage:[UIImage imageNamed:@"默认头像"] forState:UIControlStateNormal];
+        }
+        
+        
         UIView *heardView = [[UIView alloc]init];
         heardView.backgroundColor = [UIColor whiteColor];
         [view addSubview:heardView];
@@ -95,7 +113,7 @@
         }];
         
         UILabel *nameLab = [[UILabel alloc]init];
-        [nameLab setText:@"XXX"];
+        [nameLab setText:self.viewModel.myModel.trueName];
         [nameLab setFont:[UIFont systemFontOfSize:AdaptationWidth(16)]];
         [nameLab setTextColor:LabelMainColor];
         [heardView addSubview:nameLab];
@@ -105,7 +123,7 @@
         }];
         
         UILabel *telLab = [[UILabel alloc]init];
-        [telLab setText:@"XXXXXXXXXX"];
+        [telLab setText:self.viewModel.myModel.telephone];
         [telLab setFont:[UIFont systemFontOfSize:AdaptationWidth(16)]];
         [telLab setTextColor:LabelMainColor];
         [heardView addSubview:telLab];
@@ -145,7 +163,7 @@
         }];
         
         UILabel *upMoneyLab = [[UILabel alloc]init];
-        [upMoneyLab setText:@"5000"];
+        [upMoneyLab setText:[NSString stringWithFormat:@"%.2f",[self.viewModel.myModel.actualReceviceAmt doubleValue]]];
         [upMoneyLab setFont:[UIFont systemFontOfSize:AdaptationWidth(20)]];
         [upMoneyLab setTextColor:RedColor];
         [heardView addSubview:upMoneyLab];
@@ -177,7 +195,7 @@
         }];
         
         UILabel *moneyLab = [[UILabel alloc]init];
-        [moneyLab setText:@"5000"];
+        [moneyLab setText:[NSString stringWithFormat:@"%.2f",[self.viewModel.myModel.totalAmount doubleValue]]];
         [moneyLab setFont:[UIFont systemFontOfSize:AdaptationWidth(20)]];
         [moneyLab setTextColor:RedColor];
         [heardView addSubview:moneyLab];
@@ -229,7 +247,7 @@
         }];
         
         UILabel *willMoneyLab = [[UILabel alloc]init];
-        [willMoneyLab setText:@"100000.00"];
+        [willMoneyLab setText:[NSString stringWithFormat:@"%.2f",[self.viewModel.myModel.forecastReceviceAmt doubleValue]]];
         [willMoneyLab setFont:[UIFont systemFontOfSize:AdaptationWidth(20)]];
         [willMoneyLab setTextColor:RedColor];
         [heardView2 addSubview:willMoneyLab];
@@ -251,9 +269,10 @@
         }];
     }
     
-    UIButton *headerBtn = [[UIButton alloc]init];
+    
+   
     headerBtn.tag = 406;
-    [headerBtn setImage:[UIImage imageNamed:@"默认头像"] forState:UIControlStateNormal];
+    
     [headerBtn addTarget:self action:@selector(btnOnClock:) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:headerBtn];
     [headerBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -261,7 +280,6 @@
         make.width.height.mas_equalTo(AdaptationWidth(60));
         make.top.mas_equalTo(view).offset(AdaptationWidth(20));
     }];
-    
     
     
     
@@ -351,5 +369,11 @@
 #pragma mark - btn
 -(void)btnOnClock:(UIButton *)btn{
     XBlockExec(self.btnBlock ,btn);
+}
+- (MyViewModel *)viewModel{
+    if (!_viewModel) {
+        _viewModel = [[MyViewModel alloc]init];
+    }
+    return _viewModel;
 }
 @end

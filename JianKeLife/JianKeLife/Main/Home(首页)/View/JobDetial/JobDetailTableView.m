@@ -7,8 +7,11 @@
 //
 
 #import "JobDetailTableView.h"
+#import "SDCycleScrollView.h"
 
-@interface JobDetailTableView ()<UITableViewDelegate ,UITableViewDataSource>
+
+@interface JobDetailTableView ()<UITableViewDelegate ,UITableViewDataSource,SDCycleScrollViewDelegate>
+@property (nonatomic ,strong) SDCycleScrollView *sdcycleScrollView;
 @end
 
 @implementation JobDetailTableView
@@ -56,11 +59,14 @@
     }
     switch (indexPath.row) {
         case 0:
-        {
-            UIImageView *cellImage = [[UIImageView alloc]init];
-            [cellImage sd_setImageWithURL:[NSURL URLWithString:@"https://img-my.csdn.net/uploads/201407/26/1406383291_8239.jpg"]];
-            [cell.contentView addSubview:cellImage];
-            [cellImage mas_makeConstraints:^(MASConstraintMaker *make) {
+        {   
+            
+            [cell.contentView addSubview:self.sdcycleScrollView];
+            _sdcycleScrollView.imageURLStringsGroup = self.jobDetailViewModel.productModel.productMainPicUrl;
+            if (self.jobDetailViewModel.productModel.productMainPicUrl.count == 1) {
+                _sdcycleScrollView.autoScroll = NO;
+            }
+            [self.sdcycleScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.right.top.mas_equalTo(cell);
                 make.height.mas_equalTo(AdaptationWidth(250));
             }];
@@ -93,14 +99,16 @@
                 make.centerY.mas_equalTo(view);
             }];
             
-            UILabel *getNum = [[UILabel alloc]init];
-            getNum.text = [NSString stringWithFormat:@"已领取%@",self.jobDetailViewModel.productModel.prodApplyCount];
-            [getNum setFont:[UIFont fontWithName:@"PingFangSC-Regular" size:AdaptationWidth(12)]];
-            [getNum setTextColor:[UIColor whiteColor]];
+            UIButton *getNum = [[UIButton alloc]init];
+            getNum.enabled = NO;
+            [getNum setBackgroundImage:[UIImage imageNamed:@"iocn_detail_hearbg"] forState:UIControlStateNormal];
+            [getNum setTitle:[NSString stringWithFormat:@"已领取%@",self.jobDetailViewModel.productModel.prodApplyCount] forState:UIControlStateNormal];
+            [getNum setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [getNum.titleLabel setFont:[UIFont fontWithName:@"PingFangSC-Regular" size:AdaptationWidth(12)]];
             [view addSubview:getNum];
             [getNum mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.right.mas_equalTo(view).offset(AdaptationWidth(-18));
-                make.centerY.mas_equalTo(view);
+                make.right.top.bottom.mas_equalTo(view);
+                make.width.mas_equalTo(AdaptationWidth(113));
             }];
         }
             break;
@@ -146,10 +154,9 @@
             [detailTime mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.mas_equalTo(cellImage.mas_right).offset(AdaptationWidth(3));
                 make.centerY.mas_equalTo(cellImage);
-                
-                
+ 
             }];
-            
+
         }
             break;
         case 2:
@@ -255,5 +262,18 @@
         
     }
     return _jobDetailViewModel;
+}
+- (SDCycleScrollView *)sdcycleScrollView{
+    if (!_sdcycleScrollView) {
+        
+        _sdcycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"iamge_rule"]];
+        _sdcycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleToFill;
+        _sdcycleScrollView.autoScrollTimeInterval = 3;
+        _sdcycleScrollView.pageControlStyle = SDCycleScrollViewPageContolStyleClassic;
+        _sdcycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
+        _sdcycleScrollView.pageDotColor = XColorWithRBBA(255, 255, 255, 0.4);
+        
+    }
+    return _sdcycleScrollView;
 }
 @end

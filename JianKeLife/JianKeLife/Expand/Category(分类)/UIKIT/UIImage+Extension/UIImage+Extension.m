@@ -40,6 +40,51 @@ static UIImage *_img = nil;
         return NO;
     }
 }
+
++ (NSString *)saveImage:(UIImage *)tempImage WithName:(NSString *)imageName{
+    
+    NSData* imageData = UIImagePNGRepresentation(tempImage);
+    
+    NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    
+    NSString* documentsDirectory = [paths objectAtIndex:0];
+    
+    // Now we get the full path to the file
+    
+    NSString* fullPathToFile = [documentsDirectory stringByAppendingPathComponent:imageName];
+    
+    // and then we write it out
+    
+    [imageData writeToFile:fullPathToFile atomically:NO];
+    
+    return fullPathToFile;
+}
+
++ (UIImage *)qrCodeImageWithInfo:(NSString *)info  width:(CGFloat)width
+{
+    if (!info) {
+        return nil;
+    }
+    
+    NSData *strData = [info dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO];
+    //创建二维码滤镜
+    CIFilter *qrFilter = [CIFilter filterWithName:@"CIQRCodeGenerator"];
+    [qrFilter setValue:strData forKey:@"inputMessage"];
+    [qrFilter setValue:@"H" forKey:@"inputCorrectionLevel"];
+    CIImage *qrImage = qrFilter.outputImage;
+    //颜色滤镜
+    CIFilter *colorFilter = [CIFilter filterWithName:@"CIFalseColor"];
+    [colorFilter setDefaults];
+    [colorFilter setValue:qrImage forKey:kCIInputImageKey];
+    [colorFilter setValue:[CIColor colorWithRed:0 green:0 blue:0] forKey:@"inputColor0"];
+    
+    //    ![Uploading 1A4978EE-427F-4804-B536-1D5C330A0578_306160.png . . .][colorFilter setValue:[CIColor colorWithRed:1 green:1 blue:1] forKey:@"inputColor1"];
+    CIImage *colorImage = colorFilter.outputImage;
+    //返回二维码
+    CGFloat scale = width/31;
+    UIImage *codeImage = [UIImage imageWithCIImage:[colorImage imageByApplyingTransform:CGAffineTransformMakeScale(scale, scale)]];
+    return codeImage;
+}
 +(UIImage *)imageNamed:(NSString *)IMGName InBundleNamed:(NSString *)BundleName
 {
     
@@ -224,6 +269,19 @@ static UIImage *_img = nil;
     UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return theImage;
+}
+//使用该方法不会模糊，根据屏幕密度计算
++ (UIImage *)convertViewToImage:(UIView *)view {
+    
+    UIImage *imageRet = [[UIImage alloc]init];
+    //UIGraphicsBeginImageContextWithOptions(区域大小, 是否是非透明的, 屏幕密度);
+    UIGraphicsBeginImageContextWithOptions(view.frame.size, YES, [UIScreen mainScreen].scale);
+    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    imageRet = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return imageRet;
+    
 }
 -(UIImage*)scaleToSize:(CGSize)size
 {

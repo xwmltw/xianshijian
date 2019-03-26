@@ -22,13 +22,26 @@
 - (UIImage*)image_RotatedByAngle:(CGFloat)Angle;
 #pragma mark - image from view
 + (UIImage *)imageFromView:(UIView *)theView;
++ (UIImage *)convertViewToImage:(UIView *)view;//使用该方法不会模糊
 #pragma mark - image from scrollView
 + (UIImage *)imageFromScrollView:(UIScrollView *)scrollView;
+
+//保存图片到本地
++ (NSString *)saveImage:(UIImage *)tempImage WithName:(NSString *)imageName;
 
 /**
  *  识别图片中的二维码
  */
 -(BOOL)HaveQRCode;
+
+/**
+ 创建二维码图片
+
+ @param info <#info description#>
+ @param width <#width description#>
+ @return <#return value description#>
+ */
++ (UIImage *)qrCodeImageWithInfo:(NSString *)info  width:(CGFloat)width;
 /**
  *  图片的压缩方法
  *
@@ -63,6 +76,8 @@
  *  @return 获得灰度图片
  */
 + (UIImage*)covertToGrayImageFromImage:(UIImage*)sourceImage;
+
+
 
 
 // 获取BundleIMG

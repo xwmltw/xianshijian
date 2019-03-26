@@ -26,7 +26,25 @@
         
     }];
 }
-
+- (void)requestReceive{
+    BLOCKSELF
+    [XNetWork requestNetWorkWithUrl:Xproduct_apply andModel:@{@"productNo":self.productModel.productNo} andSuccessBlock:^(ResponseModel *model) {
+        XBlockExec(blockSelf.productReceiveBlock,model.data);
+    } andFailBlock:^(ResponseModel *model) {
+        
+    }];
+}
+- (void)requestShareData{
+    BLOCKSELF
+    [XNetWork requestNetWorkWithUrl:XqueryProductShareInfo andModel:@{@"productNo":self.productModel.productNo} andSuccessBlock:^(ResponseModel *model) {
+        XBlockExec(blockSelf.productShareBlock,model.data);
+    } andFailBlock:^(ResponseModel *model) {
+        
+    }];
+}
+- (NSString *)getProductUrl{
+    return self.productModel.productUrl;
+}
 - (ProductModel *)productModel{
     if (!_productModel) {
         _productModel = [[ProductModel alloc]init];

@@ -23,13 +23,33 @@ PODS:
   - MBProgressHUD (1.1.0)
   - MJExtension (3.0.15.1)
   - MJRefresh (3.1.15.7)
+  - mob_sharesdk (4.2.3):
+    - mob_sharesdk/ShareSDK (= 4.2.3)
+    - MOBFoundation
+  - mob_sharesdk/ShareSDK (4.2.3):
+    - MOBFoundation
+  - mob_sharesdk/ShareSDKExtension (4.2.3):
+    - mob_sharesdk/ShareSDK
+    - MOBFoundation
+  - mob_sharesdk/ShareSDKPlatforms/QQ (4.2.3):
+    - mob_sharesdk/ShareSDK
+    - MOBFoundation
+  - mob_sharesdk/ShareSDKPlatforms/SinaWeibo (4.2.3):
+    - mob_sharesdk/ShareSDK
+    - MOBFoundation
+  - mob_sharesdk/ShareSDKPlatforms/WeChatFull (4.2.3):
+    - mob_sharesdk/ShareSDK
+    - MOBFoundation
+  - mob_sharesdk/ShareSDKUI (4.2.3):
+    - mob_sharesdk/ShareSDK
+    - MOBFoundation
+  - MOBFoundation (3.2.2)
   - SDCycleScrollView (1.75):
     - SDWebImage (>= 4.0.0)
   - SDWebImage (4.4.6):
     - SDWebImage/Core (= 4.4.6)
   - SDWebImage/Core (4.4.6)
   - VerifyCode (3.0.1)
-  - WechatOpenSDK (1.8.4)
 
 DEPENDENCIES:
   - AFNetworking
@@ -40,10 +60,15 @@ DEPENDENCIES:
   - MBProgressHUD
   - MJExtension
   - MJRefresh
+  - mob_sharesdk
+  - mob_sharesdk/ShareSDKExtension
+  - mob_sharesdk/ShareSDKPlatforms/QQ
+  - mob_sharesdk/ShareSDKPlatforms/SinaWeibo
+  - mob_sharesdk/ShareSDKPlatforms/WeChatFull
+  - mob_sharesdk/ShareSDKUI
   - SDCycleScrollView (~> 1.75)
   - SDWebImage
   - VerifyCode
-  - WechatOpenSDK
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -56,10 +81,11 @@ SPEC REPOS:
     - MBProgressHUD
     - MJExtension
     - MJRefresh
+    - mob_sharesdk
+    - MOBFoundation
     - SDCycleScrollView
     - SDWebImage
     - VerifyCode
-    - WechatOpenSDK
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
@@ -71,11 +97,12 @@ SPEC CHECKSUMS:
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   MJExtension: 19bc33ce2eee2d319760f5622562cf581a6ff756
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
+  mob_sharesdk: e906a03f75d03ba1404fb046e055160c8258242d
+  MOBFoundation: b5ff4038ddb9a0f06b685b86408f905a10aa147c
   SDCycleScrollView: 884b88f0266dd4708a0e1934975c69cb971707b1
   SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
   VerifyCode: 27f855fd71ebd567521c8d052bd7e8d76a151e4c
-  WechatOpenSDK: 9b721089507c895d05f997408c30bb6e6f5f9b60
 
-PODFILE CHECKSUM: 8df000eb72f8edca649905912396e5ca79fbc49e
+PODFILE CHECKSUM: 2d680449cbfcf3588278c0841d5ffb830d346ec8
 
 COCOAPODS: 1.5.3

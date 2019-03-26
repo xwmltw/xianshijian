@@ -85,7 +85,8 @@
         
         JobDetailVC *vc = [[JobDetailVC alloc]init];
         vc.productNo = result[@"productNo"];
-        [weakSelf presentViewController:vc animated:YES completion:nil];
+        vc.hidesBottomBarWhenPushed = YES;
+        [weakSelf.navigationController pushViewController:vc animated:YES];
     };
 }
 - (void)btnOnClock:(UIButton *)btn{

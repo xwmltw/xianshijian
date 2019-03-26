@@ -86,6 +86,7 @@
                 [XCacheHelper clearCacheFolder];
                 LoginVC *vc = [[LoginVC alloc]init];
                 [blockSelf.navigationController pushViewController:vc animated:YES];
+                [XNotificationCenter postNotificationName:LoginSuccessNotification object:nil];
             } andFailBlock:^(ResponseModel *model) {
                 
             }];

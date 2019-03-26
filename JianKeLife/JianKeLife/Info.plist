@@ -2,6 +2,22 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>wechat</string>
+		<string>weixin</string>
+		<string>mqq</string>
+		<string>sinaweibo</string>
+		<string>weibosdk</string>
+		<string>weibosdk2.5
+weibosdk2.5
+</string>
+	</array>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>en</string>
+		<string>zh</string>
+	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -40,6 +56,28 @@
 				<string>jiankelife</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLIconFile</key>
+			<string></string>
+			<key>CFBundleURLName</key>
+			<string>QQ</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>QQ420D83B7</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>weibo</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>wb851868372</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
@@ -47,13 +85,21 @@
 	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>MOBAppSecret</key>
+	<string>eab4de832f32f758efe73d8e0263e5c6</string>
+	<key>MOBAppkey</key>
+	<string>2a237827d3361</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSHumanReadableCopyright</key>
+	<string></string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>程序在运行期间获取用户定位信息以推送本地资讯</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>我们需要通过您的相册存储和获取相关相册</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -64,7 +110,7 @@
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
-		<string>UIInterfaceOrientationPortrait</string>
+		<string></string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>

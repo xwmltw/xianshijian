@@ -71,7 +71,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     
-    XBlockExec(self.collectionSelectBlock ,indexPath.row);
+    XBlockExec(self.collectionSelectBlock ,self.searchVieModel.productList[indexPath.row]);
     
     
 }

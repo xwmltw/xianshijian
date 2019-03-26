@@ -50,7 +50,7 @@
     NSMutableDictionary *content = [NSMutableDictionary dictionary];
     [content addEntriesFromDictionary:[model mj_keyValues]];
     
-    [params setObject:[UserInfo sharedInstance].token.length > 0 ? [UserInfo sharedInstance].token :@"" forKey:@"accessToken"];
+    [params setObject:[[UserInfo sharedInstance]getUserInfo].token.length > 0 ? [[UserInfo sharedInstance]getUserInfo].token :@"" forKey:@"accessToken"];
     [params setObject:content forKey:@"data"];
     
 
@@ -65,6 +65,7 @@
         if (responseModel.rspCode.integerValue == 0) {
             XBlockExec(successBlock, responseModel);
         }else{
+            if(![url isEqualToString:Xget_account_info])
             [ProgressHUD showProgressHUDInView:nil withText:responseModel.rspMsg afterDelay:1];
             XBlockExec(failBlock, responseModel);
         }
@@ -74,6 +75,42 @@
         }
           MyLog(@"%@->返回数据%@",url,error);
         
+    }];
+}
+//上传图片
++ (void)UploadPicturesWithUrl:(NSString *)url  images:(NSArray *)images targetWidth:(CGFloat )width andSuccessBlock:(ResponseBlock)successBlock andFailBlock:(ResponseBlock)failBlock{
+    
+    UIWindow *topWindow = [[UIApplication sharedApplication] keyWindow];
+    UIViewController *appRootVC = topWindow.rootViewController;
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:appRootVC.view animated:YES];
+    hud.mode = MBProgressHUDModeIndeterminate;
+    hud.animationType = MBProgressHUDAnimationFade;
+    hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
+    hud.bezelView.backgroundColor = [UIColor clearColor];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+
+    
+    [params setObject:[[UserInfo sharedInstance]getUserInfo].token.length > 0 ? [[UserInfo sharedInstance]getUserInfo].token :@"" forKey:@"accessToken"];
+    NSString *str = [NSString stringWithFormat:@"%@?accessToken=%@",url,[[UserInfo sharedInstance]getUserInfo].token];
+    [NetWorkManager UploadPicturesWithURL:str parameters:nil images:images targetWidth:width UploadProgress:nil success:^(id responseObject) {
+        if (hud) {
+            [hud hideAnimated:YES];
+        }
+        MyLog(@"%@->返回数据%@",url,responseObject);
+        ResponseModel *responseModel = [ResponseModel mj_objectWithKeyValues:responseObject];
+        if (responseModel.rspCode.integerValue == 0) {
+            XBlockExec(successBlock, responseModel);
+        }else{
+            if(![url isEqualToString:Xget_account_info])
+                [ProgressHUD showProgressHUDInView:nil withText:responseModel.rspMsg afterDelay:1];
+            XBlockExec(failBlock, responseModel);
+        }
+    } failure:^(NSError *error) {
+        if (hud) {
+            [hud hideAnimated:YES];
+        }
+        MyLog(@"%@->返回数据%@",url,error);
     }];
 }
 @end

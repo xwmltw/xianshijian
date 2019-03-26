@@ -143,11 +143,21 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
     switch (section) {
         case 0:{
-            return CGSizeMake(self.Sw, AdaptationWidth(130));
+            if (self.homeViewModel.clientGlobalInfo.bannerAdList.count) {
+                 return CGSizeMake(self.Sw, AdaptationWidth(130));
+            }else{
+                return CGSizeMake(self.Sw, 0.1);
+            }
+           
         }
             break;
         case 1:{
-            return CGSizeMake(self.Sw, AdaptationWidth(90));
+            if (self.homeViewModel.clientGlobalInfo.specialEntryList.count) {
+                return CGSizeMake(self.Sw, AdaptationWidth(90));
+            }else{
+                return CGSizeMake(self.Sw, 0.1);
+            }
+            
         }
             break;
         case 2:{

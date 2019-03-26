@@ -40,6 +40,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
     //打开手势返回
 //    if (self.navigationController != nil && self.navigationController.viewControllers.count > 1) {
 //        self.navigationItem.leftBarButtonItem = self.editButtonItem;
@@ -97,6 +98,7 @@
         }
         return ;
     }];
+    
 }
 - (ClientGlobalInfo *)clientGlobalInfo{
     if (!_clientGlobalInfo) {

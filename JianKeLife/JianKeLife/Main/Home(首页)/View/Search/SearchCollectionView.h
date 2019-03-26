@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SearchCollectionView : UICollectionView
-@property (nonatomic ,copy) XIntegerBlock  collectionSelectBlock;
+@property (nonatomic ,copy) XBlock  collectionSelectBlock;
 @property (nonatomic ,strong) SearchVieModel *searchVieModel;
 
 @end

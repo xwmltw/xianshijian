@@ -56,9 +56,10 @@
     self.view  = self.collectionView;
     
     BLOCKSELF
-    [self.collectionView setCollectionSelectBlock:^(NSInteger result) {
+    [self.collectionView setCollectionSelectBlock:^(NSDictionary *result) {
         JobDetailVC *vc = [[JobDetailVC alloc]init];
-        [blockSelf presentViewController:vc animated:YES completion:nil];
+        vc.productNo = result[@"productNo"];
+        [blockSelf.navigationController pushViewController:vc animated:YES];
     }];
 }
 - (void)btnOnClick:(UIButton *)btn{

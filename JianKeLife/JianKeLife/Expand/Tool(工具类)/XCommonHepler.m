@@ -141,6 +141,7 @@ XSharedInstance(XCommonHelper);
     }else{
         msg = @"保存图片成功" ;
     }
+    [ProgressHUD showProgressHUDInView:nil withText:msg afterDelay:1];
 //    [UIHelper toast:msg];
 }
 + (void)getPHAuthorization:(XBlock)block{

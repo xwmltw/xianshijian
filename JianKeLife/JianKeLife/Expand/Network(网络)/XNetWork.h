@@ -32,6 +32,19 @@ NS_ASSUME_NONNULL_BEGIN
  @param SuccessBlock 回调信息
  */
 + (void)requestNetWorkWithUrl:(NSString *)url andModel:(NSObject *_Nullable)model andSuccessBlock:(ResponseBlock)successBlock andFailBlock:(ResponseBlock)failBlock;
+
+
+/**
+ 上传
+
+ @param url <#url description#>
+ @param images <#images description#>
+ @param width <#width description#>
+ @param successBlock <#successBlock description#>
+ @param failBlock <#failBlock description#>
+ */
++ (void)UploadPicturesWithUrl:(NSString *)url  images:(NSArray *)images targetWidth:(CGFloat )width andSuccessBlock:(ResponseBlock)successBlock andFailBlock:(ResponseBlock)failBlock;
+
 @end
 
 NS_ASSUME_NONNULL_END
