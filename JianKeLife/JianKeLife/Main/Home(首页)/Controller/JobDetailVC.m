@@ -91,7 +91,7 @@
          model.hasApplyProd.integerValue ?
          [recevieBtn setTitle:@"已领取 去办理" forState:UIControlStateNormal] :
          [recevieBtn setTitle:@"去领取" forState:UIControlStateNormal];
-         [shareSalary setTitle:[NSString stringWithFormat:@"领￥%.2f",[model.productShareSalary doubleValue]] forState:UIControlStateNormal];
+         [shareSalary setTitle:[NSString stringWithFormat:@"领￥%.2f",[model.productShareSalary doubleValue]/100] forState:UIControlStateNormal];
          
      }];
 }
@@ -153,7 +153,7 @@
     self.qrCodeView.hidden = NO;
     [self.qrCodeView.QRcodeMainView setCornerValue:8];
     self.qrCodeView.QRtitle.text = self.tableView.jobDetailViewModel.productModel.productTitle;
-    self.qrCodeView.QRmoney.text = [NSString stringWithFormat:@"%.2f",[self.tableView.jobDetailViewModel.productModel.productSalary doubleValue]];
+    self.qrCodeView.QRmoney.text = [NSString stringWithFormat:@"%.2f",[self.tableView.jobDetailViewModel.productModel.productSalary doubleValue]/100];
     [self.qrCodeView.QRimageView sd_setImageWithURL:[NSURL URLWithString:self.tableView.jobDetailViewModel.productModel.productMainPicUrl.firstObject]];
     self.qrCodeView.QRcodeImageView.image = [UIImage qrCodeImageWithInfo:self.tableView.jobDetailViewModel.productModel.productUrl width:AdaptationWidth(85)];
     [self.view addSubview:self.qrCodeView];

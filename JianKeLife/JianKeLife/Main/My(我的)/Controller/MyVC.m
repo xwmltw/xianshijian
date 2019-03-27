@@ -15,6 +15,7 @@
 #import "BaseWebVC.h"
 #import "ProfitVC.h"
 #import "WalletVC.h"
+#import "ExpectVC.h"
 
 @interface MyVC ()
 @property (nonatomic ,strong) MyTableView *tableView;
@@ -120,6 +121,12 @@
                 vc.hidesBottomBarWhenPushed = YES;
                 [weakSelf.navigationController pushViewController:vc animated:YES];
             }
+                break;
+            case 405:{
+                ExpectVC *vc = [[ExpectVC alloc]init];
+                vc.hidesBottomBarWhenPushed = YES;
+                [weakSelf.navigationController pushViewController:vc animated:YES];
+                }
                 break;
             default:
                 break;

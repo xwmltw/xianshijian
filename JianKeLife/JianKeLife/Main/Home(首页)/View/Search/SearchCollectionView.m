@@ -58,7 +58,7 @@
     HomeHotCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([HomeHotCollectionViewCell class]) forIndexPath:indexPath];
     cell.cellTitle.text = self.searchVieModel.productList[indexPath.row][@"productTitle"];
     [cell.cellImage sd_setImageWithURL:self.searchVieModel.productList[indexPath.row][@"productFirstMainPicUrl"]];
-    cell.cellMoney.text = [NSString stringWithFormat:@"%.2f",[self.searchVieModel.productList[indexPath.row][@"productSalary"] doubleValue]];
+    cell.cellMoney.text = [NSString stringWithFormat:@"%.2f",[self.searchVieModel.productList[indexPath.row][@"productSalary"] doubleValue]/100];
     
     
     

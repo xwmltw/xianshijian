@@ -54,7 +54,7 @@
    
     
     UILabel *loginLab2 = [[UILabel alloc]init];
-    [loginLab2 setText:[NSString stringWithFormat:@"%.2f",[self.profitViewModel.profitModel.totalAmount doubleValue]]];
+    [loginLab2 setText:[NSString stringWithFormat:@"%.2f",[self.profitViewModel.profitModel.totalAmount doubleValue]/100]];
     [loginLab2 setFont:[UIFont fontWithName:@"PingFangSC-Medium" size:AdaptationWidth(24)]];
     [loginLab2 setTextColor:[UIColor whiteColor]];
     [view addSubview:loginLab2];
@@ -127,7 +127,7 @@
 }
 - (void)btnOnClock:(UIButton *)btn
 {
-    
+    XBlockExec(self.cashWithdrawalBtnBlock ,nil);
 }
 - (ProfitViewModel *)profitViewModel{
     if (!_profitViewModel) {

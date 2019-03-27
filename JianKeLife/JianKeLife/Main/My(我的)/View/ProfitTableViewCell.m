@@ -11,7 +11,7 @@
 @implementation ProfitTableViewCell
 - (void)setModel:(ProtifDetailModel *)model{
     self.labDetial.text = model.moneyFlowTypeDesc;
-    self.labMoney.text = [NSString stringWithFormat:@"%.2f",[model.tradeAmount doubleValue]];
+    self.labMoney.text = [NSString stringWithFormat:@"%.2f",[model.tradeAmount doubleValue]/100];
     self.labDate.text = model.tradeTime;
     self.labState.text = model.moneyFlowTitle;
 }

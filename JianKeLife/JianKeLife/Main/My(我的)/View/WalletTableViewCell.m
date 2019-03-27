@@ -12,7 +12,7 @@
 
 - (void)setModel:(ProtifDetailModel *)model{
     self.labDetail.text = model.moneyFlowTitle;
-    self.labMoney.text = [NSString stringWithFormat:@"%.2f",[model.tradeAmount doubleValue]];
+    self.labMoney.text = [NSString stringWithFormat:@"%.2f",[model.tradeAmount doubleValue]/100];
     self.labDate.text = model.tradeTime;
 }
 - (void)awakeFromNib {

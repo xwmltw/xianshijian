@@ -25,7 +25,7 @@ static NSString *const TalkingData_AppID =   @"";
 /**通知*/
 
 static NSString *const LoginSuccessNotification = @"LoginSuccessNotification";
-
+static NSString *const WXLoginNotification = @"WXLoginNotification";
 /**接口名称*/
 
 #define Xget_global_info            @"/mapi/global/get_global_info" //全局
@@ -37,10 +37,9 @@ static NSString *const LoginSuccessNotification = @"LoginSuccessNotification";
 #define Xquery_product_list         @"/mapi/specail_entry/query_product_list"//查询产品列表
 
 #define XLogin_Register             @"/mapi/session/register_login"//登录注册
-#define Xlogout                     @"/mapi/session/logout"//r退出登录
+#define Xlogout                     @"/mapi/session/logout"//退出登录
 #define Xget_sms_code               @"/mapi/valid/get_sms_code"//获取验证码
-#define Xedit_money_pwd             @"/mapi/session/edit_money_pwd"//修改钱包密码
-#define Xfind_money_pwd             @"/mapi/session/find_money_pwd"//找回钱包密码
+
 
 #define Xsubmit_feedback_log        @"/mapi/feedback/submit_feedback_log"//意见反馈
 
@@ -58,5 +57,10 @@ static NSString *const LoginSuccessNotification = @"LoginSuccessNotification";
 #define Xquery_flow_list            @"/mapi/trade/query_flow_list"//交易流水查询
 #define Xquery_withdraw_cfg         @"/mapi/trade/query_withdraw_cfg"//提现o配置信息
 #define Xwechat_cash_withdraw       @"/mapi/trade/wechat_cash_withdraw"//微信提现
+#define Xset_money_pwd              @"/mapi/session/set_money_pwd"//设置钱袋子密码
+#define Xedit_money_pwd             @"/mapi/session/edit_money_pwd"//修改钱包密码
+#define Xfind_money_pwd             @"/mapi/session/find_money_pwd"//找回钱包密码
+
+#define Xestimate_list               @"/mapi/profit/estimate_list"//查询预计收益列表
 
 #endif /* AppUitls_h */

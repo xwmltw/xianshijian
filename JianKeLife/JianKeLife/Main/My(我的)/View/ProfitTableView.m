@@ -59,7 +59,7 @@
     }];
     
     UILabel *loginLab2 = [[UILabel alloc]init];
-    [loginLab2 setText:[NSString stringWithFormat:@"%.2f",[self.profitViewModel.profitModel.actualReceviceAmt doubleValue]]];
+    [loginLab2 setText:[NSString stringWithFormat:@"%.2f",[self.profitViewModel.profitModel.actualReceviceAmt doubleValue]/100]];
     [loginLab2 setFont:[UIFont fontWithName:@"PingFangSC-Bold" size:AdaptationWidth(24)]];
     [loginLab2 setTextColor:LabelMainColor];
     [view addSubview:loginLab2];

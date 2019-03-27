@@ -20,7 +20,6 @@
 		04112155224106F3003D7F2D /* MyPersonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04112153224106F3003D7F2D /* MyPersonTableViewCell.xib */; };
 		0411215D22410F9A003D7F2D /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0411215B22410F9A003D7F2D /* LoginVC.m */; };
 		0411215E22410F9A003D7F2D /* LoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0411215C22410F9A003D7F2D /* LoginVC.xib */; };
-		0436DD1B22437EF9006476C2 /* LoginViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0436DD1A22437EF9006476C2 /* LoginViewModel.m */; };
 		0436DD1E224381F2006476C2 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0436DD1D224381F2006476C2 /* UserInfo.m */; };
 		0436DD2122438906006476C2 /* XCountDownButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0436DD2022438906006476C2 /* XCountDownButton.m */; };
 		0436DD2422438D59006476C2 /* BaseParamModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0436DD2322438D59006476C2 /* BaseParamModel.m */; };
@@ -80,6 +79,13 @@
 		04871522223FAA1E00679095 /* MyTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04871521223FAA1E00679095 /* MyTableView.m */; };
 		04871525223FC1D600679095 /* MyViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04871524223FC1D600679095 /* MyViewModel.m */; };
 		04871528223FC20000679095 /* MyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04871527223FC20000679095 /* MyModel.m */; };
+		04AECC94224B84BD00410304 /* ExpectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AECC93224B84BD00410304 /* ExpectVC.m */; };
+		04AECC97224B8ED600410304 /* ExpectTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AECC96224B8ED600410304 /* ExpectTableView.m */; };
+		04AECC9A224B933500410304 /* ExpectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AECC99224B933500410304 /* ExpectTableViewCell.m */; };
+		04AECC9D224B95EE00410304 /* ExpectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AECC9C224B95EE00410304 /* ExpectModel.m */; };
+		04AECCA0224B9B6D00410304 /* ExpectViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AECC9F224B9B6D00410304 /* ExpectViewModel.m */; };
+		04AECCA4224BB01400410304 /* GetBackWalletVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AECCA2224BB01300410304 /* GetBackWalletVC.m */; };
+		04AECCA5224BB01400410304 /* GetBackWalletVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04AECCA3224BB01300410304 /* GetBackWalletVC.xib */; };
 		04BD1145224A026B0033B774 /* ProfitVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BD1144224A026A0033B774 /* ProfitVC.m */; };
 		04BD1148224A02860033B774 /* ProfitTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BD1147224A02860033B774 /* ProfitTableView.m */; };
 		04BD114C224A03A80033B774 /* ProfitTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BD114A224A03A80033B774 /* ProfitTableViewCell.m */; };
@@ -100,6 +106,11 @@
 		04BD117C224A57930033B774 /* WalletTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04BD117A224A57930033B774 /* WalletTableViewCell.xib */; };
 		04BD1180224A5CC50033B774 /* CashWithdrawalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BD117E224A5CC50033B774 /* CashWithdrawalVC.m */; };
 		04BD1181224A5CC50033B774 /* CashWithdrawalVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04BD117F224A5CC50033B774 /* CashWithdrawalVC.xib */; };
+		04CB940E224B0E5F00C9DF13 /* CashWithdrawalModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CB940D224B0E5F00C9DF13 /* CashWithdrawalModel.m */; };
+		04CB9411224B14B700C9DF13 /* SetWalletPasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CB9410224B14B700C9DF13 /* SetWalletPasswordView.m */; };
+		04CB9413224B14C500C9DF13 /* SetWalletPasswordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CB9412224B14C500C9DF13 /* SetWalletPasswordView.xib */; };
+		04CB941A224B4D7600C9DF13 /* InPutPasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CB9419224B4D7600C9DF13 /* InPutPasswordView.m */; };
+		04CB941C224B4DC300C9DF13 /* InPutPasswordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CB941B224B4DC300C9DF13 /* InPutPasswordView.xib */; };
 		04E2FA0C22460818006EE2D5 /* SearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E2FA0B22460817006EE2D5 /* SearchVC.m */; };
 		04E2FA1022461028006EE2D5 /* SearchCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E2FA0F22461028006EE2D5 /* SearchCollectionView.m */; };
 		04E2FA13224611D3006EE2D5 /* SearchVieModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E2FA12224611D3006EE2D5 /* SearchVieModel.m */; };
@@ -142,8 +153,6 @@
 		0411215A22410F9A003D7F2D /* LoginVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
 		0411215B22410F9A003D7F2D /* LoginVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
 		0411215C22410F9A003D7F2D /* LoginVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginVC.xib; sourceTree = "<group>"; };
-		0436DD1922437EF9006476C2 /* LoginViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewModel.h; sourceTree = "<group>"; };
-		0436DD1A22437EF9006476C2 /* LoginViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewModel.m; sourceTree = "<group>"; };
 		0436DD1C224381F2006476C2 /* UserInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
 		0436DD1D224381F2006476C2 /* UserInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
 		0436DD1F22438905006476C2 /* XCountDownButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCountDownButton.h; sourceTree = "<group>"; };
@@ -248,6 +257,19 @@
 		04871524223FC1D600679095 /* MyViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyViewModel.m; sourceTree = "<group>"; };
 		04871526223FC20000679095 /* MyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyModel.h; sourceTree = "<group>"; };
 		04871527223FC20000679095 /* MyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyModel.m; sourceTree = "<group>"; };
+		04AECC92224B84BD00410304 /* ExpectVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExpectVC.h; sourceTree = "<group>"; };
+		04AECC93224B84BD00410304 /* ExpectVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExpectVC.m; sourceTree = "<group>"; };
+		04AECC95224B8ED600410304 /* ExpectTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExpectTableView.h; sourceTree = "<group>"; };
+		04AECC96224B8ED600410304 /* ExpectTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExpectTableView.m; sourceTree = "<group>"; };
+		04AECC98224B933500410304 /* ExpectTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExpectTableViewCell.h; sourceTree = "<group>"; };
+		04AECC99224B933500410304 /* ExpectTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExpectTableViewCell.m; sourceTree = "<group>"; };
+		04AECC9B224B95EE00410304 /* ExpectModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExpectModel.h; sourceTree = "<group>"; };
+		04AECC9C224B95EE00410304 /* ExpectModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExpectModel.m; sourceTree = "<group>"; };
+		04AECC9E224B9B6D00410304 /* ExpectViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExpectViewModel.h; sourceTree = "<group>"; };
+		04AECC9F224B9B6D00410304 /* ExpectViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExpectViewModel.m; sourceTree = "<group>"; };
+		04AECCA1224BB01300410304 /* GetBackWalletVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetBackWalletVC.h; sourceTree = "<group>"; };
+		04AECCA2224BB01300410304 /* GetBackWalletVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetBackWalletVC.m; sourceTree = "<group>"; };
+		04AECCA3224BB01300410304 /* GetBackWalletVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GetBackWalletVC.xib; sourceTree = "<group>"; };
 		04BD1143224A026A0033B774 /* ProfitVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfitVC.h; sourceTree = "<group>"; };
 		04BD1144224A026A0033B774 /* ProfitVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfitVC.m; sourceTree = "<group>"; };
 		04BD1146224A02860033B774 /* ProfitTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfitTableView.h; sourceTree = "<group>"; };
@@ -285,6 +307,14 @@
 		04BD117D224A5CC50033B774 /* CashWithdrawalVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CashWithdrawalVC.h; sourceTree = "<group>"; };
 		04BD117E224A5CC50033B774 /* CashWithdrawalVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CashWithdrawalVC.m; sourceTree = "<group>"; };
 		04BD117F224A5CC50033B774 /* CashWithdrawalVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CashWithdrawalVC.xib; sourceTree = "<group>"; };
+		04CB940C224B0E5F00C9DF13 /* CashWithdrawalModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CashWithdrawalModel.h; sourceTree = "<group>"; };
+		04CB940D224B0E5F00C9DF13 /* CashWithdrawalModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CashWithdrawalModel.m; sourceTree = "<group>"; };
+		04CB940F224B14B700C9DF13 /* SetWalletPasswordView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetWalletPasswordView.h; sourceTree = "<group>"; };
+		04CB9410224B14B700C9DF13 /* SetWalletPasswordView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetWalletPasswordView.m; sourceTree = "<group>"; };
+		04CB9412224B14C500C9DF13 /* SetWalletPasswordView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetWalletPasswordView.xib; sourceTree = "<group>"; };
+		04CB9418224B4D7600C9DF13 /* InPutPasswordView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InPutPasswordView.h; sourceTree = "<group>"; };
+		04CB9419224B4D7600C9DF13 /* InPutPasswordView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InPutPasswordView.m; sourceTree = "<group>"; };
+		04CB941B224B4DC300C9DF13 /* InPutPasswordView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InPutPasswordView.xib; sourceTree = "<group>"; };
 		04E2FA0A22460817006EE2D5 /* SearchVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchVC.h; sourceTree = "<group>"; };
 		04E2FA0B22460817006EE2D5 /* SearchVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchVC.m; sourceTree = "<group>"; };
 		04E2FA0E22461028006EE2D5 /* SearchCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchCollectionView.h; sourceTree = "<group>"; };
@@ -348,29 +378,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0411215622410F3E003D7F2D /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		0411215722410F50003D7F2D /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		0411215822410F56003D7F2D /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				0436DD1922437EF9006476C2 /* LoginViewModel.h */,
-				0436DD1A22437EF9006476C2 /* LoginViewModel.m */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		0411215922410F5D003D7F2D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -675,6 +682,8 @@
 				04BD117D224A5CC50033B774 /* CashWithdrawalVC.h */,
 				04BD117E224A5CC50033B774 /* CashWithdrawalVC.m */,
 				04BD117F224A5CC50033B774 /* CashWithdrawalVC.xib */,
+				04AECC92224B84BD00410304 /* ExpectVC.h */,
+				04AECC93224B84BD00410304 /* ExpectVC.m */,
 			);
 			path = "用户信息";
 			sourceTree = "<group>";
@@ -701,9 +710,6 @@
 			isa = PBXGroup;
 			children = (
 				0411215922410F5D003D7F2D /* Controller */,
-				0411215822410F56003D7F2D /* ViewModel */,
-				0411215722410F50003D7F2D /* View */,
-				0411215622410F3E003D7F2D /* Model */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -761,6 +767,10 @@
 				04BD116A224A32AC0033B774 /* MyInfoModel.m */,
 				04BD116C224A41810033B774 /* ProfitModel.h */,
 				04BD116D224A41810033B774 /* ProfitModel.m */,
+				04CB940C224B0E5F00C9DF13 /* CashWithdrawalModel.h */,
+				04CB940D224B0E5F00C9DF13 /* CashWithdrawalModel.m */,
+				04AECC9B224B95EE00410304 /* ExpectModel.h */,
+				04AECC9C224B95EE00410304 /* ExpectModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -780,6 +790,16 @@
 				04BD1178224A57930033B774 /* WalletTableViewCell.h */,
 				04BD1179224A57930033B774 /* WalletTableViewCell.m */,
 				04BD117A224A57930033B774 /* WalletTableViewCell.xib */,
+				04CB940F224B14B700C9DF13 /* SetWalletPasswordView.h */,
+				04CB9410224B14B700C9DF13 /* SetWalletPasswordView.m */,
+				04CB9412224B14C500C9DF13 /* SetWalletPasswordView.xib */,
+				04CB9418224B4D7600C9DF13 /* InPutPasswordView.h */,
+				04CB9419224B4D7600C9DF13 /* InPutPasswordView.m */,
+				04CB941B224B4DC300C9DF13 /* InPutPasswordView.xib */,
+				04AECC95224B8ED600410304 /* ExpectTableView.h */,
+				04AECC96224B8ED600410304 /* ExpectTableView.m */,
+				04AECC98224B933500410304 /* ExpectTableViewCell.h */,
+				04AECC99224B933500410304 /* ExpectTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -803,6 +823,8 @@
 				04871524223FC1D600679095 /* MyViewModel.m */,
 				04BD114E224A077D0033B774 /* ProfitViewModel.h */,
 				04BD114F224A077D0033B774 /* ProfitViewModel.m */,
+				04AECC9E224B9B6D00410304 /* ExpectViewModel.h */,
+				04AECC9F224B9B6D00410304 /* ExpectViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -977,6 +999,9 @@
 				04E7713722424F5800C6E7CE /* MySetVC.m */,
 				04E7713D22425B9900C6E7CE /* ModifyWalletVC.h */,
 				04E7713E22425B9900C6E7CE /* ModifyWalletVC.m */,
+				04AECCA1224BB01300410304 /* GetBackWalletVC.h */,
+				04AECCA2224BB01300410304 /* GetBackWalletVC.m */,
+				04AECCA3224BB01300410304 /* GetBackWalletVC.xib */,
 			);
 			path = "设置";
 			sourceTree = "<group>";
@@ -1093,6 +1118,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0411215E22410F9A003D7F2D /* LoginVC.xib in Resources */,
+				04CB9413224B14C500C9DF13 /* SetWalletPasswordView.xib in Resources */,
 				04BD114D224A03A80033B774 /* ProfitTableViewCell.xib in Resources */,
 				04BD117C224A57930033B774 /* WalletTableViewCell.xib in Resources */,
 				0411214A2240E98E003D7F2D /* ConnectionsVC.xib in Resources */,
@@ -1101,6 +1127,8 @@
 				04616FC8222CF66700E46B40 /* LaunchScreen.storyboard in Resources */,
 				04616FC5222CF66700E46B40 /* Assets.xcassets in Resources */,
 				04E7713522422B8300C6E7CE /* HomeHotCollectionViewCell.xib in Resources */,
+				04CB941C224B4DC300C9DF13 /* InPutPasswordView.xib in Resources */,
+				04AECCA5224BB01400410304 /* GetBackWalletVC.xib in Resources */,
 				0467C315224905AB002F5344 /* QRcodeView.xib in Resources */,
 				04112155224106F3003D7F2D /* MyPersonTableViewCell.xib in Resources */,
 				04616FC3222CF66300E46B40 /* Main.storyboard in Resources */,
@@ -1171,6 +1199,7 @@
 				04E771282241E56600C6E7CE /* HomeCollectionView.m in Sources */,
 				041121492240E98E003D7F2D /* ConnectionsVC.m in Sources */,
 				04871528223FC20000679095 /* MyModel.m in Sources */,
+				04CB941A224B4D7600C9DF13 /* InPutPasswordView.m in Sources */,
 				04E7713F22425B9900C6E7CE /* ModifyWalletVC.m in Sources */,
 				04E60746222FB528003B94ED /* BaseWebView.m in Sources */,
 				04BD116B224A32AC0033B774 /* MyInfoModel.m in Sources */,
@@ -1180,7 +1209,7 @@
 				04871503223F766400679095 /* HomeVC.m in Sources */,
 				04616FC0222CF66300E46B40 /* ViewController.m in Sources */,
 				04BD117B224A57930033B774 /* WalletTableViewCell.m in Sources */,
-				0436DD1B22437EF9006476C2 /* LoginViewModel.m in Sources */,
+				04AECC97224B8ED600410304 /* ExpectTableView.m in Sources */,
 				B319BF34224748F800C602EA /* JobDetailViewModel.m in Sources */,
 				04BD1163224A112A0033B774 /* FSMediaPicker.m in Sources */,
 				04E771432242623A00C6E7CE /* FeedbackVC.m in Sources */,
@@ -1210,6 +1239,7 @@
 				04F567A32243325C001E0CD8 /* BaseTableView.m in Sources */,
 				0411213B2240870F003D7F2D /* TaskIngTableView.m in Sources */,
 				04617019222D195400E46B40 /* DateHelper.m in Sources */,
+				04AECC9D224B95EE00410304 /* ExpectModel.m in Sources */,
 				04BD1160224A112A0033B774 /* GKImageCropOverlayView.m in Sources */,
 				04E2FA1022461028006EE2D5 /* SearchCollectionView.m in Sources */,
 				04871525223FC1D600679095 /* MyViewModel.m in Sources */,
@@ -1219,13 +1249,16 @@
 				0467C31322490598002F5344 /* QRcodeView.m in Sources */,
 				04616FCB222CF66700E46B40 /* main.m in Sources */,
 				04BD1154224A10B10033B774 /* EMSettingActionSheet.m in Sources */,
+				04AECC94224B84BD00410304 /* ExpectVC.m in Sources */,
 				04BD1164224A112A0033B774 /* GKCropBorderView.m in Sources */,
 				04617001222D185900E46B40 /* NSObject+Json.m in Sources */,
 				04E2FA13224611D3006EE2D5 /* SearchVieModel.m in Sources */,
+				04AECC9A224B933500410304 /* ExpectTableViewCell.m in Sources */,
 				04BD1145224A026B0033B774 /* ProfitVC.m in Sources */,
 				04BD1180224A5CC50033B774 /* CashWithdrawalVC.m in Sources */,
 				041121422240BE79003D7F2D /* TaskTableViewCell.m in Sources */,
 				04BD1168224A15C00033B774 /* EMSettingActionCell.m in Sources */,
+				04CB940E224B0E5F00C9DF13 /* CashWithdrawalModel.m in Sources */,
 				0476AA102237611C00EF7C8E /* UIImage+Extension.m in Sources */,
 				04616FE8222D09D900E46B40 /* UINavigationBar+SetElement.m in Sources */,
 				04616FFB222D14C600E46B40 /* UIView+Rotate.m in Sources */,
@@ -1233,6 +1266,9 @@
 				04616FD9222D076800E46B40 /* ProgressHUD.m in Sources */,
 				04112154224106F3003D7F2D /* MyPersonTableViewCell.m in Sources */,
 				0461701E222D195400E46B40 /* XDeviceHelper.m in Sources */,
+				04AECCA4224BB01400410304 /* GetBackWalletVC.m in Sources */,
+				04CB9411224B14B700C9DF13 /* SetWalletPasswordView.m in Sources */,
+				04AECCA0224B9B6D00410304 /* ExpectViewModel.m in Sources */,
 				04BD1148224A02860033B774 /* ProfitTableView.m in Sources */,
 				04E7714A22426AE300C6E7CE /* JobDetailTableView.m in Sources */,
 				04BD1162224A112A0033B774 /* GKImageCropView.m in Sources */,

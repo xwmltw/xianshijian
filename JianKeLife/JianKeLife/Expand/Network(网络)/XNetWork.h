@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param secret <#secret description#>
  @param block <#block description#>
  */
-- (void)getWXLoginAppID:(NSString *)appID andSecret:(NSString *)secret andCode:(NSString *)code andBlock:(XBlock)block;
++ (void)getWXLoginAppID:(NSString *)appID andSecret:(NSString *)secret andCode:(NSString *)code andBlock:(XBlock)block;
 
 
 /**

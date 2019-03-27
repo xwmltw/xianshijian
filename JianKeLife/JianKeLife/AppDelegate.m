@@ -94,7 +94,10 @@
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
     return  [WXApi handleOpenURL:url delegate:self];
 }
-
+- (BOOL)application:(UIApplication *)application openURL:(nonnull NSURL *)url options:(nonnull NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options{
+    
+    return [WXApi handleOpenURL:url delegate:self];
+}
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     return [WXApi handleOpenURL:url delegate:self];
 }
@@ -149,13 +152,9 @@
         [alert show];
         
     }
+    [XNotificationCenter postNotificationName:WXLoginNotification object:@{@"code":resp.code}];
     
-//    NSString *str = [NSString stringWithFormat:@"https://api.weixin.qq.com/sns/oauth2/access_token?appid=%@&secret=%@&code=%@&grant_type=authorization_code",@"wx534af151026110af",@"518a77ab116f32f00647cb9843426c15",resp.code];
-//    [NetWorkManager requestDataForPOSTWithURL:str parameters:nil Controller:self UploadProgress:nil success:^(id responseObject) {
-//        MyLog(@"%@",responseObject);
-//    } failure:^(NSError *error) {
-//
-//    }];
+
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -183,6 +182,8 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
-
+-(void)dealloc{
+    [XNotificationCenter removeObserver:self];
+}
 
 @end

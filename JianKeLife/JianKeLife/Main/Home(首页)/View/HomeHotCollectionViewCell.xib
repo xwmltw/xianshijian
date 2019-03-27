@@ -23,7 +23,7 @@
                         <color key="backgroundColor" red="1" green="0.4039215686" blue="0.4039215686" alpha="1" colorSpace="calibratedRGB"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="招商银行信用" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g5C-Nf-FrY">
-                        <rect key="frame" x="10" y="134" width="146" height="19"/>
+                        <rect key="frame" x="10" y="134" width="146" height="19.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.22745098039215686" green="0.22745098039215686" blue="0.22745098039215686" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -44,7 +44,6 @@
             </view>
             <constraints>
                 <constraint firstItem="R7m-2h-VYm" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="0LY-Yh-X10"/>
-                <constraint firstAttribute="trailing" secondItem="R7m-2h-VYm" secondAttribute="trailing" id="0Sc-un-spw"/>
                 <constraint firstItem="g5C-Nf-FrY" firstAttribute="top" secondItem="R7m-2h-VYm" secondAttribute="bottom" constant="8" id="TPe-uh-Wup"/>
                 <constraint firstItem="R7m-2h-VYm" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="XI4-ee-tF8"/>
                 <constraint firstItem="1sY-4O-80y" firstAttribute="leading" secondItem="xOo-GM-hn0" secondAttribute="trailing" constant="2" id="XQv-u7-f55"/>
@@ -52,6 +51,7 @@
                 <constraint firstItem="g5C-Nf-FrY" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="cR3-vP-FXZ"/>
                 <constraint firstItem="xOo-GM-hn0" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="csq-mP-dwt"/>
                 <constraint firstItem="1sY-4O-80y" firstAttribute="centerY" secondItem="xOo-GM-hn0" secondAttribute="centerY" id="ohM-GZ-hJg"/>
+                <constraint firstAttribute="trailing" secondItem="R7m-2h-VYm" secondAttribute="trailing" id="phY-0c-beK"/>
                 <constraint firstAttribute="trailing" secondItem="g5C-Nf-FrY" secondAttribute="trailing" constant="10" id="qDX-Ec-5IF"/>
                 <constraint firstItem="xOo-GM-hn0" firstAttribute="top" secondItem="g5C-Nf-FrY" secondAttribute="bottom" constant="10" id="qch-8O-fKE"/>
             </constraints>

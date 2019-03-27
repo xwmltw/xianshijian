@@ -90,7 +90,7 @@
             }];
             
             UILabel *detailMoney = [[UILabel alloc]init];
-            detailMoney.text =[NSString stringWithFormat:@"%.2f",[self.jobDetailViewModel.productModel.productSalary doubleValue]] ;
+            detailMoney.text =[NSString stringWithFormat:@"%.2f",[self.jobDetailViewModel.productModel.productSalary doubleValue]/100] ;
             [detailMoney setFont:[UIFont fontWithName:@"PingFangSC-Bold" size:AdaptationWidth(30)]];
             [detailMoney setTextColor:[UIColor whiteColor]];
             [view addSubview:detailMoney];

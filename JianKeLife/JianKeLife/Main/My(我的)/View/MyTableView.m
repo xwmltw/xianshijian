@@ -163,7 +163,7 @@
         }];
         
         UILabel *upMoneyLab = [[UILabel alloc]init];
-        [upMoneyLab setText:[NSString stringWithFormat:@"%.2f",[self.viewModel.myModel.actualReceviceAmt doubleValue]]];
+        [upMoneyLab setText:[NSString stringWithFormat:@"%.2f",[self.viewModel.myModel.actualReceviceAmt doubleValue]/100]];
         [upMoneyLab setFont:[UIFont systemFontOfSize:AdaptationWidth(20)]];
         [upMoneyLab setTextColor:RedColor];
         [heardView addSubview:upMoneyLab];
@@ -195,7 +195,7 @@
         }];
         
         UILabel *moneyLab = [[UILabel alloc]init];
-        [moneyLab setText:[NSString stringWithFormat:@"%.2f",[self.viewModel.myModel.totalAmount doubleValue]]];
+        [moneyLab setText:[NSString stringWithFormat:@"%.2f",[self.viewModel.myModel.totalAmount doubleValue]/100]];
         [moneyLab setFont:[UIFont systemFontOfSize:AdaptationWidth(20)]];
         [moneyLab setTextColor:RedColor];
         [heardView addSubview:moneyLab];
@@ -247,7 +247,7 @@
         }];
         
         UILabel *willMoneyLab = [[UILabel alloc]init];
-        [willMoneyLab setText:[NSString stringWithFormat:@"%.2f",[self.viewModel.myModel.forecastReceviceAmt doubleValue]]];
+        [willMoneyLab setText:[NSString stringWithFormat:@"%.2f",[self.viewModel.myModel.forecastReceviceAmt doubleValue]/100]];
         [willMoneyLab setFont:[UIFont systemFontOfSize:AdaptationWidth(20)]];
         [willMoneyLab setTextColor:RedColor];
         [heardView2 addSubview:willMoneyLab];

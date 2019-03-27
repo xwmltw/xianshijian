@@ -8,6 +8,7 @@
 
 #import "WalletVC.h"
 #import "WalletTableView.h"
+#import "CashWithdrawalVC.h"
 @interface WalletVC ()
 @property (nonatomic ,strong) WalletTableView *walletTableView;
 @end
@@ -21,6 +22,13 @@
     self.walletTableView.profitViewModel.tradeType = @2;
     [self.walletTableView.profitViewModel requestProfitData];
     self.view = self.walletTableView;
+    
+    BLOCKSELF
+    [self.walletTableView setCashWithdrawalBtnBlock:^(id result) {
+        CashWithdrawalVC *vc = [[CashWithdrawalVC alloc]init];
+        vc.balance = blockSelf.walletTableView.profitViewModel.profitModel.totalAmount;
+        [blockSelf.navigationController pushViewController:vc animated:YES];
+    }];
 }
 
 /*

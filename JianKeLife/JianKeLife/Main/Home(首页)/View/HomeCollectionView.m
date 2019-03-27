@@ -63,7 +63,7 @@
             HomeHotCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([HomeHotCollectionViewCell class]) forIndexPath:indexPath];
             cell.cellTitle.text = self.homeViewModel.productList[indexPath.row][@"productTitle"];
             [cell.cellImage sd_setImageWithURL:self.homeViewModel.productList[indexPath.row][@"productFirstMainPicUrl"]];
-            cell.cellMoney.text = [NSString stringWithFormat:@"%.2f",[self.homeViewModel.productList[indexPath.row][@"productSalary"] doubleValue]];
+            cell.cellMoney.text = [NSString stringWithFormat:@"%.2f",[self.homeViewModel.productList[indexPath.row][@"productSalary"] doubleValue]/100];
             
             
             return cell;

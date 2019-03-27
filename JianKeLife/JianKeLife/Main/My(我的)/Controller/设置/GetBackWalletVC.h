@@ -1,8 +1,8 @@
 //
-//  FeedbackVC.h
+//  GetBackWalletVC.h
 //  JianKeLife
 //
-//  Created by yanqb on 2019/3/20.
+//  Created by yanqb on 2019/3/27.
 //  Copyright © 2019年 xwm. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FeedbackVC : BaseMainVC
+@interface GetBackWalletVC : BaseMainVC
 
 @end
 

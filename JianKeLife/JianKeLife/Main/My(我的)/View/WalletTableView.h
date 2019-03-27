@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WalletTableView : UITableView
 @property (nonatomic ,strong) ProfitViewModel *profitViewModel;
+@property (nonatomic ,copy) XBlock cashWithdrawalBtnBlock;
 @end
 
 NS_ASSUME_NONNULL_END
