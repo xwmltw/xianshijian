@@ -10,7 +10,7 @@
 #import "MyPersonTableViewCell.h"
 
 @interface MyPersonTableView ()<UITableViewDelegate,UITableViewDataSource>
-
+@property (nonatomic ,copy) NSNumber *num;
 @end
 
 @implementation MyPersonTableView
@@ -23,6 +23,15 @@
         self.tableFooterView = [[UIView alloc]init];
         self.backgroundColor = XColorWithRGB(248, 248, 248);
         [self registerNib:[UINib nibWithNibName:@"MyPersonTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"MyPersonTableViewCell"];
+        
+        self.mj_footer = [self.connectionViewModel creatMjRefresh];
+        [self.connectionViewModel requestFirstData];
+        BLOCKSELF
+        [self.connectionViewModel setConnectionRequestBlcok:^(id result) {
+            blockSelf.num = result[@"firstConnectionsTotalCount"];
+            [blockSelf.mj_footer endRefreshing];
+            [blockSelf reloadData];
+        }];
     }
     return self;
 }
@@ -30,7 +39,7 @@
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 3;
+    return self.connectionViewModel.connectionList.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return AdaptationWidth(63);
@@ -39,7 +48,7 @@
     UIView *view = [[UIView alloc]init];
     
     UILabel *title = [[UILabel alloc]init];
-    title.text = @"一级人脉（3）";
+    title.text = [NSString stringWithFormat:@"一级人脉（%@）",self.num.description];
     [title setFont:[UIFont systemFontOfSize:AdaptationWidth(16)]];
     [title setTextColor:LabelAssistantColor];
     [view addSubview:title];
@@ -54,15 +63,20 @@
     MyPersonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyPersonTableViewCell"];
     if (!cell) {
         cell = [[[NSBundle mainBundle]loadNibNamed:@"MyPersonTableViewCell" owner:self options:nil]lastObject];
-        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-  
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.connectionFirstModel = [ConnectionFirstModel mj_objectWithKeyValues:self.connectionViewModel.connectionList[indexPath.row]];
+    
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+    XBlockExec(self.connectionCellSelectBlock ,self.connectionViewModel.connectionList[indexPath.row][@"id"]);
 }
-
+- (ConnectionViewModel *)connectionViewModel{
+    if (!_connectionViewModel) {
+        _connectionViewModel = [[ConnectionViewModel alloc]init];
+    }
+    return _connectionViewModel;
+}
 @end

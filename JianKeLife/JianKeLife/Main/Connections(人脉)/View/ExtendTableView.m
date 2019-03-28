@@ -21,6 +21,8 @@
         [self setSeparatorStyle:UITableViewCellSeparatorStyleNone];
         self.backgroundColor = XColorWithRGB(248, 248, 248);
 
+        
+        
     }
     return self;
 }
@@ -92,6 +94,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+    XBlockExec(self.extendCellSelectBlcok,nil);
 }
+
 @end

@@ -12,11 +12,13 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ConnectionsVC">
             <connections>
                 <outlet property="extendBtn" destination="QhL-Ri-4CJ" id="jnM-TW-VyO"/>
+                <outlet property="firstLab" destination="Gik-tZ-L1D" id="c8s-hu-wsi"/>
                 <outlet property="headerView" destination="Rbh-8j-uiZ" id="kMo-hP-Mrr"/>
                 <outlet property="lineView" destination="fXy-Ry-8cG" id="TwD-jH-q1S"/>
                 <outlet property="moneyLab" destination="fyf-Ra-RZi" id="lJa-Vc-9vz"/>
                 <outlet property="myPersonBtn" destination="7qo-UX-AJp" id="09c-GL-VTE"/>
                 <outlet property="personNumLab" destination="A1u-H1-QGc" id="2W9-OV-KXK"/>
+                <outlet property="secondLab" destination="q2h-5A-RL5" id="2rx-65-ggN"/>
                 <outlet property="selectView" destination="373-Wd-ZJM" id="1RO-LY-plF"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -70,6 +72,20 @@
                             <color key="textColor" red="0.2274509804" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="二级50人" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q2h-5A-RL5">
+                            <rect key="frame" x="191" y="105" width="52" height="15"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" red="0.6705882352941176" green="0.6705882352941176" blue="0.6705882352941176" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="一级50人" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gik-tZ-L1D">
+                            <rect key="frame" x="127" y="105" width="52" height="15"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" red="0.6705882352941176" green="0.6705882352941176" blue="0.6705882352941176" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
@@ -114,7 +130,7 @@
                         </button>
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fXy-Ry-8cG">
                             <rect key="frame" x="68" y="36" width="41" height="4"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.57254901960000004" green="0.80784313730000001" blue="0.98823529409999999" alpha="1" colorSpace="calibratedRGB"/>
                         </view>
                     </subviews>
