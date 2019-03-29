@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic ,copy) NSNumber *productShareSalary;
 @property (nonatomic ,copy) NSString *productTitle;
 @property (nonatomic ,copy) NSString *productUrl;
+@property (nonatomic ,assign) NSInteger cellWidth;
 
 //hasApplyProd (integer, optional): 当前用户是否已经领取过当前产品：1是 0否 ,
 //prodApplyCount (integer, optional): 产品已领取量 ,

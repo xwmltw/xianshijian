@@ -61,6 +61,7 @@
     [self requestTaskData];
 }
 - (void)headerRefresh{
+    [self.taskList removeAllObjects];
     self.pageQueryRedModel.page = @(1);
     [self requestTaskData];
 }

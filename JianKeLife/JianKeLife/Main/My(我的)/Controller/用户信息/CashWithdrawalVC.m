@@ -55,6 +55,7 @@
         case 4033:
         {
             
+            
             if (!self.moneyTextField.text.length) {
                 [ProgressHUD showProgressHUDInView:nil withText:@"请输入提现金额" afterDelay:1];
                 return;
@@ -63,8 +64,16 @@
                 [ProgressHUD showProgressHUDInView:nil withText:@"低于最低提现金额" afterDelay:1];
                 return;
             }
+            if ([self.moneyTextField.text doubleValue] > [self.balance doubleValue]) {
+                [ProgressHUD showProgressHUDInView:nil withText:@"当前钱包余额不足" afterDelay:1];
+                return;
+            }
             if (!self.wxBtn.isSelected && !self.zfbBtn.isSelected) {
                 [ProgressHUD showProgressHUDInView:nil withText:@"请选择提现方式" afterDelay:1];
+                return;
+            }
+            if (self.zfbBtn.isSelected) {
+                [ProgressHUD showProgressHUDInView:nil withText:@"暂不支持支付宝提现" afterDelay:1];
                 return;
             }
             if (self.cashWithdrawalModel.isSetPwd.integerValue == 0) {
@@ -116,7 +125,8 @@
 }
 - (void)inPutPassword{
     [self.view addSubview:self.inPutPasswordView];
-    if (self.cashWithdrawalModel.withdrawServiceRate) {
+    self.inPutPasswordView.labMoney.text = self.moneyTextField.text;
+    if ([self.cashWithdrawalModel.withdrawServiceRate doubleValue] > 0) {
         self.inPutPasswordView.labDetail.text = [NSString stringWithFormat:@"将额外收取服务费(费率%@%%)",self.cashWithdrawalModel.withdrawServiceRate];
     }else{
         self.inPutPasswordView.labDetail.text = @"";
@@ -169,22 +179,25 @@
 }
 - (void)wxInPut:(NSString *)openid{
 
+    
+    
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     [dic setValue:self.inPutPasswordView.passwordTF.text forKey:@"moneyPwd"];
     [dic setValue:openid forKey:@"openId"];
     [dic setValue:[self serviceAmoutStr] forKey:@"serviceAmount"];
-    [dic setValue:self.moneyTextField.text forKey:@"withdrawAmount"];
+    [dic setValue:@([self.moneyTextField.text doubleValue]*100) forKey:@"withdrawAmount"];
     BLOCKSELF
     [XNetWork requestNetWorkWithUrl:Xwechat_cash_withdraw andModel:dic andSuccessBlock:^(ResponseModel *model) {
         [ProgressHUD showProgressHUDInView:nil withText:@"提现成功" afterDelay:1];
         blockSelf.inPutPasswordView.hidden = YES;
+        [blockSelf.navigationController popToRootViewControllerAnimated:YES];
     } andFailBlock:^(ResponseModel *model) {
         
     }];
 }
 - (NSString *)serviceAmoutStr{
-    double oldMoney = [self.moneyTextField.text doubleValue] * [self.cashWithdrawalModel.withdrawServiceRate doubleValue] / 100;
-    return [NSString stringWithFormat:@"%.2f",oldMoney];
+    int oldMoney = [self.moneyTextField.text doubleValue] * [self.cashWithdrawalModel.withdrawServiceRate doubleValue];
+    return [NSString stringWithFormat:@"%d",oldMoney];
 }
 #pragma  mark - t通知
 - (void)WXNotification:(NSNotification *)notification{

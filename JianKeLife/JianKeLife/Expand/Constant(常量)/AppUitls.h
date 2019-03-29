@@ -11,6 +11,7 @@
 /** APP配置信息*/
 #ifdef DEBUG
 #define SERVICEURL @"http://jkl-mapi.pdl001.com" // 测试环境
+//#define SERVICEURL @"http://192.168.5.126:8053"
 #else
 #define SERVICEURL @"" // 正式环境
 #endif
@@ -47,7 +48,7 @@ static NSString *const WXLoginNotification = @"WXLoginNotification";
 #define Xproduct_search             @"/mapi/product/search"//搜索产品
 #define Xproduct_detail             @"/mapi/product/detail"//产品详情
 #define Xproduct_apply              @"/mapi/product_apply/apply"//领取产品
-#define XqueryProductShareInfo      @"/mapi/product/queryProductShareInfo"//分享信息
+#define XqueryProductShareInfo      @"/mapi/global/query_share_info"//分享信息
 
 
 

@@ -28,7 +28,7 @@
         self.delegate = self;
         self.dataSource = self;
         
-        [self.viewModel requestUserInfo];
+        
         BLOCKSELF
         [self.viewModel setRequestMyInfoBlock:^(MyModel *model) {
             [blockSelf reloadData];

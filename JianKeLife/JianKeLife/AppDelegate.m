@@ -152,7 +152,8 @@
         [alert show];
         
     }
-    [XNotificationCenter postNotificationName:WXLoginNotification object:@{@"code":resp.code}];
+
+    [XNotificationCenter postNotificationName:WXLoginNotification object:nil userInfo:@{@"code":resp.code}];
     
 
 }

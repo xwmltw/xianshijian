@@ -171,11 +171,12 @@
                 break;
             case 1022:
             {
+                MyLog(@"%@",dic[@"productShareUrl"]);
                 NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
-                [shareParams SSDKSetupShareParamsByText:dic[@"productTitle"]
-                                                 images:nil
+                [shareParams SSDKSetupShareParamsByText:blockSelf.tableView.jobDetailViewModel.productModel.productGroupOrientedDesc
+                                                 images:[UIImage convertViewToImage:blockSelf.qrCodeView.QRcodeDownView]
                                                     url:[NSURL URLWithString:dic[@"productShareUrl"]]
-                                                  title:dic[@"productTitle"]
+                                                  title:blockSelf.tableView.jobDetailViewModel.productModel.productTitle
                                                    type:SSDKContentTypeAuto];
                 [ShareSDK share:SSDKPlatformSubTypeWechatSession parameters:shareParams onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
                     
@@ -185,10 +186,10 @@
             case 1023:
             {
                 NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
-                [shareParams SSDKSetupShareParamsByText:dic[@"productTitle"]
-                                                 images:nil
+                [shareParams SSDKSetupShareParamsByText:blockSelf.tableView.jobDetailViewModel.productModel.productGroupOrientedDesc
+                                                 images:[UIImage convertViewToImage:blockSelf.qrCodeView.QRcodeDownView]
                                                     url:[NSURL URLWithString:dic[@"productShareUrl"]]
-                                                  title:dic[@"productTitle"]
+                                                  title:blockSelf.tableView.jobDetailViewModel.productModel.productTitle
                                                    type:SSDKContentTypeAuto];
                 [ShareSDK share:SSDKPlatformSubTypeWechatTimeline parameters:shareParams onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
                     
@@ -206,96 +207,96 @@
         }
     }];
     
-    return;
-    NSArray *imageArry = @[[UIImage imageNamed:@"icon_my_红包"]];
-    if (imageArry) {
-        NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
-        [shareParams SSDKSetupShareParamsByText:dic[@"productTitle"]
-                                         images:imageArry
-                                            url:[NSURL URLWithString:dic[@"productShareUrl"]]
-                                          title:dic[@"productTitle"]
-                                           type:SSDKContentTypeAuto];
-        
-        
-        
-        SSUIShareSheetConfiguration *config = [[SSUIShareSheetConfiguration alloc]init];
-        //设置分享菜单为简洁样式
-        config.style = SSUIActionSheetStyleSystem;
-        
-        //设置竖屏有多少个item平台图标显示
-        config.columnPortraitCount = 5;
-        
-        //设置横屏有多少个item平台图标显示
-        config.columnLandscapeCount = 8;
-        
-        //设置取消按钮标签文本颜色
-        config.cancelButtonTitleColor = LabelMainColor;
-        
-        
-        //设置对齐方式（简约版菜单无居中对齐）
-        config.itemAlignment = SSUIItemAlignmentCenter;
-        
-        //设置标题文本颜色
-        config.itemTitleColor = LabelMainColor;
-        
-        //设置分享菜单栏状态栏风格
-        config.statusBarStyle = UIStatusBarStyleDefault;
-        
-        //设置支持的页面方向（单独控制分享菜单栏）
-        config.interfaceOrientationMask = UIInterfaceOrientationMaskPortrait|UIInterfaceOrientationMaskLandscape;
-        
-        //设置分享菜单栏的背景颜色
-        config.menuBackgroundColor = [UIColor whiteColor];
-        
-        //取消按钮是否隐藏，默认不隐藏
-        //                config.cancelButtonHidden = YES;
-        
-        //设置直接分享的平台（不弹编辑界面）
-        //                config.directSharePlatforms = @[@(SSDKPlatformTypeSinaWeibo),@(SSDKPlatformTypeTwitter)];
-        
-        
-        
-        
-        //2.弹出分享菜单
-        [ShareSDK showShareActionSheet:nil
-                           customItems:nil
-                           shareParams:shareParams
-                    sheetConfiguration:config
-                        onStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType,
-                                         NSDictionary *userData, SSDKContentEntity *contentEntity,
-                                         NSError *error, BOOL end) {
-                            switch (state) {
-                                case SSDKResponseStateSuccess:
-                                {
-                                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享成功"
-                                                                                        message:nil
-                                                                                       delegate:nil
-                                                                              cancelButtonTitle:@"确定"
-                                                                              otherButtonTitles:nil];
-                                    [alertView show];
-                                }
-                                    break;
-                                case SSDKResponseStateFail:
-                                {
-                                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享失败"
-                                                                                    message:[NSString stringWithFormat:@"%@",error]
-                                                                                   delegate:nil
-                                                                          cancelButtonTitle:@"OK"
-                                                                          otherButtonTitles:nil, nil];
-                                    [alert show];
-                                }
-                                    break;
-                                case SSDKResponseStateCancel:{
-                                    self.qrCodeView.hidden = YES;
-                                }
-                                    return ;
-                                default:
-                                    break;
-                            }
-                            
-                        }];
-        
-    }
+//    return;
+//    NSArray *imageArry = @[[UIImage imageNamed:@"icon_my_红包"]];
+//    if (imageArry) {
+//        NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+//        [shareParams SSDKSetupShareParamsByText:dic[@"productTitle"]
+//                                         images:imageArry
+//                                            url:[NSURL URLWithString:dic[@"productShareUrl"]]
+//                                          title:dic[@"productTitle"]
+//                                           type:SSDKContentTypeAuto];
+//
+//
+//
+//        SSUIShareSheetConfiguration *config = [[SSUIShareSheetConfiguration alloc]init];
+//        //设置分享菜单为简洁样式
+//        config.style = SSUIActionSheetStyleSystem;
+//
+//        //设置竖屏有多少个item平台图标显示
+//        config.columnPortraitCount = 5;
+//
+//        //设置横屏有多少个item平台图标显示
+//        config.columnLandscapeCount = 8;
+//
+//        //设置取消按钮标签文本颜色
+//        config.cancelButtonTitleColor = LabelMainColor;
+//
+//
+//        //设置对齐方式（简约版菜单无居中对齐）
+//        config.itemAlignment = SSUIItemAlignmentCenter;
+//
+//        //设置标题文本颜色
+//        config.itemTitleColor = LabelMainColor;
+//
+//        //设置分享菜单栏状态栏风格
+//        config.statusBarStyle = UIStatusBarStyleDefault;
+//
+//        //设置支持的页面方向（单独控制分享菜单栏）
+//        config.interfaceOrientationMask = UIInterfaceOrientationMaskPortrait|UIInterfaceOrientationMaskLandscape;
+//
+//        //设置分享菜单栏的背景颜色
+//        config.menuBackgroundColor = [UIColor whiteColor];
+//
+//        //取消按钮是否隐藏，默认不隐藏
+//        //                config.cancelButtonHidden = YES;
+//
+//        //设置直接分享的平台（不弹编辑界面）
+//        //                config.directSharePlatforms = @[@(SSDKPlatformTypeSinaWeibo),@(SSDKPlatformTypeTwitter)];
+//
+//
+//
+//
+//        //2.弹出分享菜单
+//        [ShareSDK showShareActionSheet:nil
+//                           customItems:nil
+//                           shareParams:shareParams
+//                    sheetConfiguration:config
+//                        onStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType,
+//                                         NSDictionary *userData, SSDKContentEntity *contentEntity,
+//                                         NSError *error, BOOL end) {
+//                            switch (state) {
+//                                case SSDKResponseStateSuccess:
+//                                {
+//                                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享成功"
+//                                                                                        message:nil
+//                                                                                       delegate:nil
+//                                                                              cancelButtonTitle:@"确定"
+//                                                                              otherButtonTitles:nil];
+//                                    [alertView show];
+//                                }
+//                                    break;
+//                                case SSDKResponseStateFail:
+//                                {
+//                                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享失败"
+//                                                                                    message:[NSString stringWithFormat:@"%@",error]
+//                                                                                   delegate:nil
+//                                                                          cancelButtonTitle:@"OK"
+//                                                                          otherButtonTitles:nil, nil];
+//                                    [alert show];
+//                                }
+//                                    break;
+//                                case SSDKResponseStateCancel:{
+//                                    self.qrCodeView.hidden = YES;
+//                                }
+//                                    return ;
+//                                default:
+//                                    break;
+//                            }
+//
+//                        }];
+//
+//    }
 }
 - (QRcodeView *)qrCodeView{
     if (!_qrCodeView) {

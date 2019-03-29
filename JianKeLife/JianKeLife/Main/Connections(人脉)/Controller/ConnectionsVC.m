@@ -11,6 +11,13 @@
 #import "MyPersonTableView.h"
 #import "ConnectionViewModel.h"
 #import "MyPersonSecondVC.h"
+#import "MyPersonShareView.h"
+#import "XCommonHepler.h"
+#import "RuleAlertView.h"
+
+#import <ShareSDK/ShareSDK.h>
+#import <ShareSDKUI/ShareSDK+SSUI.h>
+#import <ShareSDKUI/SSUIShareSheetConfiguration.h>
 
 @interface ConnectionsVC ()
 @property (weak, nonatomic) IBOutlet UILabel *moneyLab;
@@ -26,6 +33,8 @@
 @property (nonatomic ,strong) ExtendTableView *extendTableView;
 @property (nonatomic ,strong) MyPersonTableView *myPersonTableView;
 @property (nonatomic ,strong) ConnectionViewModel *connectionViewModel;
+@property (nonatomic ,strong) MyPersonShareView *myPersonShareView;
+@property (nonatomic ,strong) RuleAlertView *ruleAlertView;
 @end
 
 @implementation ConnectionsVC
@@ -109,6 +118,50 @@
         blockSelf.secondLab.text = [NSString stringWithFormat:@"二级%@人",blockSelf.connectionViewModel.connectionModel.secondConnectionsCount.description];
     }];
 }
+#pragma block回调
+- (XIntegerBlock)extendCellBlcok{
+    BLOCKSELF
+    XIntegerBlock blcok = ^(NSInteger result){
+        switch (result) {
+            case 0:
+            {
+               
+                
+                [[UIApplication sharedApplication].keyWindow addSubview: blockSelf.myPersonShareView];
+//                [blockSelf.myPersonShareView mas_makeConstraints:^(MASConstraintMaker *make) {
+//                    make.edges.mas_equalTo(blockSelf.view);
+//                }];
+                blockSelf.myPersonShareView.QRImageView.image = [UIImage qrCodeImageWithInfo:blockSelf.connectionViewModel.connectionModel.connectionsInviteRegUrl width:AdaptationWidth(85)];
+                blockSelf.myPersonShareView.hidden = NO;
+                blockSelf.myPersonShareView.QRMainBGView.hidden = NO;
+                blockSelf.myPersonShareView.btnBlock = [blockSelf shareViewBtnBlock];
+            }
+                break;
+            case 1:
+            {
+                [[UIApplication sharedApplication].keyWindow addSubview: blockSelf.myPersonShareView];
+                blockSelf.myPersonShareView.QRImageView.image = [UIImage qrCodeImageWithInfo:blockSelf.connectionViewModel.connectionModel.connectionsInviteRegUrl width:AdaptationWidth(85)];
+                blockSelf.myPersonShareView.hidden = NO;
+                blockSelf.myPersonShareView.QRMainBGView.hidden = YES;
+                blockSelf.myPersonShareView.btnBlock = [blockSelf shareViewBtnBlock];
+            }
+                break;
+            case 2:
+            {
+                [[UIApplication sharedApplication].keyWindow addSubview: blockSelf.myPersonShareView];
+                blockSelf.myPersonShareView.QRImageView.image = [UIImage qrCodeImageWithInfo:blockSelf.connectionViewModel.connectionModel.connectionsInviteRegUrl width:AdaptationWidth(85)];
+                blockSelf.myPersonShareView.hidden = NO;
+                blockSelf.myPersonShareView.QRMainBGView.hidden = YES;
+                blockSelf.myPersonShareView.btnBlock = [blockSelf shareViewBtnBlock];
+            }
+                break;
+                
+            default:
+                break;
+        }
+    };
+    return blcok;
+}
 - (XBlock)MyPersonFirstBlock{
     BLOCKSELF
     XBlock Blcok = ^(id result){
@@ -118,15 +171,67 @@
     };
     return Blcok;
 }
+- (XBlock)shareViewBtnBlock{
+    BLOCKSELF
+    XBlock block = ^(UIButton *btn){
+        switch (btn.tag) {
+            case 3021:
+            {
+                [[XCommonHepler sharedInstance] saveImageToPhotoLib:[UIImage convertViewToImage:blockSelf.myPersonShareView.QRDownBGView]];
+            }
+                break;
+            case 3022:
+            {
+                NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+                [shareParams SSDKSetupShareParamsByText:@"购物省钱，分享赚钱 开启你的值享生活"
+                                                 images:[UIImage convertViewToImage:blockSelf.myPersonShareView.QRDownBGView]
+                                                    url:[NSURL URLWithString:blockSelf.connectionViewModel.connectionModel.connectionsInviteRegUrl]
+                                                  title:@"今日值享"
+                                                   type:SSDKContentTypeAuto];
+                [ShareSDK share:SSDKPlatformSubTypeWechatSession parameters:shareParams onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
+                    
+                }];
+            }
+                break;
+            case 3023:
+            {
+                NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+                [shareParams SSDKSetupShareParamsByText:@"购物省钱，分享赚钱 开启你的值享生活"
+                                                 images:[UIImage convertViewToImage:blockSelf.myPersonShareView.QRDownBGView]
+                                                    url:[NSURL URLWithString:blockSelf.connectionViewModel.connectionModel.connectionsInviteRegUrl]
+                                                  title:@"今日值享"
+                                                   type:SSDKContentTypeAuto];
+                [ShareSDK share:SSDKPlatformSubTypeWechatTimeline parameters:shareParams onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
+                    
+                }];
+            }
+                break;
+            case 3024:
+                    blockSelf.myPersonShareView.hidden = YES;
+                break;
+                
+            default:
+                break;
+        }
+    };
+    return block;
+}
+#pragma  mark - 懒加载
 - (ExtendTableView *)extendTableView{
     if (!_extendTableView) {
-        _extendTableView = [[ExtendTableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _extendTableView = [[ExtendTableView alloc]initWithFrame:[UIScreen mainScreen].bounds style:UITableViewStylePlain];
         [self.view addSubview:_extendTableView];
         [_extendTableView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.view).offset(10);
             make.right.mas_equalTo(self.view).offset(-10);
             make.top.mas_equalTo(self.selectView.mas_bottom);
             make.height.mas_equalTo(AdaptationWidth(329));
+        }];
+        [_extendTableView setExtendCellSelectBlcok:[self extendCellBlcok]];
+        BLOCKSELF
+        [_extendTableView setExtendBtnSelectBlcok:^(id result) {
+            blockSelf.ruleAlertView.hidden = NO;
+            
         }];
     }
     return _extendTableView;
@@ -153,5 +258,24 @@
     }
     return _connectionViewModel;
 }
-
+- (MyPersonShareView *)myPersonShareView{
+    if (!_myPersonShareView) {
+        _myPersonShareView = [[NSBundle mainBundle]loadNibNamed:@"MyPersonShareView" owner:nil options:nil].lastObject;
+        _myPersonShareView.frame = [UIScreen mainScreen].bounds;
+    }
+    return _myPersonShareView;
+}
+- (RuleAlertView *)ruleAlertView{
+    if (!_ruleAlertView) {
+        _ruleAlertView = [[NSBundle mainBundle]loadNibNamed:@"RuleAlertView" owner:nil options:nil].lastObject;
+        _ruleAlertView.frame = [UIScreen mainScreen].bounds;
+        [[UIApplication sharedApplication].keyWindow addSubview: _ruleAlertView];
+        _ruleAlertView.labContent.text = _connectionViewModel.connectionModel.ruleText;
+        BLOCKSELF
+        [_ruleAlertView setRuleBtnBlcok:^(id result) {
+            blockSelf.ruleAlertView.hidden = YES;
+        }];
+    }
+    return _ruleAlertView;
+}
 @end

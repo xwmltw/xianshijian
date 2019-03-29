@@ -14,12 +14,12 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  tableView的上拉刷新事件
  */
--(void)headerRefres;
+-(void)headerRefresh;
 
 /**
  tableView的下拉加载事件
  */
--(void)footerRefres;
+-(void)footerRefresh;
 @end
 
 NS_ASSUME_NONNULL_END

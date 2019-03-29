@@ -80,9 +80,27 @@
             cellDetail.text = @"复制注册链接分享给好友 ->";
             break;
         case 2:
+        {
             [cellImage setImage:[UIImage imageNamed:@"iamge_rule"]];
             cellTitle.text = @"邀请好友成为你的人脉";
             cellDetail.text = @"享受T%佣金提成";
+            
+            UIButton *btn = [[UIButton alloc]init];
+            [btn setTitle:@"查看规则" forState:UIControlStateNormal];
+            [btn setBackgroundColor:XColorWithRGB(255, 221, 88)];
+            [btn setTitleColor:XColorWithRGB(152, 6, 6) forState:UIControlStateNormal];
+            [btn setCornerValue:3];
+            [btn.titleLabel setFont:[UIFont systemFontOfSize:AdaptationWidth(12)]];
+            [btn addTarget:self action:@selector(btnOnClick:) forControlEvents:UIControlEventTouchUpInside];
+            [cell.contentView addSubview:btn];
+            [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.mas_equalTo(cell).offset(AdaptationWidth(16));
+                make.bottom.mas_equalTo(cell).offset(AdaptationWidth(-8));
+                make.width.mas_equalTo(AdaptationWidth(65));
+                make.height.mas_equalTo(AdaptationWidth(24));
+            }];
+            
+        }
             break;
             
         default:
@@ -94,7 +112,9 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    XBlockExec(self.extendCellSelectBlcok,nil);
+    XBlockExec(self.extendCellSelectBlcok,indexPath.row);
 }
-
+- (void)btnOnClick:(UIButton *)btn{
+    XBlockExec(self.extendBtnSelectBlcok ,nil);
+}
 @end

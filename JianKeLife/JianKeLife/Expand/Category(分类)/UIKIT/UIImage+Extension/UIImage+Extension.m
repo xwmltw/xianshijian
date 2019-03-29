@@ -43,7 +43,8 @@ static UIImage *_img = nil;
 
 + (NSString *)saveImage:(UIImage *)tempImage WithName:(NSString *)imageName{
     
-    NSData* imageData = UIImagePNGRepresentation(tempImage);
+//    NSData* imageData = UIImagePNGRepresentation(tempImage);
+    NSData* imageData = UIImageJPEGRepresentation(tempImage, 0.5);
     
     NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     

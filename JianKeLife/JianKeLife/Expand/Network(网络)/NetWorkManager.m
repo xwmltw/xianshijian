@@ -68,11 +68,13 @@ static NetWorkManager *network = nil;
         [self.requestSerializer setTimeoutInterval:kTimeoutInterval];
         [self.requestSerializer didChangeValueForKey:@"timeoutInterval"];
         
-        self.responseSerializer.acceptableContentTypes = [NSSet setWithArray:@[@"application/json", @"text/json", @"text/javascript",@"text/html", @"text/plain",@"application/atom+xml",@"application/xml",@"text/xml", @"image/*"]];
+        self.responseSerializer.acceptableContentTypes = [NSSet setWithArray:@[@"application/json", @"text/json", @"text/javascript",@"text/html", @"text/plain",@"application/atom+xml",@"application/xml",@"text/xml", @"image/*",@"image/jpeg",
+                                                                               @"image/png",]];
         
         self.securityPolicy=[AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
         self.requestSerializer = [AFJSONRequestSerializer serializer];
         [self.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+//        [self.requestSerializer setValue:@"multipart/form-data" forHTTPHeaderField:@"Content-Type"];
 //        [self.requestSerializer setValue:USER_ID forHTTPHeaderField:@"USER_ID"];
 //        [self.requestSerializer setValue:[NetWorkManager getUUID] forHTTPHeaderField:@"EquipmentOnlyLabeled"];
 //        [self.requestSerializer setValue:kVersion forHTTPHeaderField:@"version"];
@@ -84,7 +86,7 @@ static NetWorkManager *network = nil;
 //    [self.requestSerializer setAuthorizationHeaderFieldWithUsername:temp_array[0] password:temp_array[1]];
         
         self.operationQueue.maxConcurrentOperationCount = 2;
-#warning 设置证书认证
+//#warning 设置证书认证
 //        [self setSecurityPolicy:[self createSecurityPolicy]];
     }
     return self;
@@ -309,26 +311,20 @@ static NetWorkManager *network = nil;
         
         /**出于性能考虑,将上传图片进行压缩*/
         for (UIImage * image in images) {
-        
-            
+
 //            image设置指定宽度
             UIImage *  resizedImage = image;
-            if (width != 0) {
-                 resizedImage =  [UIImage IMGCompressed:image targetWidth:width];
-            }
+//            if (width != 0) {
+//                 resizedImage =  [UIImage IMGCompressed:image targetWidth:width];
+//            }
            
+            NSData * imageData = UIImageJPEGRepresentation(resizedImage, 0.5);
+       
 
-            //保存图片
-           NSString *filePath = [UIImage saveImage:resizedImage WithName:[NSString stringWithFormat:@"picflie%ld.jpg",(long)i]];
-            
-            
-//            NSData * imgData = UIImageJPEGRepresentation(resizedImage, .5);
-
-            NSData *imageData = [NSData dataWithContentsOfFile:filePath];
-            
             //拼接data
-            [formData appendPartWithFileData:imageData name:[NSString stringWithFormat:@"picflie%ld",(long)i] fileName:[NSString stringWithFormat:@"%@.jpg",[NetWorkManager randomString]] mimeType:@"image/jpg"];
+            [formData appendPartWithFileData:imageData name:@"image" fileName:[NSString stringWithFormat:@"%@.jpg",[NetWorkManager randomString]] mimeType:@"multipart/form-data"];
             
+        
             //上传语音
 //             [formData appendPartWithFileData:amr name:@"file" fileName: [NSString stringWithFormat:@"%@.amr", fileName] mimeType:@"amr/mp3/wmr"];
             

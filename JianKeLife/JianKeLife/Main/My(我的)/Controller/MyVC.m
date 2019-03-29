@@ -27,6 +27,8 @@
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
     statusBar.backgroundColor = blueColor;
+    
+    [self.tableView.viewModel requestUserInfo];
 }
 //- (void)viewDidAppear:(BOOL)animated{
 //    [super viewDidAppear:animated];

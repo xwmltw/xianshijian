@@ -47,16 +47,28 @@
     if (indexPath.row == 0) {
         return AdaptationWidth(300);
     }
-    return AdaptationWidth(100);
+    if (indexPath.row == 1) {
+        return AdaptationWidth(100);
+    }
+    if (indexPath.row == 2) {
+        return AdaptationWidth(100);
+    }
+    
+    if (indexPath.row == 3) {
+        MyLog(@"%ld",(long)self.jobDetailViewModel.productModel.cellWidth);
+
+        return self.jobDetailViewModel.productModel.cellWidth;
+    }
+    return 0;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *reuseIdentifier = @"JobDetialIdentifier";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+//    if (!cell) {
+       UITableViewCell * cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = BackgroundColor;
-    }
+//    }
     switch (indexPath.row) {
         case 0:
         {   
@@ -234,12 +246,17 @@
                 make.left.mas_equalTo(view).offset(AdaptationWidth(16));
                 make.right.mas_equalTo(view).offset(AdaptationWidth(-16));
                 make.top.mas_equalTo(title.mas_bottom).offset(AdaptationWidth(6));
-                make.bottom.mas_equalTo(view).offset(AdaptationWidth(-12));
+//                make.bottom.mas_equalTo(view).offset(AdaptationWidth(-12));
                 
             }];
             
             NSMutableAttributedString * artical_main_text = [[NSMutableAttributedString alloc] initWithData:[[NSString stringWithFormat:@"%@",self.jobDetailViewModel.productModel.productDesc] dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
             detial.attributedText = artical_main_text;
+            
+            CGSize detailSize = [detial.attributedText boundingRectWithSize:CGSizeMake(AdaptationWidth(235), CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil].size;
+//            CGSize detailSize = [detial.text boundingRectWithSize:CGSizeMake(AdaptationWidth(235), CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:nil context:nil].size;
+            self.jobDetailViewModel.productModel.cellWidth =  detailSize.height + 58;
+            
         }
             break;
             

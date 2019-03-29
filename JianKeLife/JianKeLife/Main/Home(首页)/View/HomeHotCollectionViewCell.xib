@@ -18,42 +18,56 @@
                 <rect key="frame" x="0.0" y="0.0" width="166" height="215"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="R7m-2h-VYm">
-                        <rect key="frame" x="0.0" y="0.0" width="166" height="126"/>
-                        <color key="backgroundColor" red="1" green="0.4039215686" blue="0.4039215686" alpha="1" colorSpace="calibratedRGB"/>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="招商银行信用" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g5C-Nf-FrY">
-                        <rect key="frame" x="10" y="134" width="146" height="19.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                        <color key="textColor" red="0.22745098039215686" green="0.22745098039215686" blue="0.22745098039215686" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="返佣￥" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xOo-GM-hn0">
-                        <rect key="frame" x="10" y="163.5" width="37" height="15"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <color key="textColor" red="1" green="0.40392156862745099" blue="0.40392156862745099" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1sY-4O-80y">
-                        <rect key="frame" x="49" y="160" width="73" height="22"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                        <color key="textColor" red="1" green="0.40392156862745099" blue="0.40392156862745099" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yDd-fS-Il7">
+                        <rect key="frame" x="0.0" y="0.0" width="166" height="215"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="R7m-2h-VYm">
+                                <rect key="frame" x="0.0" y="0.0" width="166" height="126"/>
+                                <color key="backgroundColor" red="1" green="0.4039215686" blue="0.4039215686" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="126" id="mH9-nD-vOC"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="招商银行信用" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g5C-Nf-FrY">
+                                <rect key="frame" x="10" y="132" width="146" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" red="0.22745098039215686" green="0.22745098039215686" blue="0.22745098039215686" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="返佣￥" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xOo-GM-hn0">
+                                <rect key="frame" x="10" y="192" width="37" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="1" green="0.40392156862745099" blue="0.40392156862745099" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1sY-4O-80y">
+                                <rect key="frame" x="52" y="185" width="73" height="22"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <color key="textColor" red="1" green="0.40392156862745099" blue="0.40392156862745099" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="g5C-Nf-FrY" firstAttribute="leading" secondItem="yDd-fS-Il7" secondAttribute="leading" constant="10" id="07W-lA-hfs"/>
+                            <constraint firstAttribute="trailing" secondItem="g5C-Nf-FrY" secondAttribute="trailing" constant="10" id="9QD-aO-DAF"/>
+                            <constraint firstItem="R7m-2h-VYm" firstAttribute="top" secondItem="yDd-fS-Il7" secondAttribute="top" id="9vx-AJ-XLA"/>
+                            <constraint firstItem="R7m-2h-VYm" firstAttribute="leading" secondItem="yDd-fS-Il7" secondAttribute="leading" id="OPQ-lc-7mI"/>
+                            <constraint firstAttribute="bottom" secondItem="1sY-4O-80y" secondAttribute="bottom" constant="8" id="UsP-5h-Rgu"/>
+                            <constraint firstAttribute="bottom" secondItem="xOo-GM-hn0" secondAttribute="bottom" constant="8" id="ltZ-2l-UCr"/>
+                            <constraint firstItem="xOo-GM-hn0" firstAttribute="leading" secondItem="yDd-fS-Il7" secondAttribute="leading" constant="10" id="pcl-cj-2QD"/>
+                            <constraint firstItem="1sY-4O-80y" firstAttribute="leading" secondItem="xOo-GM-hn0" secondAttribute="trailing" constant="5" id="xxS-w4-rhy"/>
+                            <constraint firstItem="g5C-Nf-FrY" firstAttribute="top" secondItem="R7m-2h-VYm" secondAttribute="bottom" constant="6" id="zA3-Yt-NAn"/>
+                            <constraint firstAttribute="trailing" secondItem="R7m-2h-VYm" secondAttribute="trailing" id="zMF-Wn-if8"/>
+                        </constraints>
+                    </view>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="R7m-2h-VYm" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="0LY-Yh-X10"/>
-                <constraint firstItem="g5C-Nf-FrY" firstAttribute="top" secondItem="R7m-2h-VYm" secondAttribute="bottom" constant="8" id="TPe-uh-Wup"/>
-                <constraint firstItem="R7m-2h-VYm" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="XI4-ee-tF8"/>
-                <constraint firstItem="1sY-4O-80y" firstAttribute="leading" secondItem="xOo-GM-hn0" secondAttribute="trailing" constant="2" id="XQv-u7-f55"/>
-                <constraint firstItem="R7m-2h-VYm" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="126:215" id="bl1-bU-78w"/>
-                <constraint firstItem="g5C-Nf-FrY" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="cR3-vP-FXZ"/>
-                <constraint firstItem="xOo-GM-hn0" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="csq-mP-dwt"/>
-                <constraint firstItem="1sY-4O-80y" firstAttribute="centerY" secondItem="xOo-GM-hn0" secondAttribute="centerY" id="ohM-GZ-hJg"/>
-                <constraint firstAttribute="trailing" secondItem="R7m-2h-VYm" secondAttribute="trailing" id="phY-0c-beK"/>
-                <constraint firstAttribute="trailing" secondItem="g5C-Nf-FrY" secondAttribute="trailing" constant="10" id="qDX-Ec-5IF"/>
-                <constraint firstItem="xOo-GM-hn0" firstAttribute="top" secondItem="g5C-Nf-FrY" secondAttribute="bottom" constant="10" id="qch-8O-fKE"/>
+                <constraint firstItem="yDd-fS-Il7" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="5BX-Ik-y4u"/>
+                <constraint firstAttribute="bottom" secondItem="yDd-fS-Il7" secondAttribute="bottom" id="dPt-nb-oc5"/>
+                <constraint firstAttribute="trailing" secondItem="yDd-fS-Il7" secondAttribute="trailing" id="ttu-iA-Vbc"/>
+                <constraint firstItem="yDd-fS-Il7" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="vc3-aB-At5"/>
             </constraints>
             <size key="customSize" width="158" height="139"/>
             <connections>

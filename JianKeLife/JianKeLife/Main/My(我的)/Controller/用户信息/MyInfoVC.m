@@ -374,12 +374,21 @@
 {
     [goDetailBtn setImage:mediaInfo.editedImage forState:UIControlStateNormal];
     
+    BLOCKSELF
     [XNetWork UploadPicturesWithUrl:Xupload images:@[mediaInfo.editedImage] targetWidth:72 andSuccessBlock:^(ResponseModel *model) {
-        MyLog(@"%@",model);
+        
+        [blockSelf requestHeadUrl:model.data[@"fileUrl"]];
     } andFailBlock:^(ResponseModel *model) {
         
     }];
 //    [self refreshHead:mediaInfo.editedImage];
+}
+- (void)requestHeadUrl:(NSString *)url{
+    [XNetWork requestNetWorkWithUrl:Xedit_head_logo andModel:@{@"headLogo":url} andSuccessBlock:^(ResponseModel *model) {
+        [ProgressHUD showProgressHUDInView:nil withText:@"更新成功" afterDelay:1];
+    } andFailBlock:^(ResponseModel *model) {
+        
+    }];
 }
 - (void)checkAuthorizationWithType:(EMSettingHeadImageType)type complete:(void (^) (void))complete
 {

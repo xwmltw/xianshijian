@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="k9r-Ry-cPK" customClass="RuleAlertView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Udo-h0-vY8">
+                    <rect key="frame" x="33.5" y="76.5" width="308" height="414"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="———— 奖励规则 ————" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8pW-ak-I2F">
+                            <rect key="frame" x="36" y="20" width="236" height="23"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="23" id="74N-KE-a87"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                            <color key="textColor" red="0.22745098039215686" green="0.22745098039215686" blue="0.22745098039215686" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l7n-6S-boe">
+                            <rect key="frame" x="16" y="63" width="276" height="335"/>
+                            <string key="text">•当你的好友通过您分享的推广海报 / 推广链接注册享享，那Ta将成为您的一级人脉，每当Ta完成一个任务，您可获得其佣金T%的平台奖励（即一级人脉佣金）。
+
+•若您的一级人脉邀请另一位用户注册，那这位用户将成为您的二级人脉，每当Ta完成一个任务，您可获得其佣金G%的平台奖励（即二级人脉佣金）。
+
+例如：您邀请了200位好友（其中，一级人脉100人，二级人脉100人），每位好友赚取了100元佣金，那么享享将会给您S元的人脉收益，作为您的推广奖励。
+
+100*(T%+G%)*100=S元
+</string>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="0.2274509804" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="8pW-ak-I2F" firstAttribute="centerX" secondItem="Udo-h0-vY8" secondAttribute="centerX" id="BwF-Ef-dOa"/>
+                        <constraint firstAttribute="bottom" secondItem="l7n-6S-boe" secondAttribute="bottom" constant="16" id="RAr-ec-k9y"/>
+                        <constraint firstItem="8pW-ak-I2F" firstAttribute="top" secondItem="Udo-h0-vY8" secondAttribute="top" constant="20" id="ln8-pW-7rR"/>
+                        <constraint firstItem="l7n-6S-boe" firstAttribute="top" secondItem="8pW-ak-I2F" secondAttribute="bottom" constant="20" id="odZ-ef-zm7"/>
+                        <constraint firstAttribute="trailing" secondItem="l7n-6S-boe" secondAttribute="trailing" constant="16" id="pPA-16-AQe"/>
+                        <constraint firstItem="l7n-6S-boe" firstAttribute="leading" secondItem="Udo-h0-vY8" secondAttribute="leading" constant="16" id="pjA-Rn-f2R"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gjb-zn-Zia">
+                    <rect key="frame" x="167.5" y="510.5" width="40" height="40"/>
+                    <state key="normal" backgroundImage="icon_rule_cancel"/>
+                    <connections>
+                        <action selector="btnOnClick:" destination="k9r-Ry-cPK" eventType="touchUpInside" id="1Ue-sG-T6c"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.27600599315068491" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Gjb-zn-Zia" firstAttribute="centerX" secondItem="Udo-h0-vY8" secondAttribute="centerX" id="PRG-FM-ZUW"/>
+                <constraint firstItem="Udo-h0-vY8" firstAttribute="width" secondItem="k9r-Ry-cPK" secondAttribute="width" multiplier="308:375" id="aS7-oM-tk5"/>
+                <constraint firstItem="Udo-h0-vY8" firstAttribute="centerY" secondItem="k9r-Ry-cPK" secondAttribute="centerY" constant="-50" id="bY7-Wu-bAs"/>
+                <constraint firstItem="Gjb-zn-Zia" firstAttribute="top" secondItem="Udo-h0-vY8" secondAttribute="bottom" constant="20" id="cMi-SE-VZ4"/>
+                <constraint firstItem="Udo-h0-vY8" firstAttribute="centerX" secondItem="k9r-Ry-cPK" secondAttribute="centerX" id="evp-pk-zU4"/>
+                <constraint firstItem="Udo-h0-vY8" firstAttribute="height" secondItem="k9r-Ry-cPK" secondAttribute="height" multiplier="414:667" id="ohU-1j-nVM"/>
+            </constraints>
+            <connections>
+                <outlet property="bgView" destination="Udo-h0-vY8" id="ueU-E7-Ahz"/>
+                <outlet property="labContent" destination="l7n-6S-boe" id="mLG-Mu-vVn"/>
+            </connections>
+            <point key="canvasLocation" x="218" y="172"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_rule_cancel" width="40" height="40"/>
+    </resources>
+</document>
