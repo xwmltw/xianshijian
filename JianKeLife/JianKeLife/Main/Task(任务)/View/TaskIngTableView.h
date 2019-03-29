@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "TaskViewModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TaskIngTableView : UITableView
-
+@property (nonatomic ,strong) TaskViewModel *taskViewModel;
+@property (nonatomic ,copy) XDoubleBlock taskIngBtnBlcok;
 @end
 
 NS_ASSUME_NONNULL_END

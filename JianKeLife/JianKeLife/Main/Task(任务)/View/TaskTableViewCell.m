@@ -7,7 +7,7 @@
 //
 
 #import "TaskTableViewCell.h"
-
+#import "DateHelper.h"
 @implementation TaskTableViewCell
 
 - (void)layoutSubviews{
@@ -27,36 +27,66 @@
 
 
 
--(void)setModel:(id)model{
+-(void)setModel:(TaskModel *)model{
+    [self.cellImage sd_setImageWithURL:[NSURL URLWithString:model.productFirstMainPicUrl]];
+    self.celltitle.text = model.productTitle;
+    self.cellMoney.text = [NSString stringWithFormat:@"%.2f",[model.productSalary doubleValue]/100];
     
 }
-- (void)setTaskTableView:(TaskTableView)taskTableView{
+- (void)setTaskTableView:(TaskTableViewType)taskTableView{
     switch (taskTableView) {
-        case TaskTableViewStay:
+        case TaskTableViewTypeStay:
             self.cellGiveBtn.hidden = NO;
             self.cellGoBtn.hidden = NO;
             self.cellLookBtn.hidden = YES;
             self.cellVerifyBtn.hidden = YES;
+            self.cellTitelDate.text = @"返佣倒计时";
+            self.cellDate.text = [DateHelper getDateFromTimeNumber:self.model.ctmSubmitDeadTimeLeft];
             break;
-        case TaskTableViewIng:
+        case TaskTableViewTypeIng:
             self.cellGiveBtn.hidden = YES;
             self.cellGoBtn.hidden = YES;
             self.cellLookBtn.hidden = NO;
             self.cellVerifyBtn.hidden = YES;
+            self.cellTitelDate.text = @"审核倒计时";
+           self.cellDate.text = [DateHelper getDateFromTimeNumber:self.model.entAuditDeadTimeLeft];
             break;
-        case TaskTableViewOver:
+        case TaskTableViewTypeOver:
             self.cellGiveBtn.hidden = YES;
             self.cellGoBtn.hidden = YES;
             self.cellLookBtn.hidden = YES;
             self.cellVerifyBtn.hidden = NO;
+            
+            switch (self.model.prodTradeAuditStatus.integerValue) {
+                case 1:
+                    self.cellTitelDate.text = @"系统通过";
+                    [self.cellTitelDate setBackgroundColor:XColorWithRGB(0, 162, 0)];
+                    break;
+                case 2:
+                    self.cellTitelDate.text = @"验收通过";
+                    [self.cellTitelDate setBackgroundColor:XColorWithRGB(0, 162, 0)];
+                    break;
+                case 3:
+                    self.cellTitelDate.text = @"未通过";
+                    [self.cellTitelDate setBackgroundColor:LabelAssistantColor];
+                    break;
+                    
+                default:
+                    break;
+            }
             break;
             
         default:
             break;
     }
 }
+
 - (IBAction)btnOnClick:(UIButton *)sender {
-    
+    if (sender.tag == 201) {
+        XBlockExec(self.taskCellCancelBlock, sender);
+    }else{
+        XBlockExec(self.taskCellBlock, sender);
+    }
 }
 
 @end

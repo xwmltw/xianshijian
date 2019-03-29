@@ -111,6 +111,11 @@
 		04CB9413224B14C500C9DF13 /* SetWalletPasswordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CB9412224B14C500C9DF13 /* SetWalletPasswordView.xib */; };
 		04CB941A224B4D7600C9DF13 /* InPutPasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CB9419224B4D7600C9DF13 /* InPutPasswordView.m */; };
 		04CB941C224B4DC300C9DF13 /* InPutPasswordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CB941B224B4DC300C9DF13 /* InPutPasswordView.xib */; };
+		04E15A2B224C70C000D0222E /* TaskViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E15A2A224C70C000D0222E /* TaskViewModel.m */; };
+		04E15A2E224C70F500D0222E /* TaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E15A2D224C70F500D0222E /* TaskModel.m */; };
+		04E15A31224CB29C00D0222E /* TaskDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E15A30224CB29C00D0222E /* TaskDetailVC.m */; };
+		04E15A34224CB64600D0222E /* TaskDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E15A33224CB64600D0222E /* TaskDetailModel.m */; };
+		04E15A37224CBFE800D0222E /* TaskResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E15A36224CBFE800D0222E /* TaskResultVC.m */; };
 		04E2FA0C22460818006EE2D5 /* SearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E2FA0B22460817006EE2D5 /* SearchVC.m */; };
 		04E2FA1022461028006EE2D5 /* SearchCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E2FA0F22461028006EE2D5 /* SearchCollectionView.m */; };
 		04E2FA13224611D3006EE2D5 /* SearchVieModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E2FA12224611D3006EE2D5 /* SearchVieModel.m */; };
@@ -315,6 +320,16 @@
 		04CB9418224B4D7600C9DF13 /* InPutPasswordView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InPutPasswordView.h; sourceTree = "<group>"; };
 		04CB9419224B4D7600C9DF13 /* InPutPasswordView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InPutPasswordView.m; sourceTree = "<group>"; };
 		04CB941B224B4DC300C9DF13 /* InPutPasswordView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InPutPasswordView.xib; sourceTree = "<group>"; };
+		04E15A29224C70C000D0222E /* TaskViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskViewModel.h; sourceTree = "<group>"; };
+		04E15A2A224C70C000D0222E /* TaskViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskViewModel.m; sourceTree = "<group>"; };
+		04E15A2C224C70F500D0222E /* TaskModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskModel.h; sourceTree = "<group>"; };
+		04E15A2D224C70F500D0222E /* TaskModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskModel.m; sourceTree = "<group>"; };
+		04E15A2F224CB29C00D0222E /* TaskDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskDetailVC.h; sourceTree = "<group>"; };
+		04E15A30224CB29C00D0222E /* TaskDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskDetailVC.m; sourceTree = "<group>"; };
+		04E15A32224CB64600D0222E /* TaskDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskDetailModel.h; sourceTree = "<group>"; };
+		04E15A33224CB64600D0222E /* TaskDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskDetailModel.m; sourceTree = "<group>"; };
+		04E15A35224CBFE800D0222E /* TaskResultVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskResultVC.h; sourceTree = "<group>"; };
+		04E15A36224CBFE800D0222E /* TaskResultVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskResultVC.m; sourceTree = "<group>"; };
 		04E2FA0A22460817006EE2D5 /* SearchVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchVC.h; sourceTree = "<group>"; };
 		04E2FA0B22460817006EE2D5 /* SearchVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchVC.m; sourceTree = "<group>"; };
 		04E2FA0E22461028006EE2D5 /* SearchCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchCollectionView.h; sourceTree = "<group>"; };
@@ -870,6 +885,8 @@
 		04871515223F846700679095 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				04E15A29224C70C000D0222E /* TaskViewModel.h */,
+				04E15A2A224C70C000D0222E /* TaskViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -893,6 +910,10 @@
 		04871517223F847700679095 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				04E15A2C224C70F500D0222E /* TaskModel.h */,
+				04E15A2D224C70F500D0222E /* TaskModel.m */,
+				04E15A32224CB64600D0222E /* TaskDetailModel.h */,
+				04E15A33224CB64600D0222E /* TaskDetailModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -902,6 +923,10 @@
 			children = (
 				04871507223F768800679095 /* TaskVC.h */,
 				04871508223F768800679095 /* TaskVC.m */,
+				04E15A2F224CB29C00D0222E /* TaskDetailVC.h */,
+				04E15A30224CB29C00D0222E /* TaskDetailVC.m */,
+				04E15A35224CBFE800D0222E /* TaskResultVC.h */,
+				04E15A36224CBFE800D0222E /* TaskResultVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1227,6 +1252,7 @@
 				04616FEC222D09E100E46B40 /* UITextField+Extension.m in Sources */,
 				04E7713822424F5800C6E7CE /* MySetVC.m in Sources */,
 				045E9BCF222E691C0084B777 /* BaseWebVC.m in Sources */,
+				04E15A2E224C70F500D0222E /* TaskModel.m in Sources */,
 				0461701B222D195400E46B40 /* XControllerViewHelper.m in Sources */,
 				0487151F223FA1B500679095 /* XNetWork.m in Sources */,
 				04617008222D190E00E46B40 /* NSObject+Extension.m in Sources */,
@@ -1248,6 +1274,7 @@
 				04616FFD222D14C600E46B40 /* UIView+DragAndReset.m in Sources */,
 				0467C31322490598002F5344 /* QRcodeView.m in Sources */,
 				04616FCB222CF66700E46B40 /* main.m in Sources */,
+				04E15A37224CBFE800D0222E /* TaskResultVC.m in Sources */,
 				04BD1154224A10B10033B774 /* EMSettingActionSheet.m in Sources */,
 				04AECC94224B84BD00410304 /* ExpectVC.m in Sources */,
 				04BD1164224A112A0033B774 /* GKCropBorderView.m in Sources */,
@@ -1271,9 +1298,11 @@
 				04AECCA0224B9B6D00410304 /* ExpectViewModel.m in Sources */,
 				04BD1148224A02860033B774 /* ProfitTableView.m in Sources */,
 				04E7714A22426AE300C6E7CE /* JobDetailTableView.m in Sources */,
+				04E15A31224CB29C00D0222E /* TaskDetailVC.m in Sources */,
 				04BD1162224A112A0033B774 /* GKImageCropView.m in Sources */,
 				0461701C222D195400E46B40 /* XCacheHelper.m in Sources */,
 				0436DD1E224381F2006476C2 /* UserInfo.m in Sources */,
+				04E15A34224CB64600D0222E /* TaskDetailModel.m in Sources */,
 				04616FBD222CF66300E46B40 /* AppDelegate.m in Sources */,
 				04616FF2222D0C1600E46B40 /* UIImageView+GIF.m in Sources */,
 				045E9BC9222E68B30084B777 /* BaseMainTBVC.m in Sources */,
@@ -1282,6 +1311,7 @@
 				0461701D222D195400E46B40 /* UserLocation.m in Sources */,
 				04616FDD222D088D00E46B40 /* NetWorkManager.m in Sources */,
 				04BD1161224A112A0033B774 /* GKImageCropViewController.m in Sources */,
+				04E15A2B224C70C000D0222E /* TaskViewModel.m in Sources */,
 				04617004222D186300E46B40 /* UITabBar+MKExtension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

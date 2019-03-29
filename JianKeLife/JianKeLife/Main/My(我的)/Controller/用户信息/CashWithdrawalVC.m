@@ -7,6 +7,7 @@
 //
 
 #import "CashWithdrawalVC.h"
+#import "GetBackWalletVC.h"
 #import "CashWithdrawalModel.h"
 #import "SetWalletPasswordView.h"
 #import "InPutPasswordView.h"
@@ -117,6 +118,8 @@
     [self.view addSubview:self.inPutPasswordView];
     if (self.cashWithdrawalModel.withdrawServiceRate) {
         self.inPutPasswordView.labDetail.text = [NSString stringWithFormat:@"将额外收取服务费(费率%@%%)",self.cashWithdrawalModel.withdrawServiceRate];
+    }else{
+        self.inPutPasswordView.labDetail.text = @"";
     }
     self.inPutPasswordView.hidden = NO;
     [self.inPutPasswordView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -130,7 +133,8 @@
                 break;
             case 4332:
             {
-                
+                GetBackWalletVC *vc =[[GetBackWalletVC alloc]init];
+                [blockSelf.navigationController popToViewController:vc animated:YES];
             }
                 break;
             case 4333:

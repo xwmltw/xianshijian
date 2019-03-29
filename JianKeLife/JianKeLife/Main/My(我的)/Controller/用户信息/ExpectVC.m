@@ -74,8 +74,10 @@
     //
     UIButton *taskBtn = [[UIButton alloc]init];
     taskBtn.tag = 4412;
+    taskBtn.selected = YES;
     [taskBtn setTitle:@"任务收益" forState:UIControlStateNormal];
-    [taskBtn setTitleColor:XColorWithRGB(56, 181, 173) forState:UIControlStateNormal];
+    [taskBtn setTitleColor:LabelAssistantColor forState:UIControlStateNormal];
+    [taskBtn setTitleColor:XColorWithRGB(56, 181, 173) forState:UIControlStateSelected];
     [taskBtn.titleLabel setFont:[UIFont systemFontOfSize:AdaptationWidth(16)]];
     [taskBtn addTarget:self action:@selector(btnOnClick:) forControlEvents:UIControlEventTouchUpInside];
     btn1 = taskBtn;
@@ -88,6 +90,7 @@
     UIButton *shareBtn = [[UIButton alloc]init];
     shareBtn.tag = 4413;
     [shareBtn setTitle:@"分享收益" forState:UIControlStateNormal];
+    [shareBtn setTitleColor:XColorWithRGB(255, 188, 0) forState:UIControlStateSelected];
     [shareBtn setTitleColor:LabelAssistantColor forState:UIControlStateNormal];
     [shareBtn.titleLabel setFont:[UIFont systemFontOfSize:AdaptationWidth(16)]];
     [shareBtn addTarget:self action:@selector(btnOnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -101,6 +104,7 @@
     UIButton *connectionBtn = [[UIButton alloc]init];
     connectionBtn.tag = 4414;
     [connectionBtn setTitle:@"人脉收益" forState:UIControlStateNormal];
+    [connectionBtn setTitleColor:RedColor forState:UIControlStateSelected];
     [connectionBtn setTitleColor:LabelAssistantColor forState:UIControlStateNormal];
     [connectionBtn.titleLabel setFont:[UIFont systemFontOfSize:AdaptationWidth(16)]];
     [connectionBtn addTarget:self action:@selector(btnOnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -137,9 +141,9 @@
             break;
         case 4412:
         {
-            [btn1 setTitleColor:XColorWithRGB(56, 181, 173) forState:UIControlStateNormal];
-            [btn2 setTitleColor:LabelAssistantColor forState:UIControlStateNormal];
-            [btn3 setTitleColor:LabelAssistantColor forState:UIControlStateNormal];
+            btn1.selected = YES;
+            btn2.selected = NO;
+            btn3.selected = NO;
             
             [UIView animateWithDuration:0.3 animations:^{
                 [self.scrollView setContentOffset:CGPointMake(0, 0) animated:NO];
@@ -148,9 +152,9 @@
             break;
         case 4413:
         {
-            [btn1 setTitleColor:LabelAssistantColor forState:UIControlStateNormal];
-            [btn2 setTitleColor:XColorWithRGB(255, 188, 0) forState:UIControlStateNormal];
-            [btn3 setTitleColor:LabelAssistantColor forState:UIControlStateNormal];
+            btn1.selected = NO;
+            btn2.selected = YES;
+            btn3.selected = NO;
             [UIView animateWithDuration:0.3 animations:^{
                 [self.scrollView setContentOffset:CGPointMake(ScreenWidth, 0) animated:NO];
             }];
@@ -158,9 +162,9 @@
             break;
         case 4414:
         {
-            [btn1 setTitleColor:LabelAssistantColor forState:UIControlStateNormal];
-            [btn2 setTitleColor:LabelAssistantColor forState:UIControlStateNormal];
-            [btn3 setTitleColor:RedColor forState:UIControlStateNormal];
+            btn1.selected = NO;
+            btn2.selected = NO;
+            btn3.selected = YES;
             [UIView animateWithDuration:0.3 animations:^{
                 [self.scrollView setContentOffset:CGPointMake(ScreenWidth*2, 0) animated:NO];
             }];
@@ -171,7 +175,31 @@
             break;
     }
 }
-- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView{
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+
+       
+        NSInteger index = scrollView.contentOffset.x / scrollView.Sw;
+        switch (index) {
+            case 0:
+                btn1.selected = YES;
+                btn2.selected = NO;
+                btn3.selected = NO;
+                break;
+            case 1:
+                btn1.selected = NO;
+                btn2.selected = YES;
+                btn3.selected = NO;
+                break;
+            case 2:
+                btn1.selected = NO;
+                btn2.selected = NO;
+                btn3.selected = YES;
+                break;
+                
+            default:
+                break;
+        }
     
 }
 - (UIScrollView *)scrollView{

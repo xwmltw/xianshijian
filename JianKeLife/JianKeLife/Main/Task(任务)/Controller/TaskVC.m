@@ -10,6 +10,8 @@
 #import "TaskStayTableView.h"
 #import "TaskIngTableView.h"
 #import "TaskOverTableView.h"
+#import "TaskDetailVC.h"
+#import "TaskResultVC.h"
 
 @interface TaskVC ()
 @property (nonatomic ,strong) UISegmentedControl *segmentedControl;
@@ -30,6 +32,7 @@
         case 0:
         {
             self.stayTableView.hidden = NO;
+//            sel.stayTableView
             self.ingTableView.hidden = YES;
             self.overTableView.hidden = YES;
         }
@@ -52,20 +55,60 @@
             break;
     }
 }
+#pragma mark -点击回调
+-(XDoubleBlock)taskBtnBlcok{
+    BLOCKSELF
+   XDoubleBlock block = ^(UIButton * btn,NSNumber *proid){
+       switch (btn.tag) {
+           case 202:
+           {
+               
+           }
+               break;
+           case 203:
+           {
+               TaskDetailVC *vc = [[TaskDetailVC alloc]init];
+               vc.productApplyId = proid;
+               vc.hidesBottomBarWhenPushed = YES;
+               [blockSelf.navigationController pushViewController:vc animated:YES];
+           }
+               break;
+ 
+           default:
+               break;
+       }
+    
+    };
+    
+    return block;
+}
+-(XDoubleBlock)taskResultBlcok{
+    BLOCKSELF
+    XDoubleBlock block = ^(UIButton * btn,id result){
+        TaskResultVC*vc = [[TaskResultVC alloc]init];
+        vc.resultModel = result;
+        vc.hidesBottomBarWhenPushed = YES;
+        [blockSelf.navigationController pushViewController:vc animated:YES];
+    };
+    return block;
+}
 
 #pragma mark -懒加载
 - (TaskStayTableView *)stayTableView{
     if (!_stayTableView) {
         _stayTableView = [[TaskStayTableView alloc]init];
-        _stayTableView.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
+        _stayTableView.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight-49);
+        _stayTableView.taskStayBtnBlcok = [self taskBtnBlcok];
         [self.view addSubview:_stayTableView];
+
     }
     return _stayTableView;
 }
 - (TaskIngTableView *)ingTableView{
     if (!_ingTableView) {
         _ingTableView = [[TaskIngTableView alloc]init];
-        _ingTableView.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
+        _ingTableView.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight-49);
+        _ingTableView.taskIngBtnBlcok = [self taskBtnBlcok];
         [self.view addSubview:_ingTableView];
     }
     return _ingTableView;
@@ -73,8 +116,10 @@
 - (TaskOverTableView *)overTableView{
     if (!_overTableView) {
         _overTableView = [[TaskOverTableView alloc]init];
-        _overTableView.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
+        _overTableView.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight-49);
+        _overTableView.taskOverBtnBlcok = [self taskResultBlcok];
         [self.view addSubview:_overTableView];
+       
     }
     return _overTableView;
 }

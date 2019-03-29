@@ -103,6 +103,7 @@
         
         
         UIView *heardView = [[UIView alloc]init];
+        [heardView setCornerValue:4];
         heardView.backgroundColor = [UIColor whiteColor];
         [view addSubview:heardView];
         [heardView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -217,6 +218,7 @@
         }];
         
         UIView *heardView2 = [[UIView alloc]init];
+        [heardView2 setCornerValue:4];
         heardView2.backgroundColor = [UIColor whiteColor];
         [view addSubview:heardView2];
         [heardView2 mas_makeConstraints:^(MASConstraintMaker *make) {

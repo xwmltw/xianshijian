@@ -49,6 +49,13 @@ static NSString *const WXLoginNotification = @"WXLoginNotification";
 #define Xproduct_apply              @"/mapi/product_apply/apply"//领取产品
 #define XqueryProductShareInfo      @"/mapi/product/queryProductShareInfo"//分享信息
 
+
+
+#define Xproduct_apply_task         @"/mapi/product_apply/list"//查询产品领取列表（任务模块）
+#define Xproduct_apply_abandon      @"/mapi/product_apply/abandon"//放弃产品
+#define Xproduct_apply_detail       @"/mapi/product_apply/detail"//获取产品q领取d详情数据
+#define Xproduct_apply_submit       @"/mapi/product_apply/submit"//提交领取产品
+
 #define Xget_account_info           @"/mapi/ctm/get_account_info"//获取用户账号基本信息
 #define Xedit_account_info          @"/mapi/ctm/edit_account_info"//编辑用户账号基本信息
 #define Xget_base_info              @"/mapi/ctm/get_base_info"//获取用户资料信息

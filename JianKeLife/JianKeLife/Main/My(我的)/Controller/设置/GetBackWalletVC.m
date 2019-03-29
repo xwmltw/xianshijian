@@ -23,22 +23,26 @@
     XCountDownButton *_getVerificationButton;
 }
 - (IBAction)btnOnClick:(UIButton *)sender {
-    switch (sender.tag) {
-        
-        case 4351:
-        {
-            
-        }
-            break;
-        case 4352:
-        {
-            
-        }
-            break;
-            
-        default:
-            break;
+    if (self.passwordtextField.text.length != 11) {
+        [ProgressHUD showProgressHUDInView:nil withText:@"请输入新的钱包密码" afterDelay:1];
+        return;
     }
+    if (self.codeTextField.text.length == 0) {
+        [ProgressHUD showProgressHUDInView:nil withText:@"请输入验证码" afterDelay:1];
+        return;
+    }
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setValue:self.passwordtextField.text forKey:@"newPwd"];
+    [dic setValue:self.codeTextField.text forKey:@"smsCode"];
+    
+    [XNetWork requestNetWorkWithUrl:Xfind_money_pwd andModel:dic andSuccessBlock:^(ResponseModel *model) {
+        [ProgressHUD showProgressHUDInView:nil withText:@"修改成功" afterDelay:1];
+
+//        [self.navigationController popViewControllerAnimated:YES];
+
+    } andFailBlock:^(ResponseModel *model) {
+        
+    }];
 }
 
 
@@ -81,6 +85,30 @@
     NSString *captchaid = @"f69c29291f754d9a9942cd98f0eea4ce";
     [self.manager configureVerifyCode:captchaid timeout:10];
 }
+
+
+
+
+- (void)getVerificationCodeClick:(XCountDownButton *)btn{
+    _getVerificationButton = btn;
+    //请求
+
+    [self.manager openVerifyCodeView];
+    
+    
+}
+- (void)beginCountDown{
+    _getVerificationButton.userInteractionEnabled = NO;
+    [_getVerificationButton startCountDownWithSecond:60];
+    [_getVerificationButton countDownChanging:^NSString *(XCountDownButton *countDownButton,NSUInteger second){
+        NSString *title = [NSString stringWithFormat:@"%@s", @(second)];
+        return title;
+    }];
+    [_getVerificationButton countDownFinished:^NSString *(XCountDownButton *countDownButton, NSUInteger second) {
+        self->_getVerificationButton.userInteractionEnabled = YES;
+        return @"重新发送";
+    }];
+}
 #pragma mark - VerifyDelegate
 - (void)verifyCodeInitFinish{
     
@@ -99,16 +127,17 @@
                         validate:(NSString *)validate
                          message:(NSString *)message{
     if (result) {
-//        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-//        [dic setValue:self.phoneTextField.text forKey:@"phoneNum"];
-//        [dic setValue:@"1" forKey:@"optType"];
-//        [dic setValue:validate forKey:@"neCaptchaValidate"];
-//        [XNetWork requestNetWorkWithUrl:Xget_sms_code andModel:dic andSuccessBlock:^(ResponseModel *model) {
-//            [ProgressHUD showProgressHUDInView:nil withText:@"发送成功" afterDelay:1];
-//            [self beginCountDown];
-//        } andFailBlock:^(ResponseModel *model) {
-//
-//        }];
+        
+        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+        [dic setValue:[[UserInfo sharedInstance]getUserInfo].phoneName forKey:@"phoneNum"];
+        [dic setValue:@"2" forKey:@"optType"];
+        [dic setValue:validate forKey:@"neCaptchaValidate"];
+        [XNetWork requestNetWorkWithUrl:Xget_sms_code andModel:dic andSuccessBlock:^(ResponseModel *model) {
+            [ProgressHUD showProgressHUDInView:nil withText:@"发送成功" afterDelay:1];
+            [self beginCountDown];
+        } andFailBlock:^(ResponseModel *model) {
+
+        }];
     }
     // App添加自己的处理逻辑
     MyLog(@"%@",message);

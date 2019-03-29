@@ -121,6 +121,7 @@
                 <outlet property="cellImage" destination="HoE-BJ-Mhz" id="SQ1-aC-RLF"/>
                 <outlet property="cellLookBtn" destination="VF1-Ot-via" id="ptD-Wq-nHN"/>
                 <outlet property="cellMoney" destination="tfH-oV-4fO" id="0Pu-ZC-vex"/>
+                <outlet property="cellTitelDate" destination="k7p-vv-cm3" id="Sif-gu-AH5"/>
                 <outlet property="cellVerifyBtn" destination="yXF-BN-iwY" id="yKO-He-MrN"/>
                 <outlet property="celltitle" destination="czF-hs-QIM" id="e3M-9F-TBN"/>
             </connections>
