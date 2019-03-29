@@ -40,15 +40,20 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_Connects_cell_right" translatesAutoresizingMaskIntoConstraints="NO" id="GYy-kN-ncD">
-                        <rect key="frame" x="292" y="38" width="12" height="6"/>
+                        <rect key="frame" x="292" y="37" width="12" height="6"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     </imageView>
                 </subviews>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="LabTitle" destination="vfV-hT-Srg" id="wGW-OL-Pc0"/>
+                <outlet property="labMoney" destination="lLI-UJ-Xyv" id="5ie-3d-ac5"/>
+                <outlet property="labNum" destination="a69-EW-C1X" id="758-k4-HT7"/>
+            </connections>
             <point key="canvasLocation" x="132.80000000000001" y="154.27286356821591"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="icon_Connects_cell_right" width="12" height="6"/>
+        <image name="icon_Connects_cell_right" width="12" height="6.5"/>
     </resources>
 </document>

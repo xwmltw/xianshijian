@@ -70,4 +70,7 @@ static NSString *const WXLoginNotification = @"WXLoginNotification";
 
 #define Xestimate_list               @"/mapi/profit/estimate_list"//查询预计收益列表
 
+#define Xget_connections_info       @"/mapi/ctm/get_connections_info"//获取人脉信息
+#define Xget_first_connections_info @"/mapi/ctm/get_first_connections_info"//一级人脉
+#define Xget_second_connections_info       @"/mapi/ctm/get_second_connections_info"//二级人脉
 #endif /* AppUitls_h */

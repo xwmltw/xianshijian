@@ -133,6 +133,9 @@
 		509B42847CE7DD718A1221F4 /* libPods-JianKeLife.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 54FBC33EDED39BD59DC1715A /* libPods-JianKeLife.a */; };
 		B319BF31224747B600C602EA /* ProductModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B319BF30224747B600C602EA /* ProductModel.m */; };
 		B319BF34224748F800C602EA /* JobDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B319BF33224748F800C602EA /* JobDetailViewModel.m */; };
+		B34FACDB224CFB4600F3E3E1 /* ConnectionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B34FACD9224CFB4500F3E3E1 /* ConnectionViewModel.m */; };
+		B34FACDF224CFD4200F3E3E1 /* ConnectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B34FACDE224CFD4200F3E3E1 /* ConnectionModel.m */; };
+		B34FACE2224D189400F3E3E1 /* MyPersonSecondVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B34FACE1224D189400F3E3E1 /* MyPersonSecondVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -364,6 +367,12 @@
 		B319BF30224747B600C602EA /* ProductModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductModel.m; sourceTree = "<group>"; };
 		B319BF32224748F800C602EA /* JobDetailViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobDetailViewModel.h; sourceTree = "<group>"; };
 		B319BF33224748F800C602EA /* JobDetailViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobDetailViewModel.m; sourceTree = "<group>"; };
+		B34FACD9224CFB4500F3E3E1 /* ConnectionViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionViewModel.m; sourceTree = "<group>"; };
+		B34FACDA224CFB4600F3E3E1 /* ConnectionViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionViewModel.h; sourceTree = "<group>"; };
+		B34FACDD224CFD4200F3E3E1 /* ConnectionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConnectionModel.h; sourceTree = "<group>"; };
+		B34FACDE224CFD4200F3E3E1 /* ConnectionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConnectionModel.m; sourceTree = "<group>"; };
+		B34FACE0224D189400F3E3E1 /* MyPersonSecondVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyPersonSecondVC.h; sourceTree = "<group>"; };
+		B34FACE1224D189400F3E3E1 /* MyPersonSecondVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyPersonSecondVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -755,9 +764,9 @@
 			isa = PBXGroup;
 			children = (
 				04871514223F846000679095 /* Controller */,
+				B34FACDC224CFD2500F3E3E1 /* model */,
+				B34FACD8224CFAF900F3E3E1 /* ViewModel */,
 				04871513223F845C00679095 /* View */,
-				04871512223F845600679095 /* Model */,
-				04871511223F843F00679095 /* ViewModel */,
 			);
 			path = "Connections(人脉)";
 			sourceTree = "<group>";
@@ -844,20 +853,6 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		04871511223F843F00679095 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		04871512223F845600679095 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		04871513223F845C00679095 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -878,6 +873,8 @@
 				041121462240E98E003D7F2D /* ConnectionsVC.h */,
 				041121472240E98E003D7F2D /* ConnectionsVC.m */,
 				041121482240E98E003D7F2D /* ConnectionsVC.xib */,
+				B34FACE0224D189400F3E3E1 /* MyPersonSecondVC.h */,
+				B34FACE1224D189400F3E3E1 /* MyPersonSecondVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1083,6 +1080,24 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		B34FACD8224CFAF900F3E3E1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B34FACDA224CFB4600F3E3E1 /* ConnectionViewModel.h */,
+				B34FACD9224CFB4500F3E3E1 /* ConnectionViewModel.m */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		B34FACDC224CFD2500F3E3E1 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				B34FACDD224CFD4200F3E3E1 /* ConnectionModel.h */,
+				B34FACDE224CFD4200F3E3E1 /* ConnectionModel.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1228,6 +1243,7 @@
 				04E7713F22425B9900C6E7CE /* ModifyWalletVC.m in Sources */,
 				04E60746222FB528003B94ED /* BaseWebView.m in Sources */,
 				04BD116B224A32AC0033B774 /* MyInfoModel.m in Sources */,
+				B34FACDB224CFB4600F3E3E1 /* ConnectionViewModel.m in Sources */,
 				045E9BCC222E68DF0084B777 /* BaseMainVC.m in Sources */,
 				045E9BC6222E688C0084B777 /* BaseMainNC.m in Sources */,
 				04871522223FAA1E00679095 /* MyTableView.m in Sources */,
@@ -1284,6 +1300,7 @@
 				04BD1145224A026B0033B774 /* ProfitVC.m in Sources */,
 				04BD1180224A5CC50033B774 /* CashWithdrawalVC.m in Sources */,
 				041121422240BE79003D7F2D /* TaskTableViewCell.m in Sources */,
+				B34FACDF224CFD4200F3E3E1 /* ConnectionModel.m in Sources */,
 				04BD1168224A15C00033B774 /* EMSettingActionCell.m in Sources */,
 				04CB940E224B0E5F00C9DF13 /* CashWithdrawalModel.m in Sources */,
 				0476AA102237611C00EF7C8E /* UIImage+Extension.m in Sources */,
@@ -1294,6 +1311,7 @@
 				04112154224106F3003D7F2D /* MyPersonTableViewCell.m in Sources */,
 				0461701E222D195400E46B40 /* XDeviceHelper.m in Sources */,
 				04AECCA4224BB01400410304 /* GetBackWalletVC.m in Sources */,
+				B34FACE2224D189400F3E3E1 /* MyPersonSecondVC.m in Sources */,
 				04CB9411224B14B700C9DF13 /* SetWalletPasswordView.m in Sources */,
 				04AECCA0224B9B6D00410304 /* ExpectViewModel.m in Sources */,
 				04BD1148224A02860033B774 /* ProfitTableView.m in Sources */,
