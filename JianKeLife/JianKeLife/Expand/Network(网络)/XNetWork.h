@@ -12,8 +12,10 @@ typedef void(^ResponseBlock)(ResponseModel *model);
 NS_ASSUME_NONNULL_BEGIN
 
 @interface XNetWork : NSObject
-
-
+@property (nonatomic ,copy) NSString *netUrl;
+@property (nonatomic ,strong) NSObject *_Nullable netDic;
+@property (nonatomic ,copy) ResponseBlock block;
++ (instancetype)sharedInstance;
 /**
  微信授权登录请求
 
@@ -31,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param model 参数
  @param SuccessBlock 回调信息
  */
-+ (void)requestNetWorkWithUrl:(NSString *)url andModel:(NSObject *_Nullable)model andSuccessBlock:(ResponseBlock)successBlock andFailBlock:(ResponseBlock)failBlock;
++ (void)requestNetWorkWithUrl:(NSString *)url andModel:(NSObject *_Nullable)model andSuccessBlock:(ResponseBlock)successBlock andFailBlock:(ResponseBlock _Nullable)failBlock;
 
 
 /**

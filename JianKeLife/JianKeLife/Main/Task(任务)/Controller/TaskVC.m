@@ -12,19 +12,32 @@
 #import "TaskOverTableView.h"
 #import "TaskDetailVC.h"
 #import "TaskResultVC.h"
+#import "UnLoginView.h"
 
 @interface TaskVC ()
 @property (nonatomic ,strong) UISegmentedControl *segmentedControl;
 @property (nonatomic ,strong) TaskStayTableView *stayTableView;
 @property (nonatomic ,strong) TaskIngTableView *ingTableView;
 @property (nonatomic ,strong) TaskOverTableView *overTableView;
+@property (nonatomic ,strong) UnLoginView *unLoginView;
 @end
 
 @implementation TaskVC
 - (void)setBackNavigationBarItem{};
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    if (![UserInfo sharedInstance].isSignIn){
+        WEAKSELF
+        [self.unLoginView setBtnBlock:^(id result) {
+            [weakSelf getBlackLogin:weakSelf];
+        }];
+        return;
+    }
+    
     self.navigationItem.titleView = self.segmentedControl;
+    
+    
 }
 
 - (void)segmentedControlClick:(UISegmentedControl *)sender{
@@ -137,15 +150,15 @@
     return _segmentedControl;
 }
 
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (UnLoginView *)unLoginView{
+    if (!_unLoginView) {
+        _unLoginView = [[NSBundle mainBundle]loadNibNamed:@"UnLogin" owner:nil options:nil].lastObject;
+        [self.view addSubview: _unLoginView];
+        [_unLoginView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.mas_equalTo(self.view);
+        }];
+    }
+    return _unLoginView;
 }
-*/
 
 @end

@@ -32,6 +32,7 @@
         [self registerNib:[UINib nibWithNibName:NSStringFromClass([HomeHotCollectionViewCell class]) bundle:[NSBundle mainBundle ]] forCellWithReuseIdentifier:NSStringFromClass([HomeHotCollectionViewCell class])];
        
         [self registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NSStringFromClass([UICollectionReusableView class])];
+        [self registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:NSStringFromClass([UICollectionReusableView class])];
         
         self.homeViewModel = [[HomeViewModel alloc]init];
         self.mj_footer = [self.homeViewModel creatMjRefresh];
@@ -78,6 +79,7 @@
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
 
  UICollectionReusableView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NSStringFromClass([UICollectionReusableView class]) forIndexPath:indexPath];
+    UICollectionReusableView *view2 = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:NSStringFromClass([UICollectionReusableView class]) forIndexPath:indexPath];
     
     switch (indexPath.section) {
         case 0:{
@@ -108,6 +110,30 @@
                 make.centerY.mas_equalTo(view);
                 make.left.mas_equalTo(view).offset(AdaptationWidth(16));
             }];
+            [view2 removeFromSuperview];
+            if (self.homeViewModel.productList.count == 0) {
+                if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
+                    
+                    UIImageView *imageView = [[UIImageView alloc]init];
+                    imageView.image = [UIImage imageNamed:@"icon_noData"];
+                    [view2 addSubview:imageView];
+                    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                        make.centerX.mas_equalTo(view2);
+                        make.top.mas_equalTo(view2).offset(40);
+                        
+                    }];
+                    UILabel *lab = [[UILabel alloc]init];
+                    [lab setText:@"暂无产品状态"];
+                    [lab setFont:[UIFont systemFontOfSize:16]];
+                    [lab setTextColor:LabelMainColor];
+                    [view2 addSubview:lab];
+                    [lab mas_makeConstraints:^(MASConstraintMaker *make) {
+                        make.centerX.mas_equalTo(view2);
+                        make.top.mas_equalTo(imageView.mas_bottom).offset(34);
+                    }];
+                    
+                }
+            }
         }
             break;
         default:
@@ -169,14 +195,21 @@
     }
             return CGSizeZero;
 }
-
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section{
+    if (section == 2) {
+        if (self.homeViewModel.productList.count == 0) {
+             return CGSizeMake(self.Sw, AdaptationWidth(289));
+        }
+    }
+    return CGSizeZero;
+}
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.section) {
         
         case 2:{
-            if (indexPath.row == 0) {
-                return CGSizeMake(AdaptationWidth(166), AdaptationWidth(191));
-            }
+//            if (indexPath.row == 0) {
+//                return CGSizeMake(AdaptationWidth(166), AdaptationWidth(191));
+//            }
             return CGSizeMake(AdaptationWidth(166), AdaptationWidth(215));;
         }
             break;
@@ -205,6 +238,8 @@
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
     [self.homeViewModel requestBannerData:index];
 }
+
+
 - (SDCycleScrollView *)sdcycleScrollView{
     if (!_sdcycleScrollView) {
         NSMutableArray *imageArry = [NSMutableArray array];

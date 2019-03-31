@@ -19,4 +19,14 @@
     [self setCornerValue:4];
 
 }
+#pragma mark — 实现自适应文字宽度的关键步骤:item的layoutAttributes
+- (UICollectionViewLayoutAttributes*)preferredLayoutAttributesFittingAttributes:(UICollectionViewLayoutAttributes*)layoutAttributes {
+    [self setNeedsLayout];
+    [self layoutIfNeeded];
+    CGSize size = [self.contentView systemLayoutSizeFittingSize: layoutAttributes.size];
+    CGRect cellFrame = layoutAttributes.frame;
+    cellFrame.size.height= size.height;
+    layoutAttributes.frame= cellFrame;
+    return layoutAttributes;
+}
 @end

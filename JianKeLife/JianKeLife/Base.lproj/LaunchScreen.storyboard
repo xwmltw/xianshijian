@@ -21,13 +21,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" fixedFrame="YES" searchBarStyle="minimal" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uxg-1G-A8r">
-                                <rect key="frame" x="0.0" y="273" width="375" height="56"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_LaunchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="iSs-w5-yRE">
+                                <rect key="frame" x="56" y="166" width="263" height="83"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="iSs-w5-yRE" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="4Cf-mN-lAf"/>
+                            <constraint firstItem="iSs-w5-yRE" firstAttribute="top" secondItem="NFu-1w-CwI" secondAttribute="bottom" constant="146" id="HE3-z0-k62"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -35,4 +37,7 @@
             <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icon_LaunchScreen" width="263.5" height="83"/>
+    </resources>
 </document>

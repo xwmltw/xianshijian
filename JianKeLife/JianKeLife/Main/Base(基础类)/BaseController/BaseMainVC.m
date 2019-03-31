@@ -51,6 +51,7 @@
 //    }
     
     [self setBackNavigationBarItem];
+   
 }
 /**
  创建返回按钮
@@ -88,18 +89,19 @@
  是否 登录
  */
 - (void)getBlackLogin:(UIViewController *)controller{
-    
+    WEAKSELF
     [XAlertView alertWithTitle:@"提示" message:@"您还没有登录唷~请前往登录!" cancelButtonTitle:@"取消" confirmButtonTitle:@"登录" viewController:controller completion:^(UIAlertAction *action, NSInteger buttonIndex) {
         
         if (buttonIndex == 1) {
             LoginVC *vc = [[LoginVC alloc]init];
             vc.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:vc animated:YES];
+            [weakSelf.navigationController pushViewController:vc animated:YES];
         }
         return ;
     }];
     
 }
+
 - (ClientGlobalInfo *)clientGlobalInfo{
     if (!_clientGlobalInfo) {
         _clientGlobalInfo = [ClientGlobalInfo getClientGlobalInfoModel];

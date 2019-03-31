@@ -14,6 +14,7 @@
 #import "MyPersonShareView.h"
 #import "XCommonHepler.h"
 #import "RuleAlertView.h"
+#import "UnLoginView.h"
 
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKUI/ShareSDK+SSUI.h>
@@ -35,6 +36,7 @@
 @property (nonatomic ,strong) ConnectionViewModel *connectionViewModel;
 @property (nonatomic ,strong) MyPersonShareView *myPersonShareView;
 @property (nonatomic ,strong) RuleAlertView *ruleAlertView;
+@property (nonatomic ,strong) UnLoginView *unLoginView;
 @end
 
 @implementation ConnectionsVC
@@ -42,9 +44,12 @@
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
-    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
-    statusBar.backgroundColor = XColorWithRGB(171, 216, 255);
-    [self getData];
+    if ([UserInfo sharedInstance].isSignIn){
+        [self getData];
+        
+        UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+        statusBar.backgroundColor = XColorWithRGB(171, 216, 255);
+    }
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -88,6 +93,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if (![UserInfo sharedInstance].isSignIn){
+        WEAKSELF
+        [self.unLoginView setBtnBlock:^(id result) {
+            [weakSelf getBlackLogin:weakSelf];
+        }];
+        return;
+    }
     
     [self.headerView setCornerValue:2];
     [self.selectView setCornerValue:2];
@@ -277,5 +289,15 @@
         }];
     }
     return _ruleAlertView;
+}
+- (UnLoginView *)unLoginView{
+    if (!_unLoginView) {
+        _unLoginView = [[NSBundle mainBundle]loadNibNamed:@"UnLogin" owner:nil options:nil].lastObject;
+        [self.view addSubview: _unLoginView];
+        [_unLoginView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.mas_equalTo(self.view);
+        }];
+    }
+    return _unLoginView;
 }
 @end

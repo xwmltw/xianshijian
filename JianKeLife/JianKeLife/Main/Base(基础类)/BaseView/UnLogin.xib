@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="jvG-nc-vzE" customClass="UnLoginView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_NoLogin_bg" translatesAutoresizingMaskIntoConstraints="NO" id="ddX-Br-LfP">
+                    <rect key="frame" x="34.5" y="232" width="306" height="90"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fzk-Un-QBi">
+                    <rect key="frame" x="147.5" y="162" width="80" height="30"/>
+                    <color key="backgroundColor" red="0.5725490196078431" green="0.80392156862745101" blue="0.9882352941176471" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="caf-jE-WY3"/>
+                    </constraints>
+                    <state key="normal" title="立即登录">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="btnOnClick:" destination="jvG-nc-vzE" eventType="touchUpInside" id="Mnk-0Q-r3N"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您还未登录，快去登录吧~" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="414-95-0hg">
+                    <rect key="frame" x="69" y="118" width="237" height="24"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <color key="textColor" red="0.22745098039215686" green="0.22745098039215686" blue="0.22745098039215686" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="fzk-Un-QBi" firstAttribute="centerX" secondItem="jvG-nc-vzE" secondAttribute="centerX" id="Sh6-VO-cw2"/>
+                <constraint firstItem="414-95-0hg" firstAttribute="centerX" secondItem="jvG-nc-vzE" secondAttribute="centerX" id="XV5-Xw-2qB"/>
+                <constraint firstItem="fzk-Un-QBi" firstAttribute="top" secondItem="414-95-0hg" secondAttribute="bottom" constant="20" id="b7p-5b-M6T"/>
+                <constraint firstItem="ddX-Br-LfP" firstAttribute="centerX" secondItem="jvG-nc-vzE" secondAttribute="centerX" id="d6E-V2-V1N"/>
+                <constraint firstItem="ddX-Br-LfP" firstAttribute="top" secondItem="fzk-Un-QBi" secondAttribute="bottom" constant="40" id="l8Z-Sr-grW"/>
+                <constraint firstItem="414-95-0hg" firstAttribute="top" secondItem="jvG-nc-vzE" secondAttribute="top" constant="118" id="yh5-kE-4kd"/>
+            </constraints>
+            <connections>
+                <outlet property="loginBtn" destination="fzk-Un-QBi" id="tRX-hW-myO"/>
+            </connections>
+            <point key="canvasLocation" x="215" y="81"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_NoLogin_bg" width="306.5" height="90"/>
+    </resources>
+</document>

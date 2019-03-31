@@ -137,6 +137,9 @@
 		509B42847CE7DD718A1221F4 /* libPods-JianKeLife.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 54FBC33EDED39BD59DC1715A /* libPods-JianKeLife.a */; };
 		B319BF31224747B600C602EA /* ProductModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B319BF30224747B600C602EA /* ProductModel.m */; };
 		B319BF34224748F800C602EA /* JobDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B319BF33224748F800C602EA /* JobDetailViewModel.m */; };
+		B33F95742250A8660057DB03 /* UnLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = B33F95732250A8660057DB03 /* UnLoginView.m */; };
+		B33F95762250A8760057DB03 /* UnLogin.xib in Resources */ = {isa = PBXBuildFile; fileRef = B33F95752250A8760057DB03 /* UnLogin.xib */; };
+		B33F95792250F7A20057DB03 /* WaterfallColectionLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = B33F95772250F7A20057DB03 /* WaterfallColectionLayout.m */; };
 		B34FACDB224CFB4600F3E3E1 /* ConnectionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B34FACD9224CFB4500F3E3E1 /* ConnectionViewModel.m */; };
 		B34FACDF224CFD4200F3E3E1 /* ConnectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B34FACDE224CFD4200F3E3E1 /* ConnectionModel.m */; };
 		B34FACE2224D189400F3E3E1 /* MyPersonSecondVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B34FACE1224D189400F3E3E1 /* MyPersonSecondVC.m */; };
@@ -377,6 +380,11 @@
 		B319BF30224747B600C602EA /* ProductModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductModel.m; sourceTree = "<group>"; };
 		B319BF32224748F800C602EA /* JobDetailViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobDetailViewModel.h; sourceTree = "<group>"; };
 		B319BF33224748F800C602EA /* JobDetailViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobDetailViewModel.m; sourceTree = "<group>"; };
+		B33F95722250A8660057DB03 /* UnLoginView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnLoginView.h; sourceTree = "<group>"; };
+		B33F95732250A8660057DB03 /* UnLoginView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UnLoginView.m; sourceTree = "<group>"; };
+		B33F95752250A8760057DB03 /* UnLogin.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UnLogin.xib; sourceTree = "<group>"; };
+		B33F95772250F7A20057DB03 /* WaterfallColectionLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaterfallColectionLayout.m; sourceTree = "<group>"; };
+		B33F95782250F7A20057DB03 /* WaterfallColectionLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaterfallColectionLayout.h; sourceTree = "<group>"; };
 		B34FACD9224CFB4500F3E3E1 /* ConnectionViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionViewModel.m; sourceTree = "<group>"; };
 		B34FACDA224CFB4600F3E3E1 /* ConnectionViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionViewModel.h; sourceTree = "<group>"; };
 		B34FACDD224CFD4200F3E3E1 /* ConnectionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConnectionModel.h; sourceTree = "<group>"; };
@@ -465,6 +473,9 @@
 				04E60745222FB528003B94ED /* BaseWebView.m */,
 				04F567A12243325C001E0CD8 /* BaseTableView.h */,
 				04F567A22243325C001E0CD8 /* BaseTableView.m */,
+				B33F95722250A8660057DB03 /* UnLoginView.h */,
+				B33F95732250A8660057DB03 /* UnLoginView.m */,
+				B33F95752250A8760057DB03 /* UnLogin.xib */,
 			);
 			path = BaseView;
 			sourceTree = "<group>";
@@ -1090,6 +1101,8 @@
 		B319BF2E2247479100C602EA /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B33F95782250F7A20057DB03 /* WaterfallColectionLayout.h */,
+				B33F95772250F7A20057DB03 /* WaterfallColectionLayout.m */,
 				B319BF2F224747B600C602EA /* ProductModel.h */,
 				B319BF30224747B600C602EA /* ProductModel.m */,
 			);
@@ -1179,6 +1192,7 @@
 				04BD114D224A03A80033B774 /* ProfitTableViewCell.xib in Resources */,
 				04BD117C224A57930033B774 /* WalletTableViewCell.xib in Resources */,
 				0411214A2240E98E003D7F2D /* ConnectionsVC.xib in Resources */,
+				B33F95762250A8760057DB03 /* UnLogin.xib in Resources */,
 				04BD1181224A5CC50033B774 /* CashWithdrawalVC.xib in Resources */,
 				041121432240BE79003D7F2D /* TaskTableViewCell.xib in Resources */,
 				04616FC8222CF66700E46B40 /* LaunchScreen.storyboard in Resources */,
@@ -1292,6 +1306,7 @@
 				0487151F223FA1B500679095 /* XNetWork.m in Sources */,
 				04617008222D190E00E46B40 /* NSObject+Extension.m in Sources */,
 				04616FFC222D14C600E46B40 /* UIView+Extension.m in Sources */,
+				B33F95792250F7A20057DB03 /* WaterfallColectionLayout.m in Sources */,
 				04BD114C224A03A80033B774 /* ProfitTableViewCell.m in Sources */,
 				04616FE4222D09D300E46B40 /* UIColor+Extension.m in Sources */,
 				04E7714622426A7A00C6E7CE /* JobDetailVC.m in Sources */,
@@ -1300,6 +1315,7 @@
 				04F567A32243325C001E0CD8 /* BaseTableView.m in Sources */,
 				0411213B2240870F003D7F2D /* TaskIngTableView.m in Sources */,
 				04617019222D195400E46B40 /* DateHelper.m in Sources */,
+				B33F95742250A8660057DB03 /* UnLoginView.m in Sources */,
 				04AECC9D224B95EE00410304 /* ExpectModel.m in Sources */,
 				04BD1160224A112A0033B774 /* GKImageCropOverlayView.m in Sources */,
 				04E2FA1022461028006EE2D5 /* SearchCollectionView.m in Sources */,
@@ -1493,8 +1509,8 @@
 			baseConfigurationReference = 403636099D7088BD3E92CABD /* Pods-JianKeLife.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6A23G994U4;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/JianKeLife/Prefix.pch";
 				INFOPLIST_FILE = JianKeLife/Info.plist;
@@ -1509,6 +1525,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xsj.jiankelife;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1518,8 +1535,8 @@
 			baseConfigurationReference = 860F8E05AEC6477F1F3F78B0 /* Pods-JianKeLife.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6A23G994U4;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/JianKeLife/Prefix.pch";
 				INFOPLIST_FILE = JianKeLife/Info.plist;
@@ -1534,6 +1551,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xsj.jiankelife;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

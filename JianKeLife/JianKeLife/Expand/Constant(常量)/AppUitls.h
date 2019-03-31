@@ -24,7 +24,7 @@ static NSString *const AMapKey = @"d40775054eee7a471c44abbf3760b95c";
 static NSString *const TalkingData_AppID =   @"";
 
 /**通知*/
-
+static NSString *const UnLoginNotification = @"UnLoginNotification";
 static NSString *const LoginSuccessNotification = @"LoginSuccessNotification";
 static NSString *const WXLoginNotification = @"WXLoginNotification";
 /**接口名称*/
