@@ -8,6 +8,7 @@
 
 #import "BaseWebVC.h"
 #import "BaseWebView.h"
+#import "XDeviceHelper.h"
 @interface BaseWebVC ()<WKNavigationDelegate>
 @property(nonatomic,strong)BaseWebView *webParentView;
 @end
@@ -21,7 +22,8 @@
 
 - (void)reloadForGetWebView:(NSString *)htmlStr
 {
-    htmlStr = [NSString stringWithFormat:@"%@",htmlStr];
+    NSString *version = [XDeviceHelper getAppBundleVersion];
+    htmlStr = [htmlStr stringByAppendingFormat:@"?clientType=1&appVersionCode=%@",version];
     [self.webParentView.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:htmlStr]]];
 }
 
@@ -85,6 +87,7 @@
     if (!_webParentView) {
         _webParentView = [[BaseWebView alloc] initWithFrame:self.view.bounds canCopy:YES canZoom:NO];
         _webParentView.webView.navigationDelegate = self;
+        
         [self.view addSubview:self.webParentView];
     }
     return _webParentView;

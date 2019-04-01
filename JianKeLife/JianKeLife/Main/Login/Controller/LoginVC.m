@@ -63,6 +63,13 @@
 }
 - (IBAction)loginBtn:(UIButton *)sender {
    
+//    [UserInfo sharedInstance].phoneName = self.phoneTextField.text;
+//    UserInfo *asdfa =[UserInfo sharedInstance];
+//    [[UserInfo sharedInstance]saveUserInfo:[UserInfo sharedInstance]];
+//
+//    MyLog(@"%@",[[UserInfo sharedInstance] getUserInfo].phoneName);
+//    [[UserInfo sharedInstance]saveUserInfo:[UserInfo sharedInstance]];
+    
     if (self.phoneTextField.text.length != 11) {
         [ProgressHUD showProgressHUDInView:nil withText:@"请输入正确的手机号码" afterDelay:1];
         return;
@@ -76,13 +83,15 @@
     [dic setValue:@"" forKey:@"recommendCode"];
     [dic setValue:self.smsCode.text forKey:@"smsCode"];
     
+    
+    WEAKSELF
     [XNetWork requestNetWorkWithUrl:XLogin_Register andModel:dic andSuccessBlock:^(ResponseModel *model) {
         [ProgressHUD showProgressHUDInView:nil withText:@"登录成功" afterDelay:1];
-        [[UserInfo sharedInstance]saveUserInfo:[UserInfo mj_objectWithKeyValues:model.data]];
+        [UserInfo sharedInstance].phoneName = weakSelf.phoneTextField.text;
+        [UserInfo sharedInstance].token = model.data[@"token"];
+        [[UserInfo sharedInstance]saveUserInfo:[UserInfo sharedInstance]];
         
-//        MyLog(@"%@",[UserInfo sharedInstance].token);
-        
-        
+
         [self.navigationController popViewControllerAnimated:YES];
         [XNotificationCenter postNotificationName:LoginSuccessNotification object:nil];
     } andFailBlock:^(ResponseModel *model) {

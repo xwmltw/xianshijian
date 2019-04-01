@@ -23,15 +23,18 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"MyPersonTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"MyPersonTableViewCell2"];
+
+    self.tableView.tableFooterView = [[UIView alloc]init];
+    [self.view addSubview:self.tableView];
 }
 - (void)getData{
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     [dic setObject:self.model.id forKey:@"firstConnectionsId"];
     [dic setObject:[self.pageQueryRedModel mj_keyValues] forKey:@"pageQueryReq"];
-    BLOCKSELF
+    WEAKSELF
     [XNetWork requestNetWorkWithUrl:Xget_second_connections_info andModel:dic andSuccessBlock:^(ResponseModel *model) {
-        blockSelf.myPersonSecondList = model.data[@"dataRows"];
-        [blockSelf.tableView reloadData];
+        [weakSelf.myPersonSecondList addObjectsFromArray: model.data[@"dataRows"]];
+        [weakSelf.tableView reloadData];
     } andFailBlock:^(ResponseModel *model) {
         
     }];
@@ -58,6 +61,7 @@
     }
     cell.connectionFirstModel = [ConnectionFirstModel mj_objectWithKeyValues:self.myPersonSecondList[indexPath.row]];
     cell.labNum.hidden = YES;
+    cell.rightImage.hidden = YES;
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

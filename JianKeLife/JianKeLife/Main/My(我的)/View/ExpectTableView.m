@@ -25,9 +25,10 @@
         
    
         
-        BLOCKSELF
+        WEAKSELF
         [self.expectViewModel setExpectListBlock:^(id result) {
-            [blockSelf reloadData];
+            
+            [weakSelf reloadData];
         }];
     }
     return self;
@@ -102,8 +103,12 @@
     return AdaptationWidth(28);
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    [tableView cellForRowAtIndexPath:indexPath].m
-    return AdaptationWidth(116);
+
+        CGSize detailSize = [self.expectViewModel.expectList[indexPath.row][@"profitAmountDesc"] boundingRectWithSize:CGSizeMake(AdaptationWidth(235), CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:nil context:nil].size;
+    
+    CGFloat cellH = 80 + detailSize.height;
+    return AdaptationWidth(cellH);
+    
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.expectViewModel.expectList.count;
@@ -114,6 +119,7 @@
     if (!cell) {
         cell = [[ExpectTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ExpectTableViewCell"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.contentView.backgroundColor = XColorWithRGB(248, 248, 248);
     }
     cell.model = [ExpectCellModel mj_objectWithKeyValues:self.expectViewModel.expectList[indexPath.row]];
    
@@ -130,4 +136,5 @@
     }
     return _expectViewModel;
 }
+
 @end

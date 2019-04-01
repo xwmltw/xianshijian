@@ -111,6 +111,17 @@
                             <action selector="btnOnClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="bsW-zL-pAa"/>
                         </connections>
                     </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Lr-LW-6pc">
+                        <rect key="frame" x="26" y="98" width="16" height="16"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="已通过" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4sr-rx-KEd">
+                        <rect key="frame" x="50" y="97" width="43" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.6705882352941176" green="0.6705882352941176" blue="0.6705882352941176" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
             </tableViewCellContentView>
@@ -124,6 +135,8 @@
                 <outlet property="cellTitelDate" destination="k7p-vv-cm3" id="Sif-gu-AH5"/>
                 <outlet property="cellVerifyBtn" destination="yXF-BN-iwY" id="yKO-He-MrN"/>
                 <outlet property="celltitle" destination="czF-hs-QIM" id="e3M-9F-TBN"/>
+                <outlet property="passImage" destination="6Lr-LW-6pc" id="0HI-4F-vDC"/>
+                <outlet property="passLab" destination="4sr-rx-KEd" id="3el-v6-0bD"/>
             </connections>
             <point key="canvasLocation" x="88.799999999999997" y="70.614692653673174"/>
         </tableViewCell>

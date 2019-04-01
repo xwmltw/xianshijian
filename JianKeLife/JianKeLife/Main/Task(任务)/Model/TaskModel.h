@@ -14,8 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic ,copy) NSNumber *ctmSubmitDeadTimeLeft;
 @property (nonatomic ,copy) NSNumber *entAuditDeadTimeLeft;
 @property (nonatomic ,copy) NSString *prodTradeAuditRemark;
-@property (nonatomic ,copy) NSNumber *prodTradeAuditStatus;
-@property (nonatomic ,copy) NSNumber *prodTradeFinishTime;
+@property (nonatomic ,copy) NSNumber * prodTradeAuditStatus;
+@property (nonatomic ,copy) NSNumber * prodTradeFinishTime;
 @property (nonatomic ,copy) NSNumber *productApplyId;
 @property (nonatomic ,copy) NSString *productFirstMainPicUrl;
 @property (nonatomic ,copy) NSString *productNo;

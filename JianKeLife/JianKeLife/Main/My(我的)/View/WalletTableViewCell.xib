@@ -36,14 +36,24 @@
                         <color key="textColor" red="0.22745098039215686" green="0.22745098039215686" blue="0.22745098039215686" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1yQ-qY-UNP">
+                        <rect key="frame" x="20" y="59.5" width="355" height="1"/>
+                        <color key="backgroundColor" red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="eoK-Xp-6cA"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="TIt-5f-QbF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="7Yp-Bb-knj"/>
                     <constraint firstItem="uXS-u6-Fdb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="7ib-a5-XFC"/>
                     <constraint firstItem="TIt-5f-QbF" firstAttribute="top" secondItem="uXS-u6-Fdb" secondAttribute="bottom" constant="2" id="8fg-An-PHX"/>
+                    <constraint firstAttribute="bottom" secondItem="1yQ-qY-UNP" secondAttribute="bottom" id="AZ1-db-6M8"/>
                     <constraint firstAttribute="trailing" secondItem="udE-uV-atx" secondAttribute="trailing" constant="20" id="BbF-Ur-AfQ"/>
                     <constraint firstItem="udE-uV-atx" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="JaZ-SM-kYf"/>
                     <constraint firstItem="uXS-u6-Fdb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Oop-Kh-SlF"/>
+                    <constraint firstItem="1yQ-qY-UNP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="bpQ-Ul-c78"/>
+                    <constraint firstAttribute="trailing" secondItem="1yQ-qY-UNP" secondAttribute="trailing" id="daX-jm-BlU"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

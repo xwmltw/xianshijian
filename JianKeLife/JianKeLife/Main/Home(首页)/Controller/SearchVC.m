@@ -72,6 +72,7 @@
     cancelBtn.enabled = YES;
 
     self.collectionView.searchVieModel.keywords = searchBar.text;
+    [self.collectionView.searchVieModel.productList removeAllObjects];
     [self.collectionView.searchVieModel requestData];
 }
 

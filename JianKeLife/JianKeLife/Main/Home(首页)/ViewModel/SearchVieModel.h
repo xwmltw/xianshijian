@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (MJRefreshAutoNormalFooter *)creatMjRefresh;
 - (void)footerRefresh;
 - (void)requestData;
+
 @end
 
 NS_ASSUME_NONNULL_END

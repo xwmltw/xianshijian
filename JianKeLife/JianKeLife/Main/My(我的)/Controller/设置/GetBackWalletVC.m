@@ -23,7 +23,7 @@
     XCountDownButton *_getVerificationButton;
 }
 - (IBAction)btnOnClick:(UIButton *)sender {
-    if (self.passwordtextField.text.length != 11) {
+    if (!self.passwordtextField.text.length) {
         [ProgressHUD showProgressHUDInView:nil withText:@"请输入新的钱包密码" afterDelay:1];
         return;
     }
@@ -38,7 +38,7 @@
     [XNetWork requestNetWorkWithUrl:Xfind_money_pwd andModel:dic andSuccessBlock:^(ResponseModel *model) {
         [ProgressHUD showProgressHUDInView:nil withText:@"修改成功" afterDelay:1];
 
-//        [self.navigationController popViewControllerAnimated:YES];
+        [self.navigationController popViewControllerAnimated:YES];
 
     } andFailBlock:^(ResponseModel *model) {
         

@@ -106,7 +106,7 @@
     return AdaptationWidth(150);
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return AdaptationWidth(113);
+    return AdaptationWidth(61);
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.profitViewModel.profitList.count;

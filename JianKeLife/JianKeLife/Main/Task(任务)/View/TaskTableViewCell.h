@@ -21,7 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *cellGiveBtn;
 @property (weak, nonatomic) IBOutlet UIButton *cellGoBtn;
 @property (weak, nonatomic) IBOutlet UIButton *cellLookBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *passImage;
 @property (weak, nonatomic) IBOutlet UIButton *cellVerifyBtn;
+@property (weak, nonatomic) IBOutlet UILabel *passLab;
 @property (nonatomic ,assign) TaskTableViewType taskTableView;
 @property (nonatomic ,copy) XBlock taskCellBlock;
 @property (nonatomic ,copy) XBlock taskCellCancelBlock;

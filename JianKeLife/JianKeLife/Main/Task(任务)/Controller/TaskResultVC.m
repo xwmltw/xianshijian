@@ -7,6 +7,7 @@
 //
 
 #import "TaskResultVC.h"
+#import "DateHelper.h"
 
 @interface TaskResultVC ()
 
@@ -18,9 +19,11 @@
     [super viewDidLoad];
     self.view.backgroundColor = BackgroundColor;
     self.title = @"返佣审核结果";
+    [self creatUI];
     
 }
 - (void)creatUI{
+    
     if (self.resultModel.prodTradeAuditStatus.integerValue != 3) {
         UIView *view = [[UIView alloc]init];
         view.backgroundColor = [UIColor whiteColor];
@@ -33,7 +36,7 @@
         }];
         
         UIImageView *bhimageView = [[UIImageView alloc]init];
-        bhimageView.image = [UIImage imageNamed:@"image_failed"];
+        bhimageView.image = [UIImage imageNamed:@"image_pass"];
         
         [view addSubview:bhimageView];
         [bhimageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -44,17 +47,17 @@
         }];
         
         UIView *line = [[UIView alloc]init];
-        line.backgroundColor = LabelAssistantColor;
+        line.backgroundColor = BackgroundColor;
         [view addSubview:line];
         [line mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.view);
-            make.right.mas_equalTo(self.view);
-            make.top.mas_equalTo(view).offset(AdaptationWidth(16));
-            make.height.mas_equalTo(AdaptationWidth(1));
+            make.left.mas_equalTo(view);
+            make.right.mas_equalTo(view);
+            make.top.mas_equalTo(bhimageView.mas_bottom).offset(AdaptationWidth(16));
+            make.height.mas_equalTo(AdaptationWidth(0.5));
         }];
         
         UILabel *timeLab = [[UILabel alloc]init];
-        [timeLab setText:[NSString stringWithFormat:@"提交时间 %@",self.resultModel.prodTradeFinishTime]];
+        [timeLab setText:[NSString stringWithFormat:@"提交时间 %@",[DateHelper getDateFromTimeNumber:self.resultModel.prodTradeFinishTime withFormat:@"yyyy-M-d HH:mm:ss"]]];
         [timeLab setFont:[UIFont systemFontOfSize:AdaptationWidth(14)]];
         [timeLab setTextColor:LabelAssistantColor];
         [view addSubview:timeLab];
@@ -62,6 +65,7 @@
             make.right.mas_equalTo(view).offset(AdaptationWidth(-16));
             make.top.mas_equalTo(line.mas_bottom).offset(AdaptationWidth(9));
         }];
+        return;
     }
     
     UIView *view = [[UIView alloc]init];
@@ -75,7 +79,7 @@
     }];
     
     UIImageView *bhimageView = [[UIImageView alloc]init];
-    bhimageView.image = [UIImage imageNamed:@"image_pass"];
+    bhimageView.image = [UIImage imageNamed:@"image_failed"];
     
     [view addSubview:bhimageView];
     [bhimageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -86,17 +90,17 @@
     }];
     
     UIView *line = [[UIView alloc]init];
-    line.backgroundColor = LabelAssistantColor;
+    line.backgroundColor = BackgroundColor;
     [view addSubview:line];
     [line mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view);
-        make.right.mas_equalTo(self.view);
-        make.top.mas_equalTo(view).offset(AdaptationWidth(16));
+        make.left.mas_equalTo(view);
+        make.right.mas_equalTo(view);
+        make.top.mas_equalTo(bhimageView.mas_bottom).offset(AdaptationWidth(16));
         make.height.mas_equalTo(AdaptationWidth(1));
     }];
     
     UILabel *timeLab = [[UILabel alloc]init];
-    [timeLab setText:[NSString stringWithFormat:@"提交时间 %@",self.resultModel.prodTradeFinishTime]];
+    [timeLab setText:[NSString stringWithFormat:@"提交时间 %@",[DateHelper getDateFromTimeNumber:self.resultModel.prodTradeFinishTime withFormat:@"yyyy-M-d HH:mm:ss"]]];
     [timeLab setFont:[UIFont systemFontOfSize:AdaptationWidth(14)]];
     [timeLab setTextColor:LabelAssistantColor];
     [view addSubview:timeLab];
@@ -129,6 +133,12 @@
     }];
     
     
+}
+- (TaskModel *)resultModel{
+    if (!_resultModel) {
+        _resultModel = [[TaskModel alloc]init];
+    }
+    return _resultModel;
 }
 
 /*

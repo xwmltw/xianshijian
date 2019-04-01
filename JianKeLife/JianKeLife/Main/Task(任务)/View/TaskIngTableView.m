@@ -52,8 +52,9 @@
         cell = [[[NSBundle mainBundle]loadNibNamed:@"TaskTableViewCell" owner:self options:nil]lastObject];
         
     }
-    cell.model = [TaskModel mj_objectWithKeyValues:self.taskViewModel.taskList[indexPath.row]];
     cell.taskTableView = TaskTableViewTypeIng;
+    cell.model = [TaskModel mj_objectWithKeyValues:self.taskViewModel.taskList[indexPath.row]];
+    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     [cell setTaskCellBlock:^(id result) {
         XBlockExec(self.taskIngBtnBlcok,result,self.taskViewModel.taskList[indexPath.row][@"productApplyId"]);

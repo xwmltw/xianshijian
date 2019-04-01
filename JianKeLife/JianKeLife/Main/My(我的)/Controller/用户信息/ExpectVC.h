@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ExpectVC : BaseMainVC
-
+@property (nonatomic ,copy)NSNumber * moneyLb;
 @end
 
 NS_ASSUME_NONNULL_END

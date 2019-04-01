@@ -318,11 +318,11 @@ static NetWorkManager *network = nil;
 //                 resizedImage =  [UIImage IMGCompressed:image targetWidth:width];
 //            }
            
-            NSData * imageData = UIImageJPEGRepresentation(resizedImage, 0.5);
+            NSData * imageData = UIImageJPEGRepresentation(resizedImage, 1);
        
 
             //拼接data
-            [formData appendPartWithFileData:imageData name:@"image" fileName:[NSString stringWithFormat:@"%@.jpg",[NetWorkManager randomString]] mimeType:@"multipart/form-data"];
+            [formData appendPartWithFileData:imageData name:@"image" fileName:[NSString stringWithFormat:@"%@.png",[NetWorkManager randomString]] mimeType:@"multipart/form-data"];
             
         
             //上传语音

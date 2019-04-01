@@ -15,6 +15,7 @@
 #import "XCommonHepler.h"
 #import "RuleAlertView.h"
 #import "UnLoginView.h"
+#import "ExpectVC.h"
 
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKUI/ShareSDK+SSUI.h>
@@ -40,10 +41,10 @@
 @end
 
 @implementation ConnectionsVC
-
-- (void)viewDidAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated{
+//- (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
     if ([UserInfo sharedInstance].isSignIn){
         [self getData];
         
@@ -82,7 +83,9 @@
             break;
         case 303:
         {
-            
+            ExpectVC *vc = [[ExpectVC alloc]init];
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
         }
             break;
             
@@ -179,6 +182,7 @@
     XBlock Blcok = ^(id result){
         MyPersonSecondVC *vc = [[MyPersonSecondVC alloc]init];
         vc.model = result;
+        vc.hidesBottomBarWhenPushed = YES;
         [blockSelf.navigationController pushViewController:vc animated:YES];
     };
     return Blcok;

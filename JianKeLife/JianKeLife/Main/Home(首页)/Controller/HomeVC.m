@@ -11,6 +11,7 @@
 #import "JobDetailVC.h"
 #import "SearchVC.h"
 #import "BaseWebVC.h"
+#import "SpecialJobListVC.h"
 
 @interface HomeVC ()
 @property (nonatomic ,strong) HomeCollectionView *collectionView;
@@ -35,15 +36,34 @@
     
 }
 - (void)getData{
+    
+
     [self creatSearchBtn];
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc]init];
     //    flowLayout.minimumLineSpacing = 0;
     //    flowLayout.minimumInteritemSpacing = -1;
     self.collectionView = [[HomeCollectionView alloc]initWithFrame:self.view.frame collectionViewLayout:flowLayout];
+    if (self.clientGlobalInfo.bannerAdList.count) {
+        [self.collectionView.headArray addObject:@(HomeCollectionHeadBanner)];
+    }
+    if (self.clientGlobalInfo.specialEntryList.count) {
+        [self.collectionView.headArray addObject:@(HomeCollectionHeadSpecial)];
+    }
+    
+    [self.collectionView.headArray addObject:@(HomeCollectionHeadHot)];
     self.view  = self.collectionView;
     [self scrollViewSelect];
     [self specialViewSelect];
     [self collectionCellSelect];
+    
+    
+//    [XAlertView alertWithTitle:@"更新提示" message:self.clientGlobalInfo.versionInfo.versionDesc cancelButtonTitle:self.clientGlobalInfo.versionInfo.needForceUpdate.integerValue ? @"":@"取消"confirmButtonTitle:@"更新" viewController:self completion:^(UIAlertAction *action, NSInteger buttonIndex) {
+//        if (buttonIndex == 1) {
+//            [[UIApplication sharedApplication]openURL:[NSURL URLWithString:self.clientGlobalInfo.versionInfo.url]];
+//            exit(0);
+//        }
+//
+//    }];
     
 }
 - (void)creatSearchBtn{
@@ -76,7 +96,10 @@
         [blockSelf.navigationController pushViewController:vc animated:YES];
     }];
     self.collectionView.homeViewModel.responseHotBlock = ^(NSMutableArray *result) {
-        MyLog(@"hot=%@",result);
+        SpecialJobListVC *vc = [[SpecialJobListVC alloc]init];
+        vc.specialEntryList = result;
+        vc.hidesBottomBarWhenPushed = YES;
+        [blockSelf.navigationController pushViewController:vc animated:YES];
     };
 }
 - (void)collectionCellSelect{

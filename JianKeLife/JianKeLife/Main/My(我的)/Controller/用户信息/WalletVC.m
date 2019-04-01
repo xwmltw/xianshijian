@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"钱包";
-    self.walletTableView  = [[WalletTableView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight) style:UITableViewStylePlain];
+    self.walletTableView  = [[WalletTableView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight) style:UITableViewStyleGrouped];
     self.walletTableView.profitViewModel.tradeType = @2;
     [self.walletTableView.profitViewModel requestProfitData];
     self.view = self.walletTableView;

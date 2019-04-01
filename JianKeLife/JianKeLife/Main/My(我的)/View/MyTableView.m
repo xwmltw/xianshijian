@@ -8,6 +8,7 @@
 
 #import "MyTableView.h"
 #import "LoginVC.h"
+#import "BaseParamModel.h"
 
 @interface  MyTableView ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -241,7 +242,7 @@
         UILabel *willLab = [[UILabel alloc]init];
         [willLab setText:@"即将到账（元）"];
         [willLab setFont:[UIFont systemFontOfSize:AdaptationWidth(16)]];
-        [willLab setTextColor:AppMainColor];
+        [willLab setTextColor:LabelMainColor];
         [heardView2 addSubview:willLab];
         [willLab mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(hongbao.mas_right).offset(AdaptationWidth(25));
@@ -319,6 +320,7 @@
         }];
         
         cellRightImage = [[UIImageView alloc]init];
+        cellRightImage.hidden = NO;
         [cellRightImage setImage:[UIImage imageNamed:@"icon_right"]];
         [cell.contentView addSubview:cellRightImage];
         [cellRightImage mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -342,8 +344,20 @@
             [cellDetail setText:@"意见反馈"];
             break;
         case 1:
+        {
             [cellImage setImage:[UIImage imageNamed:@"icon_contact"]];
             [cellDetail setText:@"联系客服"];
+            cellRightImage.hidden = YES;
+            UILabel *telLab = [[UILabel alloc]init];
+            telLab.text  = [ClientGlobalInfo getClientGlobalInfoModel].customerContact;
+            [telLab setFont:[UIFont systemFontOfSize:AdaptationWidth(14)]];
+            [telLab setTextColor:LabelAssistantColor];
+            [cell.contentView addSubview:telLab];
+            [telLab mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.right.mas_equalTo(cell).offset(AdaptationWidth(-16));
+                make.centerY.mas_equalTo(cell);
+            }];
+        }
             break;
         case 2:
             [cellImage setImage:[UIImage imageNamed:@"icon_about"]];

@@ -13,6 +13,8 @@
 #import "TaskDetailVC.h"
 #import "TaskResultVC.h"
 #import "UnLoginView.h"
+#import "TaskReturnVC.h"
+#import "JobDetailVC.h"
 
 @interface TaskVC ()
 @property (nonatomic ,strong) UISegmentedControl *segmentedControl;
@@ -24,6 +26,12 @@
 
 @implementation TaskVC
 - (void)setBackNavigationBarItem{};
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+//    [self.stayTableView.mj_header beginRefreshing];
+//    [self.ingTableView.mj_header beginRefreshing];
+//    [self.overTableView.mj_header beginRefreshing];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -75,7 +83,10 @@
        switch (btn.tag) {
            case 202:
            {
-               
+               TaskReturnVC *vc = [[TaskReturnVC alloc]init];
+               vc.productApplyId = proid;
+               vc.hidesBottomBarWhenPushed = YES;
+               [blockSelf.navigationController pushViewController:vc animated:YES];
            }
                break;
            case 203:
@@ -105,7 +116,16 @@
     };
     return block;
 }
-
+- (XBlock)taskOverCellBlock{
+    WEAKSELF
+    XBlock block = ^(NSString *proid){
+        JobDetailVC *vc = [[JobDetailVC alloc]init];
+        vc.hidesBottomBarWhenPushed = YES;
+        vc.productNo  = proid;
+        [weakSelf.navigationController pushViewController:vc animated:YES];
+    };
+    return block;
+}
 #pragma mark -懒加载
 - (TaskStayTableView *)stayTableView{
     if (!_stayTableView) {
@@ -131,6 +151,7 @@
         _overTableView = [[TaskOverTableView alloc]init];
         _overTableView.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight-49);
         _overTableView.taskOverBtnBlcok = [self taskResultBlcok];
+        _overTableView.taskOverCellselect = [self taskOverCellBlock];
         [self.view addSubview:_overTableView];
        
     }

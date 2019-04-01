@@ -64,7 +64,7 @@
                 [ProgressHUD showProgressHUDInView:nil withText:@"低于最低提现金额" afterDelay:1];
                 return;
             }
-            if ([self.moneyTextField.text doubleValue] > [self.balance doubleValue]) {
+            if ([self.moneyTextField.text doubleValue] > ([self.balance doubleValue]/100)) {
                 [ProgressHUD showProgressHUDInView:nil withText:@"当前钱包余额不足" afterDelay:1];
                 return;
             }
@@ -144,7 +144,7 @@
             case 4332:
             {
                 GetBackWalletVC *vc =[[GetBackWalletVC alloc]init];
-                [blockSelf.navigationController popToViewController:vc animated:YES];
+                [blockSelf.navigationController pushViewController:vc animated:YES];
             }
                 break;
             case 4333:

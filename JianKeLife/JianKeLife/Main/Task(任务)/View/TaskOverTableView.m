@@ -51,18 +51,19 @@
         cell = [[[NSBundle mainBundle]loadNibNamed:@"TaskTableViewCell" owner:self options:nil]lastObject];
         
     }
-    cell.model = [TaskModel mj_objectWithKeyValues:self.taskViewModel.taskList[indexPath.row]];
     cell.taskTableView = TaskTableViewTypeOver;
+    cell.model = [TaskModel mj_objectWithKeyValues:self.taskViewModel.taskList[indexPath.row]];
+    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     [cell setTaskCellBlock:^(id result) {
-        XBlockExec(self.taskOverBtnBlcok,result,self.taskViewModel.taskList[indexPath.row]);
+        XBlockExec(self.taskOverBtnBlcok,result,[TaskModel mj_objectWithKeyValues:self.taskViewModel.taskList[indexPath.row]]);
     }];
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+    XBlockExec(self.taskOverCellselect , self.taskViewModel.taskList[indexPath.row][@"productNo"])
 }
 
 - (TaskViewModel *)taskViewModel{

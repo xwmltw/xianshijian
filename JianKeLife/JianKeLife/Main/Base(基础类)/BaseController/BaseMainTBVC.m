@@ -35,7 +35,7 @@
     
     
     TaskVC *taskVC = [[TaskVC alloc]init];
-    [self setChildViewController:taskVC Image:@"icon_task_unselect" selectedImage:@"icon_task_select" title:@"任务"];
+    [self setChildViewController:taskVC Image:@"icon_task_unselect" selectedImage:@"icon_task_select" title:@"任务堆"];
     
     ConnectionsVC *connectionsVC = [[ConnectionsVC alloc]init];
     [self setChildViewController:connectionsVC Image:@"icon_relationship_unselect" selectedImage:@"icon_relationship_select" title:@"人脉"];

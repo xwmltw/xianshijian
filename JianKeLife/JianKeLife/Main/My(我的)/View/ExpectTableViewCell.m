@@ -9,14 +9,11 @@
 #import "ExpectTableViewCell.h"
 
 @implementation ExpectTableViewCell
-{
-    UILabel *detail;
-    UILabel *momeyLan;
-    UILabel *dateLab;
-}
-- (void)layoutSubviews{
+
+- (void)setModel:(ExpectCellModel *)model{
     
     UIView *view = [[UIView alloc]init];
+    view.backgroundColor = [UIColor whiteColor];
     [self.contentView addSubview:view];
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self).offset(AdaptationWidth(10));
@@ -25,8 +22,9 @@
         make.bottom.mas_equalTo(self).offset(AdaptationWidth(-5));
     }];
     
-    detail = [[UILabel alloc]init];
-    detail.numberOfLines = 0;
+    UILabel *detail = [[UILabel alloc]init];
+    detail.text = model.profitAmountDesc;
+    detail.numberOfLines = 2;
     [detail setFont:[UIFont systemFontOfSize:AdaptationWidth(16)]];
     [detail setTextColor:LabelMainColor];
     [view addSubview:detail];
@@ -34,10 +32,11 @@
         make.left.mas_equalTo(view).offset(AdaptationWidth(10));
         make.width.mas_equalTo(AdaptationWidth(235));
         make.top.mas_equalTo(view).offset(AdaptationWidth(10));
-        make.bottom.mas_equalTo(self).offset(AdaptationWidth(-31));
+//        make.bottom.mas_equalTo(view).offset(AdaptationWidth(-31));
     }];
     
-    momeyLan = [[UILabel alloc]init];
+    UILabel *momeyLan = [[UILabel alloc]init];
+    momeyLan.text = [NSString stringWithFormat:@"%.2f",[model.profitAmount doubleValue]/100];
     [momeyLan setFont:[UIFont systemFontOfSize:AdaptationWidth(16)]];
     [momeyLan setTextColor:RedColor];
     [view addSubview:momeyLan];
@@ -53,26 +52,21 @@
     [view addSubview:overLab];
     [overLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(view).offset(-10);
-        make.top.mas_equalTo(self->momeyLan.mas_bottom).offset(AdaptationWidth(2));
+        make.top.mas_equalTo(momeyLan.mas_bottom).offset(AdaptationWidth(2));
     }];
     
-    dateLab = [[UILabel alloc]init];
+    UILabel *dateLab = [[UILabel alloc]init];
+    dateLab.text = model.createTime;
     [dateLab setFont:[UIFont systemFontOfSize:AdaptationWidth(12)]];
     [dateLab setTextColor:LabelAssistantColor];
     [view addSubview:dateLab];
     [dateLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(view).offset(AdaptationWidth(10));
         make.bottom.mas_equalTo(view).offset(AdaptationWidth(-10));
-    
+       
     }];
-}
-- (void)setModel:(ExpectCellModel *)model{
-//    detail.text = model.profitAmountDesc;
-    detail.text = @"qwedfqwefdqwdfhqwhdfjqhdlkjqwghedgqwefgqwlgeqlhywe";
-    momeyLan.text = [NSString stringWithFormat:@"%.2f",[model.profitAmount doubleValue]/100];
-    dateLab.text = model.createTime;
-    CGSize detailSize = [detail.text boundingRectWithSize:CGSizeMake(AdaptationWidth(235), CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:nil context:nil].size;
-    model.width = detailSize.width + AdaptationWidth(53);
+    
+
 }
 - (void)awakeFromNib {
     [super awakeFromNib];

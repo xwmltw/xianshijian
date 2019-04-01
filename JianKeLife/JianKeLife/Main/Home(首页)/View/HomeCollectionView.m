@@ -27,7 +27,9 @@
         self.dataSource = self;
         self.showsVerticalScrollIndicator = NO;
         self.backgroundColor = LineColor;
-
+        self.headArray = [NSMutableArray array];
+        
+        
         
         [self registerNib:[UINib nibWithNibName:NSStringFromClass([HomeHotCollectionViewCell class]) bundle:[NSBundle mainBundle ]] forCellWithReuseIdentifier:NSStringFromClass([HomeHotCollectionViewCell class])];
        
@@ -48,19 +50,20 @@
 }
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 3;
+    return self.headArray.count;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    if (section == 2) {
+    HomeCollectionHead row = [self.headArray[section] integerValue];
+    if (row == HomeCollectionHeadHot) {
         return self.homeViewModel.productList.count;
     }
     return 0;
 }
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
- 
-    switch (indexPath.section) {
-        case 2:{
+    HomeCollectionHead row = [self.headArray[indexPath.section] integerValue];
+    switch (row) {
+        case HomeCollectionHeadHot:{
             HomeHotCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([HomeHotCollectionViewCell class]) forIndexPath:indexPath];
             cell.cellTitle.text = self.homeViewModel.productList[indexPath.row][@"productTitle"];
             [cell.cellImage sd_setImageWithURL:self.homeViewModel.productList[indexPath.row][@"productFirstMainPicUrl"]];
@@ -80,9 +83,9 @@
 
  UICollectionReusableView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NSStringFromClass([UICollectionReusableView class]) forIndexPath:indexPath];
     UICollectionReusableView *view2 = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:NSStringFromClass([UICollectionReusableView class]) forIndexPath:indexPath];
-    
-    switch (indexPath.section) {
-        case 0:{
+    HomeCollectionHead row = [self.headArray[indexPath.section] integerValue];
+    switch (row) {
+        case HomeCollectionHeadBanner:{
             [view addSubview: self.sdcycleScrollView];
             [self.sdcycleScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.mas_equalTo(view).offset(AdaptationWidth(16));
@@ -93,7 +96,7 @@
             
         }
             break;
-        case 1:{
+        case HomeCollectionHeadSpecial:{
             [view addSubview:self.specialScrollViewl];
             [self.specialScrollViewl mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.mas_equalTo(view).offset(AdaptationWidth(16));
@@ -103,7 +106,7 @@
   
         }
             break;
-        case 2:{
+        case HomeCollectionHeadHot:{
         
             [view addSubview:self.hotImageView];
             [self.hotImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -133,6 +136,7 @@
                     }];
                     
                 }
+                return view2;
             }
         }
             break;
@@ -145,8 +149,8 @@
 
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (indexPath.section == 2) {
+    HomeCollectionHead row = [self.headArray[indexPath.section] integerValue];
+    if (row == HomeCollectionHeadHot) {
         XBlockExec(self.collectionSelectBlock ,self.homeViewModel.productList[indexPath.row]);
     }
     
@@ -167,8 +171,9 @@
 }
 #pragma mark - UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
-    switch (section) {
-        case 0:{
+    HomeCollectionHead row = [self.headArray[section] integerValue];
+    switch (row) {
+        case HomeCollectionHeadBanner:{
             if (self.homeViewModel.clientGlobalInfo.bannerAdList.count) {
                  return CGSizeMake(self.Sw, AdaptationWidth(130));
             }else{
@@ -177,7 +182,7 @@
            
         }
             break;
-        case 1:{
+        case HomeCollectionHeadSpecial:{
             if (self.homeViewModel.clientGlobalInfo.specialEntryList.count) {
                 return CGSizeMake(self.Sw, AdaptationWidth(90));
             }else{
@@ -186,7 +191,7 @@
             
         }
             break;
-        case 2:{
+        case HomeCollectionHeadHot:{
             return CGSizeMake(self.Sw, AdaptationWidth(30));
         }
             break;
@@ -196,7 +201,8 @@
             return CGSizeZero;
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section{
-    if (section == 2) {
+    HomeCollectionHead row = [self.headArray[section] integerValue];
+    if (row == HomeCollectionHeadHot) {
         if (self.homeViewModel.productList.count == 0) {
              return CGSizeMake(self.Sw, AdaptationWidth(289));
         }
@@ -204,9 +210,10 @@
     return CGSizeZero;
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    switch (indexPath.section) {
+    HomeCollectionHead row = [self.headArray[indexPath.section] integerValue];
+    switch (row) {
         
-        case 2:{
+        case HomeCollectionHeadHot:{
 //            if (indexPath.row == 0) {
 //                return CGSizeMake(AdaptationWidth(166), AdaptationWidth(191));
 //            }

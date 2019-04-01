@@ -52,9 +52,9 @@
     }];
     
     UILabel *loginLab2 = [[UILabel alloc]init];
-    [loginLab2 setText:[NSString stringWithFormat:@"%.2f",[@1 doubleValue]/100]];
+    [loginLab2 setText:[NSString stringWithFormat:@"%.2f",[self.moneyLb doubleValue]/100]];
     [loginLab2 setFont:[UIFont fontWithName:@"PingFangSC-Bold" size:AdaptationWidth(24)]];
-    [loginLab2 setTextColor:LabelMainColor];
+    [loginLab2 setTextColor:[UIColor whiteColor]];
     [self.view addSubview:loginLab2];
     [loginLab2 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.view);

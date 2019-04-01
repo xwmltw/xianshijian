@@ -36,22 +36,32 @@
                         <color key="textColor" red="0.2274509804" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您完成任务：办理信用卡啦啦啦啦啦啦啦啦啦啦啦啦" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1v6-xf-IBC">
-                        <rect key="frame" x="20" y="12" width="235" height="69.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您完成任务：办理信用卡啦啦啦啦啦啦啦啦啦啦啦啦asdfasdfasdfasdfasdfasdfasd" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1v6-xf-IBC">
+                        <rect key="frame" x="20" y="12" width="235" height="57.5"/>
+                        <rect key="contentStretch" x="1" y="0.0" width="1" height="1"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.22745098039215686" green="0.22745098039215686" blue="0.22745098039215686" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dfU-SY-WM1">
+                        <rect key="frame" x="16" y="111.5" width="359" height="1"/>
+                        <color key="backgroundColor" red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="9wX-55-rqP"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="1v6-xf-IBC" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="70:113" id="4zI-X1-wjx"/>
+                    <constraint firstAttribute="trailing" secondItem="dfU-SY-WM1" secondAttribute="trailing" id="AcJ-Iq-yLh"/>
                     <constraint firstAttribute="bottom" secondItem="85g-1q-AgJ" secondAttribute="bottom" constant="12" id="DHN-fK-unw"/>
+                    <constraint firstItem="1v6-xf-IBC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="K0F-OR-smx"/>
                     <constraint firstAttribute="trailing" secondItem="qFj-K1-zPS" secondAttribute="trailing" constant="20" id="MFq-4U-zxb"/>
-                    <constraint firstItem="1v6-xf-IBC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="T7n-qV-anO"/>
+                    <constraint firstItem="1v6-xf-IBC" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="235:375" id="SGz-Hz-mfu"/>
+                    <constraint firstItem="1v6-xf-IBC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="ViD-OX-ekC"/>
                     <constraint firstItem="aax-9W-Lm8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="Wkz-Jt-QQ9"/>
                     <constraint firstItem="qFj-K1-zPS" firstAttribute="top" secondItem="aax-9W-Lm8" secondAttribute="bottom" constant="2" id="Xby-Az-7Sj"/>
-                    <constraint firstItem="1v6-xf-IBC" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="235:375" id="c2S-ox-NLZ"/>
-                    <constraint firstItem="1v6-xf-IBC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="jTV-S8-x37"/>
+                    <constraint firstItem="dfU-SY-WM1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="ZXt-Y2-xhC"/>
+                    <constraint firstAttribute="bottom" secondItem="dfU-SY-WM1" secondAttribute="bottom" id="pXw-gG-grq"/>
                     <constraint firstItem="85g-1q-AgJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="pfe-Hl-Z6Y"/>
                     <constraint firstAttribute="trailing" secondItem="aax-9W-Lm8" secondAttribute="trailing" constant="20" id="s0r-ho-8tu"/>
                 </constraints>

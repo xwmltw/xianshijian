@@ -17,11 +17,11 @@
 #endif
 
 static NSString *const TalkingData_ChannelId = @"AppStore";
-static NSString *const AppName = @"兼客生活";
+static NSString *const AppName = @"今日值享";
 static NSString *const APPLOGO = @"LOGO";
 static NSString *const AppScheme = @"jiankelife";
 static NSString *const AMapKey = @"d40775054eee7a471c44abbf3760b95c";
-static NSString *const TalkingData_AppID =   @"";
+static NSString *const TalkingData_AppID =   @"33325C427A76485088AB7D63A0F9CAA2";
 
 /**通知*/
 static NSString *const UnLoginNotification = @"UnLoginNotification";
@@ -35,7 +35,7 @@ static NSString *const WXLoginNotification = @"WXLoginNotification";
 
 #define Xupload                     @"/mapi/file/upload"//上传文件
 
-#define Xquery_product_list         @"/mapi/specail_entry/query_product_list"//查询产品列表
+#define Xquery_product_list         @"/mapi/specail_entry/query_product_list"//特色查询产品列表
 
 #define XLogin_Register             @"/mapi/session/register_login"//登录注册
 #define Xlogout                     @"/mapi/session/logout"//退出登录

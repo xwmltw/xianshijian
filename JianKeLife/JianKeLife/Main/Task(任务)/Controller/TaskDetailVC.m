@@ -29,7 +29,14 @@
     self.collectionView.dataSource = self;
     self.collectionView.showsVerticalScrollIndicator = NO;
     self.collectionView.backgroundColor = LineColor;
-    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NSStringFromClass([UICollectionReusableView class])];
+    
+    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"taskdetailcell"];
+    
+    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"TaskDetailIdentifier"];
+    
+    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:NSStringFromClass([UICollectionReusableView class])];
+    
+    [self.view addSubview:self.collectionView];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view).offset(10);
         make.right.mas_equalTo(self.view).offset(-10);
@@ -40,7 +47,7 @@
 
 - (void)requestData{
     BLOCKSELF
-    [XNetWork requestNetWorkWithUrl:Xproduct_apply_detail andModel:@{@"productApplyId":@""} andSuccessBlock:^(ResponseModel *model) {
+    [XNetWork requestNetWorkWithUrl:Xproduct_apply_detail andModel:@{@"productApplyId":self.productApplyId} andSuccessBlock:^(ResponseModel *model) {
         blockSelf.taskDetailModel = [TaskDetailModel mj_objectWithKeyValues:model.data];
         [blockSelf.collectionView reloadData];
     } andFailBlock:^(ResponseModel *model) {
@@ -49,7 +56,7 @@
 }
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 2;
+    return 1;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -71,10 +78,22 @@
     return cell;
 }
 
+//- (UIView *)col
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     
-    UICollectionReusableView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NSStringFromClass([UICollectionReusableView class]) forIndexPath:indexPath];
-    if (indexPath.section == 0) {
+    
+    
+    
+    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
+
+        UICollectionReusableView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"TaskDetailIdentifier" forIndexPath:indexPath];
+        NSArray*views = view.subviews;
+        
+        for(int i =0; i < views.count; i++) {
+            
+            [views[i] removeFromSuperview];
+            
+        }
         UILabel *timeLab = [[UILabel alloc]init];
         [timeLab setText:[NSString stringWithFormat:@"提交时间 %@",self.taskDetailModel.ctmSubmitTimeStr]];
         [timeLab setFont:[UIFont systemFontOfSize:AdaptationWidth(14)]];
@@ -95,40 +114,52 @@
             make.top.mas_equalTo(timeLab.mas_bottom).offset(AdaptationWidth(16));
         }];
         return view;
+    }else{
+        
+        UICollectionReusableView *footer = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:NSStringFromClass([UICollectionReusableView class]) forIndexPath:indexPath];
+        NSArray*views = footer.subviews;
+        
+        for(int i =0; i < views.count; i++) {
+            
+            [views[i] removeFromSuperview];
+            
+        }
+        UILabel *textLab = [[UILabel alloc]init];
+        [textLab setText:@"上传文本"];
+        [textLab setFont:[UIFont systemFontOfSize:AdaptationWidth(20)]];
+        [textLab setTextColor:LabelMainColor];
+        [footer addSubview:textLab];
+        [textLab mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(footer).offset(AdaptationWidth(14));
+            make.top.mas_equalTo(footer).offset(AdaptationWidth(9));
+        }];
+        
+        UILabel *detailLab = [[UILabel alloc]init];
+        detailLab.numberOfLines = 0;
+        [detailLab setText:self.taskDetailModel.prodSubmitContent];
+        [detailLab setFont:[UIFont systemFontOfSize:AdaptationWidth(16)]];
+        [detailLab setTextColor:LabelMainColor];
+        [footer addSubview:detailLab];
+        [detailLab mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(footer).offset(AdaptationWidth(14));
+            make.right.mas_equalTo(footer).offset(AdaptationWidth(-14));
+            make.top.mas_equalTo(textLab.mas_bottom).offset(AdaptationWidth(10));
+        }];
+        
+        UILabel *notiLab = [[UILabel alloc]init];
+        notiLab.numberOfLines = 0;
+        [notiLab setText:[NSString stringWithFormat:@"注：商户若未在 %@ 完成审核，平台将自动打款给用户。",self.taskDetailModel.entAuditDeadTimeStr]];
+        [notiLab setFont:[UIFont systemFontOfSize:AdaptationWidth(12)]];
+        [notiLab setTextColor:LabelAssistantColor];
+        [footer addSubview:notiLab];
+        [notiLab mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(footer).offset(AdaptationWidth(16));
+            make.right.mas_equalTo(footer).offset(AdaptationWidth(-16));
+            make.bottom.mas_equalTo(footer).offset(AdaptationWidth(-14));
+        }];
+        return footer;
     }
-    UILabel *titleLab = [[UILabel alloc]init];
-    [titleLab setText:@"上传文本"];
-    [titleLab setFont:[UIFont systemFontOfSize:AdaptationWidth(20)]];
-    [titleLab setTextColor:LabelMainColor];
-    [view addSubview:titleLab];
-    [titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(view).offset(AdaptationWidth(14));
-        make.top.mas_equalTo(view).offset(AdaptationWidth(9));
-    }];
-    
-    UILabel *detailLab = [[UILabel alloc]init];
-    detailLab.numberOfLines = 0;
-    [detailLab setText:self.taskDetailModel.prodSubmitContent];
-    [detailLab setFont:[UIFont systemFontOfSize:AdaptationWidth(16)]];
-    [detailLab setTextColor:LabelMainColor];
-    [view addSubview:detailLab];
-    [detailLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(view).offset(AdaptationWidth(14));
-        make.right.mas_equalTo(view).offset(AdaptationWidth(-14));
-        make.top.mas_equalTo(titleLab.mas_bottom).offset(AdaptationWidth(10));
-    }];
-    
-    UILabel *notiLab = [[UILabel alloc]init];
-    [notiLab setText:self.taskDetailModel.prodTradeAuditRemark];
-    [notiLab setFont:[UIFont systemFontOfSize:AdaptationWidth(12)]];
-    [notiLab setTextColor:LabelAssistantColor];
-    [view addSubview:notiLab];
-    [notiLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(view).offset(AdaptationWidth(16));
-        make.right.mas_equalTo(view).offset(AdaptationWidth(-16));
-        make.bottom.mas_equalTo(view).offset(AdaptationWidth(-14));
-    }];
-    return view;
+    return nil;
 }
 
 #pragma mark - UICollectionViewDelegate
@@ -151,30 +182,21 @@
 }
 #pragma mark - UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
-    switch (section) {
-        case 0:{
-            
-            return CGSizeMake(ScreenWidth, AdaptationWidth(78));
-        }
-            break;
-        case 1:{
-            
-            return CGSizeMake(ScreenWidth, AdaptationWidth(175));
-        }
-            break;
-        
-        default:
-            break;
-    }
-    return CGSizeZero;
-}
 
+            
+    return CGSizeMake(ScreenWidth, AdaptationWidth(78));
+    
+   
+}
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section{
+    return CGSizeMake(ScreenWidth, AdaptationWidth(175));
+}
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.section) {
             
         case 0:{
             
-            return CGSizeMake(AdaptationWidth(94), AdaptationWidth(94));;
+            return CGSizeMake(AdaptationWidth(335)/3 ,AdaptationWidth(335)/3);
         }
             break;
         default:
@@ -184,7 +206,7 @@
 }
 //设置每个item的UIEdgeInsets
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-    return UIEdgeInsetsMake(10, 10, 10, 10);
+    return UIEdgeInsetsMake(AdaptationWidth(15)/2, AdaptationWidth(15)/2, AdaptationWidth(15)/2, AdaptationWidth(15)/2);//分别为上、左、下、右
 }
 - (TaskDetailModel *)taskDetailModel{
     if (!_taskDetailModel) {

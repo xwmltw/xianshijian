@@ -10,10 +10,16 @@
 #import "HomeViewModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSInteger ,HomeCollectionHead) {
+    HomeCollectionHeadBanner,
+    HomeCollectionHeadSpecial,
+    HomeCollectionHeadHot,
+};
+
 @interface HomeCollectionView : UICollectionView
 @property (nonatomic ,copy) XIntegerBlock scrollSelectBlock;
 @property (nonatomic ,copy) XBlock  collectionSelectBlock;
-
+@property (nonatomic ,strong) NSMutableArray *headArray;
 @property (nonatomic ,strong) HomeViewModel *homeViewModel;
 @end
 

@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TaskDetailModel : NSObject
 @property (nonatomic ,copy) NSString *ctmSubmitTimeStr;
-@property (nonatomic ,copy) NSString *prodTradeAuditRemark;
+@property (nonatomic ,copy) NSString *entAuditDeadTimeStr;
 @property (nonatomic ,copy) NSString *prodSubmitContent;
 @property (nonatomic ,strong) NSArray *prodSubmitPicUrl;
 //ctmSubmitTimeStr (string, optional): 提交时间说明(字符串：2019-3-12 17:17:17) ,

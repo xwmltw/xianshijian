@@ -42,15 +42,25 @@
         make.centerY.mas_equalTo(cellView);
     }];
     
+    UIButton *bgBtn = [[UIButton alloc]init];
+
+    [bgBtn setImage:[UIImage imageNamed:@"icon_right"] forState:UIControlStateNormal];
+    bgBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 60, 0, 0);
+    [cellView addSubview:bgBtn];
+    [bgBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(cellView).offset(-16);
+        make.width.mas_equalTo(80);
+        make.centerY.mas_equalTo(cellView);
+    }];
     UIButton *selectBtn = [[UIButton alloc]init];
     selectBtn.tag = 401;
-    [selectBtn setImage:[UIImage imageNamed:@"icon_right"] forState:UIControlStateNormal];
     [selectBtn addTarget:self action:@selector(btnOnClock:) forControlEvents:UIControlEventTouchUpInside];
     selectBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 60, 0, 0);
     [cellView addSubview:selectBtn];
     [selectBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(cellView).offset(-16);
-        make.width.mas_equalTo(80);
+        make.left.mas_equalTo(cellView).offset(16);
+        make.height.mas_equalTo(30);
         make.centerY.mas_equalTo(cellView);
     }];
     
@@ -80,16 +90,23 @@
         }
             break;
         case 402:{
-            BLOCKSELF
-            [XNetWork requestNetWorkWithUrl:Xlogout andModel:nil andSuccessBlock:^(ResponseModel *model) {
-                [ProgressHUD showProgressHUDInView:nil withText:@"退出成功" afterDelay:1];
-                [XCacheHelper clearCacheFolder];
-                LoginVC *vc = [[LoginVC alloc]init];
-                [blockSelf.navigationController pushViewController:vc animated:YES];
-                [XNotificationCenter postNotificationName:LoginSuccessNotification object:nil];
-            } andFailBlock:^(ResponseModel *model) {
-                
+            
+            [XAlertView alertWithTitle:@"提示" message:@"确定退出登录" cancelButtonTitle:@"取消" confirmButtonTitle:@"确定" viewController:self completion:^(UIAlertAction *action, NSInteger buttonIndex) {
+                if (buttonIndex == 1) {
+                    WEAKSELF
+                    [XNetWork requestNetWorkWithUrl:Xlogout andModel:nil andSuccessBlock:^(ResponseModel *model) {
+                        [ProgressHUD showProgressHUDInView:nil withText:@"退出成功" afterDelay:1];
+                        [XCacheHelper clearCacheFolder];
+                        weakSelf.tabBarController.selectedIndex = 0;
+                        [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+                        [XNotificationCenter postNotificationName:LoginSuccessNotification object:nil];
+                    } andFailBlock:^(ResponseModel *model) {
+                        
+                    }];
+                }
             }];
+            
+            
            
         }
             break;

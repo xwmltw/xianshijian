@@ -10,7 +10,12 @@
 
 @implementation MyPersonTableViewCell
 - (void)setConnectionFirstModel:(ConnectionFirstModel *)connectionFirstModel{
-    self.LabTitle.text = [NSString stringWithFormat:@"%@(%@)",connectionFirstModel.telephone,connectionFirstModel.trueName];
+    if (connectionFirstModel.trueName) {
+        self.LabTitle.text = [NSString stringWithFormat:@"%@(%@)",connectionFirstModel.telephone,connectionFirstModel.trueName];
+    }else{
+        self.LabTitle.text = [NSString stringWithFormat:@"%@",connectionFirstModel.telephone];
+    }
+    
     self.labMoney.text = [NSString stringWithFormat:@"已为您赚取￥%.2f",[connectionFirstModel.profitAmt doubleValue]/100];
     self.labNum.text = [NSString stringWithFormat:@"二级人脉%@人",connectionFirstModel.firstConnectionsCount.description];
 }

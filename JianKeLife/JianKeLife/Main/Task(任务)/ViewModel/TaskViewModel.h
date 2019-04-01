@@ -10,7 +10,7 @@
 #import "TaskModel.h"
 
 typedef NS_ENUM(NSInteger ,TaskTableViewType) {
-    TaskTableViewTypeStay,
+    TaskTableViewTypeStay = 1,
     TaskTableViewTypeIng,
     TaskTableViewTypeOver,
 };

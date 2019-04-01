@@ -17,7 +17,7 @@
     [XNetWork requestNetWorkWithUrl:Xestimate_list andModel:dic andSuccessBlock:^(ResponseModel *model) {
         blockSelf.expectModel = [ExpectModel mj_objectWithKeyValues:model.data];
         [blockSelf.expectList addObjectsFromArray:blockSelf.expectModel.dataRows];
-        XBlockExec(self.expectListBlock,nil);
+        XBlockExec(blockSelf.expectListBlock,nil);
     } andFailBlock:^(ResponseModel *model) {
         
     }];

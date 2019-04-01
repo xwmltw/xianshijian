@@ -39,7 +39,7 @@
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UIView *view = [[UIView alloc]init];
-
+    view.backgroundColor = [UIColor whiteColor];
     UIImageView *headerImage = [[UIImageView alloc]init];
     [headerImage setImage:[UIImage imageNamed:@"icon_profit_head"]];
     [view addSubview:headerImage];
@@ -61,7 +61,7 @@
     UILabel *loginLab2 = [[UILabel alloc]init];
     [loginLab2 setText:[NSString stringWithFormat:@"%.2f",[self.profitViewModel.profitModel.actualReceviceAmt doubleValue]/100]];
     [loginLab2 setFont:[UIFont fontWithName:@"PingFangSC-Bold" size:AdaptationWidth(24)]];
-    [loginLab2 setTextColor:LabelMainColor];
+    [loginLab2 setTextColor:[UIColor whiteColor]];
     [view addSubview:loginLab2];
     [loginLab2 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(view);
@@ -84,7 +84,13 @@
     return AdaptationWidth(147);
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return AdaptationWidth(113);
+    
+    CGSize detailSize = [self.profitViewModel.profitList[indexPath.row][@"moneyFlowTitle"] boundingRectWithSize:CGSizeMake(AdaptationWidth(235), CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:nil context:nil].size;
+//    MyLog(@"%@",self.profitViewModel.profitList[indexPath.row][@"moneyFlowTitle"]);
+//    MyLog(@"%f",detailSize.height);
+    CGFloat cellH = 90 + detailSize.height;
+    
+    return AdaptationWidth(cellH);
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.profitViewModel.profitList.count;

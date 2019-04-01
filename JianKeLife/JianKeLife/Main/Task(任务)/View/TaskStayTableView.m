@@ -53,8 +53,8 @@
         cell = [[[NSBundle mainBundle]loadNibNamed:@"TaskTableViewCell" owner:self options:nil]lastObject];
 
     }
-    cell.model = [TaskModel mj_objectWithKeyValues:self.taskViewModel.taskList[indexPath.row]];
     cell.taskTableView = TaskTableViewTypeStay;
+    cell.model = [TaskModel mj_objectWithKeyValues:self.taskViewModel.taskList[indexPath.row]];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
 //    cell.taskCellBlock = self.taskStayBtnBlcok;

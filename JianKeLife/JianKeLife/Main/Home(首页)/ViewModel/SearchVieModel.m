@@ -24,14 +24,15 @@
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     [dic setObject:self.keywords forKey:@"keywords"];
     [dic setObject:[self.pageQueryRedModel mj_keyValues] forKey:@"pageQueryReq"];
-    BLOCKSELF
+    WEAKSELF
     [XNetWork requestNetWorkWithUrl:Xproduct_search andModel:dic andSuccessBlock:^(ResponseModel *model) {
-        [blockSelf.productList addObjectsFromArray:model.data[@"dataRows"]];
-        XBlockExec(blockSelf.responseSearchBlock,model);
+        [weakSelf.productList addObjectsFromArray:model.data[@"dataRows"]];
+        XBlockExec(weakSelf.responseSearchBlock,model);
     } andFailBlock:^(ResponseModel *model) {
-        [blockSelf.footer endRefreshing];
+        [weakSelf.footer endRefreshing];
     }];
 }
+
 - (MJRefreshAutoNormalFooter *)creatMjRefresh{
     self.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRefresh)];
     [self.footer setTitle:@"" forState:MJRefreshStateIdle];

@@ -71,7 +71,8 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    XBlockExec(self.connectionCellSelectBlock ,self.connectionViewModel.connectionList[indexPath.row][@"id"]);
+    
+    XBlockExec(self.connectionCellSelectBlock ,[ConnectionFirstModel mj_objectWithKeyValues:self.connectionViewModel.connectionList[indexPath.row]]);
 }
 - (ConnectionViewModel *)connectionViewModel{
     if (!_connectionViewModel) {

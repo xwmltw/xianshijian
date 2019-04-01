@@ -70,7 +70,10 @@
                 break;
             case 1:
             {
+                UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
                 
+                pasteboard.string = [weakSelf.clientGlobalInfo.customerContact componentsSeparatedByString:@"："][1];
+                [ProgressHUD showProgressHUDInView:nil withText:@"复制成功" afterDelay:1];
             }
                 break;
             case 2:
@@ -126,6 +129,7 @@
                 break;
             case 405:{
                 ExpectVC *vc = [[ExpectVC alloc]init];
+                vc.moneyLb = weakSelf.tableView.viewModel.myModel.forecastReceviceAmt;
                 vc.hidesBottomBarWhenPushed = YES;
                 [weakSelf.navigationController pushViewController:vc animated:YES];
                 }

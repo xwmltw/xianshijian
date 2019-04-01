@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="XWPhotoCell" reuseIdentifier="XWPhotoCell" id="Zie-9e-p7W" customClass="XWPhotoCell">
+            <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yn2-kE-xVh">
+                        <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EjE-Fq-m5L">
+                        <rect key="frame" x="50" y="0.0" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="KZX-Xs-56L"/>
+                            <constraint firstAttribute="width" constant="20" id="l1Y-0c-9nF"/>
+                        </constraints>
+                        <state key="normal" image="close">
+                            <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </state>
+                    </button>
+                </subviews>
+            </view>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="EjE-Fq-m5L" secondAttribute="trailing" id="7Rk-Tj-IOe"/>
+                <constraint firstItem="yn2-kE-xVh" firstAttribute="top" secondItem="Zie-9e-p7W" secondAttribute="top" id="RSm-wC-l3f"/>
+                <constraint firstItem="EjE-Fq-m5L" firstAttribute="top" secondItem="Zie-9e-p7W" secondAttribute="top" id="Vjz-JJ-2cS"/>
+                <constraint firstAttribute="trailing" secondItem="yn2-kE-xVh" secondAttribute="trailing" id="bDi-wI-m6S"/>
+                <constraint firstAttribute="bottom" secondItem="yn2-kE-xVh" secondAttribute="bottom" id="jl9-Ef-Zgo"/>
+                <constraint firstItem="yn2-kE-xVh" firstAttribute="leading" secondItem="Zie-9e-p7W" secondAttribute="leading" id="yGC-pN-Gtv"/>
+            </constraints>
+            <connections>
+                <outlet property="closeButton" destination="EjE-Fq-m5L" id="8sR-2v-Vyy"/>
+                <outlet property="profilePhoto" destination="yn2-kE-xVh" id="YG8-L6-P4R"/>
+            </connections>
+            <point key="canvasLocation" x="-10" y="53"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="close" width="20" height="20"/>
+    </resources>
+</document>
