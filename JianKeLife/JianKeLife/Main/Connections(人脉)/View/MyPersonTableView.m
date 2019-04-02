@@ -23,7 +23,7 @@
         self.tableFooterView = [[UIView alloc]init];
         self.backgroundColor = XColorWithRGB(248, 248, 248);
         [self registerNib:[UINib nibWithNibName:@"MyPersonTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"MyPersonTableViewCell"];
-        
+        self.estimatedRowHeight = 0;
         self.mj_footer = [self.connectionViewModel creatMjRefresh];
         [self.connectionViewModel requestFirstData];
         BLOCKSELF

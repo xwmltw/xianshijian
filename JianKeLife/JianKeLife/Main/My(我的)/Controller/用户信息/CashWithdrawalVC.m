@@ -127,7 +127,11 @@
     [self.view addSubview:self.inPutPasswordView];
     self.inPutPasswordView.labMoney.text = self.moneyTextField.text;
     if ([self.cashWithdrawalModel.withdrawServiceRate doubleValue] > 0) {
-        self.inPutPasswordView.labDetail.text = [NSString stringWithFormat:@"将额外收取服务费(费率%@%%)",self.cashWithdrawalModel.withdrawServiceRate];
+        double num = [self.moneyTextField.text doubleValue] * [self.cashWithdrawalModel.withdrawServiceRate doubleValue]/100;
+        
+        self.inPutPasswordView.labDetail.text = [NSString stringWithFormat:@"将额外收取%.2f元服务费(费率%@%%)",num,self.cashWithdrawalModel.withdrawServiceRate];
+        
+        
     }else{
         self.inPutPasswordView.labDetail.text = @"";
     }

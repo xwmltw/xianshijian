@@ -108,7 +108,7 @@ static NSString *settingSelectHeadCellIdentifier = @"settingSelectHeadCellIdenti
 - (NSArray *)itemArr
 {
     if (!_itemArr) {
-        NSArray *selectArr = @[NSLocalizedString(@"拍照", nil), NSLocalizedString(@"从手机相册选择", nil)];
+        NSArray *selectArr = @[NSLocalizedString(@"拍照", nil), NSLocalizedString(@"相册", nil)];
         NSArray *cancelArr = @[NSLocalizedString(@"取消", nil)];
         _itemArr = @[selectArr, cancelArr];
     }
@@ -171,7 +171,7 @@ static NSString *settingSelectHeadCellIdentifier = @"settingSelectHeadCellIdenti
     NSString *title = ((NSArray *)self.itemArr[indexPath.section])[indexPath.row];
     if ([title isEqualToString:NSLocalizedString(@"拍照", nil)]) {
         [self takePhoto];
-    } else if ([title isEqualToString:NSLocalizedString(@"从手机相册选择", nil)]) {
+    } else if ([title isEqualToString:NSLocalizedString(@"相册", nil)]) {
         [self selectFromAlbum];
     }
 }

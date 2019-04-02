@@ -20,7 +20,7 @@
         self.dataSource = self;
         [self setSeparatorStyle:UITableViewCellSeparatorStyleNone];
         self.backgroundColor = XColorWithRGB(248, 248, 248);
-
+        self.estimatedRowHeight = 0;
         
         
     }
@@ -34,6 +34,14 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return AdaptationWidth(103);
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return AdaptationWidth(17);
+}
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    UIView *view = [[UIView alloc]init];
+    view.backgroundColor = [UIColor whiteColor];
+    return view;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -56,7 +64,7 @@
     [cellTitle setTextColor:LabelMainColor];
     [cell.contentView addSubview:cellTitle];
     [cellTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(cell).offset(AdaptationWidth(16));
+        make.left.mas_equalTo(cell).offset(AdaptationWidth(26));
         make.top.mas_equalTo(cell).offset(AdaptationWidth(22));
     }];
      
@@ -65,7 +73,7 @@
      [cellDetail setTextColor:LabelMainColor];
      [cell.contentView addSubview:cellDetail];
      [cellDetail mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(cell).offset(AdaptationWidth(16));
+        make.left.mas_equalTo(cell).offset(AdaptationWidth(26));
         make.top.mas_equalTo(cellTitle.mas_bottom).offset(AdaptationWidth(3));
     }];
     switch (indexPath.row) {
@@ -82,6 +90,10 @@
         case 2:
         {
             [cellImage setImage:[UIImage imageNamed:@"iamge_rule"]];
+            [cellTitle setFont:[UIFont systemFontOfSize:AdaptationWidth(14)]];
+            [cellTitle mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.top.mas_equalTo(cell).offset(AdaptationWidth(15));
+            }];
             cellTitle.text = @"邀请好友成为你的人脉";
             cellDetail.text = @"享受T%佣金提成";
             
@@ -94,8 +106,8 @@
             [btn addTarget:self action:@selector(btnOnClick:) forControlEvents:UIControlEventTouchUpInside];
             [cell.contentView addSubview:btn];
             [btn mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.mas_equalTo(cell).offset(AdaptationWidth(16));
-                make.bottom.mas_equalTo(cell).offset(AdaptationWidth(-8));
+                make.left.mas_equalTo(cell).offset(AdaptationWidth(26));
+                make.bottom.mas_equalTo(cell).offset(AdaptationWidth(-15));
                 make.width.mas_equalTo(AdaptationWidth(65));
                 make.height.mas_equalTo(AdaptationWidth(24));
             }];

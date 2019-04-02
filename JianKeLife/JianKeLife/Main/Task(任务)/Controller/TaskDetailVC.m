@@ -196,7 +196,7 @@
             
         case 0:{
             
-            return CGSizeMake(AdaptationWidth(335)/3 ,AdaptationWidth(335)/3);
+            return CGSizeMake(AdaptationWidth(315)/3 ,AdaptationWidth(315)/3);
         }
             break;
         default:

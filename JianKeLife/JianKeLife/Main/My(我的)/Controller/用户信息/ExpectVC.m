@@ -13,11 +13,13 @@
 @property (nonatomic ,strong) ExpectTableView *taskTableView;
 @property (nonatomic ,strong) ExpectTableView *shareTableView;
 @property (nonatomic ,strong) ExpectTableView *connectionTableView;
+
 @end
 
 @implementation ExpectVC
 {
     UIButton *btn1,*btn2,*btn3;
+    UIView *btnline;
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -42,7 +44,7 @@
     }];
     
     UILabel *loginLab1 = [[UILabel alloc]init];
-    [loginLab1 setText:@"到账总收益(元)"];
+    [loginLab1 setText:@"预计总收益(元)"];
     [loginLab1 setFont:[UIFont systemFontOfSize:AdaptationWidth(16)]];
     [loginLab1 setTextColor:[UIColor whiteColor]];
     [self.view addSubview:loginLab1];
@@ -53,7 +55,7 @@
     
     UILabel *loginLab2 = [[UILabel alloc]init];
     [loginLab2 setText:[NSString stringWithFormat:@"%.2f",[self.moneyLb doubleValue]/100]];
-    [loginLab2 setFont:[UIFont fontWithName:@"PingFangSC-Bold" size:AdaptationWidth(24)]];
+    [loginLab2 setFont:[UIFont fontWithName:@"PingFangSC-Semibold" size:AdaptationWidth(24)]];
     [loginLab2 setTextColor:[UIColor whiteColor]];
     [self.view addSubview:loginLab2];
     [loginLab2 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -115,6 +117,18 @@
         make.centerX.mas_equalTo(self.view).multipliedBy(1.5);
     }];
     
+    UIView *line = [[UIView alloc]init];
+    line.backgroundColor = XColorWithRGB(56, 181, 173);
+    [self.view addSubview:line];
+    btnline = line;
+    [line mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(AdaptationWidth(34));
+        make.height.mas_equalTo(1);
+        make.centerX.mas_equalTo(taskBtn);
+        make.top.mas_equalTo(connectionBtn.mas_bottom);
+    }];
+    
+    
     [self.view addSubview:self.scrollView];
     [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.bottom.right.mas_equalTo(self.view);
@@ -145,6 +159,8 @@
             btn2.selected = NO;
             btn3.selected = NO;
             
+            btnline.X = self.view.Sw/4 -20;
+            btnline.backgroundColor = XColorWithRGB(56, 181, 173);
             [UIView animateWithDuration:0.3 animations:^{
                 [self.scrollView setContentOffset:CGPointMake(0, 0) animated:NO];
             }];
@@ -152,6 +168,8 @@
             break;
         case 4413:
         {
+            btnline.backgroundColor = XColorWithRGB(255, 188, 0) ;
+            btnline.X = self.view.Sw/2 -20;
             btn1.selected = NO;
             btn2.selected = YES;
             btn3.selected = NO;
@@ -162,6 +180,8 @@
             break;
         case 4414:
         {
+            btnline.backgroundColor = RedColor;
+            btnline.X = self.view.Sw/4*3 -20;
             btn1.selected = NO;
             btn2.selected = NO;
             btn3.selected = YES;
@@ -182,16 +202,22 @@
         NSInteger index = scrollView.contentOffset.x / scrollView.Sw;
         switch (index) {
             case 0:
+                btnline.backgroundColor = XColorWithRGB(56, 181, 173);
+                btnline.X = self.view.Sw/4 -20;
                 btn1.selected = YES;
                 btn2.selected = NO;
                 btn3.selected = NO;
                 break;
             case 1:
+                btnline.backgroundColor = XColorWithRGB(255, 188, 0) ;
+                btnline.X = self.view.Sw/2 -20;
                 btn1.selected = NO;
                 btn2.selected = YES;
                 btn3.selected = NO;
                 break;
             case 2:
+                btnline.backgroundColor = RedColor;
+                btnline.X = self.view.Sw/4*3 -20;
                 btn1.selected = NO;
                 btn2.selected = NO;
                 btn3.selected = YES;

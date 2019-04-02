@@ -16,6 +16,7 @@
 #import "ProfitVC.h"
 #import "WalletVC.h"
 #import "ExpectVC.h"
+#import "LoginVC.h"
 
 @interface MyVC ()
 @property (nonatomic ,strong) MyTableView *tableView;
@@ -86,9 +87,13 @@
                 break;
             case 3:
             {
-//                dispatch_async(dispatch_get_main_queue(), ^{
-//                    
-//                });
+                if (![UserInfo sharedInstance].isSignIn) {
+                    
+                    LoginVC *vc = [[LoginVC alloc]init];
+                    vc.hidesBottomBarWhenPushed = YES;
+                    [weakSelf.navigationController pushViewController:vc animated:YES];
+                    return ;
+                }
                 MySetVC *vc = [[MySetVC alloc]init];
                 vc.hidesBottomBarWhenPushed = YES;
                 vc.title = @"设置";

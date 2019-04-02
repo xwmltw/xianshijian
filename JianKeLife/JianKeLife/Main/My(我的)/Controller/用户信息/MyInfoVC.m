@@ -7,18 +7,16 @@
 //
 
 #import "MyInfoVC.h"
-#import "EMSettingActionSheet.h"
 #import "FSMediaPicker.h"
 #import "MyInfoModel.h"
 
-@interface MyInfoVC ()<EMSettingActionSheetDelegate, FSMediaPickerDelegate>
+@interface MyInfoVC ()< FSMediaPickerDelegate>
 {
     UIButton *goDetailBtn,*manBtn,*womanbtn,*dateBtn;
     UITextField *userName;
 }
 @property (nonatomic ,strong) UIDatePicker *datePicker;
 @property (nonatomic ,strong) UIView *datePickerView;
-@property (nonatomic, strong) EMSettingActionSheet *actionSheet;
 @property (nonatomic ,strong) MyInfoModel *infoModel;
 @end
 
@@ -214,7 +212,7 @@
     switch (btn.tag) {
         case 4011:
         {
-            [self.actionSheet show];
+            [self showImgPickerActionSheetInView:self];
         }
             break;
         case 4012:
@@ -343,8 +341,30 @@
     }
     return _datePicker;
 }
-#pragma mark - EMSettingActionSheetDelegate
 
+//显示选择照片提示Sheet
+-(void)showImgPickerActionSheetInView:(UIViewController *)controller{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:@"选择照片" preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+     __weak __typeof(self) weakSelf = self;
+    UIAlertAction *actionCamera = [UIAlertAction actionWithTitle:[NSString stringWithFormat:@"拍照"] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [weakSelf takePhoto];
+        
+    }];
+   
+    UIAlertAction *actionAlbum = [UIAlertAction actionWithTitle:[NSString stringWithFormat:@"相册"] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [weakSelf searchFromAlbum];
+    }];
+    [alertController addAction:actionCancel];
+    [alertController addAction:actionCamera];
+    [alertController addAction:actionAlbum];
+    
+    
+    [controller presentViewController:alertController animated:YES completion:nil];
+    
+}
 - (void)takePhoto
 {
     __weak typeof(self) weakSelf = self;
@@ -450,15 +470,7 @@
             break;
     }
 }
-- (EMSettingActionSheet *)actionSheet
-{
-    if (!_actionSheet) {
-        _actionSheet = [[EMSettingActionSheet alloc] init];
-        _actionSheet.delegate = self;
-    }
-    
-    return _actionSheet;
-}
+
 - (MyInfoModel *)infoModel{
     if (!_infoModel) {
         _infoModel = [[MyInfoModel alloc]init];

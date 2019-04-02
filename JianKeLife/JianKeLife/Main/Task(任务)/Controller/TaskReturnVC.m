@@ -330,8 +330,7 @@ const char *localNotificationQueue = "cn.neebel.xwm.localNotificationQueue";
 #pragma mark - 选择图片 - 视频 - 选取照片或者拍照
 - (void)addNewImg:(NSInteger)index{
     if (index == 0) {
-        UIAlertController *alertSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-        UIAlertAction *actionOne = [UIAlertAction actionWithTitle:@"照片" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+       
             if (!_imgPickerActionSheet) {
                 _imgPickerActionSheet = [[XWImagePickerSheet alloc] init];
                 _imgPickerActionSheet.delegate = self;
@@ -341,14 +340,7 @@ const char *localNotificationQueue = "cn.neebel.xwm.localNotificationQueue";
             }
             _imgPickerActionSheet.maxCount = _maxCount;
             [_imgPickerActionSheet showImgPickerActionSheetInView:self];
-        }];
         
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-        
-        [alertSheet addAction:actionOne];
-        [alertSheet addAction:cancelAction];
-        
-        [self presentViewController:alertSheet animated:YES completion:nil];
         
     } else {
         if (!_imgPickerActionSheet) {

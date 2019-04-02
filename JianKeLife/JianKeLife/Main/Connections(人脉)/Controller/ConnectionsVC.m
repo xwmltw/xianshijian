@@ -163,11 +163,12 @@
                 break;
             case 2:
             {
-                [[UIApplication sharedApplication].keyWindow addSubview: blockSelf.myPersonShareView];
-                blockSelf.myPersonShareView.QRImageView.image = [UIImage qrCodeImageWithInfo:blockSelf.connectionViewModel.connectionModel.connectionsInviteRegUrl width:AdaptationWidth(85)];
-                blockSelf.myPersonShareView.hidden = NO;
-                blockSelf.myPersonShareView.QRMainBGView.hidden = YES;
-                blockSelf.myPersonShareView.btnBlock = [blockSelf shareViewBtnBlock];
+//                [[UIApplication sharedApplication].keyWindow addSubview: blockSelf.myPersonShareView];
+//                blockSelf.myPersonShareView.QRImageView.image = [UIImage qrCodeImageWithInfo:blockSelf.connectionViewModel.connectionModel.connectionsInviteRegUrl width:AdaptationWidth(85)];
+//                blockSelf.myPersonShareView.hidden = NO;
+//                blockSelf.myPersonShareView.QRMainBGView.hidden = YES;
+//                blockSelf.myPersonShareView.btnBlock = [blockSelf shareViewBtnBlock];
+                blockSelf.ruleAlertView.hidden = NO;
             }
                 break;
                 
@@ -241,7 +242,7 @@
             make.left.mas_equalTo(self.view).offset(10);
             make.right.mas_equalTo(self.view).offset(-10);
             make.top.mas_equalTo(self.selectView.mas_bottom);
-            make.height.mas_equalTo(AdaptationWidth(329));
+            make.height.mas_equalTo(AdaptationWidth(340));
         }];
         [_extendTableView setExtendCellSelectBlcok:[self extendCellBlcok]];
         BLOCKSELF

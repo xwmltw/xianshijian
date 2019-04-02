@@ -10,10 +10,11 @@
 #define AppUitls_h
 /** APP配置信息*/
 #ifdef DEBUG
-#define SERVICEURL @"http://jkl-mapi.pdl001.com" // 测试环境
+#define SERVICEURL @" https://mapi.xianshijian.com" // 正式环境
+//#define SERVICEURL @"http://jkl-mapi.pdl001.com" // 测试环境
 //#define SERVICEURL @"http://192.168.5.126:8053"
 #else
-#define SERVICEURL @"" // 正式环境
+#define SERVICEURL @" https://mapi.xianshijian.com" // 正式环境
 #endif
 
 static NSString *const TalkingData_ChannelId = @"AppStore";

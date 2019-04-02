@@ -12,8 +12,12 @@
 #import "SearchVC.h"
 #import "BaseWebVC.h"
 #import "SpecialJobListVC.h"
+#import "WSLWaterFlowLayout.h"
 
-@interface HomeVC ()
+@interface HomeVC ()<WSLWaterFlowLayoutDelegate>
+{
+     WSLWaterFlowLayout * _flow;
+}
 @property (nonatomic ,strong) HomeCollectionView *collectionView;
 
 @end
@@ -39,10 +43,10 @@
     
 
     [self creatSearchBtn];
-    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc]init];
-    //    flowLayout.minimumLineSpacing = 0;
-    //    flowLayout.minimumInteritemSpacing = -1;
-    self.collectionView = [[HomeCollectionView alloc]initWithFrame:self.view.frame collectionViewLayout:flowLayout];
+    _flow = [[WSLWaterFlowLayout alloc] init];
+    _flow.delegate = self;
+    _flow.flowLayoutStyle = WSLWaterFlowVerticalEqualWidth;
+    self.collectionView = [[HomeCollectionView alloc]initWithFrame:self.view.frame collectionViewLayout:_flow];
     if (self.clientGlobalInfo.bannerAdList.count) {
         [self.collectionView.headArray addObject:@(HomeCollectionHeadBanner)];
     }
@@ -95,8 +99,9 @@
         vc.hidesBottomBarWhenPushed = YES;
         [blockSelf.navigationController pushViewController:vc animated:YES];
     }];
-    self.collectionView.homeViewModel.responseHotBlock = ^(NSMutableArray *result) {
+    self.collectionView.homeViewModel.responseHotBlock = ^(NSMutableArray *result ,NSNumber *row) {
         SpecialJobListVC *vc = [[SpecialJobListVC alloc]init];
+        vc.title = blockSelf.clientGlobalInfo.specialEntryList[row.integerValue][@"specialEntryTitle"];
         vc.specialEntryList = result;
         vc.hidesBottomBarWhenPushed = YES;
         [blockSelf.navigationController pushViewController:vc animated:YES];
@@ -116,6 +121,76 @@
     SearchVC *vc = [[SearchVC alloc]init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
+}
+#pragma  mark - WSLWaterFlowLayout delegate
+
+//返回每个item大小
+- (CGSize)waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+   NSString *str = self.collectionView.homeViewModel.productList[indexPath.row][@"productTitle"];
+    CGSize detailSize = [str boundingRectWithSize:CGSizeMake(AdaptationWidth(100), CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:nil context:nil].size;
+     if (detailSize.height < 14) {
+        return CGSizeMake(0, AdaptationWidth(191));
+    }
+    return CGSizeMake(0, AdaptationWidth(215));
+    
+}
+
+/** 头视图Size */
+-(CGSize )waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForHeaderViewInSection:(NSInteger)section{
+    HomeCollectionHead row = [self.collectionView.headArray[section]integerValue];
+    switch (row) {
+        case HomeCollectionHeadBanner:{
+            if (self.clientGlobalInfo.bannerAdList.count) {
+                return CGSizeMake(self.view.Sw, AdaptationWidth(130));
+            }else{
+                return CGSizeMake(self.view.Sw, 0.1);
+            }
+            
+        }
+            break;
+        case HomeCollectionHeadSpecial:{
+            if (self.clientGlobalInfo.specialEntryList.count) {
+                return CGSizeMake(self.view.Sw, AdaptationWidth(90));
+            }else{
+                return CGSizeMake(self.view.Sw, 0.1);
+            }
+            
+        }
+            break;
+        case HomeCollectionHeadHot:{
+            return CGSizeMake(self.view.Sw, AdaptationWidth(30));
+        }
+            break;
+        default:
+            break;
+    }
+    return CGSizeZero;
+}
+///** 脚视图Size */
+//-(CGSize )waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForFooterViewInSection:(NSInteger)section{
+//    return CGSizeMake(40, 40);
+//}
+
+///** 列数*/
+//-(CGFloat)columnCountInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+//    return 3;
+//}
+///** 行数*/
+//-(CGFloat)rowCountInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+//    return 5;
+//}
+/** 列间距*/
+-(CGFloat)columnMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+    return 5;
+}
+/** 行间距*/
+-(CGFloat)rowMarginInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+    return 5;
+}
+/** 边缘之间的间距*/
+-(UIEdgeInsets)edgeInsetInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{
+    
+    return UIEdgeInsetsMake(10, 10, 10, 10);
 }
 /*
  #pragma mark - Navi;gation

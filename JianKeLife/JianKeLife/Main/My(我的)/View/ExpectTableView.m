@@ -22,7 +22,7 @@
         self.backgroundColor = XColorWithRGB(248, 248, 248);
         self.delegate = self;
         self.dataSource = self;
-        
+        self.estimatedRowHeight = 0;
    
         
         WEAKSELF
@@ -106,7 +106,7 @@
 
         CGSize detailSize = [self.expectViewModel.expectList[indexPath.row][@"profitAmountDesc"] boundingRectWithSize:CGSizeMake(AdaptationWidth(235), CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:nil context:nil].size;
     
-    CGFloat cellH = 80 + detailSize.height;
+    CGFloat cellH = 60 + detailSize.height;
     return AdaptationWidth(cellH);
     
 }

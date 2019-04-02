@@ -21,16 +21,16 @@
         [self setSeparatorStyle:UITableViewCellSeparatorStyleNone];
         self.backgroundColor = XColorWithRGB(248, 248, 248);
         [self registerNib:[UINib nibWithNibName:@"TaskTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"TaskTableViewCell"];
-        
+        self.estimatedRowHeight = 0;
         self.mj_header = [self.taskViewModel creatMjRefreshHeader];
         self.mj_footer = [self.taskViewModel creatMjRefresh];
         self.taskViewModel.taskType = TaskTableViewTypeOver;
         [self.taskViewModel requestTaskData];
         BLOCKSELF
         [self.taskViewModel setTaskListBlock:^(id result) {
+            [blockSelf reloadData];
             [blockSelf.mj_header endRefreshing];
             [blockSelf.mj_footer endRefreshing];
-            [blockSelf reloadData];
         }];
     }
     return self;

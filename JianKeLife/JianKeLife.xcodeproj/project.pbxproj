@@ -84,6 +84,8 @@
 		04871522223FAA1E00679095 /* MyTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04871521223FAA1E00679095 /* MyTableView.m */; };
 		04871525223FC1D600679095 /* MyViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04871524223FC1D600679095 /* MyViewModel.m */; };
 		04871528223FC20000679095 /* MyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04871527223FC20000679095 /* MyModel.m */; };
+		048B76DC22530117000C46C6 /* WSLWaterFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 048B76DA22530117000C46C6 /* WSLWaterFlowLayout.m */; };
+		048B76E0225352B8000C46C6 /* MZTimerLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 048B76DE225352B7000C46C6 /* MZTimerLabel.m */; };
 		04A92CFC2251BF0100AEDC76 /* EMQueueDef.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A92CFB2251BF0100AEDC76 /* EMQueueDef.m */; };
 		04AECC94224B84BD00410304 /* ExpectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AECC93224B84BD00410304 /* ExpectVC.m */; };
 		04AECC97224B8ED600410304 /* ExpectTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AECC96224B8ED600410304 /* ExpectTableView.m */; };
@@ -304,6 +306,10 @@
 		04871524223FC1D600679095 /* MyViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyViewModel.m; sourceTree = "<group>"; };
 		04871526223FC20000679095 /* MyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyModel.h; sourceTree = "<group>"; };
 		04871527223FC20000679095 /* MyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyModel.m; sourceTree = "<group>"; };
+		048B76DA22530117000C46C6 /* WSLWaterFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSLWaterFlowLayout.m; sourceTree = "<group>"; };
+		048B76DB22530117000C46C6 /* WSLWaterFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSLWaterFlowLayout.h; sourceTree = "<group>"; };
+		048B76DE225352B7000C46C6 /* MZTimerLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZTimerLabel.m; sourceTree = "<group>"; };
+		048B76DF225352B8000C46C6 /* MZTimerLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZTimerLabel.h; sourceTree = "<group>"; };
 		04A92CFA2251BF0000AEDC76 /* EMQueueDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMQueueDef.h; sourceTree = "<group>"; };
 		04A92CFB2251BF0100AEDC76 /* EMQueueDef.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMQueueDef.m; sourceTree = "<group>"; };
 		04AECC92224B84BD00410304 /* ExpectVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExpectVC.h; sourceTree = "<group>"; };
@@ -1074,6 +1080,24 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		048B76D922530105000C46C6 /* 瀑布流 */ = {
+			isa = PBXGroup;
+			children = (
+				048B76DB22530117000C46C6 /* WSLWaterFlowLayout.h */,
+				048B76DA22530117000C46C6 /* WSLWaterFlowLayout.m */,
+			);
+			path = "瀑布流";
+			sourceTree = "<group>";
+		};
+		048B76DD225352A9000C46C6 /* 倒计时 */ = {
+			isa = PBXGroup;
+			children = (
+				048B76DF225352B8000C46C6 /* MZTimerLabel.h */,
+				048B76DE225352B7000C46C6 /* MZTimerLabel.m */,
+			);
+			path = "倒计时";
+			sourceTree = "<group>";
+		};
 		04B2A9D022519FE00094A44B /* 多选图片 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1169,6 +1193,8 @@
 		04BD1151224A10920033B774 /* Vender(功能封装) */ = {
 			isa = PBXGroup;
 			children = (
+				048B76DD225352A9000C46C6 /* 倒计时 */,
+				048B76D922530105000C46C6 /* 瀑布流 */,
 				04B2A9D022519FE00094A44B /* 多选图片 */,
 				04BD1165224A11A70033B774 /* 换头像 */,
 			);
@@ -1458,6 +1484,7 @@
 				045E9BCC222E68DF0084B777 /* BaseMainVC.m in Sources */,
 				045E9BC6222E688C0084B777 /* BaseMainNC.m in Sources */,
 				04871522223FAA1E00679095 /* MyTableView.m in Sources */,
+				048B76E0225352B8000C46C6 /* MZTimerLabel.m in Sources */,
 				04871503223F766400679095 /* HomeVC.m in Sources */,
 				04616FC0222CF66300E46B40 /* ViewController.m in Sources */,
 				04BD117B224A57930033B774 /* WalletTableViewCell.m in Sources */,
@@ -1559,6 +1586,7 @@
 				04E2FA0C22460818006EE2D5 /* SearchVC.m in Sources */,
 				0461701D222D195400E46B40 /* UserLocation.m in Sources */,
 				04616FDD222D088D00E46B40 /* NetWorkManager.m in Sources */,
+				048B76DC22530117000C46C6 /* WSLWaterFlowLayout.m in Sources */,
 				045E1758224DB52300323B55 /* MyPersonShareView.m in Sources */,
 				04BD1161224A112A0033B774 /* GKImageCropViewController.m in Sources */,
 				04E15A2B224C70C000D0222E /* TaskViewModel.m in Sources */,

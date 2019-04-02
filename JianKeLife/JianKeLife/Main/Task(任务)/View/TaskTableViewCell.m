@@ -8,8 +8,11 @@
 
 #import "TaskTableViewCell.h"
 #import "DateHelper.h"
+#import "MZTimerLabel.h"
 @implementation TaskTableViewCell
-
+{
+    MZTimerLabel *timerExample;
+}
 - (void)layoutSubviews{
     [self.cellGiveBtn setCornerValue:2];
     [self.cellGiveBtn setBorderWidth:1 andColor:blueColor];
@@ -38,6 +41,7 @@
     
     switch (self.taskTableView) {
         case TaskTableViewTypeStay:
+        {
             self.cellGiveBtn.hidden = NO;
             self.cellGoBtn.hidden = NO;
             self.cellLookBtn.hidden = YES;
@@ -45,7 +49,13 @@
             self.passLab.hidden = YES;
             self.passImage.hidden = YES;
             self.cellTitelDate.text = @"返佣倒计时";
-            self.cellDate.text = [DateHelper getDateFromTimeNumber:self.model.ctmSubmitDeadTimeLeft];
+
+            
+            timerExample = [[MZTimerLabel alloc] initWithLabel:self.cellDate andTimerType:MZTimerLabelTypeTimer];
+            [timerExample setCountDownTime:[model.ctmSubmitDeadTimeLeft longLongValue]]; //** Or you can use [timer3 setCountDownToDate:aDate];
+            [timerExample reset];
+            [timerExample start];
+    }
             break;
         case TaskTableViewTypeIng:
             self.cellGiveBtn.hidden = YES;
@@ -55,7 +65,10 @@
             self.passLab.hidden = YES;
             self.passImage.hidden = YES;
             self.cellTitelDate.text = @"审核倒计时";
-            self.cellDate.text = [DateHelper getDateFromTimeNumber:self.model.entAuditDeadTimeLeft];
+            timerExample = [[MZTimerLabel alloc] initWithLabel:self.cellDate andTimerType:MZTimerLabelTypeTimer];
+            [timerExample setCountDownTime:[model.entAuditDeadTimeLeft longLongValue]]; //** Or you can use [timer3 setCountDownToDate:aDate];
+            [timerExample reset];
+            [timerExample start];
             break;
         case TaskTableViewTypeOver:
             self.cellGiveBtn.hidden = YES;
@@ -98,7 +111,12 @@
 
 - (IBAction)btnOnClick:(UIButton *)sender {
     if (sender.tag == 201) {
-        XBlockExec(self.taskCellCancelBlock, sender);
+        [XAlertView alertWithTitle:@"提示" message:@"放弃领取？" cancelButtonTitle:@"取消" confirmButtonTitle:@"确定" completion:^(UIAlertView *alertView, NSInteger buttonIndex) {
+            if (buttonIndex == 1) {
+                XBlockExec(self.taskCellCancelBlock, sender);
+            }
+        }];
+        
     }else{
         XBlockExec(self.taskCellBlock, sender);
     }

@@ -27,7 +27,7 @@
     WEAKSELF
     [XNetWork requestNetWorkWithUrl:Xproduct_search andModel:dic andSuccessBlock:^(ResponseModel *model) {
         [weakSelf.productList addObjectsFromArray:model.data[@"dataRows"]];
-        XBlockExec(weakSelf.responseSearchBlock,model);
+        XBlockExec(weakSelf.responseSearchBlock,weakSelf.productList);
     } andFailBlock:^(ResponseModel *model) {
         [weakSelf.footer endRefreshing];
     }];

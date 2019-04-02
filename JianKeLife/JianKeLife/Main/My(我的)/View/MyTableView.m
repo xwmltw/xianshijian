@@ -176,10 +176,13 @@
         
         UIButton *goDetailBtn = [[UIButton alloc]init];
         goDetailBtn.tag = 403;
-        [goDetailBtn setTitle:@"明细 ->" forState:UIControlStateNormal];
+        [goDetailBtn setTitle:@"明细" forState:UIControlStateNormal];
+        [goDetailBtn setImage:[UIImage imageNamed:@"icon_person_right"] forState:UIControlStateNormal];
         [goDetailBtn setTitleColor:blueColor forState:UIControlStateNormal];
         [goDetailBtn.titleLabel setFont:[UIFont systemFontOfSize:AdaptationWidth(14)]];
         [goDetailBtn addTarget:self action:@selector(btnOnClock:) forControlEvents:UIControlEventTouchUpInside];
+        goDetailBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -30, 0, 0);
+        goDetailBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 30, 0, 0);
         [heardView addSubview:goDetailBtn];
         [goDetailBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(line).offset(AdaptationWidth(-15));
@@ -208,7 +211,10 @@
         
         UIButton *getMoneyBtn = [[UIButton alloc]init];
         getMoneyBtn.tag = 404;
-        [getMoneyBtn setTitle:@"提现 ->" forState:UIControlStateNormal];
+        [getMoneyBtn setTitle:@"提现" forState:UIControlStateNormal];
+        [getMoneyBtn setImage:[UIImage imageNamed:@"icon_person_right"] forState:UIControlStateNormal];
+        getMoneyBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -30, 0, 0);
+        getMoneyBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 30, 0, 0);
         [getMoneyBtn setTitleColor:blueColor forState:UIControlStateNormal];
         [getMoneyBtn.titleLabel setFont:[UIFont systemFontOfSize:AdaptationWidth(14)]];
         [getMoneyBtn addTarget:self action:@selector(btnOnClock:) forControlEvents:UIControlEventTouchUpInside];
@@ -261,7 +267,10 @@
         
         UIButton *getDetailBtn = [[UIButton alloc]init];
         getDetailBtn.tag = 405;
-        [getDetailBtn setTitle:@"明细 ->" forState:UIControlStateNormal];
+        [getDetailBtn setTitle:@"明细" forState:UIControlStateNormal];
+        [getDetailBtn setImage:[UIImage imageNamed:@"icon_person_right"] forState:UIControlStateNormal];
+        getDetailBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -30, 0, 0);
+        getDetailBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 30, 0, 0);
         [getDetailBtn setTitleColor:blueColor forState:UIControlStateNormal];
         [getDetailBtn.titleLabel setFont:[UIFont systemFontOfSize:AdaptationWidth(14)]];
         [getDetailBtn addTarget:self action:@selector(btnOnClock:) forControlEvents:UIControlEventTouchUpInside];

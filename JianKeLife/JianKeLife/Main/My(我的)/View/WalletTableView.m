@@ -21,7 +21,7 @@
         self.backgroundColor = XColorWithRGB(248, 248, 248);
         self.delegate = self;
         self.dataSource = self;
-        
+        self.estimatedRowHeight = 0;
         [self registerNib:[UINib nibWithNibName:@"WalletTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"WalletTableViewCell"];
         
         self.mj_footer = [self.profitViewModel creatMjRefresh];

@@ -16,6 +16,7 @@
 @property (nonatomic, strong) SDCycleScrollView *sdcycleScrollView;
 @property (nonatomic ,strong) UIScrollView *specialScrollViewl;
 @property (nonatomic ,strong) UIImageView *hotImageView;
+
 @end
 @implementation HomeCollectionView
 
@@ -155,20 +156,7 @@
     }
     
 }
-// 选中高亮
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    return YES;
-}
 
-- (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-    //    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
-    //    cell.backgroundColor = [UIColor lightGrayColor];
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-    //    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
-    //    cell.backgroundColor = [UIColor whiteColor];
-}
 #pragma mark - UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
     HomeCollectionHead row = [self.headArray[section] integerValue];
@@ -209,22 +197,7 @@
     }
     return CGSizeZero;
 }
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    HomeCollectionHead row = [self.headArray[indexPath.section] integerValue];
-    switch (row) {
-        
-        case HomeCollectionHeadHot:{
-//            if (indexPath.row == 0) {
-//                return CGSizeMake(AdaptationWidth(166), AdaptationWidth(191));
-//            }
-            return CGSizeMake(AdaptationWidth(166), AdaptationWidth(215));;
-        }
-            break;
-        default:
-            break;
-    }
-    return CGSizeZero;
-}
+
 //设置每个item的UIEdgeInsets
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
     return UIEdgeInsetsMake(10, 10, 10, 10);
@@ -255,6 +228,7 @@
             [imageArry addObject:obj[@"adImgUrl"]];
         }];
         _sdcycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"iamge_rule"]];
+        [_sdcycleScrollView setCornerValue:AdaptationWidth(8)];
         _sdcycleScrollView.imageURLStringsGroup = imageArry;
         _sdcycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleToFill;
         _sdcycleScrollView.autoScrollTimeInterval = 3;
@@ -270,7 +244,7 @@
 - (UIScrollView *)specialScrollViewl{
     if (!_specialScrollViewl) {
         _specialScrollViewl  = [[UIScrollView alloc]init];
-        _specialScrollViewl.contentSize = CGSizeMake(self.Sw * 2, 0);
+        _specialScrollViewl.contentSize = CGSizeMake(self.homeViewModel.clientGlobalInfo.specialEntryList.count *AdaptationWidth(80), 0);
         _specialScrollViewl.showsVerticalScrollIndicator = NO;
         _specialScrollViewl.showsHorizontalScrollIndicator = NO;
         _specialScrollViewl.pagingEnabled = NO;
@@ -298,17 +272,17 @@
             [_specialScrollViewl addSubview:balckBtn];
             if (self.homeViewModel.clientGlobalInfo.specialEntryList.count > 4) {
                 [balckBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.left.mas_equalTo(self->_specialScrollViewl).offset(AdaptationWidth(75)*i);
+                    make.left.mas_equalTo(self->_specialScrollViewl).offset(AdaptationWidth(80)*i);
                     make.top.mas_equalTo(self->_specialScrollViewl);
-                    make.height.mas_equalTo(AdaptationWidth(90));
-                    make.width.mas_equalTo(AdaptationWidth(70));
+                    make.height.mas_equalTo(AdaptationWidth(75));
+                    make.width.mas_equalTo(AdaptationWidth(56));
                 }];
             }else{
                 [balckBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.left.mas_equalTo(self->_specialScrollViewl).offset(AdaptationWidth(90)*i);
+                    make.left.mas_equalTo(self->_specialScrollViewl).offset(AdaptationWidth(95)*i);
                     make.top.mas_equalTo(self->_specialScrollViewl);
-                    make.height.mas_equalTo(AdaptationWidth(90));
-                    make.width.mas_equalTo(AdaptationWidth(70));
+                    make.height.mas_equalTo(AdaptationWidth(75));
+                    make.width.mas_equalTo(AdaptationWidth(56));
                 }];
             }
             

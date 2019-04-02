@@ -14,10 +14,15 @@
     [super awakeFromNib];
     
 }
-- (void)layoutSubviews{
-    [self setBackgroundColor:[UIColor whiteColor]];
-    [self setCornerValue:4];
 
+- (instancetype)initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]) {
+        self = [[NSBundle mainBundle]loadNibNamed:@"HomeHotCollectionViewCell" owner:self options:nil].lastObject;
+        [self setBackgroundColor:[UIColor whiteColor]];
+        [self setCornerValue:4];
+
+    }
+    return self;
 }
 #pragma mark — 实现自适应文字宽度的关键步骤:item的layoutAttributes
 - (UICollectionViewLayoutAttributes*)preferredLayoutAttributesFittingAttributes:(UICollectionViewLayoutAttributes*)layoutAttributes {

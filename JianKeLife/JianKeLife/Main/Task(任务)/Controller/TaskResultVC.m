@@ -57,7 +57,7 @@
         }];
         
         UILabel *timeLab = [[UILabel alloc]init];
-        [timeLab setText:[NSString stringWithFormat:@"提交时间 %@",[DateHelper getDateFromTimeNumber:self.resultModel.prodTradeFinishTime withFormat:@"yyyy-M-d HH:mm:ss"]]];
+        [timeLab setText:[NSString stringWithFormat:@"审核时间 %@",[DateHelper getDateFromTimeNumber:self.resultModel.prodTradeFinishTime withFormat:@"yyyy-M-d HH:mm:ss"]]];
         [timeLab setFont:[UIFont systemFontOfSize:AdaptationWidth(14)]];
         [timeLab setTextColor:LabelAssistantColor];
         [view addSubview:timeLab];
@@ -100,7 +100,7 @@
     }];
     
     UILabel *timeLab = [[UILabel alloc]init];
-    [timeLab setText:[NSString stringWithFormat:@"提交时间 %@",[DateHelper getDateFromTimeNumber:self.resultModel.prodTradeFinishTime withFormat:@"yyyy-M-d HH:mm:ss"]]];
+    [timeLab setText:[NSString stringWithFormat:@"审核时间 %@",[DateHelper getDateFromTimeNumber:self.resultModel.prodTradeFinishTime withFormat:@"yyyy-M-d HH:mm:ss"]]];
     [timeLab setFont:[UIFont systemFontOfSize:AdaptationWidth(14)]];
     [timeLab setTextColor:LabelAssistantColor];
     [view addSubview:timeLab];

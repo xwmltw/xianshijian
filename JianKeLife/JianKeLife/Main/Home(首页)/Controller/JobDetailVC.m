@@ -76,6 +76,7 @@
     
     UIButton *recevieBtn = [[UIButton alloc]init];
     recevieBtn.tag = 1013;
+    recevieBtn.enabled = YES;
     [recevieBtn setTitle:@"去领取" forState:UIControlStateNormal];
     [recevieBtn setBackgroundColor:RedColor];
     [recevieBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -88,11 +89,17 @@
     }];
      
      [self.tableView.jobDetailViewModel setProductStateBlock:^(ProductModel *model) {
+         [shareSalary setTitle:[NSString stringWithFormat:@"领￥%.2f",[model.productShareSalary doubleValue]/100] forState:UIControlStateNormal];
          model.hasApplyProd.integerValue ?
          [recevieBtn setTitle:@"已领取 去办理" forState:UIControlStateNormal] :
          [recevieBtn setTitle:@"去领取" forState:UIControlStateNormal];
-         [shareSalary setTitle:[NSString stringWithFormat:@"领￥%.2f",[model.productShareSalary doubleValue]/100] forState:UIControlStateNormal];
-         
+         if (model.hasApplyProd.integerValue && model.prodTradeStatus.integerValue == 3) {
+             if (model.prodTradeAuditStatus.integerValue == 1 || model.prodTradeAuditStatus.integerValue == 2) {
+                 recevieBtn.enabled = NO;
+                
+             }
+         }
+
      }];
 }
 -(void)btnOnClick:(UIButton *)btn{
@@ -122,6 +129,7 @@
         case 1013:
         {
             if(![[UserInfo sharedInstance]isSignIn]) [self getBlackLogin:self];
+            
             [XAlertView alertWithTitle:@"提示"
                                message:self.tableView.jobDetailViewModel.productModel.hasApplyProd.integerValue ? @"您已领取过返佣资格，确认将直接跳转至产品体验链接" : @"确认领取返佣资格？"
                      cancelButtonTitle:@"取消"
@@ -129,7 +137,12 @@
                         viewController:self
                             completion:^(UIAlertAction *action, NSInteger buttonIndex) {
                 if (buttonIndex == 1) {
-                    
+                    if (self.tableView.jobDetailViewModel.productModel.hasApplyProd.integerValue) {
+                        BaseWebVC *vc = [[BaseWebVC alloc]init];
+                        [vc reloadForGetWebView:[self.tableView.jobDetailViewModel getProductUrl]];
+                        [self.navigationController pushViewController:vc animated:YES];
+                        return ;
+                    }
                     [self.tableView.jobDetailViewModel requestReceive];
                     BLOCKSELF
                     [self.tableView.jobDetailViewModel setProductReceiveBlock:^(id result) {

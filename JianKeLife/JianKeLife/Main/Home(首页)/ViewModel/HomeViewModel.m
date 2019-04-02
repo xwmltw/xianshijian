@@ -49,7 +49,7 @@
             BLOCKSELF
             [XNetWork requestNetWorkWithUrl:Xquery_product_list andModel:@{@"pageQueryReq":[self.pageQueryRedModel mj_keyValues],@"specialEntryId":specialId} andSuccessBlock:^(ResponseModel *model) {
                 [blockSelf.productList addObjectsFromArray:model.data[@"dataRows"]];
-                XBlockExec(blockSelf.responseHotBlock,model.data[@"dataRows"]);
+                XBlockExec(blockSelf.responseHotBlock,model.data[@"dataRows"],@(index));
                 
             } andFailBlock:^(ResponseModel *model) {
                 

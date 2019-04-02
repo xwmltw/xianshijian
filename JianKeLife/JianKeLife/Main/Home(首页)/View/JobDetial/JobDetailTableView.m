@@ -51,11 +51,11 @@
         return AdaptationWidth(100);
     }
     if (indexPath.row == 2) {
-        return AdaptationWidth(100);
+        return self.jobDetailViewModel.productModel.cell2Width;
     }
     
     if (indexPath.row == 3) {
-        MyLog(@"%ld",(long)self.jobDetailViewModel.productModel.cellWidth);
+//        MyLog(@"%ld",(long)self.jobDetailViewModel.productModel.cellWidth);
 
         return self.jobDetailViewModel.productModel.cellWidth;
     }
@@ -103,7 +103,7 @@
             
             UILabel *detailMoney = [[UILabel alloc]init];
             detailMoney.text =[NSString stringWithFormat:@"%.2f",[self.jobDetailViewModel.productModel.productSalary doubleValue]/100] ;
-            [detailMoney setFont:[UIFont fontWithName:@"PingFangSC-Bold" size:AdaptationWidth(30)]];
+            [detailMoney setFont:[UIFont fontWithName:@"PingFangSC-Semibold" size:AdaptationWidth(30)]];
             [detailMoney setTextColor:[UIColor whiteColor]];
             [view addSubview:detailMoney];
             [detailMoney mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -209,6 +209,14 @@
                 make.bottom.mas_equalTo(view).offset(AdaptationWidth(-12));
                 
             }];
+            
+            NSMutableAttributedString * artical_main_text = [[NSMutableAttributedString alloc] initWithData:[[NSString stringWithFormat:@"%@",self.jobDetailViewModel.productModel.productGroupOrientedDesc] dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+            detial.attributedText = artical_main_text;
+            
+            CGSize detailSize = [detial.attributedText boundingRectWithSize:CGSizeMake(AdaptationWidth(235), CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil].size;
+            //            CGSize detailSize = [detial.text boundingRectWithSize:CGSizeMake(AdaptationWidth(235), CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:nil context:nil].size;
+            self.jobDetailViewModel.productModel.cell2Width =  detailSize.height + 70;
+            
            
         }
             break;

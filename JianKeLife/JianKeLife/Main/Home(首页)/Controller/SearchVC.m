@@ -13,6 +13,7 @@
 #import "JobDetailVC.h"
 
 @interface SearchVC ()<UISearchBarDelegate>
+
 @property (nonatomic ,strong)SearchCollectionView *collectionView;
 
 @end
@@ -49,10 +50,8 @@
     self.navigationItem.titleView = searchBar;
     
     
-    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc]init];
-    //    flowLayout.minimumLineSpacing = 0;
-    //    flowLayout.minimumInteritemSpacing = -1;
-    self.collectionView = [[SearchCollectionView alloc]initWithFrame:self.view.frame collectionViewLayout:flowLayout];
+    
+    self.collectionView = [[SearchCollectionView alloc]initWithFrame:self.view.frame collectionViewLayout:nil];
     self.view  = self.collectionView;
     
     BLOCKSELF
@@ -73,18 +72,8 @@
 
     self.collectionView.searchVieModel.keywords = searchBar.text;
     [self.collectionView.searchVieModel.productList removeAllObjects];
+    self.collectionView.searchVieModel.pageQueryRedModel.page = @1;
     [self.collectionView.searchVieModel requestData];
 }
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

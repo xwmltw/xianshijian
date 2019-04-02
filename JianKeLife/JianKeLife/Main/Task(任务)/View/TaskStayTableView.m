@@ -25,7 +25,7 @@
         [self registerNib:[UINib nibWithNibName:@"TaskTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"TaskTableViewCell"];
         self.mj_header = [self.taskViewModel creatMjRefreshHeader];
         self.mj_footer = [self.taskViewModel creatMjRefresh];
-        
+        self.estimatedRowHeight = 0;
         self.taskViewModel.taskType = TaskTableViewTypeStay;
         [self.taskViewModel requestTaskData];
         BLOCKSELF

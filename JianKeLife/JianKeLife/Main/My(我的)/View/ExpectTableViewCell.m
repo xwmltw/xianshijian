@@ -29,14 +29,14 @@
     [detail setTextColor:LabelMainColor];
     [view addSubview:detail];
     [detail mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(view).offset(AdaptationWidth(10));
+        make.left.mas_equalTo(view).offset(AdaptationWidth(12));
         make.width.mas_equalTo(AdaptationWidth(235));
         make.top.mas_equalTo(view).offset(AdaptationWidth(10));
 //        make.bottom.mas_equalTo(view).offset(AdaptationWidth(-31));
     }];
     
     UILabel *momeyLan = [[UILabel alloc]init];
-    momeyLan.text = [NSString stringWithFormat:@"%.2f",[model.profitAmount doubleValue]/100];
+    momeyLan.text = [NSString stringWithFormat:@"+%.2f",[model.profitAmount doubleValue]/100];
     [momeyLan setFont:[UIFont systemFontOfSize:AdaptationWidth(16)]];
     [momeyLan setTextColor:RedColor];
     [view addSubview:momeyLan];
