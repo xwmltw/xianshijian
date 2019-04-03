@@ -119,7 +119,7 @@
                     
                 }];
                 UILabel *lab = [[UILabel alloc]init];
-                [lab setText:@"暂无产品状态,去首页看看吧~"];
+                [lab setText:@"暂无相关产品,去首页看看吧~"];
                 [lab setFont:[UIFont systemFontOfSize:16]];
                 [lab setTextColor:LabelMainColor];
                 [view2 addSubview:lab];

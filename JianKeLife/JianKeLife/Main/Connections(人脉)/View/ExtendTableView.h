@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ExtendTableView : UITableView
 @property (nonatomic ,copy) XIntegerBlock extendCellSelectBlcok;
 @property (nonatomic ,copy) XBlock extendBtnSelectBlcok;
+@property (nonatomic ,copy) NSNumber *firstCut;
 @end
 
 NS_ASSUME_NONNULL_END

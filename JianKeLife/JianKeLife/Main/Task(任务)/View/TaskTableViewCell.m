@@ -50,11 +50,12 @@
             self.passImage.hidden = YES;
             self.cellTitelDate.text = @"返佣倒计时";
 
-            
+            [timerExample removeFromSuperview];
             timerExample = [[MZTimerLabel alloc] initWithLabel:self.cellDate andTimerType:MZTimerLabelTypeTimer];
-            [timerExample setCountDownTime:[model.ctmSubmitDeadTimeLeft longLongValue]]; //** Or you can use [timer3 setCountDownToDate:aDate];
-            [timerExample reset];
+            [timerExample setCountDownTime:([model.ctmSubmitDeadTimeLeft longLongValue]/1000)]; //** Or you can use [timer3 setCountDownToDate:aDate];
+
             [timerExample start];
+             MyLog(@"====%@",[DateHelper getDateTimeFromTimeNumber:model.ctmSubmitDeadTimeLeft]);
     }
             break;
         case TaskTableViewTypeIng:
@@ -65,10 +66,11 @@
             self.passLab.hidden = YES;
             self.passImage.hidden = YES;
             self.cellTitelDate.text = @"审核倒计时";
+            [timerExample removeFromSuperview];
             timerExample = [[MZTimerLabel alloc] initWithLabel:self.cellDate andTimerType:MZTimerLabelTypeTimer];
-            [timerExample setCountDownTime:[model.entAuditDeadTimeLeft longLongValue]]; //** Or you can use [timer3 setCountDownToDate:aDate];
-            [timerExample reset];
+            [timerExample setCountDownTime:([model.entAuditDeadTimeLeft longLongValue]/1000)]; //** Or you can use [timer3 setCountDownToDate:aDate];
             [timerExample start];
+           
             break;
         case TaskTableViewTypeOver:
             self.cellGiveBtn.hidden = YES;

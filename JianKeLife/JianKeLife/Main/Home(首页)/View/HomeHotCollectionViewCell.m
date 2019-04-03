@@ -18,8 +18,7 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         self = [[NSBundle mainBundle]loadNibNamed:@"HomeHotCollectionViewCell" owner:self options:nil].lastObject;
-        [self setBackgroundColor:[UIColor whiteColor]];
-        [self setCornerValue:4];
+        
 
     }
     return self;

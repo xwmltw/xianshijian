@@ -15,7 +15,7 @@
 #import "XCommonHepler.h"
 #import "RuleAlertView.h"
 #import "UnLoginView.h"
-#import "ExpectVC.h"
+#import "ProfitVC.h"
 
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKUI/ShareSDK+SSUI.h>
@@ -45,9 +45,16 @@
 //- (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
-    if ([UserInfo sharedInstance].isSignIn){
-        [self getData];
+    if (![UserInfo sharedInstance].isSignIn){
+        WEAKSELF
+        self.unLoginView.hidden = NO;
+        [self.unLoginView setBtnBlock:^(id result) {
+            [weakSelf goToLogin];
+        }];
         
+    }else{
+        self.unLoginView.hidden = YES;
+        [self getData];
         UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
         statusBar.backgroundColor = XColorWithRGB(171, 216, 255);
     }
@@ -83,7 +90,7 @@
             break;
         case 303:
         {
-            ExpectVC *vc = [[ExpectVC alloc]init];
+            ProfitVC *vc = [[ProfitVC alloc]init];
             vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];
         }
@@ -96,13 +103,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if (![UserInfo sharedInstance].isSignIn){
-        WEAKSELF
-        [self.unLoginView setBtnBlock:^(id result) {
-            [weakSelf getBlackLogin:weakSelf];
-        }];
-        return;
-    }
+    
     
     [self.headerView setCornerValue:2];
     [self.selectView setCornerValue:2];
@@ -131,6 +132,8 @@
         blockSelf.personNumLab.text = [NSString stringWithFormat:@"已邀请人脉%@人",blockSelf.connectionViewModel.connectionModel.totalCount.description];
         blockSelf.firstLab.text = [NSString stringWithFormat:@"一级%@人",blockSelf.connectionViewModel.connectionModel.firstConnectionsCount.description];
         blockSelf.secondLab.text = [NSString stringWithFormat:@"二级%@人",blockSelf.connectionViewModel.connectionModel.secondConnectionsCount.description];
+        blockSelf.extendTableView.firstCut = blockSelf.connectionViewModel.connectionModel.firstCut;
+        [blockSelf.extendTableView reloadData];
     }];
 }
 #pragma block回调
@@ -302,6 +305,7 @@
         [_unLoginView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.mas_equalTo(self.view);
         }];
+        _unLoginView.hidden = NO;
     }
     return _unLoginView;
 }

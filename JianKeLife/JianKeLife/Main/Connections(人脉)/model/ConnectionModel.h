@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ConnectionModel : NSObject
 @property(nonatomic ,copy) NSString *connectionsInviteRegUrl;
 @property(nonatomic ,copy) NSNumber *firstConnectionsCount;
+@property(nonatomic ,copy) NSNumber *firstCut;
 @property(nonatomic ,copy) NSNumber *profitAmt;
 @property(nonatomic ,copy) NSString *ruleText;
 @property(nonatomic ,copy) NSNumber *secondConnectionsCount;
@@ -21,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 //connectionsInviteRegUrl (string, optional): 人脉推广注册链接 ,
 //firstConnectionsCount (integer, optional): 一级人脉数 ,
+//firstCut (number, optional): 一级人脉佣金比例 ,
 //profitAmt (integer, optional): 人脉收益(分) ,
 //ruleText (string, optional): 奖励规则 ,
 //secondConnectionsCount (integer, optional): 二级人脉数 ,

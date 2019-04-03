@@ -24,7 +24,7 @@
     
     UILabel *detail = [[UILabel alloc]init];
     detail.text = model.profitAmountDesc;
-    detail.numberOfLines = 2;
+    detail.numberOfLines = 0;
     [detail setFont:[UIFont systemFontOfSize:AdaptationWidth(16)]];
     [detail setTextColor:LabelMainColor];
     [view addSubview:detail];

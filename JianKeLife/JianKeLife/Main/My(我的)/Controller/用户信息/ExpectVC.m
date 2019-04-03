@@ -120,10 +120,11 @@
     UIView *line = [[UIView alloc]init];
     line.backgroundColor = XColorWithRGB(56, 181, 173);
     [self.view addSubview:line];
+    [line setCornerValue:2];
     btnline = line;
     [line mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(AdaptationWidth(34));
-        make.height.mas_equalTo(1);
+        make.height.mas_equalTo(AdaptationHeight(4));
         make.centerX.mas_equalTo(taskBtn);
         make.top.mas_equalTo(connectionBtn.mas_bottom);
     }];

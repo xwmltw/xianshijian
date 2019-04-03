@@ -95,7 +95,7 @@
                 make.top.mas_equalTo(cell).offset(AdaptationWidth(15));
             }];
             cellTitle.text = @"邀请好友成为你的人脉";
-            cellDetail.text = @"享受T%佣金提成";
+            cellDetail.text = [NSString stringWithFormat:@"享受%@%%佣金提成",self.firstCut.description];
             
             UIButton *btn = [[UIButton alloc]init];
             [btn setTitle:@"查看规则" forState:UIControlStateNormal];

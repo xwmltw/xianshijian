@@ -69,7 +69,8 @@
             cell.cellTitle.text = self.homeViewModel.productList[indexPath.row][@"productTitle"];
             [cell.cellImage sd_setImageWithURL:self.homeViewModel.productList[indexPath.row][@"productFirstMainPicUrl"]];
             cell.cellMoney.text = [NSString stringWithFormat:@"%.2f",[self.homeViewModel.productList[indexPath.row][@"productSalary"] doubleValue]/100];
-            
+            [cell setBackgroundColor:[UIColor whiteColor]];
+            [cell setCornerValue:4];
             
             return cell;
         }
@@ -114,7 +115,11 @@
                 make.centerY.mas_equalTo(view);
                 make.left.mas_equalTo(view).offset(AdaptationWidth(16));
             }];
-            [view2 removeFromSuperview];
+            
+            NSArray*views = view2.subviews;
+            for(int i =0; i < views.count; i++) {
+                [views[i] removeFromSuperview];
+            }
             if (self.homeViewModel.productList.count == 0) {
                 if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
                     
@@ -180,7 +185,7 @@
         }
             break;
         case HomeCollectionHeadHot:{
-            return CGSizeMake(self.Sw, AdaptationWidth(30));
+            return CGSizeMake(self.Sw, AdaptationWidth(40));
         }
             break;
         default:

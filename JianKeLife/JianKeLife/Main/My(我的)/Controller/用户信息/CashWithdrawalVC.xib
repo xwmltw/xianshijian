@@ -18,7 +18,6 @@
                 <outlet property="sureBtn" destination="L4Y-eb-cqr" id="bLE-gg-eAj"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="wxBtn" destination="Pcf-GR-5FK" id="qv0-vL-x9W"/>
-                <outlet property="zfbBtn" destination="peP-mO-aV3" id="crD-ba-RqS"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -82,22 +81,18 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dTY-MT-Axi">
-                    <rect key="frame" x="0.0" y="160" width="375" height="126"/>
+                    <rect key="frame" x="0.0" y="160" width="375" height="96"/>
                     <subviews>
                         <button opaque="NO" tag="4031" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pcf-GR-5FK">
-                            <rect key="frame" x="337" y="48" width="18" height="22"/>
+                            <rect key="frame" x="325" y="44" width="30" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="nGc-Z8-Qd4"/>
+                                <constraint firstAttribute="width" constant="30" id="rS3-nN-Kzi"/>
+                            </constraints>
                             <state key="normal" image="icon_unseleted"/>
                             <state key="selected" image="icon_seleted"/>
                             <connections>
                                 <action selector="btnOnClick:" destination="-1" eventType="touchUpInside" id="OVW-mw-uwI"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" tag="4032" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="peP-mO-aV3">
-                            <rect key="frame" x="337" y="84" width="18" height="22"/>
-                            <state key="normal" image="icon_unseleted"/>
-                            <state key="selected" image="icon_seleted"/>
-                            <connections>
-                                <action selector="btnOnClick:" destination="-1" eventType="touchUpInside" id="10K-RC-5kp"/>
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选择提现方式" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nKN-FN-Sq6">
@@ -112,12 +107,6 @@
                             <color key="textColor" red="0.2274509804" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提现到支付宝" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NPW-b4-MaA">
-                            <rect key="frame" x="50" y="85" width="98" height="20"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                            <color key="textColor" red="0.2274509804" green="0.2274509804" blue="0.2274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_pay_wx" translatesAutoresizingMaskIntoConstraints="NO" id="8uD-bg-abi">
                             <rect key="frame" x="20" y="49" width="20" height="20"/>
                             <constraints>
@@ -125,30 +114,17 @@
                                 <constraint firstAttribute="width" constant="20" id="Fck-Ne-gYk"/>
                             </constraints>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_pay_zfb" translatesAutoresizingMaskIntoConstraints="NO" id="zN4-Pu-OXW">
-                            <rect key="frame" x="20" y="85" width="20" height="20"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="20" id="PPp-6t-xNf"/>
-                                <constraint firstAttribute="width" constant="20" id="Ue3-GK-LUf"/>
-                            </constraints>
-                        </imageView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="zN4-Pu-OXW" firstAttribute="top" secondItem="8uD-bg-abi" secondAttribute="bottom" constant="16" id="5TB-q5-Hxb"/>
                         <constraint firstItem="8uD-bg-abi" firstAttribute="top" secondItem="nKN-FN-Sq6" secondAttribute="bottom" constant="15" id="CxI-UX-a8j"/>
-                        <constraint firstItem="zN4-Pu-OXW" firstAttribute="leading" secondItem="dTY-MT-Axi" secondAttribute="leading" constant="20" id="IgW-ID-cf3"/>
-                        <constraint firstAttribute="height" constant="126" id="JUm-0r-6Zi"/>
+                        <constraint firstAttribute="height" constant="96" id="JUm-0r-6Zi"/>
                         <constraint firstItem="nKN-FN-Sq6" firstAttribute="leading" secondItem="dTY-MT-Axi" secondAttribute="leading" constant="20" id="MQb-rA-x0X"/>
                         <constraint firstItem="Pcf-GR-5FK" firstAttribute="centerY" secondItem="GSn-OL-eXG" secondAttribute="centerY" id="VWM-Hh-FfD"/>
                         <constraint firstAttribute="trailing" secondItem="Pcf-GR-5FK" secondAttribute="trailing" constant="20" id="X37-C0-jg6"/>
-                        <constraint firstItem="peP-mO-aV3" firstAttribute="centerY" secondItem="NPW-b4-MaA" secondAttribute="centerY" id="Z8h-Zq-1gp"/>
                         <constraint firstItem="GSn-OL-eXG" firstAttribute="centerY" secondItem="8uD-bg-abi" secondAttribute="centerY" id="bie-RG-Wot"/>
-                        <constraint firstItem="NPW-b4-MaA" firstAttribute="centerY" secondItem="zN4-Pu-OXW" secondAttribute="centerY" id="ek5-kp-7WV"/>
-                        <constraint firstItem="NPW-b4-MaA" firstAttribute="leading" secondItem="zN4-Pu-OXW" secondAttribute="trailing" constant="10" id="fK2-pc-DnY"/>
                         <constraint firstItem="GSn-OL-eXG" firstAttribute="leading" secondItem="8uD-bg-abi" secondAttribute="trailing" constant="10" id="fpf-iD-evs"/>
                         <constraint firstItem="nKN-FN-Sq6" firstAttribute="top" secondItem="dTY-MT-Axi" secondAttribute="top" constant="14" id="gT1-r3-yU1"/>
-                        <constraint firstAttribute="trailing" secondItem="peP-mO-aV3" secondAttribute="trailing" constant="20" id="iLO-od-6D7"/>
                         <constraint firstItem="8uD-bg-abi" firstAttribute="leading" secondItem="dTY-MT-Axi" secondAttribute="leading" constant="20" id="jTE-6B-KRb"/>
                     </constraints>
                 </view>
@@ -166,19 +142,19 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提现规则" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ALg-pW-cfv">
-                    <rect key="frame" x="20" y="302" width="57.5" height="17"/>
+                    <rect key="frame" x="20" y="272" width="57.5" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.6705882352941176" green="0.6705882352941176" blue="0.6705882352941176" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1. 首次提现可提任意金额，且无需支付服务费。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="keW-km-LfU">
-                    <rect key="frame" x="20" y="327" width="335" height="17"/>
+                    <rect key="frame" x="20" y="297" width="335" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.6705882353" green="0.6705882353" blue="0.6705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2. 此后每笔提现，最低提现金额*K元，并收取服务费0.1%" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P82-kh-79o">
-                    <rect key="frame" x="20" y="352" width="335" height="33.5"/>
+                    <rect key="frame" x="20" y="322" width="335" height="33.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.6705882353" green="0.6705882353" blue="0.6705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -209,7 +185,6 @@
     </objects>
     <resources>
         <image name="icon_pay_wx" width="20" height="20"/>
-        <image name="icon_pay_zfb" width="20" height="20"/>
         <image name="icon_seleted" width="18" height="18"/>
         <image name="icon_unseleted" width="18" height="18"/>
     </resources>

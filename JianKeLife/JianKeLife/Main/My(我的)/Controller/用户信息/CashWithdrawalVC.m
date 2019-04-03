@@ -45,13 +45,10 @@
 - (IBAction)btnOnClick:(UIButton *)sender {
     switch (sender.tag) {
         case 4031:
-            self.wxBtn.selected = YES;
-            self.zfbBtn.selected = NO;
+            self.wxBtn.selected = !sender.selected;
+            
             break;
-        case 4032:
-            self.wxBtn.selected = NO;
-            self.zfbBtn.selected = YES;
-            break;
+        
         case 4033:
         {
             
@@ -61,21 +58,18 @@
                 return;
             }
             if ([self.moneyTextField.text doubleValue] < [self.cashWithdrawalModel.minwithdrawAmount doubleValue]/100) {
-                [ProgressHUD showProgressHUDInView:nil withText:@"低于最低提现金额" afterDelay:1];
+                [ProgressHUD showProgressHUDInView:nil withText:[NSString stringWithFormat:@"最低提现金额%.2f",[self.cashWithdrawalModel.minwithdrawAmount doubleValue]/100] afterDelay:1];
                 return;
             }
             if ([self.moneyTextField.text doubleValue] > ([self.balance doubleValue]/100)) {
                 [ProgressHUD showProgressHUDInView:nil withText:@"当前钱包余额不足" afterDelay:1];
                 return;
             }
-            if (!self.wxBtn.isSelected && !self.zfbBtn.isSelected) {
+            if (!self.wxBtn.isSelected ) {
                 [ProgressHUD showProgressHUDInView:nil withText:@"请选择提现方式" afterDelay:1];
                 return;
             }
-            if (self.zfbBtn.isSelected) {
-                [ProgressHUD showProgressHUDInView:nil withText:@"暂不支持支付宝提现" afterDelay:1];
-                return;
-            }
+            
             if (self.cashWithdrawalModel.isSetPwd.integerValue == 0) {
                 [self setPassword];
                 return;
@@ -125,13 +119,12 @@
 }
 - (void)inPutPassword{
     [self.view addSubview:self.inPutPasswordView];
-    self.inPutPasswordView.labMoney.text = self.moneyTextField.text;
-    if ([self.cashWithdrawalModel.withdrawServiceRate doubleValue] > 0) {
-        double num = [self.moneyTextField.text doubleValue] * [self.cashWithdrawalModel.withdrawServiceRate doubleValue]/100;
-        
+    self.inPutPasswordView.labMoney.text = [NSString stringWithFormat:@"￥%.2f",[self.moneyTextField.text doubleValue]];
+    double num = [self.moneyTextField.text doubleValue] * [self.cashWithdrawalModel.withdrawServiceRate doubleValue]/100;
+    if (num > 0.01) {
+
         self.inPutPasswordView.labDetail.text = [NSString stringWithFormat:@"将额外收取%.2f元服务费(费率%@%%)",num,self.cashWithdrawalModel.withdrawServiceRate];
-        
-        
+
     }else{
         self.inPutPasswordView.labDetail.text = @"";
     }
@@ -158,7 +151,12 @@
                     return;
                 }
                 
-                [blockSelf wxInfo];//微信登录
+                [XNetWork requestNetWorkWithUrl:Xcheck_pwd andModel:@{@"check_pwd":blockSelf.inPutPasswordView.passwordTF.text} andSuccessBlock:^(ResponseModel *model) {
+                    [blockSelf wxInfo];//微信登录
+                } andFailBlock:^(ResponseModel *model) {
+                    
+                }];
+                
                 
             }
                 break;

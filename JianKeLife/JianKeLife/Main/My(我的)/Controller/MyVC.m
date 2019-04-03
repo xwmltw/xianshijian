@@ -29,7 +29,11 @@
     UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
     statusBar.backgroundColor = blueColor;
     
-    [self.tableView.viewModel requestUserInfo];
+    
+    if ([UserInfo sharedInstance].isSignIn) {
+        
+        [self.tableView.viewModel requestUserInfo];
+    }
 }
 //- (void)viewDidAppear:(BOOL)animated{
 //    [super viewDidAppear:animated];
@@ -53,13 +57,14 @@
     [XNotificationCenter addObserver:self selector:@selector(loginSuccessNotification:) name:LoginSuccessNotification object:nil];
 }
 - (void)tableViewCellPushVC{
-    if (![UserInfo sharedInstance].isSignIn) {
-        
-        [self getBlackLogin:self];
-    }
+    
     
     WEAKSELF
     [self.tableView setCellSelectBlock:^(NSInteger result) {
+        if (![UserInfo sharedInstance].isSignIn) {
+            
+            [weakSelf getBlackLogin:weakSelf];
+        }
         switch (result) {
             case 0:
             {
@@ -110,7 +115,7 @@
     WEAKSELF
     [self.tableView setBtnBlock:^(UIButton *result) {
         if (![[UserInfo sharedInstance]isSignIn]) {
-            [weakSelf getBlackLogin:weakSelf];
+            [weakSelf goToLogin];
         }
         switch (result.tag) {
             case 402:
@@ -125,7 +130,7 @@
                 vc.hidesBottomBarWhenPushed = YES;
                 [weakSelf.navigationController pushViewController:vc animated:YES];
             }
-                break ;
+                break;
             case 404:{
                 WalletVC *vc = [[WalletVC alloc]init];
                 vc.hidesBottomBarWhenPushed = YES;

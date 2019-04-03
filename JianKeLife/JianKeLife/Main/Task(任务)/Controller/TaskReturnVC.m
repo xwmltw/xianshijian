@@ -11,7 +11,7 @@
 #import "XWImagePickerSheet.h"
 #import "XPlaceHolderTextView.h"
 #import "EMQueueDef.h"
-@interface TaskReturnVC ()<UICollectionViewDelegate,UICollectionViewDataSource,XWImagePickerSheetDelegate>
+@interface TaskReturnVC ()<UICollectionViewDelegate,UICollectionViewDataSource,XWImagePickerSheetDelegate,UITextViewDelegate>
 {
     NSInteger _indexChoose;
     NSString *pushImageName;
@@ -20,7 +20,7 @@
 
     
     
-    XPlaceHolderTextView *_txtView;
+    
 }
 @property (nonatomic, strong) XWImagePickerSheet *imgPickerActionSheet;
 
@@ -47,6 +47,8 @@
 
 @property (nonatomic, strong) NSString *cateId;
 
+@property(nonatomic,strong) NSArray * productType;
+@property (nonatomic ,strong) XPlaceHolderTextView *txtView;
 //获得collectionView 的 Frame
 - (CGRect)getPickerViewFrame;
 
@@ -63,7 +65,8 @@ const char *localNotificationQueue = "cn.neebel.xwm.localNotificationQueue";
     [super viewDidLoad];
     self.title = @"返佣申请";
     _indexChoose = 0;
-    
+    self.productType = [NSArray array];
+    self.productType = [self.productSubmitType componentsSeparatedByString:@","];
     [self createView];
 }
 - (void)createView {
@@ -90,7 +93,21 @@ const char *localNotificationQueue = "cn.neebel.xwm.localNotificationQueue";
     pushImageName = @"plus";
     
     
-    
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [btn setTitle:@"提交" forState:UIControlStateNormal];
+    btn.titleLabel.font = [UIFont systemFontOfSize:AdaptationWidth(17)];
+    btn.backgroundColor =  blueColor;
+    btn.layer.cornerRadius = 4;
+    btn.layer.masksToBounds = YES;
+    [btn addTarget:self action:@selector(btnOnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn];
+    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.view).offset(AdaptationWidth(20));
+        make.right.mas_equalTo(self.view).offset(-AdaptationWidth(20));
+        make.bottom.mas_equalTo(self.view.mas_bottom).offset(AdaptationWidth(-60));
+        make.height.mas_equalTo(AdaptationWidth(44));
+    }];
     
     
 }
@@ -137,15 +154,8 @@ const char *localNotificationQueue = "cn.neebel.xwm.localNotificationQueue";
             make.left.mas_equalTo(view).offset(12);
         }];
         
-        
-        
-        _txtView = [[XPlaceHolderTextView alloc]init];
-        [_txtView setBorderWidth:AdaptationWidth(1) andColor:BackgroundColor];
-        _txtView.placeholder = @"请至少输入3个字";
-        _txtView.placeholderColor = LabelAssistantColor;
-        _txtView.backgroundColor = [UIColor whiteColor];
-        _txtView.font = [UIFont fontWithName:@"PingFangSC-Regular" size:AdaptationWidth(16)];
-        [view addSubview:_txtView];
+
+        [view addSubview:self.txtView];
         [_txtView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(view).offset(15);
             make.right.mas_equalTo(view).offset(-15);
@@ -154,41 +164,55 @@ const char *localNotificationQueue = "cn.neebel.xwm.localNotificationQueue";
         }];
         
         
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [btn setTitle:@"提交" forState:UIControlStateNormal];
-        btn.titleLabel.font = [UIFont systemFontOfSize:AdaptationWidth(17)];
-        btn.backgroundColor =  blueColor;
-        btn.layer.cornerRadius = 4;
-        btn.layer.masksToBounds = YES;
-        [btn addTarget:self action:@selector(btnOnClick:) forControlEvents:UIControlEventTouchUpInside];
-        [view addSubview:btn];
-        [btn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(view).offset(AdaptationWidth(20));
-            make.right.mas_equalTo(view).offset(-AdaptationWidth(20));
-            make.top.mas_equalTo(self->_txtView.mas_bottom).offset(AdaptationWidth(30));
-            make.height.mas_equalTo(AdaptationWidth(44));
-        }];
+        
     }
     return view;
 }
+- (void)textViewDidChange:(UITextView *)textView
+{
+    if (textView.markedTextRange == nil) {
+        NSLog(@"text:%@", textView.text);
+    }
+}
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
-    return CGSizeMake(ScreenWidth, AdaptationWidth(40));
+    
+
+        for (NSString *str in self.productType) {
+            if ([str isEqualToString:@"1"]) {
+                return CGSizeMake(ScreenWidth, AdaptationWidth(40));
+            }
+        }
+        
+    
+    return CGSizeZero;
+    
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section{
- 
-    return CGSizeMake(ScreenWidth, AdaptationWidth(345));;
-}
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    if (_imageArray.count>8) {
-        return 9;
-    } else {
-        if(_indexChoose == 0) {
-            return _imageArray.count+1;
-        } else {
-            return _imageArray.count;
+    
+    for (NSString *str in self.productType) {
+        if ([str isEqualToString:@"2"]) {
+            return CGSizeMake(ScreenWidth, AdaptationWidth(285));
         }
     }
+    return CGSizeZero;
+    
+}
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    for (NSString *str in self.productType) {
+        if ([str isEqualToString:@"1"]) {
+            
+            if (_imageArray.count>8) {
+                return 9;
+            } else {
+                if(_indexChoose == 0) {
+                    return _imageArray.count+1;
+                } else {
+                    return _imageArray.count;
+                }
+            }
+        }
+    }
+    return 0;
     
 }
 
@@ -255,33 +279,49 @@ const char *localNotificationQueue = "cn.neebel.xwm.localNotificationQueue";
 }
 #pragma  mark -btn
 - (void)btnOnClick:(UIButton *)btn{
-    if (self.imageArray.count < 1) {
-        [ProgressHUD showProgressHUDInView:nil withText:@"请至少上传1张图片凭证 最多9张" afterDelay:1 ];
-        return;
-    }
-    if (_txtView.text.length < 2) {
-        [ProgressHUD showProgressHUDInView:nil withText:@"请至少输入3个字" afterDelay:1 ];
-        return;
-    }
-    self.dataArray  = [NSMutableArray array];
-    for (int i = 0; self.imageArray.count > i; i++) {
-        WEAKSELF
-        [XNetWork UploadPicturesWithUrl:Xupload images:@[self.imageArray[i]] targetWidth:72 andSuccessBlock:^(ResponseModel *model) {
-            [weakSelf.dataArray addObject:model.data[@"fileUrl"]];
-            if (weakSelf.imageArray.count == weakSelf.dataArray.count) {
-                [weakSelf sureBtn];
+    for (NSString *str in self.productType) {
+        if ([str isEqualToString:@"1"]) {
+            if (self.imageArray.count < 1 ) {
+                [ProgressHUD showProgressHUDInView:nil withText:@"请至少上传1张图片凭证 最多9张" afterDelay:1 ];
+                return;
             }
-        } andFailBlock:^(ResponseModel *model) {
-            
-        }];
+        }
+    }
+    for (NSString *str in self.productType) {
+        if ([str isEqualToString:@"2"]) {
+            if (_txtView.text.length < 2 && (self.productType.count == 2 ||[self.productType[0] isEqualToString:@"2"])) {
+                [ProgressHUD showProgressHUDInView:nil withText:@"请至少输入3个字" afterDelay:1 ];
+                return;
+            }
+        }
     }
     
+    for (NSString *str in self.productType) {
+        if ([str isEqualToString:@"1"]) {
+            self.dataArray  = [NSMutableArray array];
+            for (int i = 0; self.imageArray.count > i; i++) {
+                WEAKSELF
+                [XNetWork UploadPicturesWithUrl:Xupload images:@[self.imageArray[i]] targetWidth:72 andSuccessBlock:^(ResponseModel *model) {
+                    [weakSelf.dataArray addObject:model.data[@"fileUrl"]];
+                    if (weakSelf.imageArray.count == weakSelf.dataArray.count) {
+                        [weakSelf sureBtn];
+                    }
+                } andFailBlock:^(ResponseModel *model) {
+                
+                }];
+            }
+            return;
+        }
+    }
+    [self sureBtn];
 }
 -(void)sureBtn{
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     [dic setObject:self.productApplyId forKey:@"productApplyId"];
     [dic setObject:_txtView.text forKey:@"submitContent"];
-    [dic setObject:self.dataArray forKey:@"submitPicUrlArr"];
+    if ([self.productType[0] isEqualToString:@"1"]) {
+        [dic setObject:self.dataArray forKey:@"submitPicUrlArr"];
+    }
     WEAKSELF
     [XNetWork requestNetWorkWithUrl:Xproduct_apply_submit andModel:dic andSuccessBlock:^(ResponseModel *model) {
         [ProgressHUD showProgressHUDInView:nil withText:@"提交成功" afterDelay:1 ];
@@ -472,5 +512,17 @@ const char *localNotificationQueue = "cn.neebel.xwm.localNotificationQueue";
 
 - (NSArray*)getSmallImageArray{
     return _imageArray;
+}
+- (XPlaceHolderTextView *)txtView{
+    if (!_txtView) {
+        _txtView = [[XPlaceHolderTextView alloc]init];
+        [_txtView setBorderWidth:AdaptationWidth(1) andColor:BackgroundColor];
+        _txtView.placeholder = @"请至少输入3个字";
+        _txtView.delegate = self;
+        _txtView.placeholderColor = LabelAssistantColor;
+        _txtView.backgroundColor = [UIColor whiteColor];
+        _txtView.font = [UIFont fontWithName:@"PingFangSC-Regular" size:AdaptationWidth(16)];
+    }
+    return _txtView;
 }
 @end

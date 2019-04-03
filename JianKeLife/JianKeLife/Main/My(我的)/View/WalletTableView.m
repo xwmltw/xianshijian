@@ -18,7 +18,7 @@
     self = [super initWithFrame:frame style:style];
     if (self) {
         [self setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-        self.backgroundColor = XColorWithRGB(248, 248, 248);
+//        self.backgroundColor = XColorWithRGB(248, 248, 248);
         self.delegate = self;
         self.dataSource = self;
         self.estimatedRowHeight = 0;
@@ -105,9 +105,35 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return AdaptationWidth(150);
 }
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    UIView *view = [[UIView alloc]init];
+    UIImageView *imageView = [[UIImageView alloc]init];
+    imageView.image = [UIImage imageNamed:@"icon_noData"];
+    [view addSubview:imageView];
+    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(view);
+        make.top.mas_equalTo(view).offset(140);
+        
+    }];
+    UILabel *lab = [[UILabel alloc]init];
+    [lab setText:@"暂无收益,去首页看看吧~"];
+    [lab setFont:[UIFont systemFontOfSize:16]];
+    [lab setTextColor:LabelMainColor];
+    [view addSubview:lab];
+    [lab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(view);
+        make.top.mas_equalTo(imageView.mas_bottom).offset(34);
+    }];
+    return view;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    
+    return  self.profitViewModel.profitList.count ? 0 : ScreenHeight;
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return AdaptationWidth(61);
 }
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.profitViewModel.profitList.count;
 }

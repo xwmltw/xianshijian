@@ -60,14 +60,13 @@
     [self specialViewSelect];
     [self collectionCellSelect];
     
-    
-//    [XAlertView alertWithTitle:@"更新提示" message:self.clientGlobalInfo.versionInfo.versionDesc cancelButtonTitle:self.clientGlobalInfo.versionInfo.needForceUpdate.integerValue ? @"":@"取消"confirmButtonTitle:@"更新" viewController:self completion:^(UIAlertAction *action, NSInteger buttonIndex) {
-//        if (buttonIndex == 1) {
-//            [[UIApplication sharedApplication]openURL:[NSURL URLWithString:self.clientGlobalInfo.versionInfo.url]];
-//            exit(0);
-//        }
-//
-//    }];
+    if (self.clientGlobalInfo.versionInfo)
+    [XAlertView alertWithTitle:@"更新提示" message:self.clientGlobalInfo.versionInfo.versionDesc cancelButtonTitle:self.clientGlobalInfo.versionInfo.needForceUpdate.integerValue ? @"":@"取消"confirmButtonTitle:@"更新" viewController:self completion:^(UIAlertAction *action, NSInteger buttonIndex) {
+        if (buttonIndex == 1) {
+            [[UIApplication sharedApplication]openURL:[NSURL URLWithString:self.clientGlobalInfo.versionInfo.url]];
+            exit(0);
+        }
+    }];
     
 }
 - (void)creatSearchBtn{
@@ -129,9 +128,9 @@
    NSString *str = self.collectionView.homeViewModel.productList[indexPath.row][@"productTitle"];
     CGSize detailSize = [str boundingRectWithSize:CGSizeMake(AdaptationWidth(100), CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:nil context:nil].size;
      if (detailSize.height < 14) {
-        return CGSizeMake(0, AdaptationWidth(191));
+        return CGSizeMake(0, AdaptationHeight(191));
     }
-    return CGSizeMake(0, AdaptationWidth(215));
+    return CGSizeMake(0, AdaptationHeight(215));
     
 }
 
@@ -158,7 +157,7 @@
         }
             break;
         case HomeCollectionHeadHot:{
-            return CGSizeMake(self.view.Sw, AdaptationWidth(30));
+            return CGSizeMake(self.view.Sw, AdaptationWidth(40));
         }
             break;
         default:
@@ -166,10 +165,16 @@
     }
     return CGSizeZero;
 }
-///** 脚视图Size */
-//-(CGSize )waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForFooterViewInSection:(NSInteger)section{
-//    return CGSizeMake(40, 40);
-//}
+/** 脚视图Size */
+-(CGSize )waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForFooterViewInSection:(NSInteger)section{
+    HomeCollectionHead row = [self.collectionView.headArray[section] integerValue];
+    if (row == HomeCollectionHeadHot) {
+        if (self.collectionView.homeViewModel.productList.count == 0) {
+            return CGSizeMake(self.view.Sw, AdaptationWidth(289));
+        }
+    }
+    return CGSizeZero;
+}
 
 ///** 列数*/
 //-(CGFloat)columnCountInWaterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout{

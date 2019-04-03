@@ -12,6 +12,7 @@
 @interface TaskDetailVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property (nonatomic ,strong) UICollectionView *collectionView;
 @property (nonatomic ,strong) TaskDetailModel *taskDetailModel;
+@property (nonatomic ,strong) NSArray *proTyoe;
 @end
 
 @implementation TaskDetailVC
@@ -20,6 +21,10 @@
     [super viewDidLoad];
     self.title = @"返佣审核详情";
     self.view.backgroundColor = BackgroundColor;
+    
+    self.proTyoe = [NSArray array];
+    self.proTyoe = [self.model.productSubmitType componentsSeparatedByString:@","];
+    
     [self requestData];
     
      UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc]init];
@@ -47,7 +52,7 @@
 
 - (void)requestData{
     BLOCKSELF
-    [XNetWork requestNetWorkWithUrl:Xproduct_apply_detail andModel:@{@"productApplyId":self.productApplyId} andSuccessBlock:^(ResponseModel *model) {
+    [XNetWork requestNetWorkWithUrl:Xproduct_apply_detail andModel:@{@"productApplyId":self.model.productApplyId} andSuccessBlock:^(ResponseModel *model) {
         blockSelf.taskDetailModel = [TaskDetailModel mj_objectWithKeyValues:model.data];
         [blockSelf.collectionView reloadData];
     } andFailBlock:^(ResponseModel *model) {
@@ -183,13 +188,22 @@
 #pragma mark - UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
 
-            
-    return CGSizeMake(ScreenWidth, AdaptationWidth(78));
+    for (NSString *str in self.proTyoe) {
+        if ([str isEqualToString:@"1"]) {
+            return CGSizeMake(ScreenWidth, AdaptationWidth(78));
+        }
+    }
+    return CGSizeZero;
     
    
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section{
-    return CGSizeMake(ScreenWidth, AdaptationWidth(175));
+    for (NSString *str in self.proTyoe) {
+        if ([str isEqualToString:@"2"]) {
+            return CGSizeMake(ScreenWidth, AdaptationWidth(175));
+        }
+    }
+    return CGSizeZero;
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.section) {

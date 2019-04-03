@@ -12,7 +12,6 @@
 #import "TaskOverTableView.h"
 #import "TaskDetailVC.h"
 #import "TaskResultVC.h"
-#import "UnLoginView.h"
 #import "TaskReturnVC.h"
 #import "JobDetailVC.h"
 
@@ -21,31 +20,21 @@
 @property (nonatomic ,strong) TaskStayTableView *stayTableView;
 @property (nonatomic ,strong) TaskIngTableView *ingTableView;
 @property (nonatomic ,strong) TaskOverTableView *overTableView;
-@property (nonatomic ,strong) UnLoginView *unLoginView;
+
 @end
 
 @implementation TaskVC
 - (void)setBackNavigationBarItem{};
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-//    [self.stayTableView.mj_header beginRefreshing];
-//    [self.ingTableView.mj_header beginRefreshing];
-//    [self.overTableView.mj_header beginRefreshing];
+    if (![UserInfo sharedInstance].isSignIn){
+ 
+
+    }
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    if (![UserInfo sharedInstance].isSignIn){
-        WEAKSELF
-        [self.unLoginView setBtnBlock:^(id result) {
-            [weakSelf getBlackLogin:weakSelf];
-        }];
-        return;
-    }
-    
     self.navigationItem.titleView = self.segmentedControl;
-    
-    
 }
 
 - (void)segmentedControlClick:(UISegmentedControl *)sender{
@@ -79,12 +68,13 @@
 #pragma mark -点击回调
 -(XDoubleBlock)taskBtnBlcok{
     BLOCKSELF
-   XDoubleBlock block = ^(UIButton * btn,NSNumber *proid){
+   XDoubleBlock block = ^(UIButton * btn,NSDictionary *dic){
        switch (btn.tag) {
            case 202:
            {
                TaskReturnVC *vc = [[TaskReturnVC alloc]init];
-               vc.productApplyId = proid;
+               vc.productApplyId = dic[@"productApplyId"];
+               vc.productSubmitType = dic[@"productSubmitType"];
                vc.hidesBottomBarWhenPushed = YES;
                [blockSelf.navigationController pushViewController:vc animated:YES];
            }
@@ -92,7 +82,7 @@
            case 203:
            {
                TaskDetailVC *vc = [[TaskDetailVC alloc]init];
-               vc.productApplyId = proid;
+               vc.model = [TaskModel mj_objectWithKeyValues:dic];
                vc.hidesBottomBarWhenPushed = YES;
                [blockSelf.navigationController pushViewController:vc animated:YES];
            }
@@ -132,6 +122,7 @@
         _stayTableView = [[TaskStayTableView alloc]init];
         _stayTableView.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight-49);
         _stayTableView.taskStayBtnBlcok = [self taskBtnBlcok];
+        _stayTableView.taskStayCellselect = [self taskOverCellBlock];
         [self.view addSubview:_stayTableView];
 
     }
@@ -142,6 +133,7 @@
         _ingTableView = [[TaskIngTableView alloc]init];
         _ingTableView.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight-49);
         _ingTableView.taskIngBtnBlcok = [self taskBtnBlcok];
+        _ingTableView.taskIngCellselect = [self taskOverCellBlock];
         [self.view addSubview:_ingTableView];
     }
     return _ingTableView;
@@ -166,20 +158,12 @@
         _segmentedControl.frame = CGRectMake(0, 0, AdaptationWidth(300), 30);
         _segmentedControl.selectedSegmentIndex = 0;
         [_segmentedControl addTarget:self action:@selector(segmentedControlClick:) forControlEvents:UIControlEventValueChanged];
+        
         self.stayTableView.hidden = NO;
     }
     return _segmentedControl;
 }
 
-- (UnLoginView *)unLoginView{
-    if (!_unLoginView) {
-        _unLoginView = [[NSBundle mainBundle]loadNibNamed:@"UnLogin" owner:nil options:nil].lastObject;
-        [self.view addSubview: _unLoginView];
-        [_unLoginView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.mas_equalTo(self.view);
-        }];
-    }
-    return _unLoginView;
-}
+
 
 @end

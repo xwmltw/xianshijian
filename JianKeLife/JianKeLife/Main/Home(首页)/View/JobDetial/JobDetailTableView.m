@@ -51,13 +51,14 @@
         return AdaptationWidth(100);
     }
     if (indexPath.row == 2) {
-        return self.jobDetailViewModel.productModel.cell2Width;
+        
+        return AdaptationWidth(self.jobDetailViewModel.productModel.cell2Width) ;
     }
     
     if (indexPath.row == 3) {
 //        MyLog(@"%ld",(long)self.jobDetailViewModel.productModel.cellWidth);
 
-        return self.jobDetailViewModel.productModel.cellWidth;
+        return AdaptationWidth(self.jobDetailViewModel.productModel.cellWidth) ;
     }
     return 0;
 }
@@ -186,7 +187,7 @@
             
             UILabel *title = [[UILabel alloc]init];
             title.text = @"面向群体";
-            [title setFont:[UIFont fontWithName:@"PingFangSC-Regular" size:AdaptationWidth(16)]];
+            [title setFont:[UIFont fontWithName:@"PingFangSC-Regular" size:AdaptationWidth(18)]];
             [title setTextColor:LabelMainColor];
             [view addSubview:title];
             [title mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -196,28 +197,40 @@
                 
             }];
             
-            UILabel *detial = [[UILabel alloc]init];
-            detial.numberOfLines = 0;
-            detial.text = self.jobDetailViewModel.productModel.productGroupOrientedDesc;
-            [detial setFont:[UIFont fontWithName:@"PingFangSC-Regular" size:AdaptationWidth(14)]];
-            [detial setTextColor:LabelMainColor];
-            [view addSubview:detial];
-            [detial mas_makeConstraints:^(MASConstraintMaker *make) {
+            UILabel *detial1 = [[UILabel alloc]init];
+            detial1.numberOfLines = 0;
+            detial1.text = self.jobDetailViewModel.productModel.productGroupOrientedDesc;
+            [detial1 setFont:[UIFont fontWithName:@"PingFangSC-Regular" size:AdaptationWidth(16)]];
+            [detial1 setTextColor:LabelMainColor];
+            [view addSubview:detial1];
+            [detial1 mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.mas_equalTo(view).offset(AdaptationWidth(16));
                 make.right.mas_equalTo(view).offset(AdaptationWidth(-16));
                 make.top.mas_equalTo(title.mas_bottom).offset(AdaptationWidth(6));
                 make.bottom.mas_equalTo(view).offset(AdaptationWidth(-12));
                 
             }];
+//            NSString *str = [NSString stringWithFormat:@"<head><style>img{width:%f !important;height:auto}</style></head>%@",self.Sw,self.jobDetailViewModel.productModel.productGroupOrientedDesc];
+//            NSMutableAttributedString * artical_main_text = [[NSMutableAttributedString alloc] initWithData:[[NSString stringWithFormat:@"%@",str] dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+//            detial1.attributedText = artical_main_text;
             
-            NSMutableAttributedString * artical_main_text = [[NSMutableAttributedString alloc] initWithData:[[NSString stringWithFormat:@"%@",self.jobDetailViewModel.productModel.productGroupOrientedDesc] dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
-            detial.attributedText = artical_main_text;
+//            CGSize detal = [detial1.text]
+//            CGSize detailSize = [detial1.text boundingRectWithSize:CGSizeMake(AdaptationWidth(235), CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil].size;
+//                        CGSize detailSize = [detial1.text boundingRectWithSize:CGSizeMake(AdaptationWidth(235), CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:nil context:nil].size;
+//            self.jobDetailViewModel.productModel.cell2Width =  detailSize.height + 70;
             
-            CGSize detailSize = [detial.attributedText boundingRectWithSize:CGSizeMake(AdaptationWidth(235), CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil].size;
-            //            CGSize detailSize = [detial.text boundingRectWithSize:CGSizeMake(AdaptationWidth(235), CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:nil context:nil].size;
-            self.jobDetailViewModel.productModel.cell2Width =  detailSize.height + 70;
-            
-           
+            NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+            paragraphStyle.lineBreakMode = NSLineBreakByCharWrapping;
+            NSDictionary * attributes = @{
+                                          NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Regular" size:AdaptationWidth(16)],
+                                          NSParagraphStyleAttributeName: paragraphStyle
+                                          };
+            CGSize textRect = CGSizeMake(AdaptationWidth(235), MAXFLOAT);
+            CGFloat textHeight = [detial1.text boundingRectWithSize: textRect
+                                                   options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading
+                                                attributes:attributes
+                                                   context:nil].size.height;
+            self.jobDetailViewModel.productModel.cell2Width =  AdaptationWidth(textHeight + 70) ;
         }
             break;
         case 3:
@@ -235,7 +248,7 @@
             
             UILabel *title = [[UILabel alloc]init];
             title.text = @"产品详情";
-            [title setFont:[UIFont fontWithName:@"PingFangSC-Regular" size:AdaptationWidth(16)]];
+            [title setFont:[UIFont fontWithName:@"PingFangSC-Regular" size:AdaptationWidth(18)]];
             [title setTextColor:LabelMainColor];
             [view addSubview:title];
             [title mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -247,23 +260,23 @@
             UILabel *detial = [[UILabel alloc]init];
             detial.numberOfLines = 0;
 //            detial.text = self.jobDetailViewModel.productModel.productDesc;
-            [detial setFont:[UIFont fontWithName:@"PingFangSC-Regular" size:AdaptationWidth(14)]];
+            
             [detial setTextColor:LabelMainColor];
             [view addSubview:detial];
             [detial mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.mas_equalTo(view).offset(AdaptationWidth(16));
                 make.right.mas_equalTo(view).offset(AdaptationWidth(-16));
                 make.top.mas_equalTo(title.mas_bottom).offset(AdaptationWidth(6));
-//                make.bottom.mas_equalTo(view).offset(AdaptationWidth(-12));
-                
+
             }];
             
-            NSMutableAttributedString * artical_main_text = [[NSMutableAttributedString alloc] initWithData:[[NSString stringWithFormat:@"%@",self.jobDetailViewModel.productModel.productDesc] dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+            NSString *str = [NSString stringWithFormat:@"<head><style>img{width:%f !important;height:auto}p{font-size: %fpx !important;}</style></head>%@",self.Sw,AdaptationWidth(16),self.jobDetailViewModel.productModel.productDesc];
+            NSMutableAttributedString * artical_main_text = [[NSMutableAttributedString alloc] initWithData:[[NSString stringWithFormat:@"%@",str] dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
             detial.attributedText = artical_main_text;
-            
+            [detial setFont:[UIFont fontWithName:@"PingFangSC-Regular" size:AdaptationWidth(16)]];
             CGSize detailSize = [detial.attributedText boundingRectWithSize:CGSizeMake(AdaptationWidth(235), CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil].size;
 //            CGSize detailSize = [detial.text boundingRectWithSize:CGSizeMake(AdaptationWidth(235), CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:nil context:nil].size;
-            self.jobDetailViewModel.productModel.cellWidth =  detailSize.height + 58;
+            self.jobDetailViewModel.productModel.cellWidth =  detailSize.height + 70;
             
         }
             break;
@@ -291,13 +304,13 @@
 - (SDCycleScrollView *)sdcycleScrollView{
     if (!_sdcycleScrollView) {
         
-        _sdcycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"iamge_rule"]];
+        _sdcycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage createImageWithColor:[UIColor whiteColor] ]];
         _sdcycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleToFill;
         _sdcycleScrollView.autoScrollTimeInterval = 3;
         _sdcycleScrollView.pageControlStyle = SDCycleScrollViewPageContolStyleClassic;
         _sdcycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
         _sdcycleScrollView.pageDotColor = XColorWithRBBA(255, 255, 255, 0.4);
-        
+        _sdcycleScrollView.backgroundColor = [UIColor whiteColor];
     }
     return _sdcycleScrollView;
 }

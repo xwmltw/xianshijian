@@ -27,7 +27,7 @@
 
 // 根据屏幕宽度适配宽度,参数a是在iphone 6(即375宽度)情况下的宽
 #define AdaptationWidth(a) ceilf(a * (ScreenWidth/375))
-
+#define AdaptationHeight(a) ceilf(a * (ScreenHeight/667))
 /** 颜色*/
 #define XColorWithRBBA(r,g,b,a) [UIColor colorWithRed:(r/255.0) green:(g/255.0) blue:(b/255.0) alpha:(a)]//通过R,G,B,A设置颜色
 #define XCGColorWithRGBA(r,g,b,a) [[UIColor colorWithRed:(r/255.0) green:(g/255.0) blue:(b/255.0) alpha:(a)].CGcolor]//通过R,G,B,A设置边框颜色

@@ -17,7 +17,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *firstLab;
 @property (weak, nonatomic) IBOutlet UIButton *sureBtn;
 @property (weak, nonatomic) IBOutlet UIButton *wxBtn;
-@property (weak, nonatomic) IBOutlet UIButton *zfbBtn;
 @property (nonatomic ,copy) NSNumber *balance;
 @end
 NS_ASSUME_NONNULL_END

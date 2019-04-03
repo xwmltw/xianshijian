@@ -48,6 +48,7 @@
      UIButton *headerBtn = [[UIButton alloc]init];
     
     UIImageView *headerImage = [[UIImageView alloc]init];
+    
     [headerImage setImage:[UIImage imageNamed:@"icon_my_header"]];
     [view addSubview:headerImage];
     [headerImage mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -150,7 +151,7 @@
         [line mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.mas_equalTo(heardView);
             make.top.mas_equalTo(telLab.mas_bottom).offset(AdaptationWidth(14));
-            make.width.mas_equalTo(AdaptationWidth(1));
+            make.width.mas_equalTo(AdaptationWidth(0.5));
             make.height.mas_equalTo(AdaptationWidth(65));
         }];
         
@@ -284,7 +285,7 @@
     
    
     headerBtn.tag = 406;
-    
+    [headerBtn setCornerValue:AdaptationHeight(30)];
     [headerBtn addTarget:self action:@selector(btnOnClock:) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:headerBtn];
     [headerBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -300,7 +301,7 @@
     return view;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return AdaptationWidth(323);
+    return AdaptationWidth(303);
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 4;

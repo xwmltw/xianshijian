@@ -92,10 +92,11 @@
          [shareSalary setTitle:[NSString stringWithFormat:@"领￥%.2f",[model.productShareSalary doubleValue]/100] forState:UIControlStateNormal];
          model.hasApplyProd.integerValue ?
          [recevieBtn setTitle:@"已领取 去办理" forState:UIControlStateNormal] :
-         [recevieBtn setTitle:@"去领取" forState:UIControlStateNormal];
+         [recevieBtn setTitle:[NSString stringWithFormat:@"去领取￥%.2f",[model.productSalary doubleValue]/100] forState:UIControlStateNormal];
          if (model.hasApplyProd.integerValue && model.prodTradeStatus.integerValue == 3) {
              if (model.prodTradeAuditStatus.integerValue == 1 || model.prodTradeAuditStatus.integerValue == 2) {
                  recevieBtn.enabled = NO;
+                 [recevieBtn setBackgroundColor:[UIColor grayColor]];
                 
              }
          }
@@ -168,7 +169,7 @@
     self.qrCodeView.QRtitle.text = self.tableView.jobDetailViewModel.productModel.productTitle;
     self.qrCodeView.QRmoney.text = [NSString stringWithFormat:@"%.2f",[self.tableView.jobDetailViewModel.productModel.productSalary doubleValue]/100];
     [self.qrCodeView.QRimageView sd_setImageWithURL:[NSURL URLWithString:self.tableView.jobDetailViewModel.productModel.productMainPicUrl.firstObject]];
-    self.qrCodeView.QRcodeImageView.image = [UIImage qrCodeImageWithInfo:self.tableView.jobDetailViewModel.productModel.productUrl width:AdaptationWidth(85)];
+    self.qrCodeView.QRcodeImageView.image = [UIImage qrCodeImageWithInfo:dic[@"productShareUrl"] width:AdaptationWidth(85)];
     [self.view addSubview:self.qrCodeView];
     [self.qrCodeView  mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(self.view);

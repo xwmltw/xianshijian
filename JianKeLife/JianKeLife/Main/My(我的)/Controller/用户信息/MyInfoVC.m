@@ -39,6 +39,7 @@
 - (void)creatUI{
     goDetailBtn = [[UIButton alloc]init];
     goDetailBtn.tag = 4011;
+    [goDetailBtn setCornerValue:AdaptationHeight(36)];
     [goDetailBtn setImage:[UIImage imageNamed:@"默认头像"] forState:UIControlStateNormal];
     [goDetailBtn addTarget:self action:@selector(btnOnClock:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:goDetailBtn];
@@ -248,7 +249,7 @@
         {
             
             if (!userName.text.length) {
-                [ProgressHUD showProgressHUDInView:nil withText:@"请填写真实姓名" afterDelay:1];
+                [ProgressHUD showProgressHUDInView:nil withText:@"姓名填写错误，长度需为1-10个字符" afterDelay:1];
                 return;
             }
             if (!manBtn.isSelected && !womanbtn.isSelected) {

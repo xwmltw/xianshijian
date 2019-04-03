@@ -10,8 +10,8 @@
 #define AppUitls_h
 /** APP配置信息*/
 #ifdef DEBUG
-#define SERVICEURL @" https://mapi.xianshijian.com" // 正式环境
-//#define SERVICEURL @"http://jkl-mapi.pdl001.com" // 测试环境
+//#define SERVICEURL @"https://mapi.xianshijian.com" // 正式环境
+#define SERVICEURL @"http://jkl-mapi.pdl001.com" // 测试环境
 //#define SERVICEURL @"http://192.168.5.126:8053"
 #else
 #define SERVICEURL @" https://mapi.xianshijian.com" // 正式环境
@@ -65,6 +65,7 @@ static NSString *const WXLoginNotification = @"WXLoginNotification";
 
 #define Xquery_flow_list            @"/mapi/trade/query_flow_list"//交易流水查询
 #define Xquery_withdraw_cfg         @"/mapi/trade/query_withdraw_cfg"//提现o配置信息
+#define Xcheck_pwd                  @"/mapi/trade/check_pwd"//校验提现密码
 #define Xwechat_cash_withdraw       @"/mapi/trade/wechat_cash_withdraw"//微信提现
 #define Xset_money_pwd              @"/mapi/session/set_money_pwd"//设置钱袋子密码
 #define Xedit_money_pwd             @"/mapi/session/edit_money_pwd"//修改钱包密码

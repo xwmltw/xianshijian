@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TaskReturnVC : BaseMainVC
 @property (nonatomic ,copy) NSNumber *productApplyId;
+@property (nonatomic ,copy) NSString *productSubmitType;
 //初始化collectionView
 - (void)initPickerView;
 //修改collectionView的位置

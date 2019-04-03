@@ -74,20 +74,20 @@
     switch (self.expectViewModel.viewModelType) {
         case ExpectTableViewTypeTesk:
             [imageView setImage:[UIImage imageNamed:@"icon_task_noti"]];
-            view.backgroundColor = XColorWithRBBA(56, 181, 173, 0.17);
+            view.backgroundColor = XColorWithRGB(215, 236, 235);
             [loginLab2 setTextColor:XColorWithRGB(56, 181, 173)];
             
             break;
         case ExpectTableViewTypeShare:
             [imageView setImage:[UIImage imageNamed:@"icon_share_noti"]];
-            view.backgroundColor = XColorWithRBBA(255, 188, 0, 0.17);
+            view.backgroundColor = XColorWithRGB(249, 237, 205);
             [loginLab2 setTextColor:XColorWithRGB(255, 162, 0)];
             
              break;
             break;
         case ExpectTableViewTypeConnection:
             [imageView setImage:[UIImage imageNamed:@"icon_connection_noti"]];
-            view.backgroundColor = XColorWithRBBA(255, 103, 103, 0.17);
+            view.backgroundColor = XColorWithRGB(249, 223, 223);
             [loginLab2 setTextColor:XColorWithRGB(255, 68, 68)];
             
              break;
@@ -102,11 +102,49 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return AdaptationWidth(28);
 }
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    UIView *view = [[UIView alloc]init];
+    UIImageView *imageView = [[UIImageView alloc]init];
+    imageView.image = [UIImage imageNamed:@"icon_noData"];
+    [view addSubview:imageView];
+    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(view);
+        make.top.mas_equalTo(view).offset(140);
+        
+    }];
+    UILabel *lab = [[UILabel alloc]init];
+    [lab setText:@"暂无收益,去首页看看吧~"];
+    [lab setFont:[UIFont systemFontOfSize:16]];
+    [lab setTextColor:LabelMainColor];
+    [view addSubview:lab];
+    [lab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(view);
+        make.top.mas_equalTo(imageView.mas_bottom).offset(34);
+    }];
+    return view;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    
+    return  self.expectViewModel.expectList.count ? 0 : ScreenHeight;
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
-        CGSize detailSize = [self.expectViewModel.expectList[indexPath.row][@"profitAmountDesc"] boundingRectWithSize:CGSizeMake(AdaptationWidth(235), CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:nil context:nil].size;
-    
-    CGFloat cellH = 60 + detailSize.height;
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.lineBreakMode = NSLineBreakByCharWrapping;
+    NSDictionary * attributes = @{
+                                  NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Regular" size:AdaptationWidth(16)],
+                                  NSParagraphStyleAttributeName: paragraphStyle
+                                  };
+    CGSize textRect = CGSizeMake(AdaptationWidth(235), MAXFLOAT);
+    CGFloat textHeight = [self.expectViewModel.expectList[indexPath.row][@"profitAmountDesc"] boundingRectWithSize: textRect
+                                                    options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading
+                                                 attributes:attributes
+                                                    context:nil].size.height;
+//    self.jobDetailViewModel.productModel.cell2Width =  AdaptationWidth(textHeight + 70) ;
+//
+//        CGSize detailSize = [self.expectViewModel.expectList[indexPath.row][@"profitAmountDesc"] boundingRectWithSize:CGSizeMake(235, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:nil context:nil].size;
+//    MyLog(@"%@",self.expectViewModel.expectList[indexPath.row][@"profitAmountDesc"]);
+    CGFloat cellH = 50 + textHeight;
     return AdaptationWidth(cellH);
     
 }

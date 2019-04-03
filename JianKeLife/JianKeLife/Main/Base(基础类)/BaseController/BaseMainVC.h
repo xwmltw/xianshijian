@@ -27,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
  是否 登录
  */
 - (void)getBlackLogin:(UIViewController *)controller;
+- (void)goToLogin;
 - (void)dealloc;
 @end
 

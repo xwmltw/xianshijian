@@ -25,7 +25,9 @@
         self.mj_header = [self.taskViewModel creatMjRefreshHeader];
         self.mj_footer = [self.taskViewModel creatMjRefresh];
         self.taskViewModel.taskType = TaskTableViewTypeOver;
-        [self.taskViewModel requestTaskData];
+        if ([UserInfo sharedInstance].isSignIn){
+            [self.taskViewModel requestTaskData];
+        }
         BLOCKSELF
         [self.taskViewModel setTaskListBlock:^(id result) {
             [blockSelf reloadData];
@@ -43,6 +45,31 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return AdaptationWidth(145);
+}
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    UIView *view = [[UIView alloc]init];
+    UIImageView *imageView = [[UIImageView alloc]init];
+    imageView.image = [UIImage imageNamed:@"icon_noData"];
+    [view addSubview:imageView];
+    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(view);
+        make.top.mas_equalTo(view).offset(140);
+        
+    }];
+    UILabel *lab = [[UILabel alloc]init];
+    [lab setText:@"还没有领取产品,去首页看看吧~"];
+    [lab setFont:[UIFont systemFontOfSize:16]];
+    [lab setTextColor:LabelMainColor];
+    [view addSubview:lab];
+    [lab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(view);
+        make.top.mas_equalTo(imageView.mas_bottom).offset(34);
+    }];
+    return view;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    
+    return  self.taskViewModel.taskList.count ? 0 : ScreenHeight;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     

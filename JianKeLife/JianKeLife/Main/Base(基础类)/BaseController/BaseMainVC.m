@@ -101,7 +101,11 @@
     }];
     
 }
-
+- (void)goToLogin{
+    LoginVC *vc = [[LoginVC alloc]init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+}
 - (ClientGlobalInfo *)clientGlobalInfo{
     if (!_clientGlobalInfo) {
         _clientGlobalInfo = [ClientGlobalInfo getClientGlobalInfoModel];

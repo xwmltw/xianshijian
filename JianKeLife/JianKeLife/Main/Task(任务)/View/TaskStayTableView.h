@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface TaskStayTableView : UITableView
 @property (nonatomic ,strong) TaskViewModel *taskViewModel;
 @property (nonatomic ,copy) XDoubleBlock taskStayBtnBlcok;
+@property (nonatomic ,copy) XBlock taskStayCellselect;
 @end
 
 NS_ASSUME_NONNULL_END

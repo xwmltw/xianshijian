@@ -38,6 +38,31 @@
 - (NSInteger)numberOfRowsInSection:(NSInteger)section{
     return 1;
 }
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    UIView *view = [[UIView alloc]init];
+    UIImageView *imageView = [[UIImageView alloc]init];
+    imageView.image = [UIImage imageNamed:@"icon_noData"];
+    [view addSubview:imageView];
+    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(view);
+        make.top.mas_equalTo(view).offset(120);
+        
+    }];
+    UILabel *lab = [[UILabel alloc]init];
+    [lab setText:@"暂无人脉信息"];
+    [lab setFont:[UIFont systemFontOfSize:16]];
+    [lab setTextColor:LabelMainColor];
+    [view addSubview:lab];
+    [lab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(view);
+        make.top.mas_equalTo(imageView.mas_bottom).offset(34);
+    }];
+    return view;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    
+    return  self.connectionViewModel.connectionList.count ? 0 : ScreenHeight;
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.connectionViewModel.connectionList.count;
 }
@@ -46,7 +71,7 @@
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UIView *view = [[UIView alloc]init];
-    
+    view.backgroundColor = BackgroundColor;
     UILabel *title = [[UILabel alloc]init];
     title.text = [NSString stringWithFormat:@"一级人脉（%@）",self.num.description];
     [title setFont:[UIFont systemFontOfSize:AdaptationWidth(16)]];
