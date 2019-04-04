@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "60.png",
+      "filename" : "iOS底部钱.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "120.png",
+      "filename" : "iOS底部钱@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "180.png",
+      "filename" : "iOS底部钱@3x.png",
       "scale" : "3x"
     }
   ],

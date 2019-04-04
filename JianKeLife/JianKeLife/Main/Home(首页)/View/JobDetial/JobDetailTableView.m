@@ -270,7 +270,7 @@
 
             }];
             
-            NSString *str = [NSString stringWithFormat:@"<head><style>img{width:%f !important;height:auto}p{font-size: %fpx !important;}</style></head>%@",self.Sw,AdaptationWidth(16),self.jobDetailViewModel.productModel.productDesc];
+            NSString *str = [NSString stringWithFormat:@"<head><style>img{max-width:%f !important;height:auto}p{font-size: %fpx !important;}</style></head>%@",self.Sw,AdaptationWidth(16),self.jobDetailViewModel.productModel.productDesc];
             NSMutableAttributedString * artical_main_text = [[NSMutableAttributedString alloc] initWithData:[[NSString stringWithFormat:@"%@",str] dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
             detial.attributedText = artical_main_text;
             [detial setFont:[UIFont fontWithName:@"PingFangSC-Regular" size:AdaptationWidth(16)]];

@@ -61,10 +61,7 @@
     
     WEAKSELF
     [self.tableView setCellSelectBlock:^(NSInteger result) {
-        if (![UserInfo sharedInstance].isSignIn) {
-            
-            [weakSelf getBlackLogin:weakSelf];
-        }
+        
         switch (result) {
             case 0:
             {

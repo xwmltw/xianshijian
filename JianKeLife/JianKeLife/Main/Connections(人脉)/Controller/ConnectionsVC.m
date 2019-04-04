@@ -206,7 +206,7 @@
                 [shareParams SSDKSetupShareParamsByText:@"购物省钱，分享赚钱 开启你的值享生活"
                                                  images:[UIImage convertViewToImage:blockSelf.myPersonShareView.QRDownBGView]
                                                     url:[NSURL URLWithString:blockSelf.connectionViewModel.connectionModel.connectionsInviteRegUrl]
-                                                  title:@"今日值享"
+                                                  title:AppName
                                                    type:SSDKContentTypeAuto];
                 [ShareSDK share:SSDKPlatformSubTypeWechatSession parameters:shareParams onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
                     
@@ -219,7 +219,7 @@
                 [shareParams SSDKSetupShareParamsByText:@"购物省钱，分享赚钱 开启你的值享生活"
                                                  images:[UIImage convertViewToImage:blockSelf.myPersonShareView.QRDownBGView]
                                                     url:[NSURL URLWithString:blockSelf.connectionViewModel.connectionModel.connectionsInviteRegUrl]
-                                                  title:@"今日值享"
+                                                  title:AppName
                                                    type:SSDKContentTypeAuto];
                 [ShareSDK share:SSDKPlatformSubTypeWechatTimeline parameters:shareParams onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
                     

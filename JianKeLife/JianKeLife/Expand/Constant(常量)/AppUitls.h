@@ -14,11 +14,11 @@
 #define SERVICEURL @"http://jkl-mapi.pdl001.com" // 测试环境
 //#define SERVICEURL @"http://192.168.5.126:8053"
 #else
-#define SERVICEURL @" https://mapi.xianshijian.com" // 正式环境
+#define SERVICEURL @"https://mapi.xianshijian.com" // 正式环境
 #endif
 
 static NSString *const TalkingData_ChannelId = @"AppStore";
-static NSString *const AppName = @"今日值享";
+static NSString *const AppName = @"值享";
 static NSString *const APPLOGO = @"LOGO";
 static NSString *const AppScheme = @"jiankelife";
 static NSString *const AMapKey = @"d40775054eee7a471c44abbf3760b95c";

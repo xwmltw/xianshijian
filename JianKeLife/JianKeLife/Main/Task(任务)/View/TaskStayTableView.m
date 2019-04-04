@@ -29,7 +29,6 @@
         self.taskViewModel.taskType = TaskTableViewTypeStay;
         if ([UserInfo sharedInstance].isSignIn){
             [self.taskViewModel requestTaskData];
-
         }
         
         BLOCKSELF
