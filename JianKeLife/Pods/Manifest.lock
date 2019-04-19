@@ -50,6 +50,7 @@ PODS:
     - SDWebImage/Core (= 4.4.6)
   - SDWebImage/Core (4.4.6)
   - VerifyCode (3.0.1)
+  - WMPageController (2.5.2)
 
 DEPENDENCIES:
   - AFNetworking
@@ -69,6 +70,7 @@ DEPENDENCIES:
   - SDCycleScrollView (~> 1.75)
   - SDWebImage
   - VerifyCode
+  - WMPageController
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -86,6 +88,7 @@ SPEC REPOS:
     - SDCycleScrollView
     - SDWebImage
     - VerifyCode
+    - WMPageController
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
@@ -102,7 +105,8 @@ SPEC CHECKSUMS:
   SDCycleScrollView: 884b88f0266dd4708a0e1934975c69cb971707b1
   SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
   VerifyCode: 27f855fd71ebd567521c8d052bd7e8d76a151e4c
+  WMPageController: 0c7624d2b48e4f1ab92371688cf6744ed701575d
 
-PODFILE CHECKSUM: 2d680449cbfcf3588278c0841d5ffb830d346ec8
+PODFILE CHECKSUM: 34d6862fa2b40e832a038930e2e5ddfbddc5ecd4
 
 COCOAPODS: 1.5.3

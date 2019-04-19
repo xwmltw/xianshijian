@@ -24,6 +24,13 @@
 		0436DD1E224381F2006476C2 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0436DD1D224381F2006476C2 /* UserInfo.m */; };
 		0436DD2122438906006476C2 /* XCountDownButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0436DD2022438906006476C2 /* XCountDownButton.m */; };
 		0436DD2422438D59006476C2 /* BaseParamModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0436DD2322438D59006476C2 /* BaseParamModel.m */; };
+		0449CDA722685C670051817C /* MyorderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0449CDA622685C670051817C /* MyorderVC.m */; };
+		0449CDAD226881800051817C /* MyOrderTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0449CDAB226881800051817C /* MyOrderTableVC.m */; };
+		0449CDAE226881800051817C /* MyOrderTableVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0449CDAC226881800051817C /* MyOrderTableVC.xib */; };
+		0449CDB1226885BD0051817C /* MyOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0449CDB0226885BD0051817C /* MyOrderTableViewCell.m */; };
+		0449CDB3226885C70051817C /* MyOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0449CDB2226885C70051817C /* MyOrderTableViewCell.xib */; };
+		0449CDB62269BB750051817C /* MyOrderViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0449CDB52269BB750051817C /* MyOrderViewModel.m */; };
+		0449CDBA2269D3040051817C /* MyOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0449CDB92269D3040051817C /* MyOrderModel.m */; };
 		045E1758224DB52300323B55 /* MyPersonShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 045E1757224DB52300323B55 /* MyPersonShareView.m */; };
 		045E175A224DB53400323B55 /* MyPersonShareView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 045E1759224DB53400323B55 /* MyPersonShareView.xib */; };
 		045E175E224DC7E700323B55 /* RuleAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 045E175D224DC7E700323B55 /* RuleAlertView.m */; };
@@ -202,6 +209,19 @@
 		0436DD2022438906006476C2 /* XCountDownButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCountDownButton.m; sourceTree = "<group>"; };
 		0436DD2222438D59006476C2 /* BaseParamModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseParamModel.h; sourceTree = "<group>"; };
 		0436DD2322438D59006476C2 /* BaseParamModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseParamModel.m; sourceTree = "<group>"; };
+		0449CDA522685C670051817C /* MyorderVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyorderVC.h; sourceTree = "<group>"; };
+		0449CDA622685C670051817C /* MyorderVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyorderVC.m; sourceTree = "<group>"; };
+		0449CDAA226881800051817C /* MyOrderTableVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyOrderTableVC.h; sourceTree = "<group>"; };
+		0449CDAB226881800051817C /* MyOrderTableVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyOrderTableVC.m; sourceTree = "<group>"; };
+		0449CDAC226881800051817C /* MyOrderTableVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyOrderTableVC.xib; sourceTree = "<group>"; };
+		0449CDAF226885BD0051817C /* MyOrderTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyOrderTableViewCell.h; sourceTree = "<group>"; };
+		0449CDB0226885BD0051817C /* MyOrderTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyOrderTableViewCell.m; sourceTree = "<group>"; };
+		0449CDB2226885C70051817C /* MyOrderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyOrderTableViewCell.xib; sourceTree = "<group>"; };
+		0449CDB42269BB750051817C /* MyOrderViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyOrderViewModel.h; sourceTree = "<group>"; };
+		0449CDB52269BB750051817C /* MyOrderViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyOrderViewModel.m; sourceTree = "<group>"; };
+		0449CDB72269CD530051817C /* Enum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enum.h; sourceTree = "<group>"; };
+		0449CDB82269D3040051817C /* MyOrderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyOrderModel.h; sourceTree = "<group>"; };
+		0449CDB92269D3040051817C /* MyOrderModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyOrderModel.m; sourceTree = "<group>"; };
 		045E1756224DB52300323B55 /* MyPersonShareView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyPersonShareView.h; sourceTree = "<group>"; };
 		045E1757224DB52300323B55 /* MyPersonShareView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyPersonShareView.m; sourceTree = "<group>"; };
 		045E1759224DB53400323B55 /* MyPersonShareView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPersonShareView.xib; sourceTree = "<group>"; };
@@ -506,6 +526,25 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		0449CDA822685D620051817C /* 我的任务 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "我的任务";
+			sourceTree = "<group>";
+		};
+		0449CDA922685D710051817C /* 我的订单 */ = {
+			isa = PBXGroup;
+			children = (
+				0449CDA522685C670051817C /* MyorderVC.h */,
+				0449CDA622685C670051817C /* MyorderVC.m */,
+				0449CDAA226881800051817C /* MyOrderTableVC.h */,
+				0449CDAB226881800051817C /* MyOrderTableVC.m */,
+				0449CDAC226881800051817C /* MyOrderTableVC.xib */,
+			);
+			path = "我的订单";
+			sourceTree = "<group>";
+		};
 		045E9BC0222E67710084B777 /* Base(基础类) */ = {
 			isa = PBXGroup;
 			children = (
@@ -679,6 +718,7 @@
 		04616FDE222D08CB00E46B40 /* Macros(宏) */ = {
 			isa = PBXGroup;
 			children = (
+				0449CDB72269CD530051817C /* Enum.h */,
 				04617022222D1C3900E46B40 /* BaseMacros.h */,
 			);
 			path = "Macros(宏)";
@@ -894,6 +934,8 @@
 				04CB940D224B0E5F00C9DF13 /* CashWithdrawalModel.m */,
 				04AECC9B224B95EE00410304 /* ExpectModel.h */,
 				04AECC9C224B95EE00410304 /* ExpectModel.m */,
+				0449CDB82269D3040051817C /* MyOrderModel.h */,
+				0449CDB92269D3040051817C /* MyOrderModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -923,6 +965,9 @@
 				04AECC96224B8ED600410304 /* ExpectTableView.m */,
 				04AECC98224B933500410304 /* ExpectTableViewCell.h */,
 				04AECC99224B933500410304 /* ExpectTableViewCell.m */,
+				0449CDAF226885BD0051817C /* MyOrderTableViewCell.h */,
+				0449CDB0226885BD0051817C /* MyOrderTableViewCell.m */,
+				0449CDB2226885C70051817C /* MyOrderTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -932,6 +977,8 @@
 			children = (
 				0487150A223F769D00679095 /* MyVC.h */,
 				0487150B223F769D00679095 /* MyVC.m */,
+				0449CDA922685D710051817C /* 我的订单 */,
+				0449CDA822685D620051817C /* 我的任务 */,
 				0467C30D2248DA27002F5344 /* 用户信息 */,
 				0467C30C2248DA13002F5344 /* 反馈 */,
 				04E7713922425B2500C6E7CE /* 设置 */,
@@ -948,6 +995,8 @@
 				04BD114F224A077D0033B774 /* ProfitViewModel.m */,
 				04AECC9E224B9B6D00410304 /* ExpectViewModel.h */,
 				04AECC9F224B9B6D00410304 /* ExpectViewModel.m */,
+				0449CDB42269BB750051817C /* MyOrderViewModel.h */,
+				0449CDB52269BB750051817C /* MyOrderViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1390,6 +1439,7 @@
 				04CB9413224B14C500C9DF13 /* SetWalletPasswordView.xib in Resources */,
 				04BD114D224A03A80033B774 /* ProfitTableViewCell.xib in Resources */,
 				04BD117C224A57930033B774 /* WalletTableViewCell.xib in Resources */,
+				0449CDB3226885C70051817C /* MyOrderTableViewCell.xib in Resources */,
 				0411214A2240E98E003D7F2D /* ConnectionsVC.xib in Resources */,
 				B33F95762250A8760057DB03 /* UnLogin.xib in Resources */,
 				04BD1181224A5CC50033B774 /* CashWithdrawalVC.xib in Resources */,
@@ -1406,6 +1456,7 @@
 				045E1760224DC7F200323B55 /* RuleAlertView.xib in Resources */,
 				04B2A9D82251A01C0094A44B /* XWPhotoCell.xib in Resources */,
 				04616FC3222CF66300E46B40 /* Main.storyboard in Resources */,
+				0449CDAE226881800051817C /* MyOrderTableVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1490,6 +1541,7 @@
 				04BD117B224A57930033B774 /* WalletTableViewCell.m in Sources */,
 				04B2AA042251A1A90094A44B /* JJPhotoManeger.m in Sources */,
 				04B2A9EC2251A12B0094A44B /* MShowGroupAllSet.m in Sources */,
+				0449CDA722685C670051817C /* MyorderVC.m in Sources */,
 				04AECC97224B8ED600410304 /* ExpectTableView.m in Sources */,
 				B319BF34224748F800C602EA /* JobDetailViewModel.m in Sources */,
 				04BD1163224A112A0033B774 /* FSMediaPicker.m in Sources */,
@@ -1556,6 +1608,7 @@
 				04BD1168224A15C00033B774 /* EMSettingActionCell.m in Sources */,
 				04B2AA112251A1C50094A44B /* SDDemoItemView.m in Sources */,
 				04B2A9D72251A01C0094A44B /* XWPhotoCell.m in Sources */,
+				0449CDBA2269D3040051817C /* MyOrderModel.m in Sources */,
 				04CB940E224B0E5F00C9DF13 /* CashWithdrawalModel.m in Sources */,
 				0476AA102237611C00EF7C8E /* UIImage+Extension.m in Sources */,
 				04616FE8222D09D900E46B40 /* UINavigationBar+SetElement.m in Sources */,
@@ -1567,9 +1620,11 @@
 				0461701E222D195400E46B40 /* XDeviceHelper.m in Sources */,
 				04B2AA022251A1A90094A44B /* JJOneScrollView.m in Sources */,
 				04AECCA4224BB01400410304 /* GetBackWalletVC.m in Sources */,
+				0449CDB1226885BD0051817C /* MyOrderTableViewCell.m in Sources */,
 				B34FACE2224D189400F3E3E1 /* MyPersonSecondVC.m in Sources */,
 				04B2AA032251A1A90094A44B /* JJMainScrollView.m in Sources */,
 				04CB9411224B14B700C9DF13 /* SetWalletPasswordView.m in Sources */,
+				0449CDAD226881800051817C /* MyOrderTableVC.m in Sources */,
 				04AECCA0224B9B6D00410304 /* ExpectViewModel.m in Sources */,
 				04BD1148224A02860033B774 /* ProfitTableView.m in Sources */,
 				04E7714A22426AE300C6E7CE /* JobDetailTableView.m in Sources */,
@@ -1587,6 +1642,7 @@
 				0461701D222D195400E46B40 /* UserLocation.m in Sources */,
 				04616FDD222D088D00E46B40 /* NetWorkManager.m in Sources */,
 				048B76DC22530117000C46C6 /* WSLWaterFlowLayout.m in Sources */,
+				0449CDB62269BB750051817C /* MyOrderViewModel.m in Sources */,
 				045E1758224DB52300323B55 /* MyPersonShareView.m in Sources */,
 				04BD1161224A112A0033B774 /* GKImageCropViewController.m in Sources */,
 				04E15A2B224C70C000D0222E /* TaskViewModel.m in Sources */,
@@ -1734,8 +1790,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G2U8W394PJ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/JianKeLife/Prefix.pch";
 				INFOPLIST_FILE = JianKeLife/Info.plist;
@@ -1760,8 +1816,8 @@
 			baseConfigurationReference = 860F8E05AEC6477F1F3F78B0 /* Pods-JianKeLife.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G2U8W394PJ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/JianKeLife/Prefix.pch";
@@ -1777,7 +1833,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xsj.jiankelife;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "jinzi-dis";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

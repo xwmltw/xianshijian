@@ -25,6 +25,7 @@
 #import "BaseMacros.h"
 #import "BaseParamModel.h"
 #import "AppUitls.h"
+#import "Enum.h"
 #import "BaseMainNC.h"
 #import "UserInfo.h"
 #import "ProgressHUD.h"

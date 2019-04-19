@@ -185,7 +185,7 @@
                 break;
             case 1022:
             {
-                MyLog(@"%@",dic[@"productShareUrl"]);
+//                MyLog(@"%@",dic[@"productShareUrl"]);
                 NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
                 [shareParams SSDKSetupShareParamsByText:blockSelf.tableView.jobDetailViewModel.productModel.productGroupOrientedDesc
                                                  images:[UIImage convertViewToImage:blockSelf.qrCodeView.QRcodeDownView]
@@ -193,8 +193,22 @@
                                                   title:blockSelf.tableView.jobDetailViewModel.productModel.productTitle
                                                    type:SSDKContentTypeAuto];
                 [ShareSDK share:SSDKPlatformSubTypeWechatSession parameters:shareParams onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
-                    
+
                 }];
+                //小程序分享
+//                [shareParams SSDKSetupWeChatMiniProgramShareParamsByTitle:@"我是天才"
+//                                                              description:@"我是天才"
+//                                                               webpageUrl:[NSURL URLWithString:@"https://www.baidu.com/"]
+//                                                                     path:@"pages/home/main"
+//                                                               thumbImage:nil
+//                                                             hdThumbImage:nil
+//                                                                 userName:@"gh_498c3f38a98d"
+//                                                          withShareTicket:YES
+//                                                          miniProgramType:0
+//                                                       forPlatformSubType:SSDKPlatformSubTypeWechatSession];
+//                [ShareSDK share:SSDKPlatformSubTypeWechatSession parameters:shareParams onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
+//
+//                }];
             }
                 break;
             case 1023:

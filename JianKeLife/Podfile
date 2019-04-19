@@ -20,4 +20,5 @@ pod 'mob_sharesdk/ShareSDKPlatforms/QQ'
 pod 'mob_sharesdk/ShareSDKPlatforms/SinaWeibo'
 #pod 'mob_sharesdk/ShareSDKPlatforms/WeChat'
 pod 'mob_sharesdk/ShareSDKPlatforms/WeChatFull'
+pod 'WMPageController'
 end

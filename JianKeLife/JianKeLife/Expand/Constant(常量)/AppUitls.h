@@ -18,7 +18,7 @@
 #endif
 
 static NSString *const TalkingData_ChannelId = @"AppStore";
-static NSString *const AppName = @"值享";
+static NSString *const AppName = @"包里有钱";
 static NSString *const APPLOGO = @"LOGO";
 static NSString *const AppScheme = @"jiankelife";
 static NSString *const AMapKey = @"d40775054eee7a471c44abbf3760b95c";
@@ -76,4 +76,7 @@ static NSString *const WXLoginNotification = @"WXLoginNotification";
 #define Xget_connections_info       @"/mapi/ctm/get_connections_info"//获取人脉信息
 #define Xget_first_connections_info @"/mapi/ctm/get_first_connections_info"//一级人脉
 #define Xget_second_connections_info       @"/mapi/ctm/get_second_connections_info"//二级人脉
+
+#define Xtb_order_list              @"/mapi/union/tb_order/list"//淘宝订单列表
+
 #endif /* AppUitls_h */

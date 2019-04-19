@@ -232,7 +232,7 @@
         [heardView2 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(view).offset(AdaptationWidth(16));
             make.right.mas_equalTo(view).offset(AdaptationWidth(-16));
-            make.top.mas_equalTo(heardView.mas_bottom).offset(AdaptationWidth(10));
+            make.top.mas_equalTo(heardView.mas_bottom).offset(AdaptationWidth(6));
             make.height.mas_equalTo(AdaptationWidth(67));
         }];
         
@@ -280,11 +280,175 @@
             make.right.mas_equalTo(heardView2).offset(AdaptationWidth(-15));
             make.bottom.mas_equalTo(heardView2).offset(AdaptationWidth(-11));
         }];
+        
+        
+        UIView *heardView3 = [[UIView alloc]init];
+        [heardView3 setCornerValue:4];
+        heardView3.backgroundColor = [UIColor whiteColor];
+        [view addSubview:heardView3];
+        [heardView3 mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(view).offset(AdaptationWidth(16));
+            make.right.mas_equalTo(view).offset(AdaptationWidth(-16));
+            make.top.mas_equalTo(heardView2.mas_bottom).offset(AdaptationWidth(6));
+            make.height.mas_equalTo(AdaptationWidth(119));
+        }];
+        
+        UILabel *myOrderLab = [[UILabel alloc]init];
+        [myOrderLab setText:@"我的订单"];
+        [myOrderLab setFont:[UIFont systemFontOfSize:AdaptationWidth(16)]];
+        [myOrderLab setTextColor:LabelMainColor];
+        [heardView3 addSubview:myOrderLab];
+        [myOrderLab mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(heardView3).offset(AdaptationWidth(16));
+            make.top.mas_equalTo(heardView3).offset(AdaptationWidth(8));
+        }];
+        
+        UIButton *allBtn1 = [[UIButton alloc]init];
+        allBtn1.tag = 406;
+        [allBtn1 setTitle:@"查看全部" forState:UIControlStateNormal];
+        [allBtn1 setImage:[UIImage imageNamed:@"icon_whilt_箭头"] forState:UIControlStateNormal];
+        allBtn1.titleEdgeInsets = UIEdgeInsetsMake(0, -30, 0, 0);
+        allBtn1.imageEdgeInsets = UIEdgeInsetsMake(0, AdaptationWidth(60), 0, 0);
+        [allBtn1 setTitleColor:LabelAssistantColor forState:UIControlStateNormal];
+        [allBtn1.titleLabel setFont:[UIFont systemFontOfSize:AdaptationWidth(14)]];
+        [allBtn1 addTarget:self action:@selector(btnOnClock:) forControlEvents:UIControlEventTouchUpInside];
+        [heardView3 addSubview:allBtn1];
+        [allBtn1 mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(heardView3).offset(AdaptationWidth(-16));
+            make.top.mas_equalTo(heardView3).offset(AdaptationWidth(13));
+        }];
+        
+        UIButton *orderBtn1 = [[UIButton alloc]init];
+        orderBtn1.tag = 407;
+        [orderBtn1 setTitle:@"已付款" forState:UIControlStateNormal];
+        [orderBtn1 setImage:[UIImage imageNamed:@"icon_Paid"] forState:UIControlStateNormal];
+        orderBtn1.titleEdgeInsets = UIEdgeInsetsMake(AdaptationWidth(55), -44, 0, 0);
+        orderBtn1.imageEdgeInsets = UIEdgeInsetsMake(0, AdaptationWidth(17), 0, 0);
+        [orderBtn1 setTitleColor:blueColor forState:UIControlStateNormal];
+        [orderBtn1.titleLabel setFont:[UIFont systemFontOfSize:AdaptationWidth(14)]];
+        [orderBtn1 addTarget:self action:@selector(btnOnClock:) forControlEvents:UIControlEventTouchUpInside];
+        [heardView3 addSubview:orderBtn1];
+        [orderBtn1 mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(heardView3).multipliedBy(0.4);
+            make.top.mas_equalTo(heardView3).offset(AdaptationWidth(43));
+        }];
+        
+        UIButton *orderBtn2 = [[UIButton alloc]init];
+        orderBtn2.tag = 408;
+        [orderBtn2 setTitle:@"已结算" forState:UIControlStateNormal];
+        [orderBtn2 setImage:[UIImage imageNamed:@"icon_Settled"] forState:UIControlStateNormal];
+        orderBtn2.titleEdgeInsets = UIEdgeInsetsMake(AdaptationWidth(55), -44, 0, 0);
+        orderBtn2.imageEdgeInsets = UIEdgeInsetsMake(0, AdaptationWidth(17), 0, 0);
+        [orderBtn2 setTitleColor:blueColor forState:UIControlStateNormal];
+        [orderBtn2.titleLabel setFont:[UIFont systemFontOfSize:AdaptationWidth(14)]];
+        [orderBtn2 addTarget:self action:@selector(btnOnClock:) forControlEvents:UIControlEventTouchUpInside];
+        [heardView3 addSubview:orderBtn2];
+        [orderBtn2 mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(heardView3).multipliedBy(1);
+            make.top.mas_equalTo(heardView3).offset(AdaptationWidth(43));
+        }];
+        
+        UIButton *orderBtn3 = [[UIButton alloc]init];
+        orderBtn3.tag = 409;
+        [orderBtn3 setTitle:@"已失效" forState:UIControlStateNormal];
+        [orderBtn3 setImage:[UIImage imageNamed:@"icon_Failure"] forState:UIControlStateNormal];
+        orderBtn3.titleEdgeInsets = UIEdgeInsetsMake(AdaptationWidth(55), -44, 0, 0);
+        orderBtn3.imageEdgeInsets = UIEdgeInsetsMake(0, AdaptationWidth(17), 0, 0);
+        [orderBtn3 setTitleColor:blueColor forState:UIControlStateNormal];
+        [orderBtn3.titleLabel setFont:[UIFont systemFontOfSize:AdaptationWidth(14)]];
+        [orderBtn3 addTarget:self action:@selector(btnOnClock:) forControlEvents:UIControlEventTouchUpInside];
+        [heardView3 addSubview:orderBtn3];
+        [orderBtn3 mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(heardView3).multipliedBy(1.6);
+            make.top.mas_equalTo(heardView3).offset(AdaptationWidth(43));
+        }];
+        
+        UIView *heardView4 = [[UIView alloc]init];
+        [heardView4 setCornerValue:4];
+        heardView4.backgroundColor = [UIColor whiteColor];
+        [view addSubview:heardView4];
+        [heardView4 mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(view).offset(AdaptationWidth(16));
+            make.right.mas_equalTo(view).offset(AdaptationWidth(-16));
+            make.top.mas_equalTo(heardView3.mas_bottom).offset(AdaptationWidth(6));
+            make.height.mas_equalTo(AdaptationWidth(119));
+        }];
+        
+        UILabel *myTaskLab = [[UILabel alloc]init];
+        [myTaskLab setText:@"我的任务"];
+        [myTaskLab setFont:[UIFont systemFontOfSize:AdaptationWidth(16)]];
+        [myTaskLab setTextColor:LabelMainColor];
+        [heardView4 addSubview:myTaskLab];
+        [myTaskLab mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(heardView4).offset(AdaptationWidth(16));
+            make.top.mas_equalTo(heardView4).offset(AdaptationWidth(8));
+        }];
+        
+        UIButton *allBtn2 = [[UIButton alloc]init];
+        allBtn2.tag = 410;
+        [allBtn2 setTitle:@"查看全部" forState:UIControlStateNormal];
+        [allBtn2 setImage:[UIImage imageNamed:@"icon_whilt_箭头"] forState:UIControlStateNormal];
+        allBtn2.titleEdgeInsets = UIEdgeInsetsMake(0, -30, 0, 0);
+        allBtn2.imageEdgeInsets = UIEdgeInsetsMake(0, AdaptationWidth(60), 0, 0);
+        [allBtn2 setTitleColor:LabelAssistantColor forState:UIControlStateNormal];
+        [allBtn2.titleLabel setFont:[UIFont systemFontOfSize:AdaptationWidth(14)]];
+        [allBtn2 addTarget:self action:@selector(btnOnClock:) forControlEvents:UIControlEventTouchUpInside];
+        [heardView4 addSubview:allBtn2];
+        [allBtn2 mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(heardView4).offset(AdaptationWidth(-16));
+            make.top.mas_equalTo(heardView4).offset(AdaptationWidth(13));
+        }];
+        
+        UIButton *taskBtn1 = [[UIButton alloc]init];
+        taskBtn1.tag = 411;
+        [taskBtn1 setTitle:@"待返佣" forState:UIControlStateNormal];
+        [taskBtn1 setImage:[UIImage imageNamed:@"icon_task_stay"] forState:UIControlStateNormal];
+        taskBtn1.titleEdgeInsets = UIEdgeInsetsMake(AdaptationWidth(55), -44, 0, 0);
+        taskBtn1.imageEdgeInsets = UIEdgeInsetsMake(0, AdaptationWidth(17), 0, 0);
+        [taskBtn1 setTitleColor:blueColor forState:UIControlStateNormal];
+        [taskBtn1.titleLabel setFont:[UIFont systemFontOfSize:AdaptationWidth(14)]];
+        [taskBtn1 addTarget:self action:@selector(btnOnClock:) forControlEvents:UIControlEventTouchUpInside];
+        [heardView4 addSubview:taskBtn1];
+        [taskBtn1 mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(heardView4).multipliedBy(0.4);
+            make.top.mas_equalTo(heardView4).offset(AdaptationWidth(43));
+        }];
+        
+        UIButton *taskBtn2 = [[UIButton alloc]init];
+        taskBtn2.tag = 412;
+        [taskBtn2 setTitle:@"进行中" forState:UIControlStateNormal];
+        [taskBtn2 setImage:[UIImage imageNamed:@"icon_task_ing"] forState:UIControlStateNormal];
+        taskBtn2.titleEdgeInsets = UIEdgeInsetsMake(AdaptationWidth(55), -44, 0, 0);
+        taskBtn2.imageEdgeInsets = UIEdgeInsetsMake(0, AdaptationWidth(17), 0, 0);
+        [taskBtn2 setTitleColor:blueColor forState:UIControlStateNormal];
+        [taskBtn2.titleLabel setFont:[UIFont systemFontOfSize:AdaptationWidth(14)]];
+        [taskBtn2 addTarget:self action:@selector(btnOnClock:) forControlEvents:UIControlEventTouchUpInside];
+        [heardView4 addSubview:taskBtn2];
+        [taskBtn2 mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(heardView4).multipliedBy(1);
+            make.top.mas_equalTo(heardView4).offset(AdaptationWidth(43));
+        }];
+        
+        UIButton *taskBtn3 = [[UIButton alloc]init];
+        taskBtn3.tag = 413;
+        [taskBtn3 setTitle:@"已完结" forState:UIControlStateNormal];
+        [taskBtn3 setImage:[UIImage imageNamed:@"icon_Failure"] forState:UIControlStateNormal];
+        taskBtn3.titleEdgeInsets = UIEdgeInsetsMake(AdaptationWidth(55), -44, 0, 0);
+        taskBtn3.imageEdgeInsets = UIEdgeInsetsMake(0, AdaptationWidth(17), 0, 0);
+        [taskBtn3 setTitleColor:blueColor forState:UIControlStateNormal];
+        [taskBtn3.titleLabel setFont:[UIFont systemFontOfSize:AdaptationWidth(14)]];
+        [taskBtn3 addTarget:self action:@selector(btnOnClock:) forControlEvents:UIControlEventTouchUpInside];
+        [heardView4 addSubview:taskBtn3];
+        [taskBtn3 mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(heardView4).multipliedBy(1.6);
+            make.top.mas_equalTo(heardView4).offset(AdaptationWidth(43));
+        }];
+        
     }
     
     
    
-    headerBtn.tag = 406;
+//    headerBtn.tag = 406;
     [headerBtn setCornerValue:AdaptationHeight(30)];
     [headerBtn addTarget:self action:@selector(btnOnClock:) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:headerBtn];
@@ -301,7 +465,11 @@
     return view;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return AdaptationWidth(303);
+    if ([[UserInfo sharedInstance]isSignIn]) {
+        return AdaptationWidth(558);
+    }else{
+        return AdaptationWidth(303);
+    }
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 4;
@@ -346,41 +514,42 @@
             make.right.mas_equalTo(cell);
             make.height.mas_equalTo(AdaptationWidth(1));
         }];
+        switch (indexPath.row) {
+            case 0:
+                [cellImage setImage:[UIImage imageNamed:@"icon_feedback"]];
+                [cellDetail setText:@"意见反馈"];
+                break;
+            case 1:
+            {
+                [cellImage setImage:[UIImage imageNamed:@"icon_contact"]];
+                [cellDetail setText:@"联系客服"];
+                cellRightImage.hidden = YES;
+                UILabel *telLab = [[UILabel alloc]init];
+                telLab.text  = [ClientGlobalInfo getClientGlobalInfoModel].customerContact;
+                [telLab setFont:[UIFont systemFontOfSize:AdaptationWidth(14)]];
+                [telLab setTextColor:LabelAssistantColor];
+                [cell.contentView addSubview:telLab];
+                [telLab mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.right.mas_equalTo(cell).offset(AdaptationWidth(-16));
+                    make.centerY.mas_equalTo(cell);
+                }];
+            }
+                break;
+            case 2:
+                [cellImage setImage:[UIImage imageNamed:@"icon_about"]];
+                [cellDetail setText:@"关于我们"];
+                break;
+            case 3:
+                [cellImage setImage:[UIImage imageNamed:@"icon_setting"]];
+                [cellDetail setText:@"设置"];
+                break;
+                
+            default:
+                break;
+        }
         
     }
-    switch (indexPath.row) {
-        case 0:
-            [cellImage setImage:[UIImage imageNamed:@"icon_feedback"]];
-            [cellDetail setText:@"意见反馈"];
-            break;
-        case 1:
-        {
-            [cellImage setImage:[UIImage imageNamed:@"icon_contact"]];
-            [cellDetail setText:@"联系客服"];
-            cellRightImage.hidden = YES;
-            UILabel *telLab = [[UILabel alloc]init];
-            telLab.text  = [ClientGlobalInfo getClientGlobalInfoModel].customerContact;
-            [telLab setFont:[UIFont systemFontOfSize:AdaptationWidth(14)]];
-            [telLab setTextColor:LabelAssistantColor];
-            [cell.contentView addSubview:telLab];
-            [telLab mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.right.mas_equalTo(cell).offset(AdaptationWidth(-16));
-                make.centerY.mas_equalTo(cell);
-            }];
-        }
-            break;
-        case 2:
-            [cellImage setImage:[UIImage imageNamed:@"icon_about"]];
-            [cellDetail setText:@"关于我们"];
-            break;
-        case 3:
-            [cellImage setImage:[UIImage imageNamed:@"icon_setting"]];
-            [cellDetail setText:@"设置"];
-            break;
-            
-        default:
-            break;
-    }
+    
     
     
     return cell;

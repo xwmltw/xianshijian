@@ -18,6 +18,8 @@
 #import "ExpectVC.h"
 #import "LoginVC.h"
 
+#import "MyorderVC.h"
+
 @interface MyVC ()
 @property (nonatomic ,strong) MyTableView *tableView;
 @end
@@ -140,6 +142,40 @@
                 vc.hidesBottomBarWhenPushed = YES;
                 [weakSelf.navigationController pushViewController:vc animated:YES];
                 }
+                break;
+            case 406:{
+                MyorderVC *vc = [[MyorderVC alloc]init];
+                vc.hidesBottomBarWhenPushed = YES;
+                [weakSelf.navigationController pushViewController:vc animated:YES];
+            }
+                break;
+            case 407:{
+                
+            }
+                break;
+            case 408:{
+                
+            }
+                break;
+            case 409:{
+                
+            }
+                break;
+            case 410:{
+                
+            }
+                break;
+            case 411:{
+                
+            }
+                break;
+            case 412:{
+                
+            }
+                break;
+            case 413:{
+                
+            }
                 break;
             default:
                 break;

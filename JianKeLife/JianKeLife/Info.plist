@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>值享</string>
+	<string>包里有钱</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -65,6 +65,16 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>wb851868372</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>xiaochengxu</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>wx01634404e84356db</string>
 			</array>
 		</dict>
 	</array>
