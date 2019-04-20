@@ -9,16 +9,16 @@
 #import <Foundation/Foundation.h>
 #import "TaskModel.h"
 
-typedef NS_ENUM(NSInteger ,TaskTableViewType) {
-    TaskTableViewTypeStay = 1,
-    TaskTableViewTypeIng,
-    TaskTableViewTypeOver,
-};
+//typedef NS_ENUM(NSInteger ,TaskTableViewType) {
+//    TaskTableViewTypeStay = 1,
+//    TaskTableViewTypeIng,
+//    TaskTableViewTypeOver,
+//};
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TaskViewModel : NSObject
-@property (nonatomic ,assign) TaskTableViewType taskType;
+@property (nonatomic ,assign) MyTaskTableViewType taskType;
 @property (nonatomic ,strong) TaskModel *taskModel;
 @property (nonatomic, strong) PageQueryRedModel *pageQueryRedModel;
 @property (nonatomic, strong) NSMutableArray *taskList;

@@ -148,6 +148,9 @@
 		04CB9413224B14C500C9DF13 /* SetWalletPasswordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CB9412224B14C500C9DF13 /* SetWalletPasswordView.xib */; };
 		04CB941A224B4D7600C9DF13 /* InPutPasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CB9419224B4D7600C9DF13 /* InPutPasswordView.m */; };
 		04CB941C224B4DC300C9DF13 /* InPutPasswordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CB941B224B4DC300C9DF13 /* InPutPasswordView.xib */; };
+		04DB3CDA226AF15300481B41 /* MyTaskVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DB3CD9226AF15300481B41 /* MyTaskVC.m */; };
+		04DB3CDE226AF17600481B41 /* MytasktableViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DB3CDC226AF17600481B41 /* MytasktableViewVC.m */; };
+		04DB3CDF226AF17600481B41 /* MytasktableViewVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04DB3CDD226AF17600481B41 /* MytasktableViewVC.xib */; };
 		04E15A2B224C70C000D0222E /* TaskViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E15A2A224C70C000D0222E /* TaskViewModel.m */; };
 		04E15A2E224C70F500D0222E /* TaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E15A2D224C70F500D0222E /* TaskModel.m */; };
 		04E15A31224CB29C00D0222E /* TaskDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E15A30224CB29C00D0222E /* TaskDetailVC.m */; };
@@ -432,6 +435,11 @@
 		04CB9418224B4D7600C9DF13 /* InPutPasswordView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InPutPasswordView.h; sourceTree = "<group>"; };
 		04CB9419224B4D7600C9DF13 /* InPutPasswordView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InPutPasswordView.m; sourceTree = "<group>"; };
 		04CB941B224B4DC300C9DF13 /* InPutPasswordView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InPutPasswordView.xib; sourceTree = "<group>"; };
+		04DB3CD8226AF15300481B41 /* MyTaskVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyTaskVC.h; sourceTree = "<group>"; };
+		04DB3CD9226AF15300481B41 /* MyTaskVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyTaskVC.m; sourceTree = "<group>"; };
+		04DB3CDB226AF17600481B41 /* MytasktableViewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MytasktableViewVC.h; sourceTree = "<group>"; };
+		04DB3CDC226AF17600481B41 /* MytasktableViewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MytasktableViewVC.m; sourceTree = "<group>"; };
+		04DB3CDD226AF17600481B41 /* MytasktableViewVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MytasktableViewVC.xib; sourceTree = "<group>"; };
 		04E15A29224C70C000D0222E /* TaskViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskViewModel.h; sourceTree = "<group>"; };
 		04E15A2A224C70C000D0222E /* TaskViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskViewModel.m; sourceTree = "<group>"; };
 		04E15A2C224C70F500D0222E /* TaskModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskModel.h; sourceTree = "<group>"; };
@@ -529,6 +537,11 @@
 		0449CDA822685D620051817C /* 我的任务 */ = {
 			isa = PBXGroup;
 			children = (
+				04DB3CD8226AF15300481B41 /* MyTaskVC.h */,
+				04DB3CD9226AF15300481B41 /* MyTaskVC.m */,
+				04DB3CDB226AF17600481B41 /* MytasktableViewVC.h */,
+				04DB3CDC226AF17600481B41 /* MytasktableViewVC.m */,
+				04DB3CDD226AF17600481B41 /* MytasktableViewVC.xib */,
 			);
 			path = "我的任务";
 			sourceTree = "<group>";
@@ -1455,6 +1468,7 @@
 				04112155224106F3003D7F2D /* MyPersonTableViewCell.xib in Resources */,
 				045E1760224DC7F200323B55 /* RuleAlertView.xib in Resources */,
 				04B2A9D82251A01C0094A44B /* XWPhotoCell.xib in Resources */,
+				04DB3CDF226AF17600481B41 /* MytasktableViewVC.xib in Resources */,
 				04616FC3222CF66300E46B40 /* Main.storyboard in Resources */,
 				0449CDAE226881800051817C /* MyOrderTableVC.xib in Resources */,
 			);
@@ -1554,6 +1568,7 @@
 				0461701F222D195400E46B40 /* XCommonHepler.m in Sources */,
 				04BD1177224A540E0033B774 /* WalletTableView.m in Sources */,
 				0436DD2122438906006476C2 /* XCountDownButton.m in Sources */,
+				04DB3CDE226AF17600481B41 /* MytasktableViewVC.m in Sources */,
 				0461701A222D195400E46B40 /* XAlertView.m in Sources */,
 				04E771302242180000C6E7CE /* HomeViewModel.m in Sources */,
 				0436DD2422438D59006476C2 /* BaseParamModel.m in Sources */,
@@ -1631,6 +1646,7 @@
 				04E15A31224CB29C00D0222E /* TaskDetailVC.m in Sources */,
 				04BD1162224A112A0033B774 /* GKImageCropView.m in Sources */,
 				0461701C222D195400E46B40 /* XCacheHelper.m in Sources */,
+				04DB3CDA226AF15300481B41 /* MyTaskVC.m in Sources */,
 				0436DD1E224381F2006476C2 /* UserInfo.m in Sources */,
 				04E15A34224CB64600D0222E /* TaskDetailModel.m in Sources */,
 				04616FBD222CF66300E46B40 /* AppDelegate.m in Sources */,

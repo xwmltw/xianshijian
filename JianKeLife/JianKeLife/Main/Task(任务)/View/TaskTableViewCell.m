@@ -40,7 +40,7 @@
     self.passLab.hidden = YES;
     
     switch (self.taskTableView) {
-        case TaskTableViewTypeStay:
+        case MyTaskTableViewTypeStay:
         {
             self.cellGiveBtn.hidden = NO;
             self.cellGoBtn.hidden = NO;
@@ -58,7 +58,7 @@
              MyLog(@"====%@",[DateHelper getDateTimeFromTimeNumber:model.ctmSubmitDeadTimeLeft]);
     }
             break;
-        case TaskTableViewTypeIng:
+        case MyTaskTableViewTypeIng:
             self.cellGiveBtn.hidden = YES;
             self.cellGoBtn.hidden = YES;
             self.cellLookBtn.hidden = NO;
@@ -72,7 +72,7 @@
             [timerExample start];
            
             break;
-        case TaskTableViewTypeOver:
+        case MyTaskTableViewTypeOver:
             self.cellGiveBtn.hidden = YES;
             self.cellGoBtn.hidden = YES;
             self.cellLookBtn.hidden = YES;

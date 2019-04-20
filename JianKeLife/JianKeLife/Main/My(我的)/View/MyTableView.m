@@ -432,7 +432,7 @@
         UIButton *taskBtn3 = [[UIButton alloc]init];
         taskBtn3.tag = 413;
         [taskBtn3 setTitle:@"已完结" forState:UIControlStateNormal];
-        [taskBtn3 setImage:[UIImage imageNamed:@"icon_Failure"] forState:UIControlStateNormal];
+        [taskBtn3 setImage:[UIImage imageNamed:@"icon_task_over"] forState:UIControlStateNormal];
         taskBtn3.titleEdgeInsets = UIEdgeInsetsMake(AdaptationWidth(55), -44, 0, 0);
         taskBtn3.imageEdgeInsets = UIEdgeInsetsMake(0, AdaptationWidth(17), 0, 0);
         [taskBtn3 setTitleColor:blueColor forState:UIControlStateNormal];

@@ -1,22 +1,22 @@
 //
-//  MyorderVC.m
+//  MyTaskVC.m
 //  JianKeLife
 //
-//  Created by yanqb on 2019/4/18.
+//  Created by yanqb on 2019/4/20.
 //  Copyright © 2019年 xwm. All rights reserved.
 //
 
-#import "MyorderVC.h"
-#import "WMPageController.h"
-#import "MyOrderTableVC.h"
-
-@interface MyorderVC ()<WMPageControllerDataSource>
+#import "MyTaskVC.h"
+#import "MytasktableViewVC.h"
+#import "TaskReturnVC.h"
+#import "TaskDetailVC.h"
+#import "TaskResultVC.h"
+#import "JobDetailVC.h"
+@interface MyTaskVC ()<WMPageControllerDataSource>
 @property (nonatomic, strong) NSArray *titleData;
-//@property (nonatomic ,strong) MyOrderTableVC *myOrderTableVC1;
-
 @end
 
-@implementation MyorderVC
+@implementation MyTaskVC
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
@@ -52,10 +52,8 @@
     
 }
 - (void)viewDidLoad {
-    
-    
     self.titles = self.titleData;
-    self.viewControllerClasses = [NSArray arrayWithObjects:[MyOrderTableVC class], [MyOrderTableVC class],[MyOrderTableVC class],[MyOrderTableVC class], nil];
+    self.viewControllerClasses = [NSArray arrayWithObjects:[MytasktableViewVC class], [MytasktableViewVC class],[MytasktableViewVC class],[MytasktableViewVC class], nil];
     self.titleSizeNormal = AdaptationWidth(16);
     self.titleSizeSelected = AdaptationWidth(16);
     self.menuViewStyle = WMMenuViewStyleLine;
@@ -65,32 +63,15 @@
     self.progressColor = blueColor;
     self.progressWidth = AdaptationWidth(36); // 这里可以设置不同的宽度
     self.progressHeight = 4;//下划线的高度，需要WMMenuViewStyleLine样式
-//这里注意，需要写在最后面，要不然上面的效果不会出现
-
-    switch (self.wmPageSelect) {
-        case MyOrderTableViewTypeAll:
-            self.selectIndex = 0;
-            break;
-        case MyOrderTableViewTypePay:
-            self.selectIndex = 1;
-            break;
-        case MyOrderTableViewTypeOver:
-            self.selectIndex = 2;
-            break;
-        case MyOrderTableViewTypefail:
-            self.selectIndex = 3;
-            break;
-            
-        default:
-            break;
-    }
+    
+    self.selectIndex = self.wmPageSelect;
     
     
+    //这里注意，需要写在最后面，要不然上面的效果不会出现
     [super viewDidLoad];
-    self.title = @"我的订单";
+    self.title = @"我的任务";
     
     [self setBackNavigationBarItem];
-    
 }
 
 #pragma mark - Datasource & Delegate
@@ -107,8 +88,8 @@
     switch (index) {
         case 0:{
             
-            MyOrderTableVC   *vcClass = [[MyOrderTableVC alloc] init];
-            vcClass.myOrderViewModel.viewModelType = MyOrderTableViewTypeAll;
+            MytasktableViewVC   *vcClass = [[MytasktableViewVC alloc] init];
+            vcClass.taskViewModel.taskType = MyTaskTableViewTypeAll;
             
             return vcClass;
         }
@@ -116,23 +97,29 @@
             break;
         case 1:{
             
-            MyOrderTableVC *vcClass = [MyOrderTableVC new];
-            vcClass.myOrderViewModel.viewModelType = MyOrderTableViewTypePay;
+            MytasktableViewVC *vcClass = [MytasktableViewVC new];
+            vcClass.taskViewModel.taskType = MyTaskTableViewTypeStay;
+            vcClass.taskStayBtnBlcok = [self taskBtnBlcok];
+            vcClass.taskStayCellselect = [self taskOverCellBlock];
             return vcClass;
             
         }
             break;
         case 2:{
             
-            MyOrderTableVC *vcClass = [MyOrderTableVC new];
-            vcClass.myOrderViewModel.viewModelType = MyOrderTableViewTypeOver;
+            MytasktableViewVC *vcClass = [MytasktableViewVC new];
+            vcClass.taskViewModel.taskType = MyTaskTableViewTypeIng;
+            vcClass.taskStayBtnBlcok = [self taskBtnBlcok];
+            vcClass.taskStayCellselect = [self taskOverCellBlock];
             return vcClass;
             
         }
             break;
         case 3:{
-            MyOrderTableVC *vcClass = [MyOrderTableVC new];
-            vcClass.myOrderViewModel.viewModelType = MyOrderTableViewTypefail;
+            MytasktableViewVC *vcClass = [MytasktableViewVC new];
+            vcClass.taskViewModel.taskType = MyTaskTableViewTypeOver;
+            vcClass.taskStayBtnBlcok = [self taskResultBlcok];
+            vcClass.taskStayCellselect = [self taskOverCellBlock];
             return vcClass;
         }
             break;
@@ -155,10 +142,66 @@
 - (CGRect)pageController:(WMPageController *)pageController preferredFrameForMenuView:(WMMenuView *)menuView{
     return CGRectMake(0, 0, ScreenWidth, AdaptationWidth(42));
 }
+
+#pragma mark -点击回调
+-(XDoubleBlock)taskBtnBlcok{
+    BLOCKSELF
+    XDoubleBlock block = ^(UIButton * btn,NSDictionary *dic){
+        switch (btn.tag) {
+            case 202:
+            {
+                TaskReturnVC *vc = [[TaskReturnVC alloc]init];
+                vc.productApplyId = dic[@"productApplyId"];
+                vc.productSubmitType = dic[@"productSubmitType"];
+                vc.hidesBottomBarWhenPushed = YES;
+                [blockSelf.navigationController pushViewController:vc animated:YES];
+            }
+                break;
+            case 203:
+            {
+                TaskDetailVC *vc = [[TaskDetailVC alloc]init];
+                vc.model = [TaskModel mj_objectWithKeyValues:dic];
+                vc.hidesBottomBarWhenPushed = YES;
+                [blockSelf.navigationController pushViewController:vc animated:YES];
+            }
+                break;
+                
+            default:
+                break;
+        }
+        
+    };
+    
+    return block;
+}
+//结果
+-(XDoubleBlock)taskResultBlcok{
+    BLOCKSELF
+    XDoubleBlock block = ^(UIButton * btn,id result){
+        TaskResultVC*vc = [[TaskResultVC alloc]init];
+        vc.resultModel = result;
+        vc.hidesBottomBarWhenPushed = YES;
+        [blockSelf.navigationController pushViewController:vc animated:YES];
+    };
+    return block;
+}
+//任务详情
+- (XBlock)taskOverCellBlock{
+    WEAKSELF
+    XBlock block = ^(NSString *proid){
+        JobDetailVC *vc = [[JobDetailVC alloc]init];
+        vc.hidesBottomBarWhenPushed = YES;
+        vc.productNo  = proid;
+        [weakSelf.navigationController pushViewController:vc animated:YES];
+    };
+    return block;
+}
+
+
 #pragma mark 标题数组
 - (NSArray *)titleData {
     if (!_titleData) {
-        _titleData = @[@"全部", @"已付款", @"已结算",@"已失效"];
+        _titleData = @[@"全部", @"待返佣", @"进行中",@"已完成"];
     }
     return _titleData;
 }

@@ -1,8 +1,8 @@
 //
-//  MyorderVC.h
+//  MyTaskVC.h
 //  JianKeLife
 //
-//  Created by yanqb on 2019/4/18.
+//  Created by yanqb on 2019/4/20.
 //  Copyright © 2019年 xwm. All rights reserved.
 //
 
@@ -10,8 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MyorderVC : WMPageController
-@property (nonatomic ,assign) MyOrderTableViewType wmPageSelect;
+@interface MyTaskVC : WMPageController
+@property (nonatomic ,assign) MyTaskTableViewType wmPageSelect;
 @end
 
 NS_ASSUME_NONNULL_END

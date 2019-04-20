@@ -24,7 +24,7 @@
         self.estimatedRowHeight = 0;
         self.mj_header = [self.taskViewModel creatMjRefreshHeader];
         self.mj_footer = [self.taskViewModel creatMjRefresh];
-        self.taskViewModel.taskType = TaskTableViewTypeOver;
+        self.taskViewModel.taskType = MyTaskTableViewTypeOver;
         if ([UserInfo sharedInstance].isSignIn){
             [self.taskViewModel requestTaskData];
         }
@@ -78,7 +78,7 @@
         cell = [[[NSBundle mainBundle]loadNibNamed:@"TaskTableViewCell" owner:self options:nil]lastObject];
         
     }
-    cell.taskTableView = TaskTableViewTypeOver;
+    cell.taskTableView = MyTaskTableViewTypeOver;
     cell.model = [TaskModel mj_objectWithKeyValues:self.taskViewModel.taskList[indexPath.row]];
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;

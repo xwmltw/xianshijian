@@ -19,6 +19,7 @@
 #import "LoginVC.h"
 
 #import "MyorderVC.h"
+#import "MyTaskVC.h"
 
 @interface MyVC ()
 @property (nonatomic ,strong) MyTableView *tableView;
@@ -145,36 +146,58 @@
                 break;
             case 406:{
                 MyorderVC *vc = [[MyorderVC alloc]init];
+                vc.wmPageSelect = MyOrderTableViewTypeAll;
                 vc.hidesBottomBarWhenPushed = YES;
                 [weakSelf.navigationController pushViewController:vc animated:YES];
             }
                 break;
             case 407:{
-                
+                MyorderVC *vc = [[MyorderVC alloc]init];
+                vc.wmPageSelect = MyOrderTableViewTypePay;
+                vc.hidesBottomBarWhenPushed = YES;
+                [weakSelf.navigationController pushViewController:vc animated:YES];
             }
                 break;
             case 408:{
-                
+                MyorderVC *vc = [[MyorderVC alloc]init];
+                vc.wmPageSelect = MyOrderTableViewTypeOver;
+                vc.hidesBottomBarWhenPushed = YES;
+                [weakSelf.navigationController pushViewController:vc animated:YES];
             }
                 break;
             case 409:{
-                
+                MyorderVC *vc = [[MyorderVC alloc]init];
+                vc.wmPageSelect = MyOrderTableViewTypefail;
+                vc.hidesBottomBarWhenPushed = YES;
+                [weakSelf.navigationController pushViewController:vc animated:YES];
             }
                 break;
             case 410:{
-                
+                MyTaskVC *vc = [[MyTaskVC alloc]init];
+                vc.wmPageSelect = MyTaskTableViewTypeAll;
+                vc.hidesBottomBarWhenPushed = YES;
+                [weakSelf.navigationController pushViewController:vc animated:YES];
             }
                 break;
             case 411:{
-                
+                MyTaskVC *vc = [[MyTaskVC alloc]init];
+                vc.wmPageSelect = MyTaskTableViewTypeStay;
+                vc.hidesBottomBarWhenPushed = YES;
+                [weakSelf.navigationController pushViewController:vc animated:YES];
             }
                 break;
             case 412:{
-                
+                MyTaskVC *vc = [[MyTaskVC alloc]init];
+                vc.wmPageSelect = MyTaskTableViewTypeIng;
+                vc.hidesBottomBarWhenPushed = YES;
+                [weakSelf.navigationController pushViewController:vc animated:YES];
             }
                 break;
             case 413:{
-                
+                MyTaskVC *vc = [[MyTaskVC alloc]init];
+                vc.wmPageSelect = MyTaskTableViewTypeOver;
+                vc.hidesBottomBarWhenPushed = YES;
+                [weakSelf.navigationController pushViewController:vc animated:YES];
             }
                 break;
             default:

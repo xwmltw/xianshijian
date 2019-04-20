@@ -1,52 +1,54 @@
 //
-//  TaskStayTableView.m
+//  MytasktableViewVC.m
 //  JianKeLife
 //
-//  Created by yanqb on 2019/3/19.
+//  Created by yanqb on 2019/4/20.
 //  Copyright © 2019年 xwm. All rights reserved.
 //
 
-#import "TaskStayTableView.h"
+#import "MytasktableViewVC.h"
 #import "TaskTableViewCell.h"
-
-
-@interface TaskStayTableView()<UITableViewDelegate,UITableViewDataSource>
+@interface MytasktableViewVC ()
 
 @end
 
-@implementation TaskStayTableView
+@implementation MytasktableViewVC
 
-- (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style{
-    if (self = [super initWithFrame:frame style:style]) {
-        self.delegate = self;
-        self.dataSource = self;
-        [self setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-        self.backgroundColor = XColorWithRGB(248, 248, 248);
-        [self registerNib:[UINib nibWithNibName:@"TaskTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"TaskTableViewCell"];
-        self.mj_header = [self.taskViewModel creatMjRefreshHeader];
-        self.mj_footer = [self.taskViewModel creatMjRefresh];
-        self.estimatedRowHeight = 0;
-        self.taskViewModel.taskType = MyTaskTableViewTypeStay;
-        if ([UserInfo sharedInstance].isSignIn){
-            [self.taskViewModel requestTaskData];
-        }
-        
-        BLOCKSELF
-        [self.taskViewModel setTaskListBlock:^(id result) {
-            [blockSelf.mj_header endRefreshing];
-            [blockSelf.mj_footer endRefreshing];
-            [blockSelf reloadData];
-        }];
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    self.view.backgroundColor = XColorWithRGB(248, 248, 248);
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [self.tableView registerNib:[UINib nibWithNibName:@"TaskTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"TaskTableViewCell"];
+    
+    self.tableView.mj_header = [self.taskViewModel creatMjRefreshHeader];
+    self.tableView.mj_footer = [self.taskViewModel creatMjRefresh];
+    self.tableView.estimatedRowHeight = 0;
+
+    if ([UserInfo sharedInstance].isSignIn){
+        [self.taskViewModel requestTaskData];
     }
-    return self;
+    
+    BLOCKSELF
+    [self.taskViewModel setTaskListBlock:^(id result) {
+        [blockSelf.tableView.mj_header endRefreshing];
+        [blockSelf.tableView.mj_footer endRefreshing];
+        [blockSelf.tableView reloadData];
+    }];
 }
-- (NSInteger)numberOfRowsInSection:(NSInteger)section{
+
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+
     return 1;
 }
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+
     return self.taskViewModel.taskList.count;
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return AdaptationWidth(145);
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
@@ -74,18 +76,16 @@
     
     return  self.taskViewModel.taskList.count ? 0 : ScreenHeight;
 }
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TaskTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TaskTableViewCell"];
     if (!cell) {
-        cell = [[[NSBundle mainBundle]loadNibNamed:@"TaskTableViewCell" owner:self options:nil]lastObject];
-
+        cell = [[TaskTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"TaskTableViewCell"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
     }
-    cell.taskTableView = MyTaskTableViewTypeStay;
+    cell.taskTableView = self.taskViewModel.taskType;
     cell.model = [TaskModel mj_objectWithKeyValues:self.taskViewModel.taskList[indexPath.row]];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-//    cell.taskCellBlock = self.taskStayBtnBlcok;
     [cell setTaskCellBlock:^(id result) {
         XBlockExec(self.taskStayBtnBlcok,result,self.taskViewModel.taskList[indexPath.row]);
     }];
