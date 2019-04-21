@@ -9,10 +9,10 @@
 #import "ExpectVC.h"
 #import "ExpectTableView.h"
 @interface ExpectVC ()<UIScrollViewDelegate>
-@property (nonatomic ,strong) UIScrollView *scrollView;
+//@property (nonatomic ,strong) UIScrollView *scrollView;
 @property (nonatomic ,strong) ExpectTableView *taskTableView;
-@property (nonatomic ,strong) ExpectTableView *shareTableView;
-@property (nonatomic ,strong) ExpectTableView *connectionTableView;
+//@property (nonatomic ,strong) ExpectTableView *shareTableView;
+//@property (nonatomic ,strong) ExpectTableView *connectionTableView;
 
 @end
 
@@ -28,7 +28,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    self.view.backgroundColor = XColorWithRGB(248, 248, 248);
     [self creatUI];
     
 }
@@ -74,173 +74,184 @@
         make.height.width.mas_equalTo(AdaptationWidth(40));
     }];
     //
-    UIButton *taskBtn = [[UIButton alloc]init];
-    taskBtn.tag = 4412;
-    taskBtn.selected = YES;
-    [taskBtn setTitle:@"任务收益" forState:UIControlStateNormal];
-    [taskBtn setTitleColor:LabelAssistantColor forState:UIControlStateNormal];
-    [taskBtn setTitleColor:XColorWithRGB(56, 181, 173) forState:UIControlStateSelected];
-    [taskBtn.titleLabel setFont:[UIFont systemFontOfSize:AdaptationWidth(16)]];
-    [taskBtn addTarget:self action:@selector(btnOnClick:) forControlEvents:UIControlEventTouchUpInside];
-    btn1 = taskBtn;
-    [self.view addSubview:taskBtn];
-    [taskBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(headerImage.mas_bottom).offset(AdaptationWidth(18));
-        make.centerX.mas_equalTo(self.view).multipliedBy(0.5);
-    }];
+//    UIButton *taskBtn = [[UIButton alloc]init];
+//    taskBtn.tag = 4412;
+//    taskBtn.selected = YES;
+//    [taskBtn setTitle:@"任务收益" forState:UIControlStateNormal];
+//    [taskBtn setTitleColor:LabelAssistantColor forState:UIControlStateNormal];
+//    [taskBtn setTitleColor:XColorWithRGB(56, 181, 173) forState:UIControlStateSelected];
+//    [taskBtn.titleLabel setFont:[UIFont systemFontOfSize:AdaptationWidth(16)]];
+//    [taskBtn addTarget:self action:@selector(btnOnClick:) forControlEvents:UIControlEventTouchUpInside];
+//    btn1 = taskBtn;
+//    [self.view addSubview:taskBtn];
+//    [taskBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.mas_equalTo(headerImage.mas_bottom).offset(AdaptationWidth(18));
+//        make.centerX.mas_equalTo(self.view).multipliedBy(0.5);
+//    }];
+//
+//    UIButton *shareBtn = [[UIButton alloc]init];
+//    shareBtn.tag = 4413;
+//    [shareBtn setTitle:@"分享收益" forState:UIControlStateNormal];
+//    [shareBtn setTitleColor:XColorWithRGB(255, 188, 0) forState:UIControlStateSelected];
+//    [shareBtn setTitleColor:LabelAssistantColor forState:UIControlStateNormal];
+//    [shareBtn.titleLabel setFont:[UIFont systemFontOfSize:AdaptationWidth(16)]];
+//    [shareBtn addTarget:self action:@selector(btnOnClick:) forControlEvents:UIControlEventTouchUpInside];
+//    btn2 = shareBtn;
+//    [self.view addSubview:shareBtn];
+//    [shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.mas_equalTo(headerImage.mas_bottom).offset(AdaptationWidth(18));
+//        make.centerX.mas_equalTo(self.view).multipliedBy(1);
+//    }];
+//
+//    UIButton *connectionBtn = [[UIButton alloc]init];
+//    connectionBtn.tag = 4414;
+//    [connectionBtn setTitle:@"人脉收益" forState:UIControlStateNormal];
+//    [connectionBtn setTitleColor:RedColor forState:UIControlStateSelected];
+//    [connectionBtn setTitleColor:LabelAssistantColor forState:UIControlStateNormal];
+//    [connectionBtn.titleLabel setFont:[UIFont systemFontOfSize:AdaptationWidth(16)]];
+//    [connectionBtn addTarget:self action:@selector(btnOnClick:) forControlEvents:UIControlEventTouchUpInside];
+//    btn3 = connectionBtn;
+//    [self.view addSubview:connectionBtn];
+//    [connectionBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.mas_equalTo(headerImage.mas_bottom).offset(AdaptationWidth(18));
+//        make.centerX.mas_equalTo(self.view).multipliedBy(1.5);
+//    }];
+//
+//    UIView *line = [[UIView alloc]init];
+//    line.backgroundColor = XColorWithRGB(56, 181, 173);
+//    [self.view addSubview:line];
+//    [line setCornerValue:2];
+//    btnline = line;
+//    [line mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.width.mas_equalTo(AdaptationWidth(34));
+//        make.height.mas_equalTo(AdaptationHeight(4));
+//        make.centerX.mas_equalTo(taskBtn);
+//        make.top.mas_equalTo(connectionBtn.mas_bottom);
+//    }];
+//
     
-    UIButton *shareBtn = [[UIButton alloc]init];
-    shareBtn.tag = 4413;
-    [shareBtn setTitle:@"分享收益" forState:UIControlStateNormal];
-    [shareBtn setTitleColor:XColorWithRGB(255, 188, 0) forState:UIControlStateSelected];
-    [shareBtn setTitleColor:LabelAssistantColor forState:UIControlStateNormal];
-    [shareBtn.titleLabel setFont:[UIFont systemFontOfSize:AdaptationWidth(16)]];
-    [shareBtn addTarget:self action:@selector(btnOnClick:) forControlEvents:UIControlEventTouchUpInside];
-    btn2 = shareBtn;
-    [self.view addSubview:shareBtn];
-    [shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(headerImage.mas_bottom).offset(AdaptationWidth(18));
-        make.centerX.mas_equalTo(self.view).multipliedBy(1);
-    }];
-    
-    UIButton *connectionBtn = [[UIButton alloc]init];
-    connectionBtn.tag = 4414;
-    [connectionBtn setTitle:@"人脉收益" forState:UIControlStateNormal];
-    [connectionBtn setTitleColor:RedColor forState:UIControlStateSelected];
-    [connectionBtn setTitleColor:LabelAssistantColor forState:UIControlStateNormal];
-    [connectionBtn.titleLabel setFont:[UIFont systemFontOfSize:AdaptationWidth(16)]];
-    [connectionBtn addTarget:self action:@selector(btnOnClick:) forControlEvents:UIControlEventTouchUpInside];
-    btn3 = connectionBtn;
-    [self.view addSubview:connectionBtn];
-    [connectionBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(headerImage.mas_bottom).offset(AdaptationWidth(18));
-        make.centerX.mas_equalTo(self.view).multipliedBy(1.5);
-    }];
-    
-    UIView *line = [[UIView alloc]init];
-    line.backgroundColor = XColorWithRGB(56, 181, 173);
-    [self.view addSubview:line];
-    [line setCornerValue:2];
-    btnline = line;
-    [line mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(AdaptationWidth(34));
-        make.height.mas_equalTo(AdaptationHeight(4));
-        make.centerX.mas_equalTo(taskBtn);
-        make.top.mas_equalTo(connectionBtn.mas_bottom);
-    }];
-    
-    
-    [self.view addSubview:self.scrollView];
-    [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.view addSubview:self.taskTableView];
+    [self.taskTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.bottom.right.mas_equalTo(self.view);
-        make.top.mas_equalTo(shareBtn.mas_bottom).offset(AdaptationWidth(16));
+        make.top.mas_equalTo(headerImage.mas_bottom).offset(AdaptationWidth(16));
     }];
     
-   
-    self.taskTableView.frame = CGRectMake(0, 0, ScreenWidth, AdaptationWidth(464));
-    [self.scrollView addSubview:self.taskTableView];
+    
+//    [self.view addSubview:self.scrollView];
+//    [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.bottom.right.mas_equalTo(self.view);
+//        make.top.mas_equalTo(shareBtn.mas_bottom).offset(AdaptationWidth(16));
+//    }];
+    
+//
+//    self.taskTableView.frame = CGRectMake(0, 0, ScreenWidth, AdaptationWidth(464));
+//    [self.scrollView addSubview:self.taskTableView];
 
     
-    self.shareTableView.frame = CGRectMake(ScreenWidth, 0, ScreenWidth, AdaptationWidth(464));
-    [self.scrollView addSubview:self.shareTableView];
-
-    self.connectionTableView.frame = CGRectMake(ScreenWidth*2, 0, ScreenWidth, AdaptationWidth(464));
-    [self.scrollView addSubview:self.connectionTableView];
+    
+//    self.shareTableView.frame = CGRectMake(ScreenWidth, 0, ScreenWidth, AdaptationWidth(464));
+//    [self.scrollView addSubview:self.shareTableView];
+//
+//    self.connectionTableView.frame = CGRectMake(ScreenWidth*2, 0, ScreenWidth, AdaptationWidth(464));
+//    [self.scrollView addSubview:self.connectionTableView];
 
     
 }
 - (void)btnOnClick:(UIButton *)btn{
-    switch (btn.tag) {
-        case 4411:
-            [self.navigationController popViewControllerAnimated:YES];
-            break;
-        case 4412:
-        {
-            btn1.selected = YES;
-            btn2.selected = NO;
-            btn3.selected = NO;
-            
-            btnline.X = self.view.Sw/4 -20;
-            btnline.backgroundColor = XColorWithRGB(56, 181, 173);
-            [UIView animateWithDuration:0.3 animations:^{
-                [self.scrollView setContentOffset:CGPointMake(0, 0) animated:NO];
-            }];
-        }
-            break;
-        case 4413:
-        {
-            btnline.backgroundColor = XColorWithRGB(255, 188, 0) ;
-            btnline.X = self.view.Sw/2 -20;
-            btn1.selected = NO;
-            btn2.selected = YES;
-            btn3.selected = NO;
-            [UIView animateWithDuration:0.3 animations:^{
-                [self.scrollView setContentOffset:CGPointMake(ScreenWidth, 0) animated:NO];
-            }];
-        }
-            break;
-        case 4414:
-        {
-            btnline.backgroundColor = RedColor;
-            btnline.X = self.view.Sw/4*3 -20;
-            btn1.selected = NO;
-            btn2.selected = NO;
-            btn3.selected = YES;
-            [UIView animateWithDuration:0.3 animations:^{
-                [self.scrollView setContentOffset:CGPointMake(ScreenWidth*2, 0) animated:NO];
-            }];
-        }
-            break;
-            
-        default:
-            break;
-    }
-}
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
-
-       
-        NSInteger index = scrollView.contentOffset.x / scrollView.Sw;
-        switch (index) {
-            case 0:
-                btnline.backgroundColor = XColorWithRGB(56, 181, 173);
-                btnline.X = self.view.Sw/4 -20;
-                btn1.selected = YES;
-                btn2.selected = NO;
-                btn3.selected = NO;
-                break;
-            case 1:
-                btnline.backgroundColor = XColorWithRGB(255, 188, 0) ;
-                btnline.X = self.view.Sw/2 -20;
-                btn1.selected = NO;
-                btn2.selected = YES;
-                btn3.selected = NO;
-                break;
-            case 2:
-                btnline.backgroundColor = RedColor;
-                btnline.X = self.view.Sw/4*3 -20;
-                btn1.selected = NO;
-                btn2.selected = NO;
-                btn3.selected = YES;
-                break;
-                
-            default:
-                break;
-        }
+    [self.navigationController popViewControllerAnimated:YES];
     
+//    switch (btn.tag) {
+//        case 4411:
+//            [self.navigationController popViewControllerAnimated:YES];
+//            break;
+//        case 4412:
+//        {
+//            btn1.selected = YES;
+//            btn2.selected = NO;
+//            btn3.selected = NO;
+//
+//            btnline.X = self.view.Sw/4 -20;
+//            btnline.backgroundColor = XColorWithRGB(56, 181, 173);
+//            [UIView animateWithDuration:0.3 animations:^{
+//                [self.scrollView setContentOffset:CGPointMake(0, 0) animated:NO];
+//            }];
+//        }
+//            break;
+//        case 4413:
+//        {
+//            btnline.backgroundColor = XColorWithRGB(255, 188, 0) ;
+//            btnline.X = self.view.Sw/2 -20;
+//            btn1.selected = NO;
+//            btn2.selected = YES;
+//            btn3.selected = NO;
+//            [UIView animateWithDuration:0.3 animations:^{
+//                [self.scrollView setContentOffset:CGPointMake(ScreenWidth, 0) animated:NO];
+//            }];
+//        }
+//            break;
+//        case 4414:
+//        {
+//            btnline.backgroundColor = RedColor;
+//            btnline.X = self.view.Sw/4*3 -20;
+//            btn1.selected = NO;
+//            btn2.selected = NO;
+//            btn3.selected = YES;
+//            [UIView animateWithDuration:0.3 animations:^{
+//                [self.scrollView setContentOffset:CGPointMake(ScreenWidth*2, 0) animated:NO];
+//            }];
+//        }
+//            break;
+//
+//        default:
+//            break;
+//    }
 }
-- (UIScrollView *)scrollView{
-    if (!_scrollView) {
-        _scrollView  = [[UIScrollView alloc]init];
-        _scrollView.contentSize = CGSizeMake(self.view.Sw * 3, 0);
-        _scrollView.showsVerticalScrollIndicator = NO;
-        _scrollView.showsHorizontalScrollIndicator = NO;
-        _scrollView.pagingEnabled = YES;
-        _scrollView.bounces = NO;
-        _scrollView.delegate = self;
-    }
-    return _scrollView;
-}
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+//
+//
+//
+//        NSInteger index = scrollView.contentOffset.x / scrollView.Sw;
+//        switch (index) {
+//            case 0:
+//                btnline.backgroundColor = XColorWithRGB(56, 181, 173);
+//                btnline.X = self.view.Sw/4 -20;
+//                btn1.selected = YES;
+//                btn2.selected = NO;
+//                btn3.selected = NO;
+//                break;
+//            case 1:
+//                btnline.backgroundColor = XColorWithRGB(255, 188, 0) ;
+//                btnline.X = self.view.Sw/2 -20;
+//                btn1.selected = NO;
+//                btn2.selected = YES;
+//                btn3.selected = NO;
+//                break;
+//            case 2:
+//                btnline.backgroundColor = RedColor;
+//                btnline.X = self.view.Sw/4*3 -20;
+//                btn1.selected = NO;
+//                btn2.selected = NO;
+//                btn3.selected = YES;
+//                break;
+//
+//            default:
+//                break;
+//        }
+//
+//}
+//- (UIScrollView *)scrollView{
+//    if (!_scrollView) {
+//        _scrollView  = [[UIScrollView alloc]init];
+//        _scrollView.contentSize = CGSizeMake(self.view.Sw * 3, 0);
+//        _scrollView.showsVerticalScrollIndicator = NO;
+//        _scrollView.showsHorizontalScrollIndicator = NO;
+//        _scrollView.pagingEnabled = YES;
+//        _scrollView.bounces = NO;
+//        _scrollView.delegate = self;
+//    }
+//    return _scrollView;
+//}
 - (ExpectTableView *)taskTableView{
     if (!_taskTableView) {
         _taskTableView = [[ExpectTableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
@@ -249,20 +260,20 @@
     }
     return _taskTableView;
 }
-- (ExpectTableView *)shareTableView{
-    if (!_shareTableView) {
-        _shareTableView = [[ExpectTableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
-        _shareTableView.expectViewModel.viewModelType = ExpectTableViewTypeShare;
-        [_shareTableView.expectViewModel requestData];
-    }
-    return _shareTableView;
-}
-- (ExpectTableView *)connectionTableView{
-    if (!_connectionTableView) {
-        _connectionTableView = [[ExpectTableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
-        _connectionTableView.expectViewModel.viewModelType = ExpectTableViewTypeConnection;
-        [_connectionTableView.expectViewModel requestData];
-    }
-    return _connectionTableView;
-}
+//- (ExpectTableView *)shareTableView{
+//    if (!_shareTableView) {
+//        _shareTableView = [[ExpectTableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+//        _shareTableView.expectViewModel.viewModelType = ExpectTableViewTypeShare;
+//        [_shareTableView.expectViewModel requestData];
+//    }
+//    return _shareTableView;
+//}
+//- (ExpectTableView *)connectionTableView{
+//    if (!_connectionTableView) {
+//        _connectionTableView = [[ExpectTableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+//        _connectionTableView.expectViewModel.viewModelType = ExpectTableViewTypeConnection;
+//        [_connectionTableView.expectViewModel requestData];
+//    }
+//    return _connectionTableView;
+//}
 @end

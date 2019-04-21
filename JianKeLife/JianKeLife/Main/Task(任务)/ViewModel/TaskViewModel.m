@@ -12,7 +12,9 @@
 
 - (void)requestTaskData{
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    [dic setObject:@(self.taskType) forKey:@"listType"];
+    if (self.taskType != MyTaskTableViewTypeAll) {
+        [dic setObject:@(self.taskType) forKey:@"listType"];
+    }
     [dic setObject:[self.pageQueryRedModel mj_keyValues] forKey:@"pageQueryReq"];
     BLOCKSELF
     [XNetWork requestNetWorkWithUrl:Xproduct_apply_task andModel:dic andSuccessBlock:^(ResponseModel *model) {

@@ -90,7 +90,8 @@
             
             MytasktableViewVC   *vcClass = [[MytasktableViewVC alloc] init];
             vcClass.taskViewModel.taskType = MyTaskTableViewTypeAll;
-            
+            vcClass.taskStayBtnBlcok = [self taskResultBlcok];
+            vcClass.taskStayCellselect = [self taskOverCellBlock];
             return vcClass;
         }
             
@@ -179,7 +180,7 @@
     BLOCKSELF
     XDoubleBlock block = ^(UIButton * btn,id result){
         TaskResultVC*vc = [[TaskResultVC alloc]init];
-        vc.resultModel = result;
+        vc.resultModel = [TaskModel mj_objectWithKeyValues:result];
         vc.hidesBottomBarWhenPushed = YES;
         [blockSelf.navigationController pushViewController:vc animated:YES];
     };

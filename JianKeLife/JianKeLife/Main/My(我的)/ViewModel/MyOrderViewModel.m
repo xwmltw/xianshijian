@@ -11,7 +11,9 @@
 @implementation MyOrderViewModel
 - (void)requestData{
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    [dic setObject:@(self.viewModelType) forKey:@"tkStatus"];
+    if (self.viewModelType != MyOrderTableViewTypeAll) {
+        [dic setObject:@(self.viewModelType) forKey:@"tkStatus"];
+    }
     [dic setObject:[self.pageQueryRedModel mj_keyValues] forKey:@"pageQueryReq"];
     WEAKSELF
     [XNetWork requestNetWorkWithUrl:Xtb_order_list andModel:dic andSuccessBlock:^(ResponseModel *model) {

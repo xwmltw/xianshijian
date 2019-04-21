@@ -11,10 +11,10 @@
 @implementation ExpectViewModel
 - (void)requestData{
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    [dic setObject:@(self.viewModelType) forKey:@"profitType"];
+//    [dic setObject:@(self.viewModelType) forKey:@"profitType"];
     [dic setObject:[self.pageQueryRedModel mj_keyValues] forKey:@"pageQueryReq"];
     BLOCKSELF
-    [XNetWork requestNetWorkWithUrl:Xestimate_list andModel:dic andSuccessBlock:^(ResponseModel *model) {
+    [XNetWork requestNetWorkWithUrl:Xestimate_list_2 andModel:dic andSuccessBlock:^(ResponseModel *model) {
         blockSelf.expectModel = [ExpectModel mj_objectWithKeyValues:model.data];
         [blockSelf.expectList addObjectsFromArray:blockSelf.expectModel.dataRows];
         XBlockExec(blockSelf.expectListBlock,nil);

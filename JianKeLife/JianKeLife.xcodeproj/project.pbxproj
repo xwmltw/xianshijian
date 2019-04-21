@@ -179,6 +179,8 @@
 		B34FACDB224CFB4600F3E3E1 /* ConnectionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B34FACD9224CFB4500F3E3E1 /* ConnectionViewModel.m */; };
 		B34FACDF224CFD4200F3E3E1 /* ConnectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B34FACDE224CFD4200F3E3E1 /* ConnectionModel.m */; };
 		B34FACE2224D189400F3E3E1 /* MyPersonSecondVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B34FACE1224D189400F3E3E1 /* MyPersonSecondVC.m */; };
+		B3EB6A98226CCFD600610D16 /* LaXinView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3EB6A97226CCFD600610D16 /* LaXinView.m */; };
+		B3EB6A9A226CCFE900610D16 /* LaXinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3EB6A99226CCFE900610D16 /* LaXinView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -495,6 +497,9 @@
 		B34FACDE224CFD4200F3E3E1 /* ConnectionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConnectionModel.m; sourceTree = "<group>"; };
 		B34FACE0224D189400F3E3E1 /* MyPersonSecondVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyPersonSecondVC.h; sourceTree = "<group>"; };
 		B34FACE1224D189400F3E3E1 /* MyPersonSecondVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyPersonSecondVC.m; sourceTree = "<group>"; };
+		B3EB6A96226CCFD600610D16 /* LaXinView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaXinView.h; sourceTree = "<group>"; };
+		B3EB6A97226CCFD600610D16 /* LaXinView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LaXinView.m; sourceTree = "<group>"; };
+		B3EB6A99226CCFE900610D16 /* LaXinView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LaXinView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -604,6 +609,9 @@
 				B33F95722250A8660057DB03 /* UnLoginView.h */,
 				B33F95732250A8660057DB03 /* UnLoginView.m */,
 				B33F95752250A8760057DB03 /* UnLogin.xib */,
+				B3EB6A96226CCFD600610D16 /* LaXinView.h */,
+				B3EB6A97226CCFD600610D16 /* LaXinView.m */,
+				B3EB6A99226CCFE900610D16 /* LaXinView.xib */,
 			);
 			path = BaseView;
 			sourceTree = "<group>";
@@ -651,6 +659,7 @@
 		04616FD2222D023A00E46B40 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				B3EB6A95226CB29800610D16 /* HiBuy(嗨购) */,
 				04871500223F45DA00679095 /* My(我的) */,
 				048714FF223F45C200679095 /* Connections(人脉) */,
 				048714FE223F459F00679095 /* Task(任务) */,
@@ -1387,6 +1396,13 @@
 			path = model;
 			sourceTree = "<group>";
 		};
+		B3EB6A95226CB29800610D16 /* HiBuy(嗨购) */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "HiBuy(嗨购)";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1455,6 +1471,7 @@
 				0449CDB3226885C70051817C /* MyOrderTableViewCell.xib in Resources */,
 				0411214A2240E98E003D7F2D /* ConnectionsVC.xib in Resources */,
 				B33F95762250A8760057DB03 /* UnLogin.xib in Resources */,
+				B3EB6A9A226CCFE900610D16 /* LaXinView.xib in Resources */,
 				04BD1181224A5CC50033B774 /* CashWithdrawalVC.xib in Resources */,
 				04B2A9EA2251A12B0094A44B /* MGroupCell.xib in Resources */,
 				041121432240BE79003D7F2D /* TaskTableViewCell.xib in Resources */,
@@ -1633,6 +1650,7 @@
 				04616FD9222D076800E46B40 /* ProgressHUD.m in Sources */,
 				04112154224106F3003D7F2D /* MyPersonTableViewCell.m in Sources */,
 				0461701E222D195400E46B40 /* XDeviceHelper.m in Sources */,
+				B3EB6A98226CCFD600610D16 /* LaXinView.m in Sources */,
 				04B2AA022251A1A90094A44B /* JJOneScrollView.m in Sources */,
 				04AECCA4224BB01400410304 /* GetBackWalletVC.m in Sources */,
 				0449CDB1226885BD0051817C /* MyOrderTableViewCell.m in Sources */,

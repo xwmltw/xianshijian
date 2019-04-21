@@ -72,6 +72,7 @@ static NSString *const WXLoginNotification = @"WXLoginNotification";
 #define Xfind_money_pwd             @"/mapi/session/find_money_pwd"//找回钱包密码
 
 #define Xestimate_list               @"/mapi/profit/estimate_list"//查询预计收益列表
+#define Xestimate_list_2             @"/mapi/profit/estimate_list_2"//查询预计收益all列表
 
 #define Xget_connections_info       @"/mapi/ctm/get_connections_info"//获取人脉信息
 #define Xget_first_connections_info @"/mapi/ctm/get_first_connections_info"//一级人脉

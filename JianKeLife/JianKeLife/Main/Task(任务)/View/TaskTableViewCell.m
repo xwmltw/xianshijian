@@ -39,7 +39,7 @@
     self.passImage.hidden = YES;
     self.passLab.hidden = YES;
     
-    switch (self.taskTableView) {
+    switch (model.prodTradeStatus.integerValue) {
         case MyTaskTableViewTypeStay:
         {
             self.cellGiveBtn.hidden = NO;

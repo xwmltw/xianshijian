@@ -40,67 +40,67 @@
     
     UIView *view = [[UIView alloc]init];
 
-    UIImageView *imageView = [[UIImageView alloc]init];
-    [view addSubview:imageView];
-    
-    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(view).offset(10);
-        make.centerY.mas_equalTo(view);
-        make.width.mas_equalTo(AdaptationWidth(20));
-    }];
-    
-    UILabel *loginLab2 = [[UILabel alloc]init];
-    [loginLab2 setText:@"收益即将到账，抓紧时间完成吧"];
-    [loginLab2 setFont:[UIFont fontWithName:@"PingFangSC-Regular" size:AdaptationWidth(12)]];
-    
-    [view addSubview:loginLab2];
-    [loginLab2 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(imageView.mas_right).offset(AdaptationWidth(2));
-        make.centerY.mas_equalTo(view);
-        
-    }];
-    
-    
-    UILabel *tips = [[UILabel alloc]init];
-    [tips setText:[NSString stringWithFormat:@"预计收益￥%.2f",[self.expectViewModel.expectModel.currTypeAllEstimateProfit doubleValue]/100]];
-    [tips setFont:[UIFont systemFontOfSize:AdaptationWidth(12)]];
-    [tips setTextColor:XColorWithRGB(255, 69, 69)];
-    [view addSubview:tips];
-    [tips mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(view).offset(-10);
-        make.centerY.mas_equalTo(view);
-    }];
-    
-    switch (self.expectViewModel.viewModelType) {
-        case ExpectTableViewTypeTesk:
-            [imageView setImage:[UIImage imageNamed:@"icon_task_noti"]];
-            view.backgroundColor = XColorWithRGB(215, 236, 235);
-            [loginLab2 setTextColor:XColorWithRGB(56, 181, 173)];
-            
-            break;
-        case ExpectTableViewTypeShare:
-            [imageView setImage:[UIImage imageNamed:@"icon_share_noti"]];
-            view.backgroundColor = XColorWithRGB(249, 237, 205);
-            [loginLab2 setTextColor:XColorWithRGB(255, 162, 0)];
-            
-             break;
-            break;
-        case ExpectTableViewTypeConnection:
-            [imageView setImage:[UIImage imageNamed:@"icon_connection_noti"]];
-            view.backgroundColor = XColorWithRGB(249, 223, 223);
-            [loginLab2 setTextColor:XColorWithRGB(255, 68, 68)];
-            
-             break;
-            break;
-            
-        default:
-            break;
-    }
+//    UIImageView *imageView = [[UIImageView alloc]init];
+//    [view addSubview:imageView];
+//
+//    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(view).offset(10);
+//        make.centerY.mas_equalTo(view);
+//        make.width.mas_equalTo(AdaptationWidth(20));
+//    }];
+//
+//    UILabel *loginLab2 = [[UILabel alloc]init];
+//    [loginLab2 setText:@"收益即将到账，抓紧时间完成吧"];
+//    [loginLab2 setFont:[UIFont fontWithName:@"PingFangSC-Regular" size:AdaptationWidth(12)]];
+//
+//    [view addSubview:loginLab2];
+//    [loginLab2 mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(imageView.mas_right).offset(AdaptationWidth(2));
+//        make.centerY.mas_equalTo(view);
+//
+//    }];
+//
+//
+//    UILabel *tips = [[UILabel alloc]init];
+//    [tips setText:[NSString stringWithFormat:@"预计收益￥%.2f",[self.expectViewModel.expectModel.currTypeAllEstimateProfit doubleValue]/100]];
+//    [tips setFont:[UIFont systemFontOfSize:AdaptationWidth(12)]];
+//    [tips setTextColor:XColorWithRGB(255, 69, 69)];
+//    [view addSubview:tips];
+//    [tips mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.right.mas_equalTo(view).offset(-10);
+//        make.centerY.mas_equalTo(view);
+//    }];
+//
+//    switch (self.expectViewModel.viewModelType) {
+//        case ExpectTableViewTypeTesk:
+//            [imageView setImage:[UIImage imageNamed:@"icon_task_noti"]];
+//            view.backgroundColor = XColorWithRGB(215, 236, 235);
+//            [loginLab2 setTextColor:XColorWithRGB(56, 181, 173)];
+//
+//            break;
+//        case ExpectTableViewTypeShare:
+//            [imageView setImage:[UIImage imageNamed:@"icon_share_noti"]];
+//            view.backgroundColor = XColorWithRGB(249, 237, 205);
+//            [loginLab2 setTextColor:XColorWithRGB(255, 162, 0)];
+//
+//             break;
+//            break;
+//        case ExpectTableViewTypeConnection:
+//            [imageView setImage:[UIImage imageNamed:@"icon_connection_noti"]];
+//            view.backgroundColor = XColorWithRGB(249, 223, 223);
+//            [loginLab2 setTextColor:XColorWithRGB(255, 68, 68)];
+//
+//             break;
+//            break;
+//
+//        default:
+//            break;
+//    }
     
     return view;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return AdaptationWidth(28);
+    return AdaptationWidth(0.1);
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     UIView *view = [[UIView alloc]init];
@@ -144,7 +144,7 @@
 //
 //        CGSize detailSize = [self.expectViewModel.expectList[indexPath.row][@"profitAmountDesc"] boundingRectWithSize:CGSizeMake(235, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:nil context:nil].size;
 //    MyLog(@"%@",self.expectViewModel.expectList[indexPath.row][@"profitAmountDesc"]);
-    CGFloat cellH = 50 + textHeight;
+    CGFloat cellH = 60 + textHeight;
     return AdaptationWidth(cellH);
     
 }

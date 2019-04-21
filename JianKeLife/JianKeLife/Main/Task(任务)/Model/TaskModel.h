@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic ,copy) NSNumber *productShareSalary;
 @property (nonatomic ,copy) NSString *productSubmitType;
 @property (nonatomic ,copy) NSString *productTitle;
+@property (nonatomic ,copy) NSNumber *prodTradeStatus;
 //ctmSubmitDeadTimeLeft (integer, optional): 兼客截止提交任务剩余的时间戳，毫秒数 ,
 //entAuditDeadTimeLeft (integer, optional): 雇主截止验收任务剩余的时间戳，毫秒数 ,
 //prodTradeAuditRemark (string, optional): 雇主审核备注(不通过理由等) ,
@@ -35,6 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 //productShareSalary (integer, optional): 产品分享单价，单位为分 ,
 //productSubmitType (string, optional): 任务提交方式说明(多种提交方式用,隔开)：1截图提交 2文本提交 ,
 //productTitle (string, optional): 产品名称
+//prodTradeStatus (integer, optional): 产品领取状态：1已领取(待返佣) 2已提交(进行中) 3已完结 ,
 @end
 
 

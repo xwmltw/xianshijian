@@ -14,6 +14,8 @@
 #import "SpecialJobListVC.h"
 #import "WSLWaterFlowLayout.h"
 
+#import "LaXinView.h"
+
 @interface HomeVC ()<WSLWaterFlowLayoutDelegate>
 {
      WSLWaterFlowLayout * _flow;
@@ -107,9 +109,12 @@
     };
 }
 - (void)collectionCellSelect{
+    
+    
+    
     WEAKSELF
     self.collectionView.collectionSelectBlock = ^(NSDictionary *result) {
-        
+
         JobDetailVC *vc = [[JobDetailVC alloc]init];
         vc.productNo = result[@"productNo"];
         vc.hidesBottomBarWhenPushed = YES;
@@ -117,9 +122,16 @@
     };
 }
 - (void)btnOnClock:(UIButton *)btn{
-    SearchVC *vc = [[SearchVC alloc]init];
-    vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
+    
+    LaXinView *laXinView = [[NSBundle mainBundle]loadNibNamed:@"LaXinView" owner:nil options:nil].lastObject;
+    laXinView.frame = [UIScreen mainScreen].bounds;
+    [self.view addSubview:laXinView];
+
+    
+    
+//    SearchVC *vc = [[SearchVC alloc]init];
+//    vc.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 #pragma  mark - WSLWaterFlowLayout delegate
 

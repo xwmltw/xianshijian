@@ -35,7 +35,45 @@
 
     return 1;
 }
-
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UIView *view = [[UIView alloc]init];
+    view.backgroundColor = XColorWithRBBA(255, 188, 0, 0.17);
+    
+    UIImageView *headerImage2 = [[UIImageView alloc]init];
+    [headerImage2 setImage:[UIImage imageNamed:@"icon_myOrder_noti"]];
+    [view addSubview:headerImage2];
+    [headerImage2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(view).offset(AdaptationWidth(10));
+        make.centerY.mas_equalTo(view);
+        make.width.height.mas_equalTo(AdaptationWidth(20));
+    }];
+    
+    
+    
+    UILabel *loginLab = [[UILabel alloc]init];
+    [loginLab setText:@"有订单相关的问题，点我告诉你～"];
+    [loginLab setFont:[UIFont systemFontOfSize:AdaptationWidth(12)]];
+    [loginLab setTextColor:XColorWithRGB(255, 162, 0)];
+    [view addSubview:loginLab];
+    [loginLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(view);
+        make.left.mas_equalTo(headerImage2.mas_right).offset(AdaptationWidth(4));
+    }];
+    
+    UIButton *loginBtn = [[UIButton alloc]init];
+//    loginBtn.tag = 401;
+//    [loginBtn addTarget:self action:@selector(btnOnClock:) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:loginBtn];
+    [loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(view);
+    }];
+    
+    
+    return view;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return AdaptationWidth(30);
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
     return self.myOrderViewModel.myOrderList.count;
@@ -49,7 +87,6 @@
     if (!cell) {
         cell = [[MyOrderTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MyOrderTableViewCell"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
     }
 
     return cell;
