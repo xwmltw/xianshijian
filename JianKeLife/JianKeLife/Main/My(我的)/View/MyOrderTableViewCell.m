@@ -52,6 +52,9 @@
     // Configure the view for the selected state
 }
 - (IBAction)btnOnClick:(UIButton *)sender {
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string = self.model.tradeId;
+    [ProgressHUD showProgressHUDInView:nil withText:@"复制成功" afterDelay:1];
 }
 
 @end

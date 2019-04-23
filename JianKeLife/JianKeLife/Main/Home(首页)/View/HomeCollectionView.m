@@ -221,6 +221,14 @@
 }
 #pragma mark -SDCycleScrollView delegate
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
+    NSNumber *isLogin = self.homeViewModel.clientGlobalInfo.bannerAdList[index][@"isNeedLogin"];
+    if (isLogin.integerValue == 1) {
+        if (![[UserInfo sharedInstance]isSignIn]) {
+            [XNetWork unLoginNotification];
+            return;
+        }
+  
+    }
     [self.homeViewModel requestBannerData:index];
 }
 

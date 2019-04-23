@@ -11,9 +11,9 @@
 //订单列表枚举
 typedef NS_ENUM(NSInteger ,MyOrderTableViewType) {
     MyOrderTableViewTypeAll     = 0,
-    MyOrderTableViewTypePay     = 12,
-    MyOrderTableViewTypeOver    = 3,
-    MyOrderTableViewTypefail    = 13,
+    MyOrderTableViewTypeOver    ,
+    MyOrderTableViewTypePay     ,
+    MyOrderTableViewTypefail    ,
 };
 //订单任务列表枚举
 typedef NS_ENUM(NSInteger ,MyTaskTableViewType) {

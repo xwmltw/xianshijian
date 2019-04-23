@@ -30,7 +30,7 @@
 #define AdaptationHeight(a) ceilf(a * (ScreenHeight/667))
 /** 颜色*/
 #define XColorWithRBBA(r,g,b,a) [UIColor colorWithRed:(r/255.0) green:(g/255.0) blue:(b/255.0) alpha:(a)]//通过R,G,B,A设置颜色
-#define XCGColorWithRGBA(r,g,b,a) [[UIColor colorWithRed:(r/255.0) green:(g/255.0) blue:(b/255.0) alpha:(a)].CGcolor]//通过R,G,B,A设置边框颜色
+#define XCGColorWithRGBA(r,g,b,a) [UIColor colorWithRed:(r/255.0) green:(g/255.0) blue:(b/255.0) alpha:(a)].CGcolor//通过R,G,B,A设置边框颜色
 #define XColorWithRGB(r,g,b)  [UIColor colorWithRed:(r/255.0) green:(g/255.0) blue:(b/255.0) alpha:1]//通过R,G,B
 #define AppMainColor  [UIColor colorWithRed:(56.0/255.0) green:(123.0/255.0) blue:(230.0/255.0) alpha:1]//通过R,G,B
 #define LabelMainColor  [UIColor colorWithRed:(58.0/255.0) green:(58.0/255.0) blue:(58.0/255.0) alpha:1]//通过R,G,B

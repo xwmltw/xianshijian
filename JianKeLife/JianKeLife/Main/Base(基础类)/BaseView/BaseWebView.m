@@ -9,7 +9,7 @@
 #define kMinimumFontSize    10.0f
 
 #import "BaseWebView.h"
-@interface BaseWebView ()<WKUIDelegate>
+@interface BaseWebView ()<WKUIDelegate,WKScriptMessageHandler>
 
 @property(nonatomic, strong)UIProgressView *progressView;
 @property(nonatomic,assign)CGFloat progress;
@@ -27,6 +27,10 @@
         [userContentController addUserScript:noneSelectScript];
         WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
         configuration.userContentController = userContentController;
+        //添加注入js方法, oc与js端对应实现
+        [configuration.userContentController addScriptMessageHandler:self name:@"triggerAppMethod_laxin_XCX"];
+        [configuration.userContentController addScriptMessageHandler:self name:@"triggerAppMethod_laxin_Auth"];
+        [configuration.userContentController addScriptMessageHandler:self name:@"triggerAppMethod_laxin_Hot"];
         
         WKPreferences *preferences = [WKPreferences new];
         preferences.javaScriptCanOpenWindowsAutomatically = YES;
@@ -127,6 +131,16 @@
         default:
             break;
     }
+}
+#pragma mark - WKScriptMessageHandler
+//实现js注入方法的协议方法
+- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {
+    //找到对应js端的方法名,获取messge.body
+    MyLog(@"111111%@",message.name);
+    MyLog(@"222222%@",message.body);
+    MyLog(@"333333%@",message.frameInfo.request.URL);
+    
+    XBlockExec(self.scriptBlock ,message);
 }
 #pragma mark - <WKUIDelegate>
 - (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler {
@@ -233,4 +247,6 @@
 -(void)dealloc{
     [_webView removeObserver:self forKeyPath:@"estimatedProgress"];
 }
+
+
 @end

@@ -8,7 +8,7 @@
 
 #import "MyOrderTableVC.h"
 #import "MyOrderTableViewCell.h"
-
+#import "MyOrderInfoVC.h"
 @interface MyOrderTableVC ()
 
 @end
@@ -62,7 +62,7 @@
     
     UIButton *loginBtn = [[UIButton alloc]init];
 //    loginBtn.tag = 401;
-//    [loginBtn addTarget:self action:@selector(btnOnClock:) forControlEvents:UIControlEventTouchUpInside];
+    [loginBtn addTarget:self action:@selector(btnOnClock:) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:loginBtn];
     [loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(view);
@@ -94,7 +94,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
-
+- (void)btnOnClock:(UIButton *)btn{
+    MyOrderInfoVC *vc = [[MyOrderInfoVC alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 - (MyOrderViewModel *)myOrderViewModel{
     if (!_myOrderViewModel) {
         _myOrderViewModel = [[MyOrderViewModel alloc]init];

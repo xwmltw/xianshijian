@@ -7,10 +7,10 @@
 //
 
 #import "BaseWebVC.h"
-#import "BaseWebView.h"
+
 #import "XDeviceHelper.h"
 @interface BaseWebVC ()<WKNavigationDelegate>
-@property(nonatomic,strong)BaseWebView *webParentView;
+
 @end
 
 @implementation BaseWebVC
@@ -22,10 +22,19 @@
 
 - (void)reloadForGetWebView:(NSString *)htmlStr
 {
+    NSLog(@"%@",htmlStr);
+    if (![htmlStr containsString:@"http"]) {
+        htmlStr = [@"https://" stringByAppendingFormat: @"%@", htmlStr];
+    }
     NSString *version = [XDeviceHelper getAppBundleVersion];
-    htmlStr = [htmlStr stringByAppendingFormat:@"?clientType=1&appVersionCode=%@",version];
+    if ([htmlStr containsString:@"?"]) {
+        htmlStr = [htmlStr stringByAppendingFormat:@"&clientType=1&appVersionCode=%@&accessToken=%@",version,[UserInfo sharedInstance].token];
+    }else{
+        htmlStr = [htmlStr stringByAppendingFormat:@"?clientType=1&appVersionCode=%@&accessToken=%@",version,[UserInfo sharedInstance].token];
+    }
     [self.webParentView.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:htmlStr]]];
 }
+
 
 - (void)reloadForPostWebView:(NSString *)htmlStr parameters:(NSDictionary *)parameters
 {

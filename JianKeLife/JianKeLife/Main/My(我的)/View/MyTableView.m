@@ -316,6 +316,7 @@
         [allBtn1 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(heardView3).offset(AdaptationWidth(-16));
             make.top.mas_equalTo(heardView3).offset(AdaptationWidth(13));
+            
         }];
         
         UIButton *orderBtn1 = [[UIButton alloc]init];

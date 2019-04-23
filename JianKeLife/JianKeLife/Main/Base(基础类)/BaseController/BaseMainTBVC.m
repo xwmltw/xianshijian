@@ -12,6 +12,7 @@
 #import "ConnectionsVC.h"
 #import "TaskVC.h"
 #import "MyVC.h"
+#import "HiBuyVC.h"
 
 
 @interface BaseMainTBVC ()
@@ -34,8 +35,8 @@
     [self setChildViewController:homeVC Image:@"icon_home_unselect" selectedImage:@"icon_home_select" title:@"首页"];
     
     
-    TaskVC *taskVC = [[TaskVC alloc]init];
-    [self setChildViewController:taskVC Image:@"icon_task_unselect" selectedImage:@"icon_task_select" title:@"任务堆"];
+    HiBuyVC *taskVC = [[HiBuyVC alloc]init];
+    [self setChildViewController:taskVC Image:@"icon_task_unselect" selectedImage:@"icon_task_select" title:@"嗨购"];
     
     ConnectionsVC *connectionsVC = [[ConnectionsVC alloc]init];
     [self setChildViewController:connectionsVC Image:@"icon_relationship_unselect" selectedImage:@"icon_relationship_select" title:@"人脉"];

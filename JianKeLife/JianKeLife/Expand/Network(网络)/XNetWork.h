@@ -47,6 +47,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (void)UploadPicturesWithUrl:(NSString *)url  images:(NSArray *)images targetWidth:(CGFloat )width andSuccessBlock:(ResponseBlock)successBlock andFailBlock:(ResponseBlock)failBlock;
 
+/**
+ 提示去登录
+ */
++ (void)unLoginNotification;
 @end
 
 NS_ASSUME_NONNULL_END

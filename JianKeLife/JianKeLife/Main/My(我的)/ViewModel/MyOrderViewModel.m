@@ -12,7 +12,7 @@
 - (void)requestData{
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     if (self.viewModelType != MyOrderTableViewTypeAll) {
-        [dic setObject:@(self.viewModelType) forKey:@"tkStatus"];
+        [dic setObject:@(self.viewModelType) forKey:@"listType"];
     }
     [dic setObject:[self.pageQueryRedModel mj_keyValues] forKey:@"pageQueryReq"];
     WEAKSELF

@@ -26,17 +26,16 @@
                             <color key="textColor" red="0.22745098039215686" green="0.22745098039215686" blue="0.22745098039215686" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ThB-Jm-xTS">
+                        <button opaque="NO" tag="502" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ThB-Jm-xTS">
                             <rect key="frame" x="69" y="304" width="191" height="48"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="去完成 多拿5元"/>
+                            <connections>
+                                <action selector="btnOnClick:" destination="G4N-tp-0Uh" eventType="touchUpInside" id="Y7Y-Fv-Zkv"/>
+                            </connections>
                         </button>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_laxin_new" translatesAutoresizingMaskIntoConstraints="NO" id="375-w7-C5T">
                             <rect key="frame" x="8" y="8" width="314" height="144"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                        </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_laxin_head" translatesAutoresizingMaskIntoConstraints="NO" id="u0b-9A-hX1">
-                            <rect key="frame" x="76" y="-27" width="195" height="52"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="8.8元已经存入钱包" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Agm-sx-FLc">
@@ -60,16 +59,30 @@
                     </subviews>
                     <color key="backgroundColor" red="1" green="0.83921568627450982" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NlY-Si-bq6">
-                    <rect key="frame" x="172" y="531" width="30" height="30"/>
+                <button opaque="NO" tag="503" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NlY-Si-bq6">
+                    <rect key="frame" x="168" y="515" width="39" height="39"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="X"/>
+                    <state key="normal" image="icon_laxin_cancel"/>
+                    <connections>
+                        <action selector="btnOnClick:" destination="G4N-tp-0Uh" eventType="touchUpInside" id="U4E-wP-OzQ"/>
+                    </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="idd-vg-6cw">
-                    <rect key="frame" x="290" y="81" width="62" height="30"/>
+                <button opaque="NO" tag="501" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="idd-vg-6cw">
+                    <rect key="frame" x="263" y="85" width="89" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="更多活动"/>
+                    <inset key="titleEdgeInsets" minX="-25" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <inset key="imageEdgeInsets" minX="75" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="更多活动" image="icon_箭头_whilt">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="btnOnClick:" destination="G4N-tp-0Uh" eventType="touchUpInside" id="rgF-yA-vC2"/>
+                    </connections>
                 </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_laxin_head" translatesAutoresizingMaskIntoConstraints="NO" id="u0b-9A-hX1">
+                    <rect key="frame" x="90" y="115" width="195" height="52"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="0.48253191021126762" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
@@ -88,7 +101,9 @@
         </view>
     </objects>
     <resources>
+        <image name="icon_laxin_cancel" width="39" height="39"/>
         <image name="icon_laxin_head" width="195" height="52"/>
-        <image name="icon_laxin_new" width="315" height="144.5"/>
+        <image name="icon_laxin_new" width="315" height="144"/>
+        <image name="icon_箭头_whilt" width="15" height="15"/>
     </resources>
 </document>

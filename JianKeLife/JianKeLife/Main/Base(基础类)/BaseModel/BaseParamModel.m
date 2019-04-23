@@ -87,6 +87,7 @@ MJCodingImplementation
 //registerAgreementUrl (string, optional): 注册协议地址 ,
 //specialEntryList (Array[SpecialEntryInfoVo], optional): 特色入口列表 ,
 //versionInfo (VersionInfoVo, optional): 版本自动更新
+//bannerAdListTBPage (Array[AdInfoVo], optional): 淘宝页面banner广告列表 ,
 @end
 
 @implementation BannerAdList
@@ -97,6 +98,7 @@ MJCodingImplementation
 //adImgUrl (string, optional): 广告内图片地址 ,
 //adName (string, optional): 广告名称 ,
 //adType (integer, optional): 广告类型 1:应用内（本地）打开链接，2:浏览器(新窗口)打开链接
+//isNeedLogin (integer, optional): 是否需要登录
 
 @end
 

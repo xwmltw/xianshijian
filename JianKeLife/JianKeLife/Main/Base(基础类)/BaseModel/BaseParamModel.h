@@ -37,6 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ClientGlobalInfo:BaseParamModel
 @property (nonatomic ,copy) NSString *aboutUsUrl;
 @property (nonatomic ,strong) NSArray *bannerAdList;
+@property (nonatomic ,strong) NSArray *bannerAdListTBPage;
 @property (nonatomic ,copy) NSString *customerContact;
 @property (nonatomic ,copy) NSString *registerAgreementUrl;
 @property (nonatomic ,strong) NSArray *specialEntryList;
@@ -52,6 +53,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic ,copy) NSString *adImgUrl;
 @property (nonatomic ,copy) NSString *adName;
 @property (nonatomic ,copy) NSNumber *adType;
+@property (nonatomic ,copy) NSNumber *isNeedLogin;
 @end
 
 @interface SpecialEntryList : ClientGlobalInfo

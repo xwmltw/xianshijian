@@ -7,13 +7,14 @@
 //
 
 #import "BaseMainVC.h"
-
+#import "BaseWebView.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BaseWebVC : BaseMainVC
 @property(nonatomic,assign)CGRect viewFrame;
-
+@property(nonatomic,strong)BaseWebView *webParentView;
 - (void)reloadForGetWebView:(NSString *)htmlStr;
+
 - (void)reloadForPostWebView:(NSString *)htmlStr parameters:(NSDictionary *)parameters;
 @end
 

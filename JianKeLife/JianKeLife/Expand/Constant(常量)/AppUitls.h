@@ -79,5 +79,9 @@ static NSString *const WXLoginNotification = @"WXLoginNotification";
 #define Xget_second_connections_info       @"/mapi/ctm/get_second_connections_info"//二级人脉
 
 #define Xtb_order_list              @"/mapi/union/tb_order/list"//淘宝订单列表
-
+#define Xtb_classify_list           @"/mapi/union/tb_product/classify_list"//查询商品分类信息
+#define Xtb_product_list            @"/mapi/union/tb_product/list" //淘宝商品列表
+#define Xtb_product_detail          @"/mapi/union/tb_product/detail"//产品详情
+#define Xtb_product_couponBuy       @"/mapi/union/tb_product/couponBuy"//领取产品
+#define Xtb_product_getShareInfo    @"/mapi/union/tb_product/getShareInfo"//分享信息
 #endif /* AppUitls_h */

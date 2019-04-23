@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BaseWebView : UIView
 -(instancetype)initWithFrame:(CGRect)frame canCopy:(BOOL)canCopy canZoom:(BOOL)canZoom;
 @property(nonatomic,strong)WKWebView *webView;
+@property (nonatomic ,strong) XBlock scriptBlock;
 @end
 
 NS_ASSUME_NONNULL_END

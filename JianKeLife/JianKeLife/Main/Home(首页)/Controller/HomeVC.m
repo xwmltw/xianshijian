@@ -13,7 +13,7 @@
 #import "BaseWebVC.h"
 #import "SpecialJobListVC.h"
 #import "WSLWaterFlowLayout.h"
-
+#import <ShareSDK/ShareSDK.h>
 #import "LaXinView.h"
 
 @interface HomeVC ()<WSLWaterFlowLayoutDelegate>
@@ -84,12 +84,16 @@
     self.navigationItem.titleView = searchBtn;
 }
 - (void)scrollViewSelect{
-    BLOCKSELF
+    WEAKSELF
     [self.collectionView.homeViewModel setResponseBannerWebBlock:^(id result) {
         BaseWebVC *vc = [[BaseWebVC alloc]init];
         [vc reloadForGetWebView:result];
+        
+        [vc.webParentView setScriptBlock:^(id result) {
+            [weakSelf webViewWithScript:result];
+        }];
         vc.hidesBottomBarWhenPushed = YES;
-        [blockSelf.navigationController pushViewController:vc animated:YES];
+        [weakSelf.navigationController pushViewController:vc animated:YES];
     }];
 }
 - (void)specialViewSelect{
@@ -109,9 +113,7 @@
     };
 }
 - (void)collectionCellSelect{
-    
-    
-    
+
     WEAKSELF
     self.collectionView.collectionSelectBlock = ^(NSDictionary *result) {
 
@@ -123,15 +125,37 @@
 }
 - (void)btnOnClock:(UIButton *)btn{
     
-    LaXinView *laXinView = [[NSBundle mainBundle]loadNibNamed:@"LaXinView" owner:nil options:nil].lastObject;
-    laXinView.frame = [UIScreen mainScreen].bounds;
-    [self.view addSubview:laXinView];
+//    LaXinView *laXinView = [[NSBundle mainBundle]loadNibNamed:@"LaXinView" owner:nil options:nil].lastObject;
+//    laXinView.frame = [UIScreen mainScreen].bounds;
+//    [self.view addSubview:laXinView];
 
     
     
-//    SearchVC *vc = [[SearchVC alloc]init];
-//    vc.hidesBottomBarWhenPushed = YES;
-//    [self.navigationController pushViewController:vc animated:YES];
+    SearchVC *vc = [[SearchVC alloc]init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+#pragma mark - js交互
+- (void)webViewWithScript:(WKScriptMessage *)message{
+    if ([message.name isEqualToString:@"triggerAppMethod_laxin_XCX"]) {
+//        小程序分享
+        NSDictionary *dic = [message.body mj_JSONObject];
+        
+        NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+        [shareParams SSDKSetupWeChatMiniProgramShareParamsByTitle:AppName
+                                                      description:AppName
+                                                       webpageUrl:[NSURL URLWithString:@"https://www.baidu.com/"]
+                                                             path:dic[@"page"]
+                                                       thumbImage:nil
+                                                     hdThumbImage:[UIImage imageNamed:@"LaunchScreen_LOGO"]
+                                                         userName:dic[@"userName"]
+                                                  withShareTicket:YES
+                                                  miniProgramType:[dic[@"type"] integerValue]
+                                               forPlatformSubType:SSDKPlatformSubTypeWechatSession];
+        [ShareSDK share:SSDKPlatformSubTypeWechatSession parameters:shareParams onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
+            
+        }];
+    }
 }
 #pragma  mark - WSLWaterFlowLayout delegate
 
