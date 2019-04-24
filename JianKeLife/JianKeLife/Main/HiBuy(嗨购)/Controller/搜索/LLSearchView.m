@@ -67,7 +67,7 @@
     if ([title isEqualToString:@"历史搜索"]) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(ScreenWidth - 45, 10, 28, 30);
-        [btn setImage:[UIImage imageNamed:@"sort_recycle"] forState:UIControlStateNormal];
+        [btn setImage:[UIImage imageNamed:@"icon_sort_recycle"] forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(clearnSearchHistory:) forControlEvents:UIControlEventTouchUpInside];
         [view addSubview:btn];
     }
@@ -86,18 +86,19 @@
             letfWidth = 15;
         }
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(letfWidth, y, width, 30)];
+        label.backgroundColor = LineColor;
         label.userInteractionEnabled = YES;
         label.font = [UIFont systemFontOfSize:12];
         label.text = text;
-        label.layer.borderWidth = 0.5;
-        label.layer.cornerRadius = 5;
+//        label.layer.borderWidth = 0.5;
+        [label setCornerValue:15];
         label.textAlignment = NSTextAlignmentCenter;
         if (i % 2 == 0 && [title isEqualToString:@"大家都在搜索"]) {
-            label.layer.borderColor = XColorWithRBBA(255, 148, 153, 1).CGColor;
-            label.textColor = XColorWithRGB(255, 148, 153);
+//            label.layer.borderColor = XColorWithRBBA(255, 148, 153, 1).CGColor;
+            label.textColor = XColorWithRGB(124, 124, 124);
         } else {
-            label.textColor = XColorWithRGB(111, 111, 111);
-            label.layer.borderColor = XColorWithRGB(227, 227, 227).CGColor;
+            label.textColor = XColorWithRGB(124, 124, 124);
+//            label.layer.borderColor = XColorWithRGB(227, 227, 227).CGColor;
         }
         [label addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tagDidCLick:)]];
         [view addSubview:label];

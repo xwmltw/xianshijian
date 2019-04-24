@@ -26,7 +26,7 @@
 - (NSMutableArray *)hotArray
 {
     if (!_hotArray) {
-        self.hotArray = [NSMutableArray arrayWithObjects:@"悦诗风吟", @"洗面奶", @"兰芝", @"面膜", @"篮球鞋", @"阿迪达斯", @"耐克", @"运动鞋", nil];
+        self.hotArray = [NSMutableArray array];
     }
     return _hotArray;
 }
@@ -46,10 +46,11 @@
 - (LLSearchView *)searchView
 {
     if (!_searchView) {
-        self.searchView = [[LLSearchView alloc] initWithFrame:CGRectMake(0, 64, ScreenWidth, ScreenHeight - 64) hotArray:self.hotArray historyArray:self.historyArray];
+        self.searchView = [[LLSearchView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight - 64) hotArray:self.hotArray historyArray:self.historyArray];
         __weak LLSearchViewController *weakSelf = self;
         _searchView.tapAction = ^(NSString *str) {
             HiBuySearchVC *vc = [[HiBuySearchVC alloc]init];
+            vc.keyStr = str;
             [weakSelf.navigationController pushViewController:vc animated:YES];
         };
     }
@@ -82,9 +83,17 @@
     [super viewDidLoad];
     [self setBarButtonItem];
     self.view.backgroundColor = BackgroundColor;
-    [self.view addSubview:self.searchView];
+    
 //    [self.view addSubview:self.searchSuggestVC.view];
 //    [self addChildViewController:_searchSuggestVC];
+    
+    WEAKSELF
+    [XNetWork requestNetWorkWithUrl:Xquery_tb_product_keyword andModel:nil andSuccessBlock:^(ResponseModel *model) {
+        [weakSelf.hotArray addObjectsFromArray:model.data[@"dataRows"]];
+        [weakSelf.view addSubview:weakSelf.searchView];
+    } andFailBlock:^(ResponseModel *model) {
+        
+    }];
 }
 
 
@@ -149,7 +158,9 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
+    [self setHistoryArrWithStr:searchBar.text];
     HiBuySearchVC *vc = [[HiBuySearchVC alloc]init];
+    vc.keyStr = searchBar.text;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

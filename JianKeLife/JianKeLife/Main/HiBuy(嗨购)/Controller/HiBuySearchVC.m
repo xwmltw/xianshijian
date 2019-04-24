@@ -34,6 +34,7 @@
     searchBar.placeholder = @"请输入搜索关键词";
     searchBar.showsCancelButton = YES;
     searchBar.searchBarStyle = UISearchBarStyleMinimal;
+    searchBar.text = self.keyStr;
     
     UIButton *btn = [searchBar valueForKey:@"cancelButton"];
     btn.enabled = YES;
@@ -52,6 +53,9 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"HiBuyTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"HiBuyTableViewCell"];
     self.tableView.mj_footer = [self.hiBuyViewModel creatMjRefresh];
     
+    
+    self.hiBuyViewModel.hiBuyProductQueryModel.keywords = self.keyStr;
+    [self.hiBuyViewModel requestTypeDate];
     WEAKSELF
     [self.hiBuyViewModel setHiBuyTypeBlock:^(id result) {
         [weakSelf.tableView.mj_footer endRefreshing];
@@ -92,7 +96,7 @@
         
     }];
     UILabel *lab = [[UILabel alloc]init];
-    [lab setText:@"该分类暂无产品,去其他分类看看~"];
+    [lab setText:@"暂无产品,去首页看看~"];
     [lab setFont:[UIFont systemFontOfSize:16]];
     [lab setTextColor:LabelMainColor];
     [view addSubview:lab];

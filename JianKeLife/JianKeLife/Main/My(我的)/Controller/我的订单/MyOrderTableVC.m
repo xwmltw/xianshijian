@@ -72,6 +72,34 @@
     
     return view;
 }
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    UIView *view = [[UIView alloc]init];
+    UIImageView *imageView = [[UIImageView alloc]init];
+    imageView.image = [UIImage imageNamed:@"icon_noData"];
+    [view addSubview:imageView];
+    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(view);
+        make.top.mas_equalTo(view).offset(50);
+        
+    }];
+    UILabel *lab = [[UILabel alloc]init];
+    [lab setText:@"暂无订单,去嗨购看看~"];
+    [lab setFont:[UIFont systemFontOfSize:16]];
+    [lab setTextColor:LabelMainColor];
+    [view addSubview:lab];
+    [lab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(view);
+        make.top.mas_equalTo(imageView.mas_bottom).offset(34);
+    }];
+    
+    
+    return self.myOrderViewModel.myOrderList.count ? nil : view;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    
+    return  self.myOrderViewModel.myOrderList.count ? 0 : ScreenHeight;
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return AdaptationWidth(30);
 }

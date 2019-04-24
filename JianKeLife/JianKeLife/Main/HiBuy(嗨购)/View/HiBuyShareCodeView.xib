@@ -102,9 +102,16 @@
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                         </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$10.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0O6-Or-SqF">
+                            <rect key="frame" x="126" y="479.5" width="39" height="15"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" red="0.6705882353" green="0.6705882353" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="0O6-Or-SqF" firstAttribute="leading" secondItem="tF9-J9-3PP" secondAttribute="trailing" constant="10" id="1Mp-Kd-9fr"/>
                         <constraint firstItem="tF9-J9-3PP" firstAttribute="leading" secondItem="C3F-if-B0m" secondAttribute="trailing" constant="2" id="47N-fg-B6V"/>
                         <constraint firstAttribute="trailing" secondItem="bbD-Ww-X1R" secondAttribute="trailing" id="4Qb-cq-5yC"/>
                         <constraint firstAttribute="trailing" secondItem="bU6-kf-sbX" secondAttribute="trailing" id="7M1-un-KEs"/>
@@ -124,6 +131,7 @@
                         <constraint firstItem="ObS-xa-Wmm" firstAttribute="centerX" secondItem="2MO-TT-XED" secondAttribute="centerX" id="Ww3-QM-fDf"/>
                         <constraint firstItem="L0e-WS-sdw" firstAttribute="leading" secondItem="AfI-kX-UL7" secondAttribute="leading" constant="7" id="YHA-TG-93W"/>
                         <constraint firstItem="2MO-TT-XED" firstAttribute="leading" secondItem="Nwe-4V-RCz" secondAttribute="trailing" constant="8" id="Zgr-vq-jMA"/>
+                        <constraint firstItem="0O6-Or-SqF" firstAttribute="bottom" secondItem="tF9-J9-3PP" secondAttribute="bottom" id="b23-NJ-dlX"/>
                         <constraint firstItem="bNF-Ux-VrW" firstAttribute="top" secondItem="L0e-WS-sdw" secondAttribute="bottom" constant="2" id="ceK-2r-u78"/>
                         <constraint firstItem="C3F-if-B0m" firstAttribute="leading" secondItem="LcJ-du-o9c" secondAttribute="trailing" constant="1" id="gF1-m6-7ZC"/>
                         <constraint firstItem="2MO-TT-XED" firstAttribute="top" secondItem="bNF-Ux-VrW" secondAttribute="bottom" constant="16" id="ga3-Dg-hpF"/>
@@ -148,6 +156,7 @@
                 <outlet property="codeImage" destination="2MO-TT-XED" id="JOz-qC-N9M"/>
                 <outlet property="juanBtn" destination="m9h-k9-lcY" id="i34-Vv-IEt"/>
                 <outlet property="moneyLab" destination="C3F-if-B0m" id="GI1-Ah-R6R"/>
+                <outlet property="oldLab" destination="0O6-Or-SqF" id="E1c-La-Q4T"/>
                 <outlet property="proImage" destination="bNF-Ux-VrW" id="0RP-mu-kXR"/>
                 <outlet property="titleLab" destination="Nwe-4V-RCz" id="o16-ZH-0EJ"/>
             </connections>
@@ -157,6 +166,6 @@
     <resources>
         <image name="LaunchScreen_LOGO" width="110" height="110"/>
         <image name="icon_QRcode_down" width="16" height="16"/>
-        <image name="icon_juan_code" width="101" height="30"/>
+        <image name="icon_juan_code" width="101.5" height="30"/>
     </resources>
 </document>

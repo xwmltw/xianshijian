@@ -315,6 +315,11 @@
         [self.hiBuyShareCodeView.proImage sd_setImageWithURL:[NSURL URLWithString:self.hiBuyShareInfoModel.smallPicUrl[0]]];
         self.hiBuyShareCodeView.moneyLab.text = [NSString stringWithFormat:@"%.2f",[self.hiBuyShareInfoModel.afterCouplePrice doubleValue]];
         [self.hiBuyShareCodeView.juanBtn setTitle:[NSString stringWithFormat:@"卷   ￥%.2f",[self.hiBuyShareInfoModel.couponAmount doubleValue]] forState:UIControlStateNormal];
+        
+        NSMutableAttributedString *attribttedStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"￥%.2f",[self.hiBuyShareInfoModel.zkFinalPrice doubleValue]] attributes:nil];
+        [attribttedStr addAttributes:@{NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle),NSStrikethroughColorAttributeName:LabelAssistantColor} range:NSMakeRange(0, attribttedStr.length)];
+        
+        self.hiBuyShareCodeView.oldLab.attributedText = attribttedStr;
         self.hiBuyShareCodeView.codeImage.image = [UIImage qrCodeImageWithInfo:self.hiBuyShareInfoModel.tpwd width:90];
         [[UIApplication sharedApplication].keyWindow addSubview: self.hiBuyShareCodeView];
         WEAKSELF

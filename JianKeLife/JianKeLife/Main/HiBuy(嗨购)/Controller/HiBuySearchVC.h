@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface HiBuySearchVC : BaseMainVC
-
+@property (nonatomic ,strong) NSString *keyStr;
 @end
 
 NS_ASSUME_NONNULL_END

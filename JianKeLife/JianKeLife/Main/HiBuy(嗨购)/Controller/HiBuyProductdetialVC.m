@@ -290,6 +290,19 @@
                         make.top.mas_equalTo(shopLab.mas_bottom).offset(AdaptationWidth(18));
                     }];
                     
+                    NSMutableAttributedString *attribttedStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"￥%.2f",[self.hiBuyDetailModel.zkFinalPrice doubleValue]] attributes:nil];
+                    [attribttedStr addAttributes:@{NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle),NSStrikethroughColorAttributeName:LabelAssistantColor} range:NSMakeRange(0, attribttedStr.length)];
+                    
+                    UILabel *oldLab = [[UILabel alloc]init];
+                    oldLab.attributedText = attribttedStr;
+                    [oldLab setFont:[UIFont systemFontOfSize:AdaptationWidth(12)]];
+                    [oldLab setTextColor:LabelAssistantColor];
+                    [cell.contentView addSubview:oldLab];
+                    [oldLab mas_makeConstraints:^(MASConstraintMaker *make) {
+                        make.left.mas_equalTo(juanLab.mas_right).offset(AdaptationWidth(11));
+                        make.bottom.mas_equalTo(juanLab.mas_bottom);
+                    }];
+                    
                     
                     UILabel *numLab = [[UILabel alloc]init];
                     numLab.text = [NSString stringWithFormat:@"销量%@",self.hiBuyDetailModel.volume.description];

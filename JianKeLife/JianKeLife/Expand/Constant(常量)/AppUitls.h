@@ -80,6 +80,7 @@ static NSString *const WXLoginNotification = @"WXLoginNotification";
 
 #define Xtb_order_list              @"/mapi/union/tb_order/list"//淘宝订单列表
 #define Xtb_classify_list           @"/mapi/union/tb_product/classify_list"//查询商品分类信息
+#define Xquery_tb_product_keyword   @"/mapi/global/query_tb_product_keyword"//搜索关键词
 #define Xtb_product_list            @"/mapi/union/tb_product/list" //淘宝商品列表
 #define Xtb_product_detail          @"/mapi/union/tb_product/detail"//产品详情
 #define Xtb_product_couponBuy       @"/mapi/union/tb_product/couponBuy"//领取产品
