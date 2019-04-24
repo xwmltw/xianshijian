@@ -21,6 +21,13 @@
 		0411215D22410F9A003D7F2D /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0411215B22410F9A003D7F2D /* LoginVC.m */; };
 		0411215E22410F9A003D7F2D /* LoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0411215C22410F9A003D7F2D /* LoginVC.xib */; };
 		04179DEB225239E1006C9481 /* SpecialJobListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04179DEA225239E1006C9481 /* SpecialJobListVC.m */; };
+		042E181422702E46001BF16B /* HiBuySearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 042E181322702E46001BF16B /* HiBuySearchVC.m */; };
+		042E18192270431E001BF16B /* ico_make_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 042E18162270431E001BF16B /* ico_make_blue.png */; };
+		042E181D22704460001BF16B /* HiBuyShareVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 042E181C22704460001BF16B /* HiBuyShareVC.m */; };
+		042E182022705E76001BF16B /* HiBuyShareCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 042E181F22705E76001BF16B /* HiBuyShareCodeView.m */; };
+		042E182222705EC0001BF16B /* HiBuyShareCodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042E182122705EC0001BF16B /* HiBuyShareCodeView.xib */; };
+		042E183222709A60001BF16B /* LLSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042E183022709A60001BF16B /* LLSearchViewController.m */; };
+		042E183F22709A79001BF16B /* LLSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 042E183722709A76001BF16B /* LLSearchView.m */; };
 		0436DD1E224381F2006476C2 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0436DD1D224381F2006476C2 /* UserInfo.m */; };
 		0436DD2122438906006476C2 /* XCountDownButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0436DD2022438906006476C2 /* XCountDownButton.m */; };
 		0436DD2422438D59006476C2 /* BaseParamModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0436DD2322438D59006476C2 /* BaseParamModel.m */; };
@@ -221,6 +228,18 @@
 		0411215C22410F9A003D7F2D /* LoginVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginVC.xib; sourceTree = "<group>"; };
 		04179DE9225239E1006C9481 /* SpecialJobListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpecialJobListVC.h; sourceTree = "<group>"; };
 		04179DEA225239E1006C9481 /* SpecialJobListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpecialJobListVC.m; sourceTree = "<group>"; };
+		042E181222702E45001BF16B /* HiBuySearchVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiBuySearchVC.h; sourceTree = "<group>"; };
+		042E181322702E46001BF16B /* HiBuySearchVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiBuySearchVC.m; sourceTree = "<group>"; };
+		042E18162270431E001BF16B /* ico_make_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_make_blue.png; sourceTree = "<group>"; };
+		042E181B22704460001BF16B /* HiBuyShareVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiBuyShareVC.h; sourceTree = "<group>"; };
+		042E181C22704460001BF16B /* HiBuyShareVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiBuyShareVC.m; sourceTree = "<group>"; };
+		042E181E22705E76001BF16B /* HiBuyShareCodeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiBuyShareCodeView.h; sourceTree = "<group>"; };
+		042E181F22705E76001BF16B /* HiBuyShareCodeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiBuyShareCodeView.m; sourceTree = "<group>"; };
+		042E182122705EC0001BF16B /* HiBuyShareCodeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HiBuyShareCodeView.xib; sourceTree = "<group>"; };
+		042E183022709A60001BF16B /* LLSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLSearchViewController.m; sourceTree = "<group>"; };
+		042E183722709A76001BF16B /* LLSearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLSearchView.m; sourceTree = "<group>"; };
+		042E183822709A76001BF16B /* LLSearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLSearchView.h; sourceTree = "<group>"; };
+		042E184222709EA1001BF16B /* LLSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LLSearchViewController.h; sourceTree = "<group>"; };
 		0436DD1C224381F2006476C2 /* UserInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
 		0436DD1D224381F2006476C2 /* UserInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
 		0436DD1F22438905006476C2 /* XCountDownButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCountDownButton.h; sourceTree = "<group>"; };
@@ -576,6 +595,17 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		042E182F227099ED001BF16B /* 搜索 */ = {
+			isa = PBXGroup;
+			children = (
+				042E183822709A76001BF16B /* LLSearchView.h */,
+				042E183722709A76001BF16B /* LLSearchView.m */,
+				042E184222709EA1001BF16B /* LLSearchViewController.h */,
+				042E183022709A60001BF16B /* LLSearchViewController.m */,
+			);
+			path = "搜索";
+			sourceTree = "<group>";
+		};
 		0449CDA822685D620051817C /* 我的任务 */ = {
 			isa = PBXGroup;
 			children = (
@@ -616,12 +646,17 @@
 		045048F5226D55DC00F992D9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				042E182F227099ED001BF16B /* 搜索 */,
 				045048F9226D562B00F992D9 /* HiBuyVC.h */,
 				045048FA226D562B00F992D9 /* HiBuyVC.m */,
 				045048FC226D566C00F992D9 /* HiBuyTableViewVC.h */,
 				045048FD226D566C00F992D9 /* HiBuyTableViewVC.m */,
 				04FE814D226EB3C400CC3398 /* HiBuyProductdetialVC.h */,
 				04FE814E226EB3C400CC3398 /* HiBuyProductdetialVC.m */,
+				042E181222702E45001BF16B /* HiBuySearchVC.h */,
+				042E181322702E46001BF16B /* HiBuySearchVC.m */,
+				042E181B22704460001BF16B /* HiBuyShareVC.h */,
+				042E181C22704460001BF16B /* HiBuyShareVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -632,6 +667,9 @@
 				04504901226D5F6500F992D9 /* HiBuyTableViewCell.h */,
 				04504902226D5F6500F992D9 /* HiBuyTableViewCell.m */,
 				04504903226D5F6500F992D9 /* HiBuyTableViewCell.xib */,
+				042E181E22705E76001BF16B /* HiBuyShareCodeView.h */,
+				042E181F22705E76001BF16B /* HiBuyShareCodeView.m */,
+				042E182122705EC0001BF16B /* HiBuyShareCodeView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1403,6 +1441,7 @@
 			isa = PBXGroup;
 			children = (
 				04CEC251226D9F5F00F94707 /* JSDropDownMenu.m */,
+				042E18162270431E001BF16B /* ico_make_blue.png */,
 				04CEC252226D9F5F00F94707 /* ico_make.png */,
 				04CEC253226D9F5F00F94707 /* JSDropDownMenu.h */,
 			);
@@ -1585,12 +1624,14 @@
 				04CB941C224B4DC300C9DF13 /* InPutPasswordView.xib in Resources */,
 				04AECCA5224BB01400410304 /* GetBackWalletVC.xib in Resources */,
 				0467C315224905AB002F5344 /* QRcodeView.xib in Resources */,
+				042E18192270431E001BF16B /* ico_make_blue.png in Resources */,
 				04112155224106F3003D7F2D /* MyPersonTableViewCell.xib in Resources */,
 				045E1760224DC7F200323B55 /* RuleAlertView.xib in Resources */,
 				04B2A9D82251A01C0094A44B /* XWPhotoCell.xib in Resources */,
 				04DB3CDF226AF17600481B41 /* MytasktableViewVC.xib in Resources */,
 				04616FC3222CF66300E46B40 /* Main.storyboard in Resources */,
 				0449CDAE226881800051817C /* MyOrderTableVC.xib in Resources */,
+				042E182222705EC0001BF16B /* HiBuyShareCodeView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1662,6 +1703,8 @@
 				04871528223FC20000679095 /* MyModel.m in Sources */,
 				04CB941A224B4D7600C9DF13 /* InPutPasswordView.m in Sources */,
 				04B2A9D322519FF50094A44B /* XWImagePickerSheet.m in Sources */,
+				042E181422702E46001BF16B /* HiBuySearchVC.m in Sources */,
+				042E181D22704460001BF16B /* HiBuyShareVC.m in Sources */,
 				04E7713F22425B9900C6E7CE /* ModifyWalletVC.m in Sources */,
 				04E60746222FB528003B94ED /* BaseWebView.m in Sources */,
 				04BD116B224A32AC0033B774 /* MyInfoModel.m in Sources */,
@@ -1691,6 +1734,7 @@
 				0436DD2122438906006476C2 /* XCountDownButton.m in Sources */,
 				04DB3CDE226AF17600481B41 /* MytasktableViewVC.m in Sources */,
 				0461701A222D195400E46B40 /* XAlertView.m in Sources */,
+				042E182022705E76001BF16B /* HiBuyShareCodeView.m in Sources */,
 				04E771302242180000C6E7CE /* HomeViewModel.m in Sources */,
 				0436DD2422438D59006476C2 /* BaseParamModel.m in Sources */,
 				04616FEC222D09E100E46B40 /* UITextField+Extension.m in Sources */,
@@ -1717,6 +1761,7 @@
 				04617019222D195400E46B40 /* DateHelper.m in Sources */,
 				04B2A9F62251A15E0094A44B /* MHeaderImaCell.m in Sources */,
 				045048FB226D562B00F992D9 /* HiBuyVC.m in Sources */,
+				042E183F22709A79001BF16B /* LLSearchView.m in Sources */,
 				B33F95742250A8660057DB03 /* UnLoginView.m in Sources */,
 				04AECC9D224B95EE00410304 /* ExpectModel.m in Sources */,
 				04BD1160224A112A0033B774 /* GKImageCropOverlayView.m in Sources */,
@@ -1754,6 +1799,7 @@
 				0476AA102237611C00EF7C8E /* UIImage+Extension.m in Sources */,
 				04FE8155226F383400CC3398 /* HiBuyShareInfoModel.m in Sources */,
 				04616FE8222D09D900E46B40 /* UINavigationBar+SetElement.m in Sources */,
+				042E183222709A60001BF16B /* LLSearchViewController.m in Sources */,
 				04B2AA132251A1C50094A44B /* SDBaseProgressView.m in Sources */,
 				04616FFB222D14C600E46B40 /* UIView+Rotate.m in Sources */,
 				04112138224086E5003D7F2D /* TaskStayTableView.m in Sources */,

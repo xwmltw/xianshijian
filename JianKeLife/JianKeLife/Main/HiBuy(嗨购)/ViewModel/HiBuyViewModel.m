@@ -12,6 +12,7 @@
 
 - (void)requestTypeDate{
     [self.hiBuyTypeList removeAllObjects];
+    self.pageQueryRedModel.page = @(1);
     self.hiBuyProductQueryModel.pageQueryReq = self.pageQueryRedModel;
     WEAKSELF
     [XNetWork requestNetWorkWithUrl:Xtb_product_list andModel:[self.hiBuyProductQueryModel mj_keyValues] andSuccessBlock:^(ResponseModel *model) {

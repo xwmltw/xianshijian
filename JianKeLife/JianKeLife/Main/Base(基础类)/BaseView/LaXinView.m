@@ -29,9 +29,20 @@
     
 //    gradientLayer.frame = CGRectMake(0, 0, 191, 48);
 //    [self.finishBtn.layer addSublayer:gradientLayer];
-//    [self.finishBtn setCornerValue:24];
+    [self.finishBtn setCornerValue:24];
 }
 - (IBAction)btnOnClick:(UIButton *)sender {
+    switch (sender.tag) {
+        case 0:
+            
+            break;
+        case 503:{
+            self.hidden = YES;
+        }
+            break;
+        default:
+            break;
+    }
 }
 
 

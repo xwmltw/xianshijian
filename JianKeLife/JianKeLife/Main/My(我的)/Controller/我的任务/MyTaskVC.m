@@ -90,7 +90,7 @@
             
             MytasktableViewVC   *vcClass = [[MytasktableViewVC alloc] init];
             vcClass.taskViewModel.taskType = MyTaskTableViewTypeAll;
-            vcClass.taskStayBtnBlcok = [self taskResultBlcok];
+            vcClass.taskStayBtnBlcok = [self taskBtnBlcok];
             vcClass.taskStayCellselect = [self taskOverCellBlock];
             return vcClass;
         }
@@ -166,7 +166,13 @@
                 [blockSelf.navigationController pushViewController:vc animated:YES];
             }
                 break;
-                
+            case 204:{
+                TaskResultVC*vc = [[TaskResultVC alloc]init];
+                vc.resultModel = [TaskModel mj_objectWithKeyValues:dic];
+                vc.hidesBottomBarWhenPushed = YES;
+                [blockSelf.navigationController pushViewController:vc animated:YES];
+            }
+                break;
             default:
                 break;
         }

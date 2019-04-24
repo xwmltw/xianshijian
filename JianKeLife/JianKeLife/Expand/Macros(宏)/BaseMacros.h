@@ -44,6 +44,9 @@
 #define XNotificationCenter [NSNotificationCenter defaultCenter]
 #define WDUserDefaults       [NSUserDefaults standardUserDefaults]
 
+
+#define KHistorySearchPath [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"PYSearchhistories.plist"]
+
 /** 单例*/
 #define XSharedInstance(name)\
 static id _instance;\

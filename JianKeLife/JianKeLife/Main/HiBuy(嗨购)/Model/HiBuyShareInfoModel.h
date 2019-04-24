@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic ,strong) NSString *afterCouplePrice;
 @property (nonatomic ,strong) NSString *couponAmount;
 @property (nonatomic ,strong) NSString *commissionAmount;
-@property (nonatomic ,strong) NSString *smallPicUrl;
+@property (nonatomic ,strong) NSArray *smallPicUrl;
 @property (nonatomic ,strong) NSString *couponShareUrl;
 //hasAuthorize (integer, optional): 是否已经授权：1是 0否 ,
 //authorizePageUrl (string, optional): 授权页面地址，未授权的情况下下发 ,

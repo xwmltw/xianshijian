@@ -1,43 +1,47 @@
 //
-//  HiBuyTableViewVC.m
+//  HiBuySearchVC.m
 //  JianKeLife
 //
-//  Created by yanqb on 2019/4/22.
+//  Created by yanqb on 2019/4/24.
 //  Copyright © 2019年 xwm. All rights reserved.
 //
 
-#import "HiBuyTableViewVC.h"
-#import "HiBuyTableViewCell.h"
-#import "SDCycleScrollView.h"
-#import "LoginVC.h"
-#import "BaseWebVC.h"
+#import "HiBuySearchVC.h"
 #import "JSDropDownMenu.h"
 #import "HiBuyProductdetialVC.h"
-@interface HiBuyTableViewVC ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,JSDropDownMenuDelegate,JSDropDownMenuDataSource>
-@property (nonatomic ,strong) SDCycleScrollView *sdcycleScrollView;
-@property (nonatomic ,strong) JSDropDownMenu *dropDownMenu;
-@property (nonatomic ,strong) NSArray *allAry ,*salesAry ,*priceAry ,*chooseAry;
-@property (nonatomic ,assign) NSInteger allIndex, salesIndex, priceIndex, chooseIndex;
-@property (nonatomic ,strong) UITableView *tableView;
-@property (nonatomic ,strong) UIButton *topBtn;
+#import "HiBuyTableViewCell.h"
+#import "hiBuyViewModel.h"
 
+@interface HiBuySearchVC ()<UISearchBarDelegate,UITableViewDelegate,UITableViewDataSource,JSDropDownMenuDelegate,JSDropDownMenuDataSource>
+@property (nonatomic ,strong) UITableView *tableView;
+@property (nonatomic ,strong) JSDropDownMenu *dropDownMenu;
+@property (nonatomic ,strong) HiBuyViewModel *hiBuyViewModel;
+@property (nonatomic ,strong) NSArray *allAry ,*salesAry ,*priceAry ,*chooseAry;
+@property (nonatomic ,assign) NSInteger allIndex, salesIndex, priceIndex,chooseIndex;
 @end
 
-@implementation HiBuyTableViewVC
-
+@implementation HiBuySearchVC
+- (void)setBackNavigationBarItem{
+    [self.navigationItem setHidesBackButton:YES];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = XColorWithRGB(248, 248, 248);
+    self.view.backgroundColor = BackgroundColor;
     
-    if (self.isFirstType && self.clientGlobalInfo.bannerAdListTBPage.count > 0) {
-        [self.view addSubview:self.sdcycleScrollView];
-        [self.sdcycleScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.view).offset(16);
-            make.right.mas_equalTo(self.view).offset(-16);
-            make.top.mas_equalTo(self.view).offset(AdaptationWidth(12));
-            make.height.mas_equalTo(AdaptationWidth(130));
-        }];
-    }
+    //搜索框
+    UISearchBar *searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 30)];
+    searchBar.delegate = self;
+    searchBar.placeholder = @"请输入搜索关键词";
+    searchBar.showsCancelButton = YES;
+    searchBar.searchBarStyle = UISearchBarStyleMinimal;
+    
+    UIButton *btn = [searchBar valueForKey:@"cancelButton"];
+    btn.enabled = YES;
+    [btn setTitle:@"取消" forState:UIControlStateNormal];
+    [btn setTitleColor:LabelMainColor forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(btnOnClick:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.titleView = searchBar;
+    
     [self.view addSubview:self.dropDownMenu];
     
     [self.view addSubview:self.tableView];
@@ -45,49 +49,36 @@
         make.top.mas_equalTo(self.dropDownMenu.mas_bottom).offset(2);
         make.left.right.bottom.mas_equalTo(self.view);
     }];
-//    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.tableView registerNib:[UINib nibWithNibName:@"HiBuyTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"HiBuyTableViewCell"];
     self.tableView.mj_footer = [self.hiBuyViewModel creatMjRefresh];
-    [self.hiBuyViewModel requestData];
+    
     WEAKSELF
     [self.hiBuyViewModel setHiBuyTypeBlock:^(id result) {
         [weakSelf.tableView.mj_footer endRefreshing];
         [weakSelf.tableView reloadData];
     }];
     
-    self.topBtn = [[UIButton alloc]init];
-    self.topBtn.hidden = YES;
-    [self.topBtn setBackgroundColor:[UIColor whiteColor]];
-    [self.topBtn setImage:[UIImage imageNamed:@"icon_top"] forState:UIControlStateNormal];
-    [self.topBtn addTarget:self action:@selector(btnOnClock:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.topBtn];
-    [self.topBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(self.view).offset(AdaptationWidth(-10));
-        make.right.mas_equalTo(self.view).offset(AdaptationWidth(-10));
-        make.width.height.mas_equalTo(AdaptationWidth(76));
-    }];
 }
-//- (UIView *)creatHead{
-//    UIView *view = [[UIView alloc]init];
-//}
-#pragma mark -btn
-- (void)btnOnClock:(UIButton *)btn{
-    [self.tableView setContentOffset:CGPointMake(0, 0) animated:YES];
+- (void)btnOnClick:(UIButton *)btn{
+    [self.navigationController popViewControllerAnimated:YES];
 }
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    CGFloat height = self.isFirstType ? AdaptationWidth(300) : AdaptationWidth(ScreenHeight - 100);
-    if(scrollView.contentOffset.y < height){
-        self.topBtn.hidden = YES;
-        
-    }else{
-        self.topBtn.hidden = NO;
-        
-    }
+#pragma  mark - UISearchBar delegate
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    [searchBar resignFirstResponder];
+    UIButton *cancelBtn = [searchBar valueForKeyPath:@"cancelButton"]; //首先取出cancelBtn
+    cancelBtn.enabled = YES;
+    
+//    self.collectionView.searchVieModel.keywords = searchBar.text;
+//    [self.collectionView.searchVieModel.productList removeAllObjects];
+//    self.collectionView.searchVieModel.pageQueryRedModel.page = @1;
+//    [self.collectionView.searchVieModel requestData];
+    self.hiBuyViewModel.hiBuyProductQueryModel.keywords = searchBar.text;
+    [self.hiBuyViewModel requestTypeDate];
 }
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
+    
     return 1;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -109,16 +100,16 @@
         make.centerX.mas_equalTo(view);
         make.top.mas_equalTo(imageView.mas_bottom).offset(34);
     }];
-
-
+    
+    
     return self.hiBuyViewModel.hiBuyTypeList.count ? nil : view;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     
-    return self.hiBuyViewModel.hiBuyTypeList.count ? 0 : ScreenHeight;
+    return  self.hiBuyViewModel.hiBuyTypeList.count ? 0 : ScreenHeight;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
+    
     return self.hiBuyViewModel.hiBuyTypeList.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -145,50 +136,10 @@
     [self.navigationController pushViewController:vc animated:YES];
     
 }
-#pragma mark - SDCycleScrollView delegate
-- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
-    
-//    NSNumber *isLogin = self.clientGlobalInfo.bannerAdList[index][@"isNeedLogin"];
-//    if (isLogin.integerValue == 1) {
-//        LoginVC *vc = [[LoginVC alloc]init];
-//        vc.hidesBottomBarWhenPushed = YES;
-//        [self.navigationController pushViewController:vc animated:YES];
-//        return;
-//    }
-    
-    NSNumber *adType = self.clientGlobalInfo.bannerAdListTBPage[index][@"adType"];
-    NSString *adId = self.clientGlobalInfo.bannerAdListTBPage[index][@"adId"];
-    NSString *adDetailUrl = XNULL_TO_NIL(self.clientGlobalInfo.bannerAdListTBPage[index][@"adDetailUrl"]);
-    [XNetWork requestNetWorkWithUrl:Xadvertise_access_log andModel:@{@"adId":adId} andSuccessBlock:^(ResponseModel *model) {
-        
-    } andFailBlock:^(ResponseModel *model) {
-        
-    }];
-    
-    switch (adType.integerValue) {
-        case 1:
-        {
-            BaseWebVC *vc = [[BaseWebVC alloc]init];
-            [vc reloadForGetWebView:adDetailUrl];
-            vc.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:vc animated:YES];
-        }
-            break;
-        case 2:
-        {
-            [[UIApplication sharedApplication]openURL:[NSURL URLWithString:adDetailUrl]];
-        }
-            break;
-            
-            
-        default:
-            break;
-    }
-}
 #pragma mark - dropDownMenu
 
 - (NSInteger)numberOfColumnsInMenu:(JSDropDownMenu *)menu{
-
+    
     return 4;
 }
 - (BOOL)displayByCollectionViewInColumn:(NSInteger)column{
@@ -261,7 +212,7 @@
         default:
             break;
     }
-   
+    
     return @"xwm";
 }
 - (NSString *)menu:(JSDropDownMenu *)menu titleForRowAtIndexPath:(JSIndexPath *)indexPath{
@@ -301,7 +252,7 @@
             [self.hiBuyViewModel requestTypeDate];
             break;
         case 2:
-         
+            
             self.hiBuyViewModel.hiBuyProductQueryModel.orderType = indexPath.row ? @(indexPath.row + 7) : 0;
             self.priceIndex = indexPath.row;
             [self.hiBuyViewModel requestTypeDate];
@@ -315,55 +266,6 @@
     }
 }
 #pragma mark-懒加载
-- (UITableView *)tableView{
-    if (!_tableView) {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-    }
-    return _tableView;
-}
-- (JSDropDownMenu *)dropDownMenu{
-    if (!_dropDownMenu) {
-        if (_isFirstType) {
-            _dropDownMenu = [[JSDropDownMenu alloc]initWithOrigin:CGPointMake(0, AdaptationWidth(144)) andHeight:45];
-        }else{
-            _dropDownMenu = [[JSDropDownMenu alloc]initWithOrigin:CGPointMake(0, 0) andHeight:45];
-        }
-        _dropDownMenu.indicatorColor = XColorWithRBBA(34, 58, 80, 0.68);
-        _dropDownMenu.indicatorHightColor = blueColor;
-        _dropDownMenu.separatorColor = XColorWithRGB(233, 233, 235);
-        _dropDownMenu.textColor = XColorWithRBBA(34, 58, 80, 0.68);
-        _dropDownMenu.textHightColor = blueColor;
-        _dropDownMenu.dataSource = self;
-        _dropDownMenu.delegate = self;
-    }
-    return _dropDownMenu;
-}
-
-
-- (SDCycleScrollView *)sdcycleScrollView{
-    if (!_sdcycleScrollView) {
-        NSMutableArray *imageArry = [NSMutableArray array];
-        [self.clientGlobalInfo.bannerAdListTBPage enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            
-            [imageArry addObject:obj[@"adImgUrl"]];
-        }];
-        _sdcycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"icon_noData"]];
-        _sdcycleScrollView.imageURLStringsGroup = imageArry;
-        _sdcycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleToFill;
-        _sdcycleScrollView.autoScrollTimeInterval = 3;
-        _sdcycleScrollView.pageControlStyle = SDCycleScrollViewPageContolStyleClassic;
-        _sdcycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
-        _sdcycleScrollView.pageDotColor = XColorWithRBBA(255, 255, 255, 0.4);
-        _sdcycleScrollView.backgroundColor = [UIColor whiteColor];
-        if (imageArry.count == 1) {
-            _sdcycleScrollView.autoScroll = NO;
-        }
-    }
-    return _sdcycleScrollView;
-}
-
 - (NSArray *)allAry{
     if (!_allAry) {
         _allAry = [NSArray arrayWithObjects:@"综合",@"佣金金额由高到低",@"佣金金额由低到高",@"优惠券由高到低",@"优惠券由低到高", nil];
@@ -387,6 +289,29 @@
         _chooseAry = [NSArray arrayWithObjects:@"最低金额",@"最高金额", nil];
     }
     return _chooseAry;
+}
+- (UITableView *)tableView{
+    if (!_tableView) {
+        _tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+    }
+    return _tableView;
+}
+- (JSDropDownMenu *)dropDownMenu{
+    if (!_dropDownMenu) {
+        
+        _dropDownMenu = [[JSDropDownMenu alloc]initWithOrigin:CGPointMake(0, 0) andHeight:45];
+        
+        _dropDownMenu.indicatorColor = XColorWithRBBA(34, 58, 80, 0.68);
+        _dropDownMenu.indicatorHightColor = blueColor;
+        _dropDownMenu.separatorColor = XColorWithRGB(233, 233, 235);
+        _dropDownMenu.textColor = XColorWithRBBA(34, 58, 80, 0.68);
+        _dropDownMenu.textHightColor = blueColor;
+        _dropDownMenu.dataSource = self;
+        _dropDownMenu.delegate = self;
+    }
+    return _dropDownMenu;
 }
 - (HiBuyViewModel *)hiBuyViewModel{
     if (!_hiBuyViewModel) {

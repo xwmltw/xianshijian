@@ -25,6 +25,7 @@
     self.tableView.mj_footer = [self.myOrderViewModel creatMjRefresh];
     WEAKSELF
     [self.myOrderViewModel setMyOrderListBlock:^(id result) {
+        [weakSelf.tableView.mj_footer endRefreshing];
         [weakSelf.tableView reloadData];
     }];
 }

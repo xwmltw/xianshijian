@@ -29,7 +29,10 @@
                         <button opaque="NO" tag="502" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ThB-Jm-xTS">
                             <rect key="frame" x="69" y="304" width="191" height="48"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="去完成 多拿5元"/>
+                            <color key="backgroundColor" red="0.75686274509803919" green="0.15294117647058825" blue="0.1764705882352941" alpha="0.8807523544520548" colorSpace="calibratedRGB"/>
+                            <state key="normal" title="去完成 多拿5元">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
                             <connections>
                                 <action selector="btnOnClick:" destination="G4N-tp-0Uh" eventType="touchUpInside" id="Y7Y-Fv-Zkv"/>
                             </connections>

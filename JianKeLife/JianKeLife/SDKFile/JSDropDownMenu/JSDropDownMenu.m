@@ -947,7 +947,11 @@ const NSInteger kMaxColumnsInMenu = 5;
         cell.backgroundColor = BackColor;
         
         if ([titleLabel.text isEqualToString:[(CATextLayer *)[_titles objectAtIndex:_currentSelectedMenudIndex] string]]) {
+            UIImageView *accessoryImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ico_make_blue"]];
             
+            accessoryImageView.frame = CGRectMake(titleLabel.frame.origin.x+titleLabel.frame.size.width+10, (self.frame.size.height-12)/2, 16, 12);
+            
+            [cell addSubview:accessoryImageView];
             titleLabel.textColor = self.textHightColor;
             
         } else{
@@ -966,7 +970,12 @@ const NSInteger kMaxColumnsInMenu = 5;
 
             BOOL haveRightTableView = [_dataSource haveRightTableViewInColumn:_currentSelectedMenudIndex];
             if(!haveRightTableView){
-               
+                UIImageView *accessoryImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ico_make_blue"]];
+                
+                accessoryImageView.frame = CGRectMake(titleLabel.frame.origin.x+titleLabel.frame.size.width+10, (self.frame.size.height-12)/2, 16, 12);
+                
+                [cell addSubview:accessoryImageView];
+                
                 titleLabel.textColor = self.textHightColor;
             }
         } else{

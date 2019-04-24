@@ -12,11 +12,13 @@
 #import "BaseWebView.h"
 #import "BaseWebVC.h"
 #import "HiBuyShareInfoModel.h"
-@interface HiBuyProductdetialVC ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,WKUIDelegate>
+#import "HiBuyShareVC.h"
+@interface HiBuyProductdetialVC ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,WKNavigationDelegate>
 @property (nonatomic ,strong) UITableView *tableView;
 @property (nonatomic ,strong) SDCycleScrollView *sdcycleScrollView;
 @property (nonatomic ,strong) HiBuyDetailModel *hiBuyDetailModel;
 @property (nonatomic ,strong) HiBuyShareInfoModel *hiBuyShareInfoModel;
+@property (nonatomic ,strong) WKWebView *webView;
 @end
 
 @implementation HiBuyProductdetialVC
@@ -117,7 +119,17 @@
             [XNetWork requestNetWorkWithUrl:Xtb_product_getShareInfo andModel:@{@"productId":self.productId} andSuccessBlock:^(ResponseModel *model) {
                 weakSelf.hiBuyShareInfoModel = [HiBuyShareInfoModel mj_objectWithKeyValues:model.data];
                 if (weakSelf.hiBuyShareInfoModel.hasAuthorize.integerValue == 0) {
-                    [weakSelf goTohasAuthorize:weakSelf.hiBuyShareInfoModel.authorizePageUrl];
+                    [XAlertView alertWithTitle:@"提示"
+                                       message:@"您还没有淘宝授权哦"
+                             cancelButtonTitle:@"取消"
+                            confirmButtonTitle:@"去授权"
+                                viewController:self
+                                    completion:^(UIAlertAction *action, NSInteger buttonIndex) {
+                                        if (buttonIndex == 1) {
+                                            [weakSelf goTohasAuthorize:weakSelf.hiBuyShareInfoModel.authorizePageUrl];
+                                        }
+                    }];
+                    
                 }else{
                     [weakSelf goToShare];
                 }
@@ -133,7 +145,17 @@
             [XNetWork requestNetWorkWithUrl:Xtb_product_couponBuy andModel:@{@"productId":self.productId} andSuccessBlock:^(ResponseModel *model) {
                 NSNumber *hasAuthorize = model.data[@"hasAuthorize"];
                 if (hasAuthorize.integerValue != 1) {
-                    [weakSelf goTohasAuthorize:model.data[@"authorizePageUrl"]];
+                    [XAlertView alertWithTitle:@"提示"
+                                       message:@"您还没有淘宝授权哦"
+                             cancelButtonTitle:@"取消"
+                            confirmButtonTitle:@"去授权"
+                                viewController:self
+                                    completion:^(UIAlertAction *action, NSInteger buttonIndex) {
+                                        if (buttonIndex == 1) {
+                                            [weakSelf goTohasAuthorize:model.data[@"authorizePageUrl"]];
+                                        }
+                                    }];
+                    
                     
                 }else{
                     [weakSelf goTohasAuthorize:model.data[@"couponShareUrl"]];
@@ -152,7 +174,9 @@
 }
 //分享
 - (void)goToShare{
-    
+    HiBuyShareVC *vc = [[HiBuyShareVC alloc]init];
+    vc.hiBuyShareInfoModel = self.hiBuyShareInfoModel;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 //领取
 - (void)goTohasAuthorize:(NSString *)url{
@@ -181,7 +205,7 @@
             return AdaptationWidth(146);
             break;
         case 2:
-            return ScreenHeight;
+            return self.hiBuyDetailModel.cellWidth ;
             break;
             
         default:
@@ -223,7 +247,8 @@
                     }];
                     
                     UILabel *shopLab = [[UILabel alloc]init];
-                    shopLab.text = [NSString stringWithFormat:@"店铺信息 %@",self.hiBuyDetailModel.shopTitle];
+                    
+                    shopLab.text = self.hiBuyDetailModel.shopTitle.length ? [NSString stringWithFormat:@"店铺信息 %@",self.hiBuyDetailModel.shopTitle] : @" ";
                     [shopLab setFont:[UIFont systemFontOfSize:AdaptationWidth(12)]];
                     [shopLab setTextColor:LabelAssistantColor];
                     [cell.contentView addSubview:shopLab];
@@ -239,7 +264,7 @@
                     [cell.contentView addSubview:yuanLab];
                     [yuanLab mas_makeConstraints:^(MASConstraintMaker *make) {
                         make.left.mas_equalTo(cell).offset(AdaptationWidth(16));
-                        make.top.mas_equalTo(shopLab.mas_bottom).offset(AdaptationWidth(12));
+                        make.top.mas_equalTo(shopLab.mas_bottom).offset(AdaptationWidth(18));
                     }];
                     UILabel *moneyLab = [[UILabel alloc]init];
                     if (self.hiBuyDetailModel.couponAmount.integerValue) {
@@ -262,7 +287,7 @@
                     [cell.contentView addSubview:juanLab];
                     [juanLab mas_makeConstraints:^(MASConstraintMaker *make) {
                         make.left.mas_equalTo(moneyLab.mas_right).offset(AdaptationWidth(2));
-                        make.top.mas_equalTo(shopLab.mas_bottom).offset(AdaptationWidth(12));
+                        make.top.mas_equalTo(shopLab.mas_bottom).offset(AdaptationWidth(18));
                     }];
                     
                     
@@ -323,15 +348,15 @@
                         make.centerY.mas_equalTo(titleImage);
                     }];
                     
-                    WKWebView *webView = [[WKWebView alloc]init];
-                    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.hiBuyDetailModel.productDetailPageUrl]]];
-                    [cell.contentView addSubview:webView];
-                    [webView mas_makeConstraints:^(MASConstraintMaker *make) {
+                    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.hiBuyDetailModel.productDetailPageUrl]]];
+//                    [self.webView addObserver:self forKeyPath:@"scrollView.contentSize" options:NSKeyValueObservingOptionNew context:nil];
+                    [cell.contentView addSubview:self.webView];
+                    [self.webView mas_makeConstraints:^(MASConstraintMaker *make) {
                         make.left.right.bottom.mas_equalTo(cell);
                         make.top.mas_equalTo(cell).offset(AdaptationWidth(37));
                     }];
-                    
-                    self.hiBuyDetailModel.cellWidth =   webView.size.height + 37;
+               
+//                    self.hiBuyDetailModel.cellWidth =   webView.size.height + 37;
                     return cell;
                 }
                     break;
@@ -348,7 +373,25 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
  
 }
-
+////kvo
+//- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
+//    if ([keyPath isEqualToString:@"scrollView.contentSize"]) {
+//        CGPoint p = [[change objectForKey:@"new"] CGPointValue];
+//        self.hiBuyDetailModel.cellWidth = p.y;
+//        if (self.hiBuyDetailModel.cellWidth > 100) {
+//            NSIndexPath *index = [NSIndexPath indexPathForRow:2 inSection:0];
+//            [self.tableView moveRowAtIndexPath:index toIndexPath:index];
+//        }
+//    }
+//
+//}
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
+    [webView evaluateJavaScript:@"document.body.offsetHeight;" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+        NSString *heightStr = [NSString stringWithFormat:@"%@",result];
+        self.hiBuyDetailModel.cellWidth = heightStr.floatValue;
+        [self.tableView moveRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0] toIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
+    }];
+}
 - (SDCycleScrollView *)sdcycleScrollView{
     if (!_sdcycleScrollView) {
         
@@ -374,4 +417,14 @@
     }
     return _hiBuyShareInfoModel;
 }
+- (WKWebView *)webView{
+    if (!_webView) {
+        _webView = [[WKWebView alloc]init];
+        _webView.navigationDelegate = self;
+    }
+    return _webView;
+}
+//- (void)dealloc{
+//    [_webView removeObserver:self forKeyPath:@"scrollView.contentSize"];
+//}
 @end
