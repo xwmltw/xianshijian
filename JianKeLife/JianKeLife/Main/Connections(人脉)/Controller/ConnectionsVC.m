@@ -20,7 +20,7 @@
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKUI/ShareSDK+SSUI.h>
 #import <ShareSDKUI/SSUIShareSheetConfiguration.h>
-
+#import "WXApi.h"
 @interface ConnectionsVC ()
 @property (weak, nonatomic) IBOutlet UILabel *moneyLab;
 @property (weak, nonatomic) IBOutlet UILabel *personNumLab;
@@ -202,6 +202,10 @@
                 break;
             case 3022:
             {
+                if (![WXApi isWXAppInstalled]) {
+                    [ProgressHUD showProgressHUDInView:nil withText:@"未安装微信" afterDelay:1 ];
+                    return ;
+                }
                 NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
                 [shareParams SSDKSetupShareParamsByText:@"购物省钱，分享赚钱 开启你的值享生活"
                                                  images:[UIImage convertViewToImage:blockSelf.myPersonShareView.QRDownBGView]
@@ -209,12 +213,17 @@
                                                   title:AppName
                                                    type:SSDKContentTypeAuto];
                 [ShareSDK share:SSDKPlatformSubTypeWechatSession parameters:shareParams onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
-                    
+                    [UserInfo sharedInstance].isAlertShare = YES;
+                    [[UserInfo sharedInstance]saveUserInfo:[UserInfo sharedInstance]];
                 }];
             }
                 break;
             case 3023:
             {
+                if (![WXApi isWXAppInstalled]) {
+                    [ProgressHUD showProgressHUDInView:nil withText:@"未安装微信" afterDelay:1 ];
+                    return ;
+                }
                 NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
                 [shareParams SSDKSetupShareParamsByText:@"购物省钱，分享赚钱 开启你的值享生活"
                                                  images:[UIImage convertViewToImage:blockSelf.myPersonShareView.QRDownBGView]
@@ -222,7 +231,8 @@
                                                   title:AppName
                                                    type:SSDKContentTypeAuto];
                 [ShareSDK share:SSDKPlatformSubTypeWechatTimeline parameters:shareParams onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
-                    
+                    [UserInfo sharedInstance].isAlertShare = YES;
+                    [[UserInfo sharedInstance]saveUserInfo:[UserInfo sharedInstance]];
                 }];
             }
                 break;

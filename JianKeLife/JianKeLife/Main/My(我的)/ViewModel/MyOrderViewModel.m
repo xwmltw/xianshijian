@@ -15,7 +15,7 @@
     [dic setObject:[self.pageQueryRedModel mj_keyValues] forKey:@"pageQueryReq"];
     WEAKSELF
     [XNetWork requestNetWorkWithUrl:Xtb_order_list andModel:dic andSuccessBlock:^(ResponseModel *model) {
-        [weakSelf.myOrderList addObjectsFromArray:model.data[@"PageRstInf"][@"dataRows"]];
+        [weakSelf.myOrderList addObjectsFromArray:model.data[@"dataRows"]];
         XBlockExec(weakSelf.myOrderListBlock ,nil);
     } andFailBlock:^(ResponseModel *model) {
         

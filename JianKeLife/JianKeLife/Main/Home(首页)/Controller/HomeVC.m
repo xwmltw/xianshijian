@@ -15,13 +15,23 @@
 #import "WSLWaterFlowLayout.h"
 #import <ShareSDK/ShareSDK.h>
 #import "LaXinView.h"
+#import "LaXinModel.h"
+#import "WXApi.h"
+#import "JobDetailViewModel.h"
+#import "QRcodeView.h"
+#import "XCommonHepler.h"
+#import "MyPersonShareView.h"
 
 @interface HomeVC ()<WSLWaterFlowLayoutDelegate>
 {
      WSLWaterFlowLayout * _flow;
 }
 @property (nonatomic ,strong) HomeCollectionView *collectionView;
-
+@property (nonatomic ,strong) LaXinModel *laXinModel;
+@property (nonatomic ,strong) LaXinView *laXinView;
+@property (nonatomic ,strong) QRcodeView *qrCodeView;
+@property (nonatomic ,strong) JobDetailViewModel *viewModel;
+@property (nonatomic ,strong) MyPersonShareView *myPersonShareView;
 @end
 
 @implementation HomeVC
@@ -38,6 +48,8 @@
     } andFailBlock:^(id result) {
         
     }];
+    
+    
     
     
 }
@@ -70,7 +82,272 @@
         }
     }];
     
+
+    //拉新
+        WEAKSELF
+        [XNetWork requestNetWorkWithUrl:Xintroduce_new_complete_data andModel:nil andSuccessBlock:^(ResponseModel *model) {
+            weakSelf.laXinModel = [LaXinModel mj_objectWithKeyValues:model.data];
+            if (!weakSelf.laXinModel.isFinished.integerValue && !weakSelf.laXinModel.isCompleteFirstTask.integerValue) {
+            
+                double num = weakSelf.laXinModel.totalAmount.doubleValue/weakSelf.laXinModel.minWithdrawAmount.doubleValue;
+                weakSelf.laXinView = [[NSBundle mainBundle]loadNibNamed:@"LaXinView" owner:nil options:nil].lastObject;
+                weakSelf.laXinView.titleLab2.hidden = YES;
+                weakSelf.laXinView.progressNum = [UserInfo sharedInstance].isSignIn ? num : 0.18;
+                int newNum = (1 -num)*100;
+                weakSelf.laXinView.proDetailLab.text = [UserInfo sharedInstance].isSignIn ? [NSString stringWithFormat:@"满%d元即可提现，距离提现还有%d%%",[weakSelf.laXinModel.minWithdrawAmount intValue]/100,newNum] :@"满50元即可提现，距离提现还有82%";
+                [weakSelf.laXinView setLaXinBlock:^(UIButton *result) {
+                    
+                    switch (result.tag) {
+                        case 501:
+                        {
+                            if (![[UserInfo sharedInstance]isSignIn]){
+                                weakSelf.laXinView.hidden = YES;
+                                [weakSelf getBlackLogin:weakSelf];
+                            }else{
+                                weakSelf.laXinView.hidden = YES;
+                                BaseWebVC *vc = [[BaseWebVC alloc]init];
+                                [vc reloadForGetWebView:weakSelf.laXinModel.activityPageUrl];
+                                vc.hidesBottomBarWhenPushed = YES;
+                                [weakSelf.navigationController pushViewController:vc animated:YES];
+                            }
+                        }
+                            break;
+                        case 502:{
+                            if (![[UserInfo sharedInstance]isSignIn]){
+                                weakSelf.laXinView.hidden = YES;
+                                [weakSelf getBlackLogin:weakSelf];
+                            }else{
+                                weakSelf.laXinView.hidden = YES;
+                            }
+                        }
+                            
+                            break;
+                            
+                        default:
+                            break;
+                    }
+                    
+                }];
+                weakSelf.laXinView.frame = [UIScreen mainScreen].bounds;
+                [[UIApplication sharedApplication].keyWindow addSubview: weakSelf.laXinView];
+                
+                
+            }else if(!weakSelf.laXinModel.isFinished.integerValue && weakSelf.laXinModel.isCompleteFirstTask.integerValue && ![UserInfo sharedInstance].isAlertShare){
+                
+                weakSelf.laXinView = [[NSBundle mainBundle]loadNibNamed:@"LaXinView" owner:nil options:nil].lastObject;
+                weakSelf.laXinView.frame = [UIScreen mainScreen].bounds;
+                [[UIApplication sharedApplication].keyWindow addSubview: weakSelf.laXinView];
+                weakSelf.laXinView.titleLab.hidden = YES;
+                weakSelf.laXinView.proDetailLab.hidden = YES;
+                weakSelf.laXinView.detailLab.hidden = YES;
+                weakSelf.laXinView.titleLab2.text = @"享享注意到你还没有领取分享奖励哦，动动手指轻松得5元";
+                weakSelf.laXinView.mainImage.image = [UIImage imageNamed:@"icon_laxin_unShare"];
+                weakSelf.laXinView.headImage.hidden = YES;
+                weakSelf.laXinView.isProView = YES;
+                [weakSelf.laXinView.finishBtn setTitle:@"分享赚5元" forState:UIControlStateNormal];
+                [weakSelf.laXinView setLaXinBlock:^(UIButton *result) {
+                    
+                    switch (result.tag) {
+                        case 501:
+                        {
+                            weakSelf.laXinView.hidden = YES;
+                            BaseWebVC *vc = [[BaseWebVC alloc]init];
+                            [vc reloadForGetWebView:weakSelf.laXinModel.activityPageUrl];
+                            vc.hidesBottomBarWhenPushed = YES;
+                            [weakSelf.navigationController pushViewController:vc animated:YES];
+                        }
+                            break;
+                        case 502:{
+                            if (weakSelf.laXinModel.productNo.length) {
+                                [weakSelf shareView:weakSelf.laXinModel.productNo];
+                            } else {
+                                [weakSelf shareAppView];
+                                
+                            }
+                            
+                        }
+                            
+                            break;
+                            
+                        default:
+                            break;
+                    }
+                    
+                }];
+                
+            }
+        } andFailBlock:^(id result) {
+            
+        }];
+  
+    
+    
 }
+//分享app
+- (void)shareAppView{
+    WEAKSELF
+    [XNetWork requestNetWorkWithUrl:Xget_connections_info andModel:nil andSuccessBlock:^(ResponseModel *model) {
+        [[UIApplication sharedApplication].keyWindow addSubview: weakSelf.myPersonShareView];
+        weakSelf.myPersonShareView.QRImageView.image = [UIImage qrCodeImageWithInfo:model.data[@"connectionsInviteRegUrl"] width:AdaptationWidth(85)];
+        weakSelf.myPersonShareView.hidden = NO;
+        weakSelf.myPersonShareView.QRMainBGView.hidden = YES;
+        weakSelf.myPersonShareView.btnBlock = [weakSelf shareViewBtnBlock:model.data[@"connectionsInviteRegUrl"]];
+    } andFailBlock:^(ResponseModel *model) {
+        
+    }];
+}
+- (XBlock)shareViewBtnBlock:(NSString *)str{
+    BLOCKSELF
+    XBlock block = ^(UIButton *btn){
+        switch (btn.tag) {
+            
+            case 3022:
+            {
+                if (![WXApi isWXAppInstalled]) {
+                    [ProgressHUD showProgressHUDInView:nil withText:@"未安装微信" afterDelay:1 ];
+                    return ;
+                }
+                NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+                [shareParams SSDKSetupShareParamsByText:@"购物省钱，分享赚钱 开启你的值享生活"
+                                                 images:[UIImage convertViewToImage:blockSelf.myPersonShareView.QRDownBGView]
+                                                    url:[NSURL URLWithString:str]
+                                                  title:AppName
+                                                   type:SSDKContentTypeAuto];
+                [ShareSDK share:SSDKPlatformSubTypeWechatSession parameters:shareParams onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
+                    [UserInfo sharedInstance].isAlertShare = YES;
+                    [[UserInfo sharedInstance]saveUserInfo:[UserInfo sharedInstance]];
+                }];
+            }
+                break;
+            case 3023:
+            {
+                if (![WXApi isWXAppInstalled]) {
+                    [ProgressHUD showProgressHUDInView:nil withText:@"未安装微信" afterDelay:1 ];
+                    return ;
+                }
+                NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+                [shareParams SSDKSetupShareParamsByText:@"购物省钱，分享赚钱 开启你的值享生活"
+                                                 images:[UIImage convertViewToImage:blockSelf.myPersonShareView.QRDownBGView]
+                                                    url:[NSURL URLWithString:str]
+                                                  title:AppName
+                                                   type:SSDKContentTypeAuto];
+                [ShareSDK share:SSDKPlatformSubTypeWechatTimeline parameters:shareParams onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
+                    [UserInfo sharedInstance].isAlertShare = YES;
+                    [[UserInfo sharedInstance]saveUserInfo:[UserInfo sharedInstance]];
+                }];
+            }
+                break;
+            case 3024:
+                blockSelf.myPersonShareView.hidden = YES;
+                break;
+                
+            default:
+                break;
+        }
+    };
+    return block;
+}
+//分享任务
+- (void)shareView:(NSString *)proid{
+    
+    self.viewModel = [[JobDetailViewModel alloc]init];
+    self.viewModel.productModel.productNo = proid;
+    [self.viewModel requestShareData];
+    WEAKSELF
+    [self.viewModel setProductShareBlock:^(NSDictionary *dic) {
+        
+        [weakSelf goToShare:dic];
+        
+    }];
+    
+    
+}
+- (void)goToShare:(NSDictionary *)dic{
+    
+    self.qrCodeView.hidden = NO;
+    [self.qrCodeView.QRcodeMainView setCornerValue:8];
+    self.qrCodeView.QRtitle.text = dic[@"productTitle"];
+    self.qrCodeView.QRmoney.text = [NSString stringWithFormat:@"%.2f",[dic[@"productSalary"] doubleValue]/100];
+    [self.qrCodeView.QRimageView sd_setImageWithURL:[NSURL URLWithString:dic[@"productFirstMainPicUrl"]]];
+    self.qrCodeView.QRcodeImageView.image = [UIImage qrCodeImageWithInfo:dic[@"productShareUrl"] width:AdaptationWidth(85)];
+  
+    self.qrCodeView.frame = [UIScreen mainScreen].bounds;
+    [[UIApplication sharedApplication].keyWindow addSubview: self.qrCodeView];
+    
+    BLOCKSELF
+    [self.qrCodeView setBtnBlock:^(UIButton *result) {
+        switch (result.tag) {
+            case 1021:
+            {
+                [[XCommonHepler sharedInstance] saveImageToPhotoLib:[UIImage convertViewToImage:blockSelf.qrCodeView.QRcodeDownView]];
+            }
+                break;
+            case 1022:
+            {
+                if (![WXApi isWXAppInstalled]) {
+                    [ProgressHUD showProgressHUDInView:nil withText:@"未安装微信" afterDelay:1 ];
+                    return ;
+                }
+                blockSelf.qrCodeView.hidden = YES;
+                //                MyLog(@"%@",dic[@"productShareUrl"]);
+                NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+                [shareParams SSDKSetupShareParamsByText:dic[@"productTitle"]
+                                                 images:[UIImage convertViewToImage:blockSelf.qrCodeView.QRcodeDownView]
+                                                    url:[NSURL URLWithString:dic[@"productShareUrl"]]
+                                                  title:blockSelf.viewModel.productModel.productTitle
+                                                   type:SSDKContentTypeAuto];
+                [ShareSDK share:SSDKPlatformSubTypeWechatSession parameters:shareParams onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
+                    
+                }];
+                //小程序分享
+                //                [shareParams SSDKSetupWeChatMiniProgramShareParamsByTitle:@"我是天才"
+                //                                                              description:@"我是天才"
+                //                                                               webpageUrl:[NSURL URLWithString:@"https://www.baidu.com/"]
+                //                                                                     path:@"pages/home/main"
+                //                                                               thumbImage:nil
+                //                                                             hdThumbImage:nil
+                //                                                                 userName:@"gh_498c3f38a98d"
+                //                                                          withShareTicket:YES
+                //                                                          miniProgramType:0
+                //                                                       forPlatformSubType:SSDKPlatformSubTypeWechatSession];
+                //                [ShareSDK share:SSDKPlatformSubTypeWechatSession parameters:shareParams onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
+                //
+                //                }];
+            }
+                break;
+            case 1023:
+            {
+                if (![WXApi isWXAppInstalled]) {
+                    [ProgressHUD showProgressHUDInView:nil withText:@"未安装微信" afterDelay:1 ];
+                    return ;
+                }
+                blockSelf.qrCodeView.hidden = YES;
+                NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+                [shareParams SSDKSetupShareParamsByText:dic[@"productTitle"]
+                                                 images:[UIImage convertViewToImage:blockSelf.qrCodeView.QRcodeDownView]
+                                                    url:[NSURL URLWithString:dic[@"productShareUrl"]]
+                                                  title:dic[@"productTitle"]
+                                                   type:SSDKContentTypeAuto];
+                [ShareSDK share:SSDKPlatformSubTypeWechatTimeline parameters:shareParams onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
+                    
+                }];
+            }
+                break;
+            case 1024:
+            {
+                blockSelf.qrCodeView.hidden = YES;
+            }
+                break;
+                
+            default:
+                break;
+        }
+    }];
+    
+}
+
+
+
 - (void)creatSearchBtn{
     UIButton *searchBtn = [[UIButton alloc]init];
     searchBtn.frame = CGRectMake(0, 0, AdaptationWidth(343), 30);
@@ -89,9 +366,9 @@
         BaseWebVC *vc = [[BaseWebVC alloc]init];
         [vc reloadForGetWebView:result];
         
-        [vc.webParentView setScriptBlock:^(id result) {
-            [weakSelf webViewWithScript:result];
-        }];
+//        [vc.webParentView setScriptBlock:^(id result) {
+//            [weakSelf webViewWithScript:result];
+//        }];
         vc.hidesBottomBarWhenPushed = YES;
         [weakSelf.navigationController pushViewController:vc animated:YES];
     }];
@@ -125,9 +402,7 @@
 }
 - (void)btnOnClock:(UIButton *)btn{
     
-//    LaXinView *laXinView = [[NSBundle mainBundle]loadNibNamed:@"LaXinView" owner:nil options:nil].lastObject;
-//    laXinView.frame = [UIScreen mainScreen].bounds;
-//    [self.view addSubview:laXinView];
+    
 
     
     
@@ -135,28 +410,32 @@
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
-#pragma mark - js交互
-- (void)webViewWithScript:(WKScriptMessage *)message{
-    if ([message.name isEqualToString:@"triggerAppMethod_laxin_XCX"]) {
-//        小程序分享
-        NSDictionary *dic = [message.body mj_JSONObject];
-        
-        NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
-        [shareParams SSDKSetupWeChatMiniProgramShareParamsByTitle:AppName
-                                                      description:AppName
-                                                       webpageUrl:[NSURL URLWithString:@"https://www.baidu.com/"]
-                                                             path:dic[@"page"]
-                                                       thumbImage:nil
-                                                     hdThumbImage:[UIImage imageNamed:@"LaunchScreen_LOGO"]
-                                                         userName:dic[@"userName"]
-                                                  withShareTicket:YES
-                                                  miniProgramType:[dic[@"type"] integerValue]
-                                               forPlatformSubType:SSDKPlatformSubTypeWechatSession];
-        [ShareSDK share:SSDKPlatformSubTypeWechatSession parameters:shareParams onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
-            
-        }];
-    }
-}
+//#pragma mark - js交互
+//- (void)webViewWithScript:(WKScriptMessage *)message{
+//    if ([message.name isEqualToString:@"triggerAppMethod_laxin_XCX"]) {
+//        if (![WXApi isWXAppInstalled]) {
+//            [ProgressHUD showProgressHUDInView:nil withText:@"未安装微信" afterDelay:1 ];
+//            return ;
+//        }
+////        小程序分享
+//        NSDictionary *dic = [message.body mj_JSONObject];
+//
+//        NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+//        [shareParams SSDKSetupWeChatMiniProgramShareParamsByTitle:AppName
+//                                                      description:AppName
+//                                                       webpageUrl:[NSURL URLWithString:@"https://www.baidu.com/"]
+//                                                             path:dic[@"page"]
+//                                                       thumbImage:nil
+//                                                     hdThumbImage:[UIImage imageNamed:@"LaunchScreen_LOGO"]
+//                                                         userName:dic[@"userName"]
+//                                                  withShareTicket:YES
+//                                                  miniProgramType:[dic[@"type"] integerValue]
+//                                               forPlatformSubType:SSDKPlatformSubTypeWechatSession];
+//        [ShareSDK share:SSDKPlatformSubTypeWechatSession parameters:shareParams onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
+//
+//        }];
+//    }
+//}
 #pragma  mark - WSLWaterFlowLayout delegate
 
 //返回每个item大小
@@ -242,5 +521,23 @@
     // Pass the selected object to the new view controller.
 }
 */
-
+- (LaXinModel *)laXinModel{
+    if (!_laXinModel) {
+        _laXinModel = [[LaXinModel alloc]init];
+    }
+    return _laXinModel;
+}
+- (QRcodeView *)qrCodeView{
+    if (!_qrCodeView) {
+        _qrCodeView = [[[NSBundle mainBundle]loadNibNamed:@"QRcodeView" owner:nil options:nil]lastObject];
+    }
+    return _qrCodeView;
+}
+- (MyPersonShareView *)myPersonShareView{
+    if (!_myPersonShareView) {
+        _myPersonShareView = [[NSBundle mainBundle]loadNibNamed:@"MyPersonShareView" owner:nil options:nil].lastObject;
+        _myPersonShareView.frame = [UIScreen mainScreen].bounds;
+    }
+    return _myPersonShareView;
+}
 @end

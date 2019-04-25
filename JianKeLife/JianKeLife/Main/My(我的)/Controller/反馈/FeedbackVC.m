@@ -51,6 +51,10 @@
 }
 - (void)btnOnClock:(UIButton *)btn{
     
+    if (!self.textView.text.length) {
+        [ProgressHUD showProgressHUDInView:nil withText:@"请输入反馈信息" afterDelay:1];
+        return;
+    }
     [XNetWork requestNetWorkWithUrl:Xsubmit_feedback_log andModel:@{@"content":self.textView.text} andSuccessBlock:^(ResponseModel *model) {
         [ProgressHUD showProgressHUDInView:nil withText:@"反馈成功" afterDelay:1];
         [self.navigationController popViewControllerAnimated:YES];

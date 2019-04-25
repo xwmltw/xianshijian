@@ -115,8 +115,10 @@
     MyOrderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyOrderTableViewCell"];
     if (!cell) {
         cell = [[MyOrderTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MyOrderTableViewCell"];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.model = [MyOrderModel mj_objectWithKeyValues:self.myOrderViewModel.myOrderList[indexPath.row]];
 
     return cell;
 }

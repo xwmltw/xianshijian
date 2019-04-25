@@ -84,7 +84,9 @@
 	<string></string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>tmall</string>
 		<string>wechat</string>
+		<string>taobao</string>
 		<string>weixin</string>
 		<string>mqq</string>
 		<string>sinaweibo</string>

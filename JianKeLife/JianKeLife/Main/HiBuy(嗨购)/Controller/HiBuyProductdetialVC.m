@@ -37,7 +37,7 @@
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.mas_equalTo(self.view);
-        make.bottom.mas_equalTo(AdaptationWidth(58));
+        make.bottom.mas_equalTo(AdaptationWidth(-58));
     }];
     
     
@@ -108,6 +108,9 @@
 #pragma mark - btn
 -(void)btnOnClick:(UIButton *)btn{
 
+   
+    
+    
     switch (btn.tag) {
         case 5021:
             [self.navigationController popViewControllerAnimated:YES];
@@ -180,9 +183,19 @@
 }
 //领取
 - (void)goTohasAuthorize:(NSString *)url{
-    BaseWebVC *vc = [[BaseWebVC alloc]init];
-    [vc reloadForGetWebView:url];
-    [self.navigationController pushViewController:vc animated:YES];
+    NSString *str= [url stringByReplacingOccurrencesOfString:@"https"withString:@"taobao"];
+   
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:str]])
+        
+    {    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+        
+    } else {
+        
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+    }
+//    BaseWebVC *vc = [[BaseWebVC alloc]init];
+//    [vc reloadForGetWebView:url];
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 #pragma mark -tableview
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

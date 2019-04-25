@@ -11,6 +11,14 @@
 #import "XWImagePickerSheet.h"
 #import "XPlaceHolderTextView.h"
 #import "EMQueueDef.h"
+#import "LaXinView.h"
+#import "LaXinModel.h"
+#import "BaseWebVC.h"
+#import "JobDetailViewModel.h"
+#import "QRcodeView.h"
+#import "XCommonHepler.h"
+#import <ShareSDK/ShareSDK.h>
+#import "WXApi.h"
 @interface TaskReturnVC ()<UICollectionViewDelegate,UICollectionViewDataSource,XWImagePickerSheetDelegate,UITextViewDelegate>
 {
     NSInteger _indexChoose;
@@ -49,6 +57,11 @@
 
 @property(nonatomic,strong) NSArray * productType;
 @property (nonatomic ,strong) XPlaceHolderTextView *txtView;
+
+@property (nonatomic ,strong) LaXinModel *laXinModel;
+@property (nonatomic ,strong) LaXinView *laXinView;
+@property (nonatomic ,strong) QRcodeView *qrCodeView;
+@property (nonatomic ,strong)JobDetailViewModel *viewModel;
 //获得collectionView 的 Frame
 - (CGRect)getPickerViewFrame;
 
@@ -322,13 +335,173 @@ const char *localNotificationQueue = "cn.neebel.xwm.localNotificationQueue";
     if ([self.productType[0] isEqualToString:@"1"]) {
         [dic setObject:self.dataArray forKey:@"submitPicUrlArr"];
     }
+   
     WEAKSELF
     [XNetWork requestNetWorkWithUrl:Xproduct_apply_submit andModel:dic andSuccessBlock:^(ResponseModel *model) {
         [ProgressHUD showProgressHUDInView:nil withText:@"提交成功" afterDelay:1 ];
-        [weakSelf.navigationController popViewControllerAnimated:YES];
+         [weakSelf.navigationController popViewControllerAnimated:YES];
+        [weakSelf laXinNoti:1];
+
     } andFailBlock:^(ResponseModel *model) {
+
+    }];
+}
+- (void)laXinNoti:(NSInteger)row{
+    //拉新
+    WEAKSELF
+    [XNetWork requestNetWorkWithUrl:Xintroduce_new_complete_data andModel:nil andSuccessBlock:^(ResponseModel *model) {
+        weakSelf.laXinModel = [LaXinModel mj_objectWithKeyValues:model.data];
+        if (!weakSelf.laXinModel.isFinished.integerValue) {
+            
+            
+            weakSelf.laXinView = [[NSBundle mainBundle]loadNibNamed:@"LaXinView" owner:nil options:nil].lastObject;
+            weakSelf.laXinView.titleLab2.text = row ==1 ? @"哇，恭喜你提交成功，现在分享还能活动额外现金奖励哦~":@"继续分享到群，奖励金额将会大大增加，上不封顶";
+            weakSelf.laXinView.detailLab.hidden = YES;
+            weakSelf.laXinView.headImage.hidden = YES;
+            weakSelf.laXinView.titleLab.hidden = YES;
+            weakSelf.laXinView.mainImage.image = row == 1 ? [UIImage imageNamed:@"icon_laxin_success"] :[UIImage imageNamed:@"icon_laxin_again"];
+            [weakSelf.laXinView.finishBtn setTitle:@"分享赚更多" forState:UIControlStateNormal];
+            double num = weakSelf.laXinModel.totalAmount.doubleValue/weakSelf.laXinModel.minWithdrawAmount.doubleValue;
+            weakSelf.laXinView.progressNum = num;
+            int newNum = (1 -num)*100;
+            weakSelf.laXinView.proDetailLab.text = [NSString stringWithFormat:@"满%d元即可提现，距离提现还有%d%%",[weakSelf.laXinModel.minWithdrawAmount intValue]/100,newNum];
+            [weakSelf.laXinView setLaXinBlock:^(UIButton *result) {
+                weakSelf.laXinView.hidden = YES;
+                switch (result.tag) {
+                    case 501:
+                    {
+                        weakSelf.laXinView.hidden = YES;
+                        BaseWebVC *vc = [[BaseWebVC alloc]init];
+                        [vc reloadForGetWebView:weakSelf.laXinModel.activityPageUrl];
+                        vc.hidesBottomBarWhenPushed = YES;
+                        [weakSelf.navigationController pushViewController:vc animated:YES];
+                    }
+                        break;
+                    case 502:{
+                        if (weakSelf.laXinModel.productNo) {
+                            [weakSelf shareView:weakSelf.laXinModel.productNo];
+                        }
+                        
+                    }
+                        
+                        break;
+                        
+                    default:
+                        break;
+                }
+                
+            }];
+            weakSelf.laXinView.frame = [UIScreen mainScreen].bounds;
+            [[UIApplication sharedApplication].keyWindow addSubview: weakSelf.laXinView];
+            
+            
+        }
+    } andFailBlock:^(id result) {
         
     }];
+}
+- (void)shareView:(NSString *)proid{
+
+    self.viewModel = [[JobDetailViewModel alloc]init];
+    self.viewModel.productModel.productNo = proid;
+    [self.viewModel requestShareData];
+    WEAKSELF
+    [self.viewModel setProductShareBlock:^(NSDictionary *dic) {
+        
+        [weakSelf goToShare:dic];
+
+    }];
+    
+    
+}
+- (void)goToShare:(NSDictionary *)dic{
+ 
+    self.qrCodeView.hidden = NO;
+    [self.qrCodeView.QRcodeMainView setCornerValue:8];
+    self.qrCodeView.QRtitle.text = dic[@"productTitle"];
+    self.qrCodeView.QRmoney.text = [NSString stringWithFormat:@"%.2f",[dic[@"productSalary"] doubleValue]/100];
+    [self.qrCodeView.QRimageView sd_setImageWithURL:[NSURL URLWithString:dic[@"productFirstMainPicUrl"]]];
+    self.qrCodeView.QRcodeImageView.image = [UIImage qrCodeImageWithInfo:dic[@"productShareUrl"] width:AdaptationWidth(85)];
+    self.qrCodeView.frame = [UIScreen mainScreen].bounds;
+    [[UIApplication sharedApplication].keyWindow addSubview: self.qrCodeView];
+    
+    BLOCKSELF
+    [self.qrCodeView setBtnBlock:^(UIButton *result) {
+        switch (result.tag) {
+            case 1021:
+            {
+                [[XCommonHepler sharedInstance] saveImageToPhotoLib:[UIImage convertViewToImage:blockSelf.qrCodeView.QRcodeDownView]];
+            }
+                break;
+            case 1022:
+            {
+                if (![WXApi isWXAppInstalled]) {
+                    [ProgressHUD showProgressHUDInView:nil withText:@"未安装微信" afterDelay:1 ];
+                    return ;
+                }
+                blockSelf.qrCodeView.hidden = YES;
+                //                MyLog(@"%@",dic[@"productShareUrl"]);
+                NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+                [shareParams SSDKSetupShareParamsByText:dic[@"productTitle"]
+                                                 images:[UIImage convertViewToImage:blockSelf.qrCodeView.QRcodeDownView]
+                                                    url:[NSURL URLWithString:dic[@"productShareUrl"]]
+                                                  title:blockSelf.viewModel.productModel.productTitle
+                                                   type:SSDKContentTypeAuto];
+                [ShareSDK share:SSDKPlatformSubTypeWechatSession parameters:shareParams onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
+                    [UserInfo sharedInstance].isAlertShare = YES;
+                    [[UserInfo sharedInstance]saveUserInfo:[UserInfo sharedInstance]];
+                    [blockSelf againShare];
+                }];
+                //小程序分享
+                //                [shareParams SSDKSetupWeChatMiniProgramShareParamsByTitle:@"我是天才"
+                //                                                              description:@"我是天才"
+                //                                                               webpageUrl:[NSURL URLWithString:@"https://www.baidu.com/"]
+                //                                                                     path:@"pages/home/main"
+                //                                                               thumbImage:nil
+                //                                                             hdThumbImage:nil
+                //                                                                 userName:@"gh_498c3f38a98d"
+                //                                                          withShareTicket:YES
+                //                                                          miniProgramType:0
+                //                                                       forPlatformSubType:SSDKPlatformSubTypeWechatSession];
+                //                [ShareSDK share:SSDKPlatformSubTypeWechatSession parameters:shareParams onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
+                //
+                //                }];
+            }
+                break;
+            case 1023:
+            {
+                if (![WXApi isWXAppInstalled]) {
+                    [ProgressHUD showProgressHUDInView:nil withText:@"未安装微信" afterDelay:1 ];
+                    return ;
+                }
+                blockSelf.qrCodeView.hidden = YES;
+                NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+                [shareParams SSDKSetupShareParamsByText:dic[@"productTitle"]
+                                                 images:[UIImage convertViewToImage:blockSelf.qrCodeView.QRcodeDownView]
+                                                    url:[NSURL URLWithString:dic[@"productShareUrl"]]
+                                                  title:dic[@"productTitle"]
+                                                   type:SSDKContentTypeAuto];
+                [ShareSDK share:SSDKPlatformSubTypeWechatTimeline parameters:shareParams onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
+                    [UserInfo sharedInstance].isAlertShare = YES;
+                    [[UserInfo sharedInstance]saveUserInfo:[UserInfo sharedInstance]];
+                    [blockSelf againShare];
+                }];
+            }
+                break;
+            case 1024:
+            {
+                blockSelf.qrCodeView.hidden = YES;
+            }
+                break;
+                
+            default:
+                break;
+        }
+    }];
+   
+}
+- (void)againShare{
+    [self laXinNoti:2];
 }
 #pragma mark - 图片cell点击事件
 //点击图片看大图
@@ -524,5 +697,17 @@ const char *localNotificationQueue = "cn.neebel.xwm.localNotificationQueue";
         _txtView.font = [UIFont fontWithName:@"PingFangSC-Regular" size:AdaptationWidth(16)];
     }
     return _txtView;
+}
+- (LaXinModel *)laXinModel{
+    if (!_laXinModel) {
+        _laXinModel = [[LaXinModel alloc]init];
+    }
+    return _laXinModel;
+}
+- (QRcodeView *)qrCodeView{
+    if (!_qrCodeView) {
+        _qrCodeView = [[[NSBundle mainBundle]loadNibNamed:@"QRcodeView" owner:nil options:nil]lastObject];
+    }
+    return _qrCodeView;
 }
 @end

@@ -7,7 +7,8 @@
 //
 #define kProgressViewHeight 2.0f
 #define kMinimumFontSize    10.0f
-
+#import "WXApi.h"
+#import <ShareSDK/ShareSDK.h>
 #import "BaseWebView.h"
 @interface BaseWebView ()<WKUIDelegate,WKScriptMessageHandler>
 
@@ -140,7 +141,54 @@
     MyLog(@"222222%@",message.body);
     MyLog(@"333333%@",message.frameInfo.request.URL);
     
-    XBlockExec(self.scriptBlock ,message);
+//    XBlockExec(self.scriptBlock ,message);
+    
+    
+    if ([message.name isEqualToString:@"triggerAppMethod_laxin_XCX"]) {
+        if (![WXApi isWXAppInstalled]) {
+            [ProgressHUD showProgressHUDInView:nil withText:@"未安装微信" afterDelay:1 ];
+            return ;
+        }
+        //        小程序分享
+        NSDictionary *dic = [message.body mj_JSONObject];
+        NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:dic[@"hdThumbImage"]]];
+        NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+        [shareParams SSDKSetupWeChatMiniProgramShareParamsByTitle:dic[@"title"]
+                                                      description:dic[@"title"]
+                                                       webpageUrl:[NSURL URLWithString:@"https://www.baidu.com/"]
+                                                             path:dic[@"page"]
+                                                       thumbImage:nil
+                                                     hdThumbImage:[UIImage imageWithData:imgData]
+                                                         userName:dic[@"userName"]
+                                                  withShareTicket:YES
+                                                  miniProgramType:[dic[@"type"] integerValue]
+                                               forPlatformSubType:SSDKPlatformSubTypeWechatSession];
+        [ShareSDK share:SSDKPlatformSubTypeWechatSession parameters:shareParams onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
+            [UserInfo sharedInstance].isAlertShare = YES;
+            [[UserInfo sharedInstance]saveUserInfo:[UserInfo sharedInstance]];
+            
+        }];
+    }
+    if ([message.name isEqualToString:@"triggerAppMethod_laxin_Hot"]) {
+        [self viewController].tabBarController.selectedIndex = 0;
+        [[self viewController].navigationController popToRootViewControllerAnimated:YES];
+    }
+    
+    if ([message.name isEqualToString:@"triggerAppMethod_laxin_Auth"]) {
+        
+        NSString * jsStr  =[NSString stringWithFormat:@"getToken('%@')",[UserInfo sharedInstance].token];
+        [self.webView evaluateJavaScript:jsStr completionHandler:^(id _Nullable result, NSError * _Nullable error){
+            NSNumber *rsdCode = result[@"rspCode"];
+            if (rsdCode.integerValue > 0) {
+                [ProgressHUD showProgressHUDInView:nil withText:result[@"rspMsg"] afterDelay:1 ];
+            }else{
+                [[self viewController].navigationController popViewControllerAnimated:YES];
+                MyLog(@"%@",result);
+            }
+//            NSLog(@"%@====%@",result,error);
+        }];
+    }
+    
 }
 #pragma mark - <WKUIDelegate>
 - (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler {

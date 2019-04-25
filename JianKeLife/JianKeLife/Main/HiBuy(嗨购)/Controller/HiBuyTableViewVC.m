@@ -13,6 +13,9 @@
 #import "BaseWebVC.h"
 #import "JSDropDownMenu.h"
 #import "HiBuyProductdetialVC.h"
+#import "WXApi.h"
+#import <ShareSDK/ShareSDK.h>
+#import "SaiXuanView.h"
 @interface HiBuyTableViewVC ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,JSDropDownMenuDelegate,JSDropDownMenuDataSource>
 @property (nonatomic ,strong) SDCycleScrollView *sdcycleScrollView;
 @property (nonatomic ,strong) JSDropDownMenu *dropDownMenu;
@@ -20,6 +23,7 @@
 @property (nonatomic ,assign) NSInteger allIndex, salesIndex, priceIndex, chooseIndex;
 @property (nonatomic ,strong) UITableView *tableView;
 @property (nonatomic ,strong) UIButton *topBtn;
+@property (nonatomic ,strong) SaiXuanView *saiXuanView;
 
 @end
 
@@ -44,6 +48,7 @@
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.dropDownMenu.mas_bottom).offset(2);
         make.left.right.bottom.mas_equalTo(self.view);
+//        make.bottom.mas_equalTo(self.view).offset(-40);
     }];
 //    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.tableView registerNib:[UINib nibWithNibName:@"HiBuyTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"HiBuyTableViewCell"];
@@ -57,7 +62,7 @@
     
     self.topBtn = [[UIButton alloc]init];
     self.topBtn.hidden = YES;
-    [self.topBtn setBackgroundColor:[UIColor whiteColor]];
+//    [self.topBtn setBackgroundColor:[UIColor whiteColor]];
     [self.topBtn setImage:[UIImage imageNamed:@"icon_top"] forState:UIControlStateNormal];
     [self.topBtn addTarget:self action:@selector(btnOnClock:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.topBtn];
@@ -66,13 +71,19 @@
         make.right.mas_equalTo(self.view).offset(AdaptationWidth(-10));
         make.width.height.mas_equalTo(AdaptationWidth(76));
     }];
+    [XNotificationCenter addObserver:self selector:@selector(missBackgrond) name:@"backgroundTapped" object:nil];
 }
 //- (UIView *)creatHead{
 //    UIView *view = [[UIView alloc]init];
 //}
+- (void)missBackgrond{
+    [self.saiXuanView removeFromSuperview];
+}
 #pragma mark -btn
 - (void)btnOnClock:(UIButton *)btn{
-    [self.tableView setContentOffset:CGPointMake(0, 0) animated:YES];
+    NSIndexPath* indexPat = [NSIndexPath indexPathForRow:0 inSection:0];
+    [self.tableView scrollToRowAtIndexPath:indexPat atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+//    [self.tableView setContentOffset:CGPointMake(0, 0) animated:YES];
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     CGFloat height = self.isFirstType ? AdaptationWidth(300) : AdaptationWidth(ScreenHeight - 100);
@@ -148,13 +159,14 @@
 #pragma mark - SDCycleScrollView delegate
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
     
-//    NSNumber *isLogin = self.clientGlobalInfo.bannerAdList[index][@"isNeedLogin"];
-//    if (isLogin.integerValue == 1) {
-//        LoginVC *vc = [[LoginVC alloc]init];
-//        vc.hidesBottomBarWhenPushed = YES;
-//        [self.navigationController pushViewController:vc animated:YES];
-//        return;
-//    }
+    NSNumber *isLogin = self.clientGlobalInfo.bannerAdListTBPage[index][@"isNeedLogin"];
+    if (isLogin.integerValue == 1) {
+        if (![[UserInfo sharedInstance]isSignIn]) {
+            [XNetWork unLoginNotification];
+            return;
+        }
+        
+    }
     
     NSNumber *adType = self.clientGlobalInfo.bannerAdListTBPage[index][@"adType"];
     NSString *adId = self.clientGlobalInfo.bannerAdListTBPage[index][@"adId"];
@@ -171,6 +183,10 @@
             BaseWebVC *vc = [[BaseWebVC alloc]init];
             [vc reloadForGetWebView:adDetailUrl];
             vc.hidesBottomBarWhenPushed = YES;
+//            WEAKSELF
+//            [vc.webParentView setScriptBlock:^(id result) {
+//                [weakSelf webViewWithScript:result];
+//            }];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
@@ -185,6 +201,34 @@
             break;
     }
 }
+
+//#pragma mark - js交互
+//- (void)webViewWithScript:(WKScriptMessage *)message{
+//    if ([message.name isEqualToString:@"triggerAppMethod_laxin_XCX"]) {
+//        if (![WXApi isWXAppInstalled]) {
+//            [ProgressHUD showProgressHUDInView:nil withText:@"未安装微信" afterDelay:1 ];
+//            return ;
+//        }
+//        //        小程序分享
+//        NSDictionary *dic = [message.body mj_JSONObject];
+//
+//        NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+//        [shareParams SSDKSetupWeChatMiniProgramShareParamsByTitle:AppName
+//                                                      description:AppName
+//                                                       webpageUrl:[NSURL URLWithString:@"https://www.baidu.com/"]
+//                                                             path:dic[@"page"]
+//                                                       thumbImage:nil
+//                                                     hdThumbImage:[UIImage imageNamed:@"LaunchScreen_LOGO"]
+//                                                         userName:dic[@"userName"]
+//                                                  withShareTicket:YES
+//                                                  miniProgramType:[dic[@"type"] integerValue]
+//                                               forPlatformSubType:SSDKPlatformSubTypeWechatSession];
+//        [ShareSDK share:SSDKPlatformSubTypeWechatSession parameters:shareParams onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
+//
+//        }];
+//    }
+//}
+
 #pragma mark - dropDownMenu
 
 - (NSInteger)numberOfColumnsInMenu:(JSDropDownMenu *)menu{
@@ -244,28 +288,28 @@
 }
 
 -(NSString *)menu:(JSDropDownMenu *)menu titleForColumn:(NSInteger)column{
-    switch (column) {
-        case 0:
-            return self.allAry[self.allIndex];
-            break;
-        case 1:
-            return self.salesAry[self.salesIndex];
-            break;
-        case 2:
-            return self.priceAry[self.priceIndex];
-            break;
-        case 3:
-            return self.chooseAry[self.chooseIndex];
-            break;
-            
-        default:
-            break;
-    }
-   
-    return @"xwm";
+//    switch (column) {
+//        case 0:
+//            return self.allAry[self.allIndex];
+//            break;
+//        case 1:
+//            return self.salesAry[self.salesIndex];
+//            break;
+//        case 2:
+//            return self.priceAry[self.priceIndex];
+//            break;
+//        case 3:
+//            return self.chooseAry[self.chooseIndex];
+//            break;
+//
+//        default:
+//            break;
+//    }
+    NSArray *arr = @[@"综合",@"销量",@"价格",@"筛选"];
+    return arr[column];
 }
 - (NSString *)menu:(JSDropDownMenu *)menu titleForRowAtIndexPath:(JSIndexPath *)indexPath{
-    [self.tableView setContentOffset:self.tableView.contentOffset animated:NO];
+//    [self.tableView setContentOffset:self.tableView.contentOffset animated:NO];
     
     switch (indexPath.column) {
         case 0:
@@ -278,27 +322,36 @@
             return self.priceAry[indexPath.row];
             break;
         case 3:
+            [self.view addSubview:self.saiXuanView];
             return self.chooseAry[indexPath.row];
             break;
-            
+
         default:
             break;
     }
-    
-    return @"xwm";
+//    NSArray *arr = @[@"综合",@"销量",@"价格",@"筛选"];
+    return @"";
+   
 }
 - (void)menu:(JSDropDownMenu *)menu didSelectRowAtIndexPath:(JSIndexPath *)indexPath{
+    //回到顶部
+    NSIndexPath* indexPat = [NSIndexPath indexPathForRow:0 inSection:0];
+    [self.tableView scrollToRowAtIndexPath:indexPat atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    
     switch (indexPath.column) {
         case 0:
             self.hiBuyViewModel.hiBuyProductQueryModel.orderType = @(indexPath.row);
             self.allIndex = indexPath.row;
             [self.hiBuyViewModel requestTypeDate];
+            
             break;
         case 1:
             
             self.hiBuyViewModel.hiBuyProductQueryModel.orderType = indexPath.row ? @(indexPath.row + 5) : 0;
             self.salesIndex = indexPath.row;
             [self.hiBuyViewModel requestTypeDate];
+           
+           
             break;
         case 2:
          
@@ -307,12 +360,15 @@
             [self.hiBuyViewModel requestTypeDate];
             break;
         case 3:
-            self.chooseIndex = indexPath.row;
+//            self.chooseIndex = indexPath.row;
+            
             break;
             
         default:
             break;
     }
+    [self.saiXuanView removeFromSuperview];
+    
 }
 #pragma mark-懒加载
 - (UITableView *)tableView{
@@ -325,7 +381,7 @@
 }
 - (JSDropDownMenu *)dropDownMenu{
     if (!_dropDownMenu) {
-        if (_isFirstType) {
+        if (_isFirstType && self.clientGlobalInfo.bannerAdListTBPage.count) {
             _dropDownMenu = [[JSDropDownMenu alloc]initWithOrigin:CGPointMake(0, AdaptationWidth(144)) andHeight:45];
         }else{
             _dropDownMenu = [[JSDropDownMenu alloc]initWithOrigin:CGPointMake(0, 0) andHeight:45];
@@ -393,5 +449,41 @@
         _hiBuyViewModel = [[HiBuyViewModel alloc]init];
     }
     return _hiBuyViewModel;
+}
+- (SaiXuanView *)saiXuanView{
+    if (!_saiXuanView) {
+        _saiXuanView = [[SaiXuanView alloc]initWithFrame:CGRectMake(0, self.dropDownMenu.Y+46, ScreenWidth, AdaptationWidth(145))];
+        [self.view addSubview:_saiXuanView];
+        WEAKSELF
+        [_saiXuanView setBtnBlock:^(NSString *min,NSString *max) {
+            if(min.length == 0) {
+                [ProgressHUD showProgressHUDInView:nil withText:@"请输入最低价格" afterDelay:1];
+                return ;
+            }
+            if(max.length == 0) {
+                [ProgressHUD showProgressHUDInView:nil withText:@"请输入最高价格" afterDelay:1];
+                return ;
+            }
+            if ([min doubleValue] >[max doubleValue]) {
+                [ProgressHUD showProgressHUDInView:nil withText:@"最高的价格不可以比最低价还小哟~" afterDelay:1];
+                return ;
+            }
+            
+                weakSelf.hiBuyViewModel.hiBuyProductQueryModel.minPrice = @([min doubleValue]);
+                weakSelf.hiBuyViewModel.hiBuyProductQueryModel.maxPrice = @([max doubleValue]);
+                [weakSelf.hiBuyViewModel requestTypeDate];
+            [_saiXuanView removeFromSuperview];
+            [weakSelf.dropDownMenu hideMenu] ;
+        }];
+//        [_saiXuanView mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.right.mas_equalTo(self.view);
+//            make.height.mas_equalTo(AdaptationWidth(143));
+//            make.top.mas_equalTo(self)
+//        }];
+    }
+    return _saiXuanView;
+}
+- (void)dealloc{
+    [XNotificationCenter removeObserver:@"backgroundTapped"];
 }
 @end

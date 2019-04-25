@@ -11,11 +11,12 @@
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKUI/ShareSDK+SSUI.h>
 #import <ShareSDKUI/SSUIShareSheetConfiguration.h>
-
+#import "WXApi.h"
 @interface HiBuyShareVC ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic ,strong) UIView *view3;
 @property (nonatomic ,strong) UICollectionView *collectionView;
 @property (nonatomic ,strong) HiBuyShareCodeView *hiBuyShareCodeView;
+@property (nonatomic ,strong) NSMutableArray *imageArry;
 @end
 
 @implementation HiBuyShareVC
@@ -115,7 +116,8 @@
     }];
     
     UILabel *copyLab = [[UILabel alloc]init];
-    [copyLab setText:[NSString stringWithFormat:@"%@",self.hiBuyShareInfoModel.tpwdTextDesc]];
+    copyLab.numberOfLines = 0;
+    [copyLab setText:self.hiBuyShareInfoModel.tpwdTextDesc];
     [copyLab setFont:[UIFont systemFontOfSize:AdaptationWidth(14)]];
     [copyLab setTextColor:LabelMainColor];
     [view2 addSubview:copyLab];
@@ -208,6 +210,10 @@
     switch (btn.tag) {
         case 5031:
         {
+            if (![WXApi isWXAppInstalled]) {
+                [ProgressHUD showProgressHUDInView:nil withText:@"未安装微信" afterDelay:1 ];
+                return ;
+            }
             NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
             [shareParams SSDKSetupShareParamsByText:[NSString stringWithFormat:@"%@\n\n%@",self.hiBuyShareInfoModel.title,self.hiBuyShareInfoModel.tpwdTextDesc]
                                              images:nil
@@ -215,21 +221,34 @@
                                               title:self.hiBuyShareInfoModel.title
                                                type:SSDKContentTypeAuto];
             [ShareSDK share:SSDKPlatformSubTypeWechatSession parameters:shareParams onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
-                
+                [UserInfo sharedInstance].isAlertShare = YES;
+                [[UserInfo sharedInstance]saveUserInfo:[UserInfo sharedInstance]];
             }];
         }
             break;
         case 5032:
         {
-            NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
-            [shareParams SSDKSetupShareParamsByText:[NSString stringWithFormat:@"%@\n\n%@",self.hiBuyShareInfoModel.title,self.hiBuyShareInfoModel.tpwdTextDesc]
-                                             images:nil
-                                                url:nil
-                                              title:self.hiBuyShareInfoModel.title
-                                               type:SSDKContentTypeAuto];
-            [ShareSDK share:SSDKPlatformSubTypeWechatSession parameters:shareParams onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
-                
-            }];
+            
+           
+            if (![WXApi isWXAppInstalled]) {
+                [ProgressHUD showProgressHUDInView:nil withText:@"未安装微信" afterDelay:1 ];
+                return ;
+            }
+            if (self.imageArry.count) {
+                NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+                [shareParams SSDKSetupShareParamsByText:[NSString stringWithFormat:@"%@\n\n%@",self.hiBuyShareInfoModel.title,self.hiBuyShareInfoModel.tpwdTextDesc]
+                                                 images:self.imageArry.lastObject
+                                                    url:nil
+                                                  title:self.hiBuyShareInfoModel.title
+                                                   type:SSDKContentTypeAuto];
+                [ShareSDK share:SSDKPlatformSubTypeWechatSession parameters:shareParams onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
+                    [UserInfo sharedInstance].isAlertShare = YES;
+                    [[UserInfo sharedInstance]saveUserInfo:[UserInfo sharedInstance]];
+                }];
+            }else{
+                [ProgressHUD showProgressHUDInView:nil withText:@"请选择需要分享的图片" afterDelay:1 ];
+            }
+            
            
         }
             break;
@@ -277,27 +296,30 @@
 
     }];
     UIButton *cellBtn = [[UIButton alloc]init];
+    cellBtn.tag = 600+indexPath.row;
+    
     [cellBtn addTarget:self action:@selector(cellBtnOnClick:) forControlEvents:UIControlEventTouchUpInside];
     [cellBtn setImage:[UIImage imageNamed:@"icon_image_unselect"] forState:UIControlStateNormal];
-    [cellBtn setImage:[UIImage imageNamed:@"icon_image_select"] forState:UIControlStateSelected];
+    [cellBtn setImage:[UIImage imageNamed:@"icon_laxin_selectImage"] forState:UIControlStateSelected];
     [cell.contentView addSubview:cellBtn];
     [cellBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.right.mas_equalTo(cell);
-        make.height.with.mas_equalTo(20);
+        make.height.with.mas_equalTo(22);
     }];
     if (indexPath.row == 0) {
+        [self creatCodeView:indexPath.row];
         cellBtn.selected = YES;
         
-        UILabel *cellLab = [[UILabel alloc]init];
-        [cellLab setText:@"二维码推广图"];
-        cellLab.alpha = 0.8;
-        [cellLab setFont:[UIFont systemFontOfSize:AdaptationWidth(16)]];
-        [cellLab setTextColor:LabelMainColor];
-        [cell.contentView addSubview:cellLab];
-        [cellLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.bottom.mas_equalTo(cell);
-            make.height.mas_equalTo(AdaptationWidth(30));
-        }];
+//        UILabel *cellLab = [[UILabel alloc]init];
+//        [cellLab setText:@"二维码推广图"];
+//        cellLab.alpha = 0.8;
+//        [cellLab setFont:[UIFont systemFontOfSize:AdaptationWidth(16)]];
+//        [cellLab setTextColor:LabelMainColor];
+//        [cell.contentView addSubview:cellLab];
+//        [cellLab mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.right.bottom.mas_equalTo(cell);
+//            make.height.mas_equalTo(AdaptationWidth(30));
+//        }];
     }
     
 //    [cell.profilePhoto sd_setImageWithURL:[NSURL URLWithString:self.hiBuyShareInfoModel.smallPicUrl[indexPath.row]]];
@@ -309,30 +331,68 @@
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (indexPath.row == 0) {
-        self.hiBuyShareCodeView.hidden = NO;
-        self.hiBuyShareCodeView.titleLab.text = self.hiBuyShareInfoModel.title;
-        [self.hiBuyShareCodeView.proImage sd_setImageWithURL:[NSURL URLWithString:self.hiBuyShareInfoModel.smallPicUrl[0]]];
-        self.hiBuyShareCodeView.moneyLab.text = [NSString stringWithFormat:@"%.2f",[self.hiBuyShareInfoModel.afterCouplePrice doubleValue]];
-        [self.hiBuyShareCodeView.juanBtn setTitle:[NSString stringWithFormat:@"卷   ￥%.2f",[self.hiBuyShareInfoModel.couponAmount doubleValue]] forState:UIControlStateNormal];
-        
-        NSMutableAttributedString *attribttedStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"￥%.2f",[self.hiBuyShareInfoModel.zkFinalPrice doubleValue]] attributes:nil];
-        [attribttedStr addAttributes:@{NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle),NSStrikethroughColorAttributeName:LabelAssistantColor} range:NSMakeRange(0, attribttedStr.length)];
-        
-        self.hiBuyShareCodeView.oldLab.attributedText = attribttedStr;
-        self.hiBuyShareCodeView.codeImage.image = [UIImage qrCodeImageWithInfo:self.hiBuyShareInfoModel.tpwd width:90];
-        [[UIApplication sharedApplication].keyWindow addSubview: self.hiBuyShareCodeView];
-        WEAKSELF
-        [_hiBuyShareCodeView setTapActionWithBlock:^{
-            weakSelf.hiBuyShareCodeView.hidden = YES;
-        }];
-    }else{
-        
+ 
+    [self creatCodeView:indexPath.row];
+    for (int i=0; i<self.imageArry.count; i++) {
+        UIButton *btn = (UIButton *)[self.view viewWithTag:(600+i)];
+        btn.selected = NO;
     }
+    UIButton *btn = (UIButton *)[self.view viewWithTag:600+indexPath.row];
+    btn.selected = YES;
     
 }
+- (void)creatCodeView:(NSInteger)row{
+    self.hiBuyShareCodeView.hidden = NO;
+    self.hiBuyShareCodeView.titleLab.text = self.hiBuyShareInfoModel.title;
+    [self.hiBuyShareCodeView.proImage sd_setImageWithURL:[NSURL URLWithString:self.hiBuyShareInfoModel.smallPicUrl[row]]];
+    self.hiBuyShareCodeView.moneyLab.text = [NSString stringWithFormat:@"%.2f",[self.hiBuyShareInfoModel.afterCouplePrice doubleValue]];
+    [self.hiBuyShareCodeView.juanBtn setTitle:[NSString stringWithFormat:@"卷   ￥%.2f",[self.hiBuyShareInfoModel.couponAmount doubleValue]] forState:UIControlStateNormal];
+    
+    NSMutableAttributedString *attribttedStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"￥%.2f",[self.hiBuyShareInfoModel.zkFinalPrice doubleValue]] attributes:nil];
+    [attribttedStr addAttributes:@{NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle),NSStrikethroughColorAttributeName:LabelAssistantColor} range:NSMakeRange(0, attribttedStr.length)];
+    
+    self.hiBuyShareCodeView.oldLab.attributedText = attribttedStr;
+    self.hiBuyShareCodeView.codeImage.image = [UIImage qrCodeImageWithInfo:self.hiBuyShareInfoModel.tpwd width:90];
+    if (row) {
+        [[UIApplication sharedApplication].keyWindow addSubview: self.hiBuyShareCodeView];
+    }
+    
+    WEAKSELF
+    [_hiBuyShareCodeView setTapActionWithBlock:^{
+        weakSelf.hiBuyShareCodeView.hidden = YES;
+    }];
+    
+    [self.imageArry addObject:[UIImage convertViewToImage:self.hiBuyShareCodeView.bgView]];
+}
 - (void)cellBtnOnClick:(UIButton *)btn{
-    btn.selected = !btn.selected;
+
+    if (btn.isSelected) {
+        return;
+    }
+    self.hiBuyShareCodeView.titleLab.text = self.hiBuyShareInfoModel.title;
+    [self.hiBuyShareCodeView.proImage sd_setImageWithURL:[NSURL URLWithString:self.hiBuyShareInfoModel.smallPicUrl[btn.tag-600]]];
+    self.hiBuyShareCodeView.moneyLab.text = [NSString stringWithFormat:@"%.2f",[self.hiBuyShareInfoModel.afterCouplePrice doubleValue]];
+    [self.hiBuyShareCodeView.juanBtn setTitle:[NSString stringWithFormat:@"卷   ￥%.2f",[self.hiBuyShareInfoModel.couponAmount doubleValue]] forState:UIControlStateNormal];
+
+    NSMutableAttributedString *attribttedStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"￥%.2f",[self.hiBuyShareInfoModel.zkFinalPrice doubleValue]] attributes:nil];
+    [attribttedStr addAttributes:@{NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle),NSStrikethroughColorAttributeName:LabelAssistantColor} range:NSMakeRange(0, attribttedStr.length)];
+
+    self.hiBuyShareCodeView.oldLab.attributedText = attribttedStr;
+    self.hiBuyShareCodeView.codeImage.image = [UIImage qrCodeImageWithInfo:self.hiBuyShareInfoModel.tpwd width:90];
+//    [[UIApplication sharedApplication].keyWindow addSubview: self.hiBuyShareCodeView];
+    WEAKSELF
+    [_hiBuyShareCodeView setTapActionWithBlock:^{
+        weakSelf.hiBuyShareCodeView.hidden = YES;
+    }];
+    
+    [self.imageArry addObject:[UIImage convertViewToImage:self.hiBuyShareCodeView.bgView]];
+    
+    for (int i=0; i<self.imageArry.count; i++) {
+        UIButton *btn = (UIButton *)[self.view viewWithTag:(600+i)];
+        btn.selected = NO;
+    }
+    
+    btn.selected = YES;
 }
 - (UICollectionView *)collectionView{
     if (!_collectionView) {
@@ -352,5 +412,11 @@
         
     }
     return _hiBuyShareCodeView;
+}
+- (NSMutableArray *)imageArry{
+    if (!_imageArry) {
+        _imageArry = [NSMutableArray array];
+    }
+    return _imageArry;
 }
 @end

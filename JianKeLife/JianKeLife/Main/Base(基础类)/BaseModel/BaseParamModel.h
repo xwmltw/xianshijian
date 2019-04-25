@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic ,strong) PageQueryDataModel *data;
 @property (nonatomic ,copy) NSString *imei;
 @property (nonatomic ,copy) NSString *uid;
+@property (nonatomic ,strong) NSString *packageName;
 @end
 
 @interface PageQueryDataModel : BaseParamModel

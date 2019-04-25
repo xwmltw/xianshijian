@@ -17,9 +17,9 @@
 }
 - (void)setModel:(MyOrderModel *)model{
     if ([model.orderType isEqualToString:@"天猫"]) {
-        [self.logoImage setImage:[UIImage imageNamed:@""]];
+        [self.logoImage setImage:[UIImage imageNamed:@"icon_tianmao"]];
     }else{
-        [self.logoImage setImage:[UIImage imageNamed:@""]];
+        [self.logoImage setImage:[UIImage imageNamed:@"icon_taotao"]];
     }
     switch (model.tkStatus.integerValue) {
         case 3:
@@ -40,8 +40,8 @@
     }
     self.detailLab.text = model.itemTitle;
     self.dateLab.text = [NSString stringWithFormat:@"创建时间 %@",model.orderCreateTime];
-    self.payMoney.text = [NSString stringWithFormat:@"付款金额 %.2f",[model.alipayTotalPrice doubleValue]/100];
-    self.expectLab.text = [NSString stringWithFormat:@"预估收益 %.2f",[model.pubSharePreFee doubleValue]/100];
+    self.payMoney.text = [NSString stringWithFormat:@"付款金额 %.2f",[model.alipayTotalPrice doubleValue]];
+    self.expectLab.text = [NSString stringWithFormat:@"预估收益 %.2f",[model.pubSharePreFee doubleValue]];
     self.productNo.text = [NSString stringWithFormat:@"订单号: %@",model.tradeId];
     [self.productImage sd_setImageWithURL:[NSURL URLWithString:model.pictUrl]];
     

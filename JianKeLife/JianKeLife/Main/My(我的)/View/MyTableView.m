@@ -323,9 +323,9 @@
         orderBtn1.tag = 407;
         [orderBtn1 setTitle:@"已付款" forState:UIControlStateNormal];
         [orderBtn1 setImage:[UIImage imageNamed:@"icon_Paid"] forState:UIControlStateNormal];
-        orderBtn1.titleEdgeInsets = UIEdgeInsetsMake(AdaptationWidth(55), -44, 0, 0);
+        orderBtn1.titleEdgeInsets = UIEdgeInsetsMake(AdaptationWidth(58), -44, 0, 0);
         orderBtn1.imageEdgeInsets = UIEdgeInsetsMake(0, AdaptationWidth(17), 0, 0);
-        [orderBtn1 setTitleColor:blueColor forState:UIControlStateNormal];
+        [orderBtn1 setTitleColor:LabelMainColor forState:UIControlStateNormal];
         [orderBtn1.titleLabel setFont:[UIFont systemFontOfSize:AdaptationWidth(14)]];
         [orderBtn1 addTarget:self action:@selector(btnOnClock:) forControlEvents:UIControlEventTouchUpInside];
         [heardView3 addSubview:orderBtn1];
@@ -338,9 +338,9 @@
         orderBtn2.tag = 408;
         [orderBtn2 setTitle:@"已结算" forState:UIControlStateNormal];
         [orderBtn2 setImage:[UIImage imageNamed:@"icon_Settled"] forState:UIControlStateNormal];
-        orderBtn2.titleEdgeInsets = UIEdgeInsetsMake(AdaptationWidth(55), -44, 0, 0);
+        orderBtn2.titleEdgeInsets = UIEdgeInsetsMake(AdaptationWidth(58), -44, 0, 0);
         orderBtn2.imageEdgeInsets = UIEdgeInsetsMake(0, AdaptationWidth(17), 0, 0);
-        [orderBtn2 setTitleColor:blueColor forState:UIControlStateNormal];
+        [orderBtn2 setTitleColor:LabelMainColor forState:UIControlStateNormal];
         [orderBtn2.titleLabel setFont:[UIFont systemFontOfSize:AdaptationWidth(14)]];
         [orderBtn2 addTarget:self action:@selector(btnOnClock:) forControlEvents:UIControlEventTouchUpInside];
         [heardView3 addSubview:orderBtn2];
@@ -353,9 +353,9 @@
         orderBtn3.tag = 409;
         [orderBtn3 setTitle:@"已失效" forState:UIControlStateNormal];
         [orderBtn3 setImage:[UIImage imageNamed:@"icon_Failure"] forState:UIControlStateNormal];
-        orderBtn3.titleEdgeInsets = UIEdgeInsetsMake(AdaptationWidth(55), -44, 0, 0);
+        orderBtn3.titleEdgeInsets = UIEdgeInsetsMake(AdaptationWidth(58), -44, 0, 0);
         orderBtn3.imageEdgeInsets = UIEdgeInsetsMake(0, AdaptationWidth(17), 0, 0);
-        [orderBtn3 setTitleColor:blueColor forState:UIControlStateNormal];
+        [orderBtn3 setTitleColor:LabelMainColor forState:UIControlStateNormal];
         [orderBtn3.titleLabel setFont:[UIFont systemFontOfSize:AdaptationWidth(14)]];
         [orderBtn3 addTarget:self action:@selector(btnOnClock:) forControlEvents:UIControlEventTouchUpInside];
         [heardView3 addSubview:orderBtn3];
@@ -404,9 +404,9 @@
         taskBtn1.tag = 411;
         [taskBtn1 setTitle:@"待返佣" forState:UIControlStateNormal];
         [taskBtn1 setImage:[UIImage imageNamed:@"icon_task_stay"] forState:UIControlStateNormal];
-        taskBtn1.titleEdgeInsets = UIEdgeInsetsMake(AdaptationWidth(55), -44, 0, 0);
+        taskBtn1.titleEdgeInsets = UIEdgeInsetsMake(AdaptationWidth(58), -44, 0, 0);
         taskBtn1.imageEdgeInsets = UIEdgeInsetsMake(0, AdaptationWidth(17), 0, 0);
-        [taskBtn1 setTitleColor:blueColor forState:UIControlStateNormal];
+        [taskBtn1 setTitleColor:LabelMainColor forState:UIControlStateNormal];
         [taskBtn1.titleLabel setFont:[UIFont systemFontOfSize:AdaptationWidth(14)]];
         [taskBtn1 addTarget:self action:@selector(btnOnClock:) forControlEvents:UIControlEventTouchUpInside];
         [heardView4 addSubview:taskBtn1];
@@ -419,9 +419,9 @@
         taskBtn2.tag = 412;
         [taskBtn2 setTitle:@"进行中" forState:UIControlStateNormal];
         [taskBtn2 setImage:[UIImage imageNamed:@"icon_task_ing"] forState:UIControlStateNormal];
-        taskBtn2.titleEdgeInsets = UIEdgeInsetsMake(AdaptationWidth(55), -44, 0, 0);
+        taskBtn2.titleEdgeInsets = UIEdgeInsetsMake(AdaptationWidth(58), -44, 0, 0);
         taskBtn2.imageEdgeInsets = UIEdgeInsetsMake(0, AdaptationWidth(17), 0, 0);
-        [taskBtn2 setTitleColor:blueColor forState:UIControlStateNormal];
+        [taskBtn2 setTitleColor:LabelMainColor forState:UIControlStateNormal];
         [taskBtn2.titleLabel setFont:[UIFont systemFontOfSize:AdaptationWidth(14)]];
         [taskBtn2 addTarget:self action:@selector(btnOnClock:) forControlEvents:UIControlEventTouchUpInside];
         [heardView4 addSubview:taskBtn2];
@@ -434,9 +434,9 @@
         taskBtn3.tag = 413;
         [taskBtn3 setTitle:@"已完结" forState:UIControlStateNormal];
         [taskBtn3 setImage:[UIImage imageNamed:@"icon_task_over"] forState:UIControlStateNormal];
-        taskBtn3.titleEdgeInsets = UIEdgeInsetsMake(AdaptationWidth(55), -44, 0, 0);
+        taskBtn3.titleEdgeInsets = UIEdgeInsetsMake(AdaptationWidth(58), -44, 0, 0);
         taskBtn3.imageEdgeInsets = UIEdgeInsetsMake(0, AdaptationWidth(17), 0, 0);
-        [taskBtn3 setTitleColor:blueColor forState:UIControlStateNormal];
+        [taskBtn3 setTitleColor:LabelMainColor forState:UIControlStateNormal];
         [taskBtn3.titleLabel setFont:[UIFont systemFontOfSize:AdaptationWidth(14)]];
         [taskBtn3 addTarget:self action:@selector(btnOnClock:) forControlEvents:UIControlEventTouchUpInside];
         [heardView4 addSubview:taskBtn3];
@@ -477,9 +477,9 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *reuseIdentifier = @"reuseIdentifier";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+//    if (!cell) {
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         cellImage = [[UIImageView alloc]init];
@@ -515,10 +515,12 @@
             make.right.mas_equalTo(cell);
             make.height.mas_equalTo(AdaptationWidth(1));
         }];
+        
         switch (indexPath.row) {
             case 0:
                 [cellImage setImage:[UIImage imageNamed:@"icon_feedback"]];
                 [cellDetail setText:@"意见反馈"];
+                
                 break;
             case 1:
             {
@@ -548,8 +550,7 @@
             default:
                 break;
         }
-        
-    }
+//    }
     
     
     
