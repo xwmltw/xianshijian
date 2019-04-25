@@ -50,6 +50,7 @@
         make.top.mas_equalTo(self.dropDownMenu.mas_bottom).offset(2);
         make.left.right.bottom.mas_equalTo(self.view);
     }];
+    self.tableView.estimatedRowHeight = 146;
     [self.tableView registerNib:[UINib nibWithNibName:@"HiBuyTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"HiBuyTableViewCell"];
     self.tableView.mj_footer = [self.hiBuyViewModel creatMjRefresh];
     

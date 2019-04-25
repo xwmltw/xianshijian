@@ -27,6 +27,7 @@
     WEAKSELF
     [XNetWork requestNetWorkWithUrl:Xtb_classify_list andModel:nil andSuccessBlock:^(ResponseModel *model) {
         [weakSelf.titleData addObjectsFromArray:model.data[@"dataRows"]];
+ 
         [weakSelf gettitles];
     } andFailBlock:^(ResponseModel *model) {
         
@@ -42,6 +43,7 @@
     
     
     [self.titleName enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
        CGSize size = [obj sizeWithAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:AdaptationWidth(16)]}];
         self.itemsWidth = self.itemsWidth + size.width +15;
 
@@ -166,7 +168,7 @@
     if (self.itemsWidth > ScreenWidth) {
         return CGRectMake(0, 0, ScreenWidth-40, AdaptationWidth(42));
     }
-    return CGRectMake(0, 0, ScreenWidth, AdaptationWidth(42));
+    return CGRectMake(0, 0, self.itemsWidth + 20, AdaptationWidth(42));
 }
 
 #pragma mark -UICollectionView

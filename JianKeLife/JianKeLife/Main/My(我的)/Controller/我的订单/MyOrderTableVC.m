@@ -20,7 +20,7 @@
     self.view.backgroundColor = XColorWithRGB(248, 248, 248);
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.tableView registerNib:[UINib nibWithNibName:@"MyOrderTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"MyOrderTableViewCell"];
-    
+    self.tableView.estimatedRowHeight = 200;
     [self.myOrderViewModel requestData];
     self.tableView.mj_footer = [self.myOrderViewModel creatMjRefresh];
     WEAKSELF

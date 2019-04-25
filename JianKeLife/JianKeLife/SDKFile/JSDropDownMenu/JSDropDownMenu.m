@@ -567,6 +567,7 @@ const NSInteger kMaxColumnsInMenu = 5;
             }];
             
             [(CALayer *)self.bgLayers[tapIndex] setBackgroundColor:BackColor.CGColor];
+            [XNotificationCenter postNotificationName:@"backgroundTapped" object:nil];
         } else {
             
             _hadSelected = NO;
@@ -963,7 +964,8 @@ const NSInteger kMaxColumnsInMenu = 5;
         
         CGFloat ratio = [_dataSource widthRatioOfLeftColumn:_currentSelectedMenudIndex];
         
-        CGFloat marginX = (self.frame.size.width*ratio-textSize.width)/2;
+//        CGFloat marginX = (self.frame.size.width*ratio-textSize.width)/2;
+        CGFloat marginX = 16;
         
         titleLabel.frame = CGRectMake(marginX, 5, textSize.width, cell.frame.size.height);
         
@@ -973,8 +975,8 @@ const NSInteger kMaxColumnsInMenu = 5;
             if(!haveRightTableView){
                 UIImageView *accessoryImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ico_make_blue"]];
                 
-                accessoryImageView.frame = CGRectMake(titleLabel.frame.origin.x+titleLabel.frame.size.width+10, (self.frame.size.height-12)/2, 16, 12);
-                
+//                accessoryImageView.frame = CGRectMake(titleLabel.frame.origin.x+titleLabel.frame.size.width+10, (self.frame.size.height-12)/2, 16, 12);
+                accessoryImageView.frame = CGRectMake(self.Sw-36, (self.frame.size.height-12)/2, 18, 18);
                 [cell addSubview:accessoryImageView];
                 
                 titleLabel.textColor = self.textHightColor;
@@ -1046,10 +1048,10 @@ const NSInteger kMaxColumnsInMenu = 5;
     
     CAShapeLayer *indicator = (CAShapeLayer *)_indicators[_currentSelectedMenudIndex];
     indicator.position = CGPointMake(title.position.x + title.frame.size.width / 2 + 8, indicator.position.y);
-    if (row != 0 ) {
+//    if (row != 0 ) {
         title.foregroundColor  = self.textHightColor.CGColor;
         indicator.fillColor  = self.textHightColor.CGColor;
-    }
+//    }
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -1134,10 +1136,10 @@ const NSInteger kMaxColumnsInMenu = 5;
     [(CALayer *)self.bgLayers[_currentSelectedMenudIndex] setBackgroundColor:BackColor.CGColor];
     CAShapeLayer *indicator = (CAShapeLayer *)_indicators[_currentSelectedMenudIndex];
     indicator.position = CGPointMake(title.position.x + title.frame.size.width / 2 + 8, indicator.position.y);
-    if (row != 0 ) {
+//    if (row != 0 ) {
         title.foregroundColor  = self.textHightColor.CGColor;
         indicator.fillColor  = self.textHightColor.CGColor;
-    }
+//    }
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{

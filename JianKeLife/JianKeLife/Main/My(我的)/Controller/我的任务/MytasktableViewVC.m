@@ -23,7 +23,7 @@
     
     self.tableView.mj_header = [self.taskViewModel creatMjRefreshHeader];
     self.tableView.mj_footer = [self.taskViewModel creatMjRefresh];
-    self.tableView.estimatedRowHeight = 0;
+    self.tableView.estimatedRowHeight = 145;
 
     if ([UserInfo sharedInstance].isSignIn){
         [self.taskViewModel requestTaskData];

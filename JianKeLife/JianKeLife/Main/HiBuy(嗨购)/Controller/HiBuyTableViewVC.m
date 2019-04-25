@@ -52,6 +52,7 @@
     }];
 //    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.tableView registerNib:[UINib nibWithNibName:@"HiBuyTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"HiBuyTableViewCell"];
+    self.tableView.estimatedRowHeight = 146;
     self.tableView.mj_footer = [self.hiBuyViewModel creatMjRefresh];
     [self.hiBuyViewModel requestData];
     WEAKSELF
@@ -245,6 +246,7 @@
 - (CGFloat)widthRatioOfLeftColumn:(NSInteger)column{
     return 1;
 }
+
 - (NSInteger)currentLeftSelectedRow:(NSInteger)column{
     switch (column) {
         case 0:
@@ -257,6 +259,7 @@
             return self.priceIndex;
             break;
         case 3:
+           
             return self.chooseIndex;
             break;
             
@@ -267,6 +270,7 @@
 }
 - (NSInteger)menu:(JSDropDownMenu *)menu numberOfRowsInColumn:(NSInteger)column leftOrRight:(NSInteger)leftOrRight leftRow:(NSInteger)leftRow{
     
+    [self.saiXuanView removeFromSuperview];
     switch (column) {
         case 0:
             return self.allAry.count;
@@ -278,6 +282,7 @@
             return self.priceAry.count;
             break;
         case 3:
+            
             return self.chooseAry.count;
             break;
             
@@ -376,6 +381,7 @@
         _tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        
     }
     return _tableView;
 }
@@ -440,7 +446,7 @@
 }
 - (NSArray *)chooseAry{
     if (!_chooseAry) {
-        _chooseAry = [NSArray arrayWithObjects:@"最低金额",@"最高金额", nil];
+        _chooseAry = [NSArray arrayWithObjects:@"最高金额", nil];
     }
     return _chooseAry;
 }
