@@ -18,7 +18,7 @@
 #endif
 
 static NSString *const TalkingData_ChannelId = @"AppStore";
-static NSString *const AppName = @"包里有钱";
+static NSString *const AppName = @"今日值享";
 static NSString *const APPLOGO = @"LOGO";
 static NSString *const AppScheme = @"jiankelife";
 static NSString *const AMapKey = @"d40775054eee7a471c44abbf3760b95c";
@@ -28,6 +28,7 @@ static NSString *const TalkingData_AppID =   @"33325C427A76485088AB7D63A0F9CAA2"
 static NSString *const UnLoginNotification = @"UnLoginNotification";
 static NSString *const LoginSuccessNotification = @"LoginSuccessNotification";
 static NSString *const WXLoginNotification = @"WXLoginNotification";
+static NSString *const TaskReturnNotification = @"TaskReturnNotification";
 /**接口名称*/
 
 #define Xget_global_info            @"/mapi/global/get_global_info" //全局

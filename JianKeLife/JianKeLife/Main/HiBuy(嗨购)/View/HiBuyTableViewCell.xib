@@ -80,6 +80,7 @@
                     <constraint firstItem="D4U-US-OvH" firstAttribute="leading" secondItem="SAe-uQ-dsX" secondAttribute="trailing" constant="2" id="0Jz-pd-xc6"/>
                     <constraint firstItem="Uuz-5N-KYY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="4vh-1u-anU"/>
                     <constraint firstItem="9CO-cV-gGW" firstAttribute="bottom" secondItem="Waf-NU-rRO" secondAttribute="bottom" id="ERj-b6-8gC"/>
+                    <constraint firstAttribute="bottom" secondItem="SAe-uQ-dsX" secondAttribute="bottom" constant="33" id="JDo-9v-sEW"/>
                     <constraint firstItem="9CO-cV-gGW" firstAttribute="leading" secondItem="Waf-NU-rRO" secondAttribute="trailing" constant="4" id="KIq-gF-1dd"/>
                     <constraint firstAttribute="trailing" secondItem="AxN-S5-aOf" secondAttribute="trailing" constant="16" id="KhY-Y6-Nzh"/>
                     <constraint firstItem="T8S-M6-oh9" firstAttribute="leading" secondItem="D4U-US-OvH" secondAttribute="trailing" constant="4" id="M22-mu-7Ja"/>
@@ -95,7 +96,6 @@
                     <constraint firstItem="Uuz-5N-KYY" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="veB-dH-xND"/>
                     <constraint firstItem="I3D-my-Wbu" firstAttribute="bottom" secondItem="T8S-M6-oh9" secondAttribute="bottom" id="vqA-yk-mne"/>
                     <constraint firstItem="Czs-xg-eEn" firstAttribute="leading" secondItem="Uuz-5N-KYY" secondAttribute="trailing" constant="10" id="yAd-4V-79n"/>
-                    <constraint firstItem="Waf-NU-rRO" firstAttribute="top" secondItem="SAe-uQ-dsX" secondAttribute="bottom" constant="8" id="yns-uf-ke7"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

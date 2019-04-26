@@ -46,7 +46,16 @@
     }];
     
     UIImageView *typeImage = [[UIImageView alloc]init];
-    [typeImage setImage:[UIImage imageNamed:@"icon_expect_buy"]];
+    if ([model.profitTypeDesc isEqualToString:@"购买收益"]) {
+        [typeImage setImage:[UIImage imageNamed:@"icon_expect_buy"]];
+    }else if([model.profitTypeDesc isEqualToString:@"分享收益"]){
+        [typeImage setImage:[UIImage imageNamed:@"icon_expect_share"]];
+    }else if([model.profitTypeDesc isEqualToString:@"人脉收益"]){
+        [typeImage setImage:[UIImage imageNamed:@"icon_expect_connections"]];
+    }else{
+        [typeImage setImage:[UIImage imageNamed:@"icon_expect_task"]];
+    }
+    
     [self.contentView addSubview:typeImage];
     [typeImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self).offset(-AdaptationWidth(16));

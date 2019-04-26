@@ -28,7 +28,7 @@
     self.view.backgroundColor = BackgroundColor;
     
     UIView *view1 = [[UIView alloc]init];
-    view1.backgroundColor = XColorWithRGB(255, 188, 0);
+    view1.backgroundColor = XColorWithRGB(249, 237, 205);
 
     [self.view addSubview:view1];
     [view1 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -94,7 +94,7 @@
     }];
     
     UILabel *newLab = [[UILabel alloc]init];
-    [newLab setText:[NSString stringWithFormat:@"【卷后价】%.2f",[self.hiBuyShareInfoModel.afterCouplePrice doubleValue]]];
+    [newLab setText:[NSString stringWithFormat:@"【劵后价】%.2f",[self.hiBuyShareInfoModel.afterCouplePrice doubleValue]]];
     [newLab setFont:[UIFont systemFontOfSize:AdaptationWidth(14)]];
     [newLab setTextColor:LabelMainColor];
     [view2 addSubview:newLab];
@@ -346,7 +346,7 @@
     self.hiBuyShareCodeView.titleLab.text = self.hiBuyShareInfoModel.title;
     [self.hiBuyShareCodeView.proImage sd_setImageWithURL:[NSURL URLWithString:self.hiBuyShareInfoModel.smallPicUrl[row]]];
     self.hiBuyShareCodeView.moneyLab.text = [NSString stringWithFormat:@"%.2f",[self.hiBuyShareInfoModel.afterCouplePrice doubleValue]];
-    [self.hiBuyShareCodeView.juanBtn setTitle:[NSString stringWithFormat:@"卷   ￥%.2f",[self.hiBuyShareInfoModel.couponAmount doubleValue]] forState:UIControlStateNormal];
+    [self.hiBuyShareCodeView.juanBtn setTitle:[NSString stringWithFormat:@"劵   ￥%.2f",[self.hiBuyShareInfoModel.couponAmount doubleValue]] forState:UIControlStateNormal];
     
     NSMutableAttributedString *attribttedStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"￥%.2f",[self.hiBuyShareInfoModel.zkFinalPrice doubleValue]] attributes:nil];
     [attribttedStr addAttributes:@{NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle),NSStrikethroughColorAttributeName:LabelAssistantColor} range:NSMakeRange(0, attribttedStr.length)];
@@ -372,7 +372,7 @@
     self.hiBuyShareCodeView.titleLab.text = self.hiBuyShareInfoModel.title;
     [self.hiBuyShareCodeView.proImage sd_setImageWithURL:[NSURL URLWithString:self.hiBuyShareInfoModel.smallPicUrl[btn.tag-600]]];
     self.hiBuyShareCodeView.moneyLab.text = [NSString stringWithFormat:@"%.2f",[self.hiBuyShareInfoModel.afterCouplePrice doubleValue]];
-    [self.hiBuyShareCodeView.juanBtn setTitle:[NSString stringWithFormat:@"卷   ￥%.2f",[self.hiBuyShareInfoModel.couponAmount doubleValue]] forState:UIControlStateNormal];
+    [self.hiBuyShareCodeView.juanBtn setTitle:[NSString stringWithFormat:@"劵   ￥%.2f",[self.hiBuyShareInfoModel.couponAmount doubleValue]] forState:UIControlStateNormal];
 
     NSMutableAttributedString *attribttedStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"￥%.2f",[self.hiBuyShareInfoModel.zkFinalPrice doubleValue]] attributes:nil];
     [attribttedStr addAttributes:@{NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle),NSStrikethroughColorAttributeName:LabelAssistantColor} range:NSMakeRange(0, attribttedStr.length)];

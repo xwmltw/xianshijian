@@ -31,7 +31,7 @@
 //        self.data = [[PageQueryDataModel alloc]init];
         self.imei = @"";
         self.uid = [XDeviceHelper getUUID];
-        self.packageName = AppName;
+        self.packageName = [XDeviceHelper getBundleIdentifier];
         
     }
     return self;

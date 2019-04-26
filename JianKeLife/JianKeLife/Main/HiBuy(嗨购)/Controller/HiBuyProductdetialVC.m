@@ -129,7 +129,7 @@
                                 viewController:self
                                     completion:^(UIAlertAction *action, NSInteger buttonIndex) {
                                         if (buttonIndex == 1) {
-                                            [weakSelf goTohasAuthorize:weakSelf.hiBuyShareInfoModel.authorizePageUrl];
+                                            [weakSelf goToUnhasAuthorize:weakSelf.hiBuyShareInfoModel.authorizePageUrl];
                                         }
                     }];
                     
@@ -155,7 +155,7 @@
                                 viewController:self
                                     completion:^(UIAlertAction *action, NSInteger buttonIndex) {
                                         if (buttonIndex == 1) {
-                                            [weakSelf goTohasAuthorize:model.data[@"authorizePageUrl"]];
+                                            [weakSelf goToUnhasAuthorize:model.data[@"authorizePageUrl"]];
                                         }
                                     }];
                     
@@ -182,6 +182,11 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 //领取
+- (void)goToUnhasAuthorize:(NSString *)url{
+        BaseWebVC *vc = [[BaseWebVC alloc]init];
+        [vc reloadForGetWebView:url];
+        [self.navigationController pushViewController:vc animated:YES];
+}
 - (void)goTohasAuthorize:(NSString *)url{
     NSString *str= [url stringByReplacingOccurrencesOfString:@"https"withString:@"taobao"];
    
@@ -217,8 +222,10 @@
         case 1:
             return AdaptationWidth(146);
             break;
-        case 2:
-            return self.hiBuyDetailModel.cellWidth ;
+        case 2:{
+            CGFloat width = self.hiBuyDetailModel.cellWidth > AdaptationWidth(500) ? self.hiBuyDetailModel.cellWidth : AdaptationWidth(500);
+            return width ;
+        }
             break;
             
         default:
@@ -280,7 +287,7 @@
                         make.top.mas_equalTo(shopLab.mas_bottom).offset(AdaptationWidth(18));
                     }];
                     UILabel *moneyLab = [[UILabel alloc]init];
-                    if (self.hiBuyDetailModel.couponAmount.integerValue) {
+                    if (self.hiBuyDetailModel.couponAmount.doubleValue) {
                         moneyLab.text = [NSString stringWithFormat:@"%.2f",[self.hiBuyDetailModel.afterCouplePrice doubleValue]];
                     }else{
                         moneyLab.text = [NSString stringWithFormat:@"%.2f",[self.hiBuyDetailModel.zkFinalPrice doubleValue]];
@@ -294,7 +301,7 @@
                         make.top.mas_equalTo(shopLab.mas_bottom).offset(AdaptationWidth(10));
                     }];
                     UILabel *juanLab = [[UILabel alloc]init];
-                    juanLab.text = @"卷后";
+                    juanLab.text = self.hiBuyDetailModel.couponAmount.doubleValue ? @"劵后" : @"";
                     [juanLab setFont:[UIFont systemFontOfSize:AdaptationWidth(12)]];
                     [juanLab setTextColor:RedColor];
                     [cell.contentView addSubview:juanLab];
@@ -315,7 +322,9 @@
                         make.left.mas_equalTo(juanLab.mas_right).offset(AdaptationWidth(11));
                         make.bottom.mas_equalTo(juanLab.mas_bottom);
                     }];
-                    
+                    if (!self.hiBuyDetailModel.couponAmount.integerValue) {
+                        oldLab.hidden = YES;
+                    }
                     
                     UILabel *numLab = [[UILabel alloc]init];
                     numLab.text = [NSString stringWithFormat:@"销量%@",self.hiBuyDetailModel.volume.description];
@@ -329,7 +338,7 @@
                     
                     UILabel *expectLab = [[UILabel alloc]init];
                     expectLab.backgroundColor = XColorWithRGB(255, 227, 227);
-                    if (self.hiBuyDetailModel.commissionAmount.integerValue) {
+                    if (self.hiBuyDetailModel.commissionAmount.doubleValue) {
                         expectLab.hidden = NO;
                         expectLab.text = [NSString stringWithFormat:@"预估收益%.2f",[self.hiBuyDetailModel.commissionAmount doubleValue]];
                     }else{
@@ -414,7 +423,7 @@
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation{
     [webView evaluateJavaScript:@"document.body.offsetHeight;" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
         NSString *heightStr = [NSString stringWithFormat:@"%@",result];
-        self.hiBuyDetailModel.cellWidth = heightStr.floatValue;
+        self.hiBuyDetailModel.cellWidth = heightStr.floatValue ;
         [self.tableView moveRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0] toIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
     }];
 }

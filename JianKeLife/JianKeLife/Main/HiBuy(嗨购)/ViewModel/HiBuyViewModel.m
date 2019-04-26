@@ -17,8 +17,9 @@
     WEAKSELF
     [XNetWork requestNetWorkWithUrl:Xtb_product_list andModel:[self.hiBuyProductQueryModel mj_keyValues] andSuccessBlock:^(ResponseModel *model) {
         
+//        [weakSelf.hiBuyTypeList arrayByAddingObjectsFromArray:model.data[@"dataRows"]];
         [weakSelf.hiBuyTypeList addObjectsFromArray:model.data[@"dataRows"]];
-        XBlockExec(weakSelf.hiBuyTypeBlock,nil);
+        XBlockExec(weakSelf.hiBuyQuerBlock,nil);
     } andFailBlock:^(ResponseModel *model) {
         
     }];

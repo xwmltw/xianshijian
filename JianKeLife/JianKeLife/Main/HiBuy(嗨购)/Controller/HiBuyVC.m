@@ -15,10 +15,12 @@
 @interface HiBuyVC ()<WMPageControllerDataSource,UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, strong) NSMutableArray *titleData;
 @property (nonatomic, strong) NSMutableArray *titleWith;
+@property (nonatomic, strong) NSMutableArray *itemsWidthArry;
 @property (nonatomic, strong) NSMutableArray *titleName;
 @property (nonatomic, strong) NSMutableArray *vcData;
 @property (nonatomic, assign) CGFloat itemsWidth;
 @property (nonatomic ,strong) UICollectionView *collectionView;
+@property (nonatomic ,strong) UIView *bgView;
 @end
 
 @implementation HiBuyVC
@@ -46,7 +48,7 @@
         
        CGSize size = [obj sizeWithAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:AdaptationWidth(16)]}];
         self.itemsWidth = self.itemsWidth + size.width +15;
-
+        [self.itemsWidthArry addObject: @(size.width)];
         [self.titleWith addObject:@(size.width + 15)];
     }];
     
@@ -71,7 +73,7 @@
     self.titleColorNormal = LabelMainColor;
     self.progressColor = blueColor;
 //    self.progressWidth = AdaptationWidth(36); // 这里可以设置不同的宽度
-    self.progressViewWidths = self.titleWith;
+    self.progressViewWidths = self.itemsWidthArry;
     self.progressHeight = 4;//下划线的高度，需要WMMenuViewStyleLine样式
     
     //这里注意，需要写在最后面，要不然上面的效果不会出现
@@ -104,7 +106,7 @@
     searchBtn.frame = CGRectMake(0, 0, AdaptationWidth(343), 35);
     [searchBtn setBackgroundColor:LineColor];
     [searchBtn setImage:[UIImage imageNamed:@"icon_search"] forState:UIControlStateNormal];
-    [searchBtn setTitle:@"输入关键词" forState:UIControlStateNormal];
+    [searchBtn setTitle:@"搜索商品或宝贝标题" forState:UIControlStateNormal];
     [searchBtn setTitleColor:LabelAssistantColor forState:UIControlStateNormal];
     [searchBtn.titleLabel setFont:[UIFont systemFontOfSize:AdaptationWidth(14)]];
     [searchBtn addTarget:self action:@selector(btnOnClock:) forControlEvents:UIControlEventTouchUpInside];
@@ -125,13 +127,13 @@
             break;
         case 5012:
         {
-            [self.view addSubview:self.collectionView];
-            self.collectionView.hidden = NO;
+            [self.view addSubview:self.bgView];
+            self.bgView.hidden = NO;
         }
             break;
         case 5013:
         {
-            self.collectionView.hidden = YES;
+            self.bgView.hidden = YES;
         }
             break;
         default:
@@ -254,7 +256,7 @@
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    self.collectionView.hidden = YES;
+    self.bgView.hidden = YES;
     self.selectIndex = (int)indexPath.row;
     
 }
@@ -269,6 +271,12 @@
         _titleWith = [NSMutableArray array];
     }
     return _titleWith;
+}
+- (NSMutableArray *)itemsWidthArry {
+    if (!_itemsWidthArry) {
+        _itemsWidthArry = [NSMutableArray array];
+    }
+    return _itemsWidthArry;
 }
 - (NSMutableArray *)titleName {
     if (!_titleName) {
@@ -295,5 +303,14 @@
                    withReuseIdentifier:@"CollectionHeadTypeView"];
     }
     return _collectionView;
+}
+- (UIView *)bgView{
+    if (!_bgView) {
+        _bgView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
+        _bgView.backgroundColor = XColorWithRBBA(0, 0, 0, 0.3);
+        
+        [_bgView addSubview:self.collectionView];
+    }
+    return _bgView;
 }
 @end

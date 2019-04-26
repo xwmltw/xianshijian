@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface HiBuyViewModel : NSObject
 @property (nonatomic, strong) NSMutableArray *hiBuyTypeList;
 @property (nonatomic, copy) XBlock hiBuyTypeBlock;
+@property (nonatomic, copy) XBlock hiBuyQuerBlock;
 @property (nonatomic ,strong) HiBuyProductQueryModel *hiBuyProductQueryModel;
 @property (nonatomic ,strong) HiBuyProductModel *hiBuyProductModel;
 @property (nonatomic, strong) PageQueryRedModel *pageQueryRedModel;

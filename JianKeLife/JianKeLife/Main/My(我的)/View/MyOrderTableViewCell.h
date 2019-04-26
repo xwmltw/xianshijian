@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *copybtn;
 @property (weak, nonatomic) IBOutlet UILabel *stautsLab;
 @property (nonatomic ,strong) MyOrderModel *model;
+@property (nonatomic ,strong) NSString *tradeId;
 //- (void)
 @end
 

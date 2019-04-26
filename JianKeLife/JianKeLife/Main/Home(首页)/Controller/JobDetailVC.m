@@ -17,13 +17,10 @@
 #import <ShareSDKUI/SSUIShareSheetConfiguration.h>
 #import "WXApi.h"
 
-#import "LaXinView.h"
-#import "LaXinModel.h"
 @interface JobDetailVC ()
 @property (nonatomic ,strong) JobDetailTableView *tableView;
 @property (nonatomic ,strong) QRcodeView *qrCodeView;
-@property (nonatomic ,strong) LaXinModel *laXinModel;
-@property (nonatomic ,strong) LaXinView *laXinView;
+
 @property (nonatomic ,strong) NSDictionary *shareDic;
 @end
 
@@ -208,7 +205,7 @@
                 [ShareSDK share:SSDKPlatformSubTypeWechatSession parameters:shareParams onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
                     [UserInfo sharedInstance].isAlertShare = YES;
                     [[UserInfo sharedInstance]saveUserInfo:[UserInfo sharedInstance]];
-                    [blockSelf  laXinNoti:2];
+                   
                 }];
                 //小程序分享
 //                [shareParams SSDKSetupWeChatMiniProgramShareParamsByTitle:@"我是天才"
@@ -242,7 +239,7 @@
                 [ShareSDK share:SSDKPlatformSubTypeWechatTimeline parameters:shareParams onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
                     [UserInfo sharedInstance].isAlertShare = YES;
                     [[UserInfo sharedInstance]saveUserInfo:[UserInfo sharedInstance]];
-                    [blockSelf  laXinNoti:2];
+                    
                 }];
             }
                 break;
@@ -348,63 +345,8 @@
 //
 //    }
 }
-- (void)laXinNoti:(NSInteger)row{
-    //拉新
-    WEAKSELF
-    [XNetWork requestNetWorkWithUrl:Xintroduce_new_complete_data andModel:nil andSuccessBlock:^(ResponseModel *model) {
-        weakSelf.laXinModel = [LaXinModel mj_objectWithKeyValues:model.data];
-        if (!weakSelf.laXinModel.isFinished.integerValue) {
-            
-            
-            weakSelf.laXinView = [[NSBundle mainBundle]loadNibNamed:@"LaXinView" owner:nil options:nil].lastObject;
-            weakSelf.laXinView.titleLab2.text = row ==1 ? @"哇，恭喜你提交成功，现在分享还能活动额外现金奖励哦~":@"继续分享到群，奖励金额将会大大增加，上不封顶";
-            weakSelf.laXinView.detailLab.hidden = YES;
-            weakSelf.laXinView.headImage.hidden = YES;
-            weakSelf.laXinView.titleLab.hidden = YES;
-            weakSelf.laXinView.mainImage.image = [UIImage imageNamed:@"icon_laxin_again"];
-            [weakSelf.laXinView.finishBtn setTitle:@"分享赚更多" forState:UIControlStateNormal];
-            double num = weakSelf.laXinModel.totalAmount.doubleValue/weakSelf.laXinModel.minWithdrawAmount.doubleValue;
-            weakSelf.laXinView.progressNum = num;
-             int newNum = (1 -num)*100;
-            weakSelf.laXinView.proDetailLab.text = [NSString stringWithFormat:@"满%d元即可提现，距离提现还有%d%%",[weakSelf.laXinModel.minWithdrawAmount intValue]/100,newNum];
-            [weakSelf.laXinView setLaXinBlock:^(UIButton *result) {
-                weakSelf.laXinView.hidden = YES;
-                switch (result.tag) {
-                    case 501:
-                    {
-                        weakSelf.laXinView.hidden = YES;
-                        BaseWebVC *vc = [[BaseWebVC alloc]init];
-                        [vc reloadForGetWebView:weakSelf.laXinModel.activityPageUrl];
-                        vc.hidesBottomBarWhenPushed = YES;
-                        [weakSelf.navigationController pushViewController:vc animated:YES];
-                    }
-                        break;
-                    case 502:{
-                        [weakSelf goToShare:nil];
-                    }
-                        
-                        break;
-                        
-                    default:
-                        break;
-                }
-                
-            }];
-            weakSelf.laXinView.frame = [UIScreen mainScreen].bounds;
-            [[UIApplication sharedApplication].keyWindow addSubview: weakSelf.laXinView];
-            
-            
-        }
-    } andFailBlock:^(id result) {
-        
-    }];
-}
-- (LaXinModel *)laXinModel{
-    if (!_laXinModel) {
-        _laXinModel = [[LaXinModel alloc]init];
-    }
-    return _laXinModel;
-}
+
+
 - (QRcodeView *)qrCodeView{
     if (!_qrCodeView) {
         _qrCodeView = [[[NSBundle mainBundle]loadNibNamed:@"QRcodeView" owner:nil options:nil]lastObject];

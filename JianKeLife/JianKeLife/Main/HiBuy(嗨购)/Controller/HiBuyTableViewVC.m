@@ -44,13 +44,18 @@
     }
     [self.view addSubview:self.dropDownMenu];
     
+    
+//    self.tableView.tableHeaderView = [self creatHead];
+    
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.dropDownMenu.mas_bottom).offset(2);
+//        make.top.mas_equalTo(self.view);
         make.left.right.bottom.mas_equalTo(self.view);
 //        make.bottom.mas_equalTo(self.view).offset(-40);
     }];
 //    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    self.tableView.tableFooterView = [UIView new];
     [self.tableView registerNib:[UINib nibWithNibName:@"HiBuyTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"HiBuyTableViewCell"];
     self.tableView.estimatedRowHeight = 146;
     self.tableView.mj_footer = [self.hiBuyViewModel creatMjRefresh];
@@ -59,6 +64,15 @@
     [self.hiBuyViewModel setHiBuyTypeBlock:^(id result) {
         [weakSelf.tableView.mj_footer endRefreshing];
         [weakSelf.tableView reloadData];
+    }];
+    [self.hiBuyViewModel setHiBuyQuerBlock:^(id result) {
+        [weakSelf.tableView reloadData];
+        if (weakSelf.hiBuyViewModel.hiBuyTypeList.count) {
+             //回到顶部
+            NSIndexPath* indexPat = [NSIndexPath indexPathForRow:0 inSection:0];
+            [weakSelf.tableView scrollToRowAtIndexPath:indexPat atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+        }
+   
     }];
     
     self.topBtn = [[UIButton alloc]init];
@@ -74,9 +88,24 @@
     }];
     [XNotificationCenter addObserver:self selector:@selector(missBackgrond) name:@"backgroundTapped" object:nil];
 }
-//- (UIView *)creatHead{
-//    UIView *view = [[UIView alloc]init];
-//}
+//
+- (UIView *)creatHead{
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, AdaptationWidth(144)+45)];
+    view.backgroundColor = [UIColor whiteColor];
+    if (self.isFirstType && self.clientGlobalInfo.bannerAdListTBPage.count > 0) {
+        [view addSubview:self.sdcycleScrollView];
+        [self.sdcycleScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(view).offset(16);
+            make.right.mas_equalTo(view).offset(-16);
+            make.top.mas_equalTo(view).offset(AdaptationWidth(12));
+            make.height.mas_equalTo(AdaptationWidth(130));
+        }];
+    }
+    [view addSubview:self.dropDownMenu];
+    return view;
+}
+
+#pragma mark - 通知
 - (void)missBackgrond{
     [self.saiXuanView removeFromSuperview];
 }
@@ -95,6 +124,7 @@
         self.topBtn.hidden = NO;
         
     }
+   
 }
 #pragma mark - Table view data source
 
@@ -339,9 +369,7 @@
    
 }
 - (void)menu:(JSDropDownMenu *)menu didSelectRowAtIndexPath:(JSIndexPath *)indexPath{
-    //回到顶部
-    NSIndexPath* indexPat = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView scrollToRowAtIndexPath:indexPat atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    
     
     switch (indexPath.column) {
         case 0:
@@ -474,7 +502,8 @@
                 [ProgressHUD showProgressHUDInView:nil withText:@"最高的价格不可以比最低价还小哟~" afterDelay:1];
                 return ;
             }
-            
+            //回到顶部
+//             [weakSelf.tableView setContentOffset:CGPointMake(0, 0) animated:YES];
                 weakSelf.hiBuyViewModel.hiBuyProductQueryModel.minPrice = @([min doubleValue]);
                 weakSelf.hiBuyViewModel.hiBuyProductQueryModel.maxPrice = @([max doubleValue]);
                 [weakSelf.hiBuyViewModel requestTypeDate];

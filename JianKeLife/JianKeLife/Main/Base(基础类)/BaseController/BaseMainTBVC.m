@@ -39,7 +39,7 @@
     [self setChildViewController:taskVC Image:@"icon_task_unselect" selectedImage:@"icon_task_select" title:@"嗨购"];
     
     ConnectionsVC *connectionsVC = [[ConnectionsVC alloc]init];
-    [self setChildViewController:connectionsVC Image:@"icon_relationship_unselect" selectedImage:@"icon_relationship_select" title:@"人脉"];
+    [self setChildViewController:connectionsVC Image:@"icon_relationship_unselect" selectedImage:@"icon_relationship_select" title:@"收益"];
 
     MyVC *myVC = [[MyVC alloc]init];
     [self setChildViewController:myVC Image:@"icon_me_unselect" selectedImage:@"icon_me_select" title:@"我的"];

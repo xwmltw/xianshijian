@@ -38,7 +38,7 @@
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UIView *view = [[UIView alloc]init];
-    view.backgroundColor = XColorWithRBBA(255, 188, 0, 0.17);
+    view.backgroundColor = XColorWithRBBA(249, 237, 205, 1);
     
     UIImageView *headerImage2 = [[UIImageView alloc]init];
     [headerImage2 setImage:[UIImage imageNamed:@"icon_myOrder_noti"]];

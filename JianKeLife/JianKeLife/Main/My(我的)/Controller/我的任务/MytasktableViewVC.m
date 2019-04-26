@@ -35,8 +35,11 @@
         [blockSelf.tableView.mj_footer endRefreshing];
         [blockSelf.tableView reloadData];
     }];
+    [XNotificationCenter addObserver:self selector:@selector(refreshReturnData) name:TaskReturnNotification object:nil];
 }
-
+- (void)refreshReturnData{
+    [self.tableView.mj_header beginRefreshing];
+}
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -106,5 +109,8 @@
         _taskViewModel = [[TaskViewModel alloc]init];
     }
     return _taskViewModel;
+}
+- (void)dealloc{
+    [XNotificationCenter removeObserver:self name:TaskReturnNotification object:nil];
 }
 @end
