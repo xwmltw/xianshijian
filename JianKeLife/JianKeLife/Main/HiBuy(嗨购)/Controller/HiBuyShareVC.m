@@ -214,8 +214,9 @@
                 [ProgressHUD showProgressHUDInView:nil withText:@"未安装微信" afterDelay:1 ];
                 return ;
             }
+            NSString *str = [NSString stringWithFormat:@"%@\n%@\n%@\n————————————————————\n%@",self.hiBuyShareInfoModel.title,[NSString stringWithFormat:@"【原价】%.2f",[self.hiBuyShareInfoModel.zkFinalPrice doubleValue]],[NSString stringWithFormat:@"【劵后价】%.2f",[self.hiBuyShareInfoModel.afterCouplePrice doubleValue]],[NSString stringWithFormat:@"%@",self.hiBuyShareInfoModel.tpwdTextDesc]];
             NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
-            [shareParams SSDKSetupShareParamsByText:[NSString stringWithFormat:@"%@\n\n%@",self.hiBuyShareInfoModel.title,self.hiBuyShareInfoModel.tpwdTextDesc]
+            [shareParams SSDKSetupShareParamsByText:str
                                              images:nil
                                                 url:nil
                                               title:self.hiBuyShareInfoModel.title
@@ -234,6 +235,7 @@
                 [ProgressHUD showProgressHUDInView:nil withText:@"未安装微信" afterDelay:1 ];
                 return ;
             }
+            
             if (self.imageArry.count) {
                 NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
                 [shareParams SSDKSetupShareParamsByText:[NSString stringWithFormat:@"%@\n\n%@",self.hiBuyShareInfoModel.title,self.hiBuyShareInfoModel.tpwdTextDesc]
@@ -307,7 +309,7 @@
         make.height.with.mas_equalTo(22);
     }];
     if (indexPath.row == 0) {
-        [self creatCodeView:indexPath.row];
+        [self creatCodeView0];
         cellBtn.selected = YES;
         
 //        UILabel *cellLab = [[UILabel alloc]init];
@@ -342,6 +344,9 @@
     
 }
 - (void)creatCodeView:(NSInteger)row{
+    
+    NSString *str = [NSString stringWithFormat:@"%@\n%@\n%@\n————————————————————\n%@",self.hiBuyShareInfoModel.title,[NSString stringWithFormat:@"【原价】%.2f",[self.hiBuyShareInfoModel.zkFinalPrice doubleValue]],[NSString stringWithFormat:@"【劵后价】%.2f",[self.hiBuyShareInfoModel.afterCouplePrice doubleValue]],[NSString stringWithFormat:@"%@",self.hiBuyShareInfoModel.tpwdTextDesc]];
+    
     self.hiBuyShareCodeView.hidden = NO;
     self.hiBuyShareCodeView.titleLab.text = self.hiBuyShareInfoModel.title;
     [self.hiBuyShareCodeView.proImage sd_setImageWithURL:[NSURL URLWithString:self.hiBuyShareInfoModel.smallPicUrl[row]]];
@@ -352,10 +357,10 @@
     [attribttedStr addAttributes:@{NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle),NSStrikethroughColorAttributeName:LabelAssistantColor} range:NSMakeRange(0, attribttedStr.length)];
     
     self.hiBuyShareCodeView.oldLab.attributedText = attribttedStr;
-    self.hiBuyShareCodeView.codeImage.image = [UIImage qrCodeImageWithInfo:self.hiBuyShareInfoModel.tpwd width:90];
-    if (row) {
-        [[UIApplication sharedApplication].keyWindow addSubview: self.hiBuyShareCodeView];
-    }
+    self.hiBuyShareCodeView.codeImage.image = [UIImage qrCodeImageWithInfo:str width:90];
+
+    [[UIApplication sharedApplication].keyWindow addSubview: self.hiBuyShareCodeView];
+    
     
     WEAKSELF
     [_hiBuyShareCodeView setTapActionWithBlock:^{
@@ -364,11 +369,32 @@
     
     [self.imageArry addObject:[UIImage convertViewToImage:self.hiBuyShareCodeView.bgView]];
 }
+- (void)creatCodeView0{
+    
+    NSString *str = [NSString stringWithFormat:@"%@\n%@\n%@\n————————————————————\n%@",self.hiBuyShareInfoModel.title,[NSString stringWithFormat:@"【原价】%.2f",[self.hiBuyShareInfoModel.zkFinalPrice doubleValue]],[NSString stringWithFormat:@"【劵后价】%.2f",[self.hiBuyShareInfoModel.afterCouplePrice doubleValue]],[NSString stringWithFormat:@"%@",self.hiBuyShareInfoModel.tpwdTextDesc]];
+    
+    self.hiBuyShareCodeView.hidden = NO;
+    self.hiBuyShareCodeView.titleLab.text = self.hiBuyShareInfoModel.title;
+    [self.hiBuyShareCodeView.proImage sd_setImageWithURL:[NSURL URLWithString:self.hiBuyShareInfoModel.smallPicUrl[0]]];
+    self.hiBuyShareCodeView.moneyLab.text = [NSString stringWithFormat:@"%.2f",[self.hiBuyShareInfoModel.afterCouplePrice doubleValue]];
+    [self.hiBuyShareCodeView.juanBtn setTitle:[NSString stringWithFormat:@"劵   ￥%.2f",[self.hiBuyShareInfoModel.couponAmount doubleValue]] forState:UIControlStateNormal];
+    
+    NSMutableAttributedString *attribttedStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"￥%.2f",[self.hiBuyShareInfoModel.zkFinalPrice doubleValue]] attributes:nil];
+    [attribttedStr addAttributes:@{NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle),NSStrikethroughColorAttributeName:LabelAssistantColor} range:NSMakeRange(0, attribttedStr.length)];
+    
+    self.hiBuyShareCodeView.oldLab.attributedText = attribttedStr;
+    self.hiBuyShareCodeView.codeImage.image = [UIImage qrCodeImageWithInfo:str width:90];
+   
+    
+    [self.imageArry addObject:[UIImage convertViewToImage:self.hiBuyShareCodeView.bgView]];
+}
 - (void)cellBtnOnClick:(UIButton *)btn{
 
     if (btn.isSelected) {
         return;
     }
+    NSString *str = [NSString stringWithFormat:@"%@\n%@\n%@\n————————————————————\n%@",self.hiBuyShareInfoModel.title,[NSString stringWithFormat:@"【原价】%.2f",[self.hiBuyShareInfoModel.zkFinalPrice doubleValue]],[NSString stringWithFormat:@"【劵后价】%.2f",[self.hiBuyShareInfoModel.afterCouplePrice doubleValue]],[NSString stringWithFormat:@"%@",self.hiBuyShareInfoModel.tpwdTextDesc]];
+    
     self.hiBuyShareCodeView.titleLab.text = self.hiBuyShareInfoModel.title;
     [self.hiBuyShareCodeView.proImage sd_setImageWithURL:[NSURL URLWithString:self.hiBuyShareInfoModel.smallPicUrl[btn.tag-600]]];
     self.hiBuyShareCodeView.moneyLab.text = [NSString stringWithFormat:@"%.2f",[self.hiBuyShareInfoModel.afterCouplePrice doubleValue]];
@@ -378,7 +404,7 @@
     [attribttedStr addAttributes:@{NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle),NSStrikethroughColorAttributeName:LabelAssistantColor} range:NSMakeRange(0, attribttedStr.length)];
 
     self.hiBuyShareCodeView.oldLab.attributedText = attribttedStr;
-    self.hiBuyShareCodeView.codeImage.image = [UIImage qrCodeImageWithInfo:self.hiBuyShareInfoModel.tpwd width:90];
+    self.hiBuyShareCodeView.codeImage.image = [UIImage qrCodeImageWithInfo:str width:90];
 //    [[UIApplication sharedApplication].keyWindow addSubview: self.hiBuyShareCodeView];
     WEAKSELF
     [_hiBuyShareCodeView setTapActionWithBlock:^{
