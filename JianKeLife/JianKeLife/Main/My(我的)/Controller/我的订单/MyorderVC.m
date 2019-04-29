@@ -53,6 +53,7 @@
 }
 - (void)viewDidLoad {
     
+    [TalkingData trackEvent:@"我的订单"];
     
     self.titles = self.titleData;
     self.viewControllerClasses = [NSArray arrayWithObjects:[MyOrderTableVC class], [MyOrderTableVC class],[MyOrderTableVC class],[MyOrderTableVC class], nil];

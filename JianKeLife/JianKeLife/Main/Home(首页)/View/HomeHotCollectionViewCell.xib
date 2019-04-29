@@ -25,7 +25,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="166" height="126"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="126" id="mH9-nD-vOC"/>
+                                    <constraint firstAttribute="width" secondItem="R7m-2h-VYm" secondAttribute="height" multiplier="83:63" id="UC3-hA-scU"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="招商银行信用" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g5C-Nf-FrY">
@@ -35,13 +35,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="返佣￥" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xOo-GM-hn0">
-                                <rect key="frame" x="10" y="192" width="37" height="15"/>
+                                <rect key="frame" x="10" y="163.5" width="37" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="1" green="0.40392156862745099" blue="0.40392156862745099" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1sY-4O-80y">
-                                <rect key="frame" x="52" y="185" width="73" height="22"/>
+                                <rect key="frame" x="52" y="158.5" width="73" height="22"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="textColor" red="1" green="0.40392156862745099" blue="0.40392156862745099" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -50,13 +50,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="g5C-Nf-FrY" firstAttribute="leading" secondItem="yDd-fS-Il7" secondAttribute="leading" constant="10" id="07W-lA-hfs"/>
+                            <constraint firstItem="1sY-4O-80y" firstAttribute="top" secondItem="g5C-Nf-FrY" secondAttribute="bottom" constant="7" id="2Pj-mb-Jzm"/>
                             <constraint firstAttribute="trailing" secondItem="g5C-Nf-FrY" secondAttribute="trailing" constant="10" id="9QD-aO-DAF"/>
                             <constraint firstItem="R7m-2h-VYm" firstAttribute="top" secondItem="yDd-fS-Il7" secondAttribute="top" id="9vx-AJ-XLA"/>
                             <constraint firstItem="R7m-2h-VYm" firstAttribute="leading" secondItem="yDd-fS-Il7" secondAttribute="leading" id="OPQ-lc-7mI"/>
-                            <constraint firstAttribute="bottom" secondItem="1sY-4O-80y" secondAttribute="bottom" constant="8" id="UsP-5h-Rgu"/>
-                            <constraint firstAttribute="bottom" secondItem="xOo-GM-hn0" secondAttribute="bottom" constant="8" id="ltZ-2l-UCr"/>
                             <constraint firstItem="xOo-GM-hn0" firstAttribute="leading" secondItem="yDd-fS-Il7" secondAttribute="leading" constant="10" id="pcl-cj-2QD"/>
                             <constraint firstItem="1sY-4O-80y" firstAttribute="leading" secondItem="xOo-GM-hn0" secondAttribute="trailing" constant="5" id="xxS-w4-rhy"/>
+                            <constraint firstItem="xOo-GM-hn0" firstAttribute="top" secondItem="g5C-Nf-FrY" secondAttribute="bottom" constant="12" id="yA2-VJ-qba"/>
                             <constraint firstItem="g5C-Nf-FrY" firstAttribute="top" secondItem="R7m-2h-VYm" secondAttribute="bottom" constant="6" id="zA3-Yt-NAn"/>
                             <constraint firstAttribute="trailing" secondItem="R7m-2h-VYm" secondAttribute="trailing" id="zMF-Wn-if8"/>
                         </constraints>
@@ -75,7 +75,7 @@
                 <outlet property="cellMoney" destination="1sY-4O-80y" id="PWQ-LA-sqv"/>
                 <outlet property="cellTitle" destination="g5C-Nf-FrY" id="Rkb-2q-lxF"/>
             </connections>
-            <point key="canvasLocation" x="116.8" y="130.43478260869566"/>
+            <point key="canvasLocation" x="116.8" y="129.98500749625188"/>
         </collectionViewCell>
     </objects>
 </document>

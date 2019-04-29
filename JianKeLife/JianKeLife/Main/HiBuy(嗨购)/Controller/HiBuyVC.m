@@ -96,7 +96,7 @@
         }];
     }
     
-    
+    [TalkingData trackEvent:@"嗨购"];
    
     
 }

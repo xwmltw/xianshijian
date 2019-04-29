@@ -198,7 +198,7 @@
         }
         
     }
-    
+    [TalkingData trackEvent:@"嗨购-点击【Banner广告】"];
     NSNumber *adType = self.clientGlobalInfo.bannerAdListTBPage[index][@"adType"];
     NSString *adId = self.clientGlobalInfo.bannerAdListTBPage[index][@"adId"];
     NSString *adDetailUrl = XNULL_TO_NIL(self.clientGlobalInfo.bannerAdListTBPage[index][@"adDetailUrl"]);

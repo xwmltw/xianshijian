@@ -224,6 +224,7 @@
             [ShareSDK share:SSDKPlatformSubTypeWechatSession parameters:shareParams onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
                 [UserInfo sharedInstance].isAlertShare = YES;
                 [[UserInfo sharedInstance]saveUserInfo:[UserInfo sharedInstance]];
+                [TalkingData trackEvent:@"嗨购-点击【分享微信好友】"];
             }];
         }
             break;
@@ -246,6 +247,7 @@
                 [ShareSDK share:SSDKPlatformSubTypeWechatSession parameters:shareParams onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
                     [UserInfo sharedInstance].isAlertShare = YES;
                     [[UserInfo sharedInstance]saveUserInfo:[UserInfo sharedInstance]];
+                    [TalkingData trackEvent:@"嗨购-点击【分享微信朋友圈】"];
                 }];
             }else{
                 [ProgressHUD showProgressHUDInView:nil withText:@"请选择需要分享的图片" afterDelay:1 ];

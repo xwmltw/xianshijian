@@ -210,7 +210,7 @@
 #pragma  mark - btn
 - (void)btnOnClick:(UIButton *)btn{
     
-    
+    [TalkingData trackEvent:@"首页-点击【特色入口】"];
     [self.homeViewModel requestSpecialData:btn.tag-1021];
 //    self.hotBtnBlck = self.homeViewModel.responseHotBlock;
 //    BLOCKSELF
@@ -229,6 +229,7 @@
         }
   
     }
+    [TalkingData trackEvent:@"首页-点击【Banner广告】"];
     [self.homeViewModel requestBannerData:index];
 }
 

@@ -2011,7 +2011,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = G2U8W394PJ;
+				DEVELOPMENT_TEAM = 72GW2J4CT5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/JianKeLife/Prefix.pch";
 				INFOPLIST_FILE = JianKeLife/Info.plist;
@@ -2024,7 +2024,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/JianKeLife/SDKFile/TalkingData",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.xsj.jiankelife;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xsj.JinRiZhiXiang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2038,7 +2038,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = G2U8W394PJ;
+				DEVELOPMENT_TEAM = 72GW2J4CT5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/JianKeLife/Prefix.pch";
 				INFOPLIST_FILE = JianKeLife/Info.plist;
@@ -2051,7 +2051,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/JianKeLife/SDKFile/TalkingData",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.xsj.jiankelife;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xsj.JinRiZhiXiang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;

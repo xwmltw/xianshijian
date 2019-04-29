@@ -45,10 +45,10 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
-        return AdaptationWidth(300);
+        return AdaptationWidth(250);
     }
     if (indexPath.row == 1) {
-        return AdaptationWidth(100);
+        return AdaptationWidth(120);
     }
     if (indexPath.row == 2) {
         
@@ -84,45 +84,7 @@
                 make.height.mas_equalTo(AdaptationWidth(250));
             }];
             
-            UIView *view = [[UIView alloc]init];
-            view.backgroundColor  = RedColor;
-            [cell.contentView addSubview:view];
-            [view mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.right.bottom.mas_equalTo(cell);
-                make.height.mas_equalTo(AdaptationWidth(50));
-            }];
             
-            UILabel *cellDetail = [[UILabel alloc]init];
-            cellDetail.text = @"返佣 ￥";
-            [cellDetail setFont:[UIFont systemFontOfSize:AdaptationWidth(14)]];
-            [cellDetail setTextColor:[UIColor whiteColor]];
-            [view addSubview:cellDetail];
-            [cellDetail mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.mas_equalTo(view).offset(AdaptationWidth(26));
-                make.centerY.mas_equalTo(view);
-            }];
-            
-            UILabel *detailMoney = [[UILabel alloc]init];
-            detailMoney.text =[NSString stringWithFormat:@"%.2f",[self.jobDetailViewModel.productModel.productSalary doubleValue]/100] ;
-            [detailMoney setFont:[UIFont fontWithName:@"PingFangSC-Semibold" size:AdaptationWidth(30)]];
-            [detailMoney setTextColor:[UIColor whiteColor]];
-            [view addSubview:detailMoney];
-            [detailMoney mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.mas_equalTo(cellDetail.mas_right).offset(AdaptationWidth(3));
-                make.centerY.mas_equalTo(view);
-            }];
-            
-            UIButton *getNum = [[UIButton alloc]init];
-            getNum.enabled = NO;
-            [getNum setBackgroundImage:[UIImage imageNamed:@"iocn_detail_hearbg"] forState:UIControlStateNormal];
-            [getNum setTitle:[NSString stringWithFormat:@"已领取%@",self.jobDetailViewModel.productModel.prodApplyCount] forState:UIControlStateNormal];
-            [getNum setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            [getNum.titleLabel setFont:[UIFont fontWithName:@"PingFangSC-Regular" size:AdaptationWidth(12)]];
-            [view addSubview:getNum];
-            [getNum mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.right.top.bottom.mas_equalTo(view);
-                make.width.mas_equalTo(AdaptationWidth(113));
-            }];
         }
             break;
         case 1:
@@ -138,25 +100,59 @@
                 make.bottom.mas_equalTo(cell).offset(-4);
             }];
             
-            UILabel *detailMoney = [[UILabel alloc]init];
-            detailMoney.numberOfLines = 2;
-            detailMoney.text = self.jobDetailViewModel.productModel.productTitle;
-            [detailMoney setFont:[UIFont fontWithName:@"PingFangSC-Regular" size:AdaptationWidth(18)]];
-            [detailMoney setTextColor:LabelMainColor];
-            [view addSubview:detailMoney];
-            [detailMoney mas_makeConstraints:^(MASConstraintMaker *make) {
+            UILabel *detailtitle = [[UILabel alloc]init];
+            detailtitle.numberOfLines = 2;
+            detailtitle.text = self.jobDetailViewModel.productModel.productTitle;
+            [detailtitle setFont:[UIFont fontWithName:@"PingFangSC-Regular" size:AdaptationWidth(18)]];
+            [detailtitle setTextColor:LabelMainColor];
+            [view addSubview:detailtitle];
+            [detailtitle mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.mas_equalTo(view).offset(AdaptationWidth(16));
                 make.right.mas_equalTo(view).offset(AdaptationWidth(-16));
                 make.top.mas_equalTo(view).offset(AdaptationWidth(12));
                 
             }];
             
+            
+            UILabel *cellDetail = [[UILabel alloc]init];
+            cellDetail.text = @"返佣 ￥";
+            [cellDetail setFont:[UIFont systemFontOfSize:AdaptationWidth(12)]];
+            [cellDetail setTextColor:RedColor];
+            [view addSubview:cellDetail];
+            [cellDetail mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.mas_equalTo(view).offset(AdaptationWidth(26));
+                make.top.mas_equalTo(detailtitle.mas_bottom).offset(AdaptationWidth(13));
+            }];
+            
+            UILabel *detailMoney = [[UILabel alloc]init];
+            detailMoney.text =[NSString stringWithFormat:@"%.2f",[self.jobDetailViewModel.productModel.productSalary doubleValue]/100] ;
+            [detailMoney setFont:[UIFont fontWithName:@"PingFangSC-Semibold" size:AdaptationWidth(22)]];
+            [detailMoney setTextColor:RedColor];
+            [view addSubview:detailMoney];
+            [detailMoney mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.mas_equalTo(cellDetail.mas_right).offset(AdaptationWidth(1));
+                make.top.mas_equalTo(detailtitle.mas_bottom).offset(AdaptationWidth(3));
+            }];
+            
+            UILabel *shareLab = [[UILabel alloc]init];
+            [shareLab setCornerValue:2];
+            shareLab.text = [NSString stringWithFormat:@"分享赚￥%.2f",[self.jobDetailViewModel.productModel.productShareSalary doubleValue]/100];
+            shareLab.backgroundColor = XColorWithRGB(255, 227, 227);
+            [shareLab setFont:[UIFont systemFontOfSize:AdaptationWidth(12)]];
+            [shareLab setTextColor:RedColor];
+            [view addSubview:shareLab];
+            [shareLab mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.mas_equalTo(detailMoney.mas_right).offset(AdaptationWidth(15));
+                make.bottom.mas_equalTo(cellDetail);
+            }];
+            
+            
             UIImageView *cellImage = [[UIImageView alloc]init];
             cellImage.image = [UIImage imageNamed:@"icon_jobDetail_time"];
             [view addSubview:cellImage];
             [cellImage mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.mas_equalTo(view).offset(AdaptationWidth(16));
-                make.bottom.mas_equalTo(view).offset(AdaptationWidth(-12));
+                make.bottom.mas_equalTo(view).offset(AdaptationWidth(-10));
             }];
             
             UILabel *detailTime = [[UILabel alloc]init];
@@ -168,6 +164,17 @@
                 make.left.mas_equalTo(cellImage.mas_right).offset(AdaptationWidth(3));
                 make.centerY.mas_equalTo(cellImage);
  
+            }];
+            
+            UILabel *numLab = [[UILabel alloc]init];
+            numLab.text = [NSString stringWithFormat:@"已领取%@",self.jobDetailViewModel.productModel.prodApplyCount];
+            [numLab setFont:[UIFont fontWithName:@"PingFangSC-Regular" size:AdaptationWidth(12)]];
+            [numLab setTextColor:LabelAssistantColor];
+            [view addSubview:numLab];
+            [numLab mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.right.mas_equalTo(view).offset(AdaptationWidth(-16));
+                make.centerY.mas_equalTo(cellImage);
+                
             }];
 
         }

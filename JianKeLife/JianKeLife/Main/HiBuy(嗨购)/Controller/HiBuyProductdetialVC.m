@@ -146,6 +146,8 @@
             if (![[UserInfo sharedInstance]isSignIn])[self getBlackLogin:self];
             WEAKSELF
             [XNetWork requestNetWorkWithUrl:Xtb_product_couponBuy andModel:@{@"productId":self.productId} andSuccessBlock:^(ResponseModel *model) {
+                [TalkingData trackEvent:@"嗨购产品详情-点击【领取产品】"];
+                
                 NSNumber *hasAuthorize = model.data[@"hasAuthorize"];
                 if (hasAuthorize.integerValue != 1) {
                     [XAlertView alertWithTitle:@"提示"

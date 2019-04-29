@@ -443,9 +443,9 @@
    NSString *str = self.collectionView.homeViewModel.productList[indexPath.row][@"productTitle"];
     CGSize detailSize = [str boundingRectWithSize:CGSizeMake(AdaptationWidth(100), CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:nil context:nil].size;
      if (detailSize.height < 14) {
-        return CGSizeMake(0, AdaptationHeight(191));
+        return CGSizeMake(0, AdaptationWidth(205));
     }
-    return CGSizeMake(0, AdaptationHeight(215));
+    return CGSizeMake(0, AdaptationWidth(225));
     
 }
 

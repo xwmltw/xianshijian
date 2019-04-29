@@ -206,6 +206,7 @@
                     [ProgressHUD showProgressHUDInView:nil withText:@"未安装微信" afterDelay:1 ];
                     return ;
                 }
+//                NSLog(@"%@",blockSelf.connectionViewModel.connectionModel.connectionsInviteRegUrl);
                 NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
                 [shareParams SSDKSetupShareParamsByText:@"购物省钱，分享赚钱 开启你的值享生活"
                                                  images:[UIImage convertViewToImage:blockSelf.myPersonShareView.QRDownBGView]
@@ -215,6 +216,7 @@
                 [ShareSDK share:SSDKPlatformSubTypeWechatSession parameters:shareParams onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
                     [UserInfo sharedInstance].isAlertShare = YES;
                     [[UserInfo sharedInstance]saveUserInfo:[UserInfo sharedInstance]];
+                    [TalkingData trackEvent:@"收益-点击【分享微信好友】"];
                 }];
             }
                 break;
@@ -233,6 +235,7 @@
                 [ShareSDK share:SSDKPlatformSubTypeWechatTimeline parameters:shareParams onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
                     [UserInfo sharedInstance].isAlertShare = YES;
                     [[UserInfo sharedInstance]saveUserInfo:[UserInfo sharedInstance]];
+                    [TalkingData trackEvent:@"收益-点击【分享微信朋友圈】"];
                 }];
             }
                 break;

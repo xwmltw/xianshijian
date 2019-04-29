@@ -21,7 +21,7 @@ static NSString *const TalkingData_ChannelId = @"AppStore";
 static NSString *const AppName = @"今日值享";
 static NSString *const APPLOGO = @"LOGO";
 static NSString *const AppScheme = @"jiankelife";
-static NSString *const AMapKey = @"d40775054eee7a471c44abbf3760b95c";
+static NSString *const AMapKey = @"fb8e853ae0912b459da9ae8a1c2b1217";
 static NSString *const TalkingData_AppID =   @"33325C427A76485088AB7D63A0F9CAA2";
 
 /**通知*/

@@ -86,6 +86,8 @@
     self.title = @"我的任务";
     
     [self setBackNavigationBarItem];
+    
+    [TalkingData trackEvent:@"我的任务"];
 }
 
 #pragma mark - Datasource & Delegate
@@ -165,6 +167,7 @@
         switch (btn.tag) {
             case 202:
             {
+                [TalkingData trackEvent:@"我的任务-点击【去返佣】"];
                 TaskReturnVC *vc = [[TaskReturnVC alloc]init];
                 vc.productNo = dic[@"productNo"];
                 blockSelf.productNo = dic[@"productNo"];
@@ -180,6 +183,7 @@
                 break;
             case 203:
             {
+                [TalkingData trackEvent:@"我的任务-点击【审核详情】"];
                 TaskDetailVC *vc = [[TaskDetailVC alloc]init];
                 vc.model = [TaskModel mj_objectWithKeyValues:dic];
                 vc.hidesBottomBarWhenPushed = YES;
@@ -187,6 +191,7 @@
             }
                 break;
             case 204:{
+                [TalkingData trackEvent:@"我的任务-点击【审核结果】"];
                 TaskResultVC*vc = [[TaskResultVC alloc]init];
                 vc.resultModel = [TaskModel mj_objectWithKeyValues:dic];
                 vc.hidesBottomBarWhenPushed = YES;
@@ -205,6 +210,7 @@
 -(XDoubleBlock)taskResultBlcok{
     BLOCKSELF
     XDoubleBlock block = ^(UIButton * btn,id result){
+        [TalkingData trackEvent:@"我的任务-点击【审核结果】"];
         TaskResultVC*vc = [[TaskResultVC alloc]init];
         vc.resultModel = [TaskModel mj_objectWithKeyValues:result];
         vc.hidesBottomBarWhenPushed = YES;
@@ -216,6 +222,7 @@
 - (XBlock)taskOverCellBlock{
     WEAKSELF
     XBlock block = ^(NSString *proid){
+        [TalkingData trackEvent:@"我的任务-点击【任务详情】"];
         JobDetailVC *vc = [[JobDetailVC alloc]init];
         vc.hidesBottomBarWhenPushed = YES;
         vc.productNo  = proid;

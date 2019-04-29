@@ -11,6 +11,7 @@
 #import "BaseWebVC.h"
 #import "QRcodeView.h"
 #import "XCommonHepler.h"
+#import "TaskReturnVC.h"
 
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKUI/ShareSDK+SSUI.h>
@@ -52,48 +53,79 @@
     }];
     
     
+    UIView *footView = [[UIView alloc]init];
+    footView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:footView];
+    [footView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(self.view);
+        make.height.mas_equalTo(AdaptationWidth(58));
+    }];
+    
     UIButton *shareBtn = [[UIButton alloc]init];
+    [shareBtn setCornerValue:4];
     shareBtn.tag = 1012;
+    [shareBtn setImage:[UIImage imageNamed:@"icon_laxin_share"] forState:UIControlStateNormal];
     [shareBtn setTitle:@"分享" forState:UIControlStateNormal];
     [shareBtn setBackgroundColor:blueColor];
     [shareBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [shareBtn addTarget:self action:@selector(btnOnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:shareBtn];
+    [footView addSubview:shareBtn];
     [shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.bottom.mas_equalTo(self.view);
-        make.height.mas_equalTo(AdaptationWidth(48));
-        make.width.mas_equalTo(AdaptationWidth(188));
+        make.left.mas_equalTo(footView).offset(AdaptationWidth(10));
+        make.centerY.mas_equalTo(footView);
+        make.height.mas_equalTo(AdaptationWidth(44));
+        make.width.mas_equalTo(AdaptationWidth(116));
     }];
     
-    UIButton *shareSalary = [[UIButton alloc]init];
-    [shareSalary setBackgroundImage:[UIImage imageNamed:@"Detail_share_background"] forState:UIControlStateNormal];
-    [shareSalary.titleLabel setFont:[UIFont systemFontOfSize:AdaptationWidth(12)]];
-    [shareSalary setTitle:@"领￥1.20" forState:UIControlStateNormal];
-    [shareSalary setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self.view addSubview:shareSalary];
-    [shareSalary mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(shareBtn).offset(AdaptationWidth(-7));
-        make.top.mas_equalTo(shareBtn).offset(AdaptationWidth(-10));
-        make.height.mas_equalTo(AdaptationWidth(21));
-        make.width.mas_equalTo(AdaptationWidth(74));
-    }];
+//    UIButton *shareSalary = [[UIButton alloc]init];
+//    [shareSalary setBackgroundImage:[UIImage imageNamed:@"Detail_share_background"] forState:UIControlStateNormal];
+//    [shareSalary.titleLabel setFont:[UIFont systemFontOfSize:AdaptationWidth(12)]];
+//    [shareSalary setTitle:@"领￥1.20" forState:UIControlStateNormal];
+//    [shareSalary setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    [self.view addSubview:shareSalary];
+//    [shareSalary mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.right.mas_equalTo(shareBtn).offset(AdaptationWidth(-7));
+//        make.top.mas_equalTo(shareBtn).offset(AdaptationWidth(-10));
+//        make.height.mas_equalTo(AdaptationWidth(21));
+//        make.width.mas_equalTo(AdaptationWidth(74));
+//    }];
     
     UIButton *recevieBtn = [[UIButton alloc]init];
     recevieBtn.tag = 1013;
+    [recevieBtn setCornerValue:4];
     recevieBtn.enabled = YES;
     [recevieBtn setTitle:@"去领取" forState:UIControlStateNormal];
     [recevieBtn setBackgroundColor:RedColor];
     [recevieBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [recevieBtn addTarget:self action:@selector(btnOnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:recevieBtn];
+    [footView addSubview:recevieBtn];
     [recevieBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.bottom.mas_equalTo(self.view);
-        make.height.mas_equalTo(AdaptationWidth(48));
-        make.width.mas_equalTo(AdaptationWidth(188));
+        make.right.mas_equalTo(footView).offset(AdaptationWidth(-10));
+        make.centerY.mas_equalTo(footView);
+        make.height.mas_equalTo(AdaptationWidth(44));
+        make.width.mas_equalTo(AdaptationWidth(229));
     }];
+    
+    UIButton *returnBtn = [[UIButton alloc]init];
+    returnBtn.tag = 1014;
+    returnBtn.hidden = YES;
+    [returnBtn.titleLabel setFont:[UIFont systemFontOfSize:AdaptationWidth(14)]];
+    [returnBtn setTitle:@"申请返佣" forState:UIControlStateNormal];
+    [returnBtn setBackgroundImage:[UIImage imageNamed:@"icon_detail_returnBG"] forState:UIControlStateNormal];
+    [returnBtn setImage:[UIImage imageNamed:@"icon_detail_returnBtn"] forState:UIControlStateNormal];
+    [returnBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [returnBtn addTarget:self action:@selector(btnOnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:returnBtn];
+    [returnBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.view);
+        make.bottom.mas_equalTo(footView.mas_top).offset(AdaptationWidth(-9));
+        make.height.mas_equalTo(AdaptationWidth(38));
+        make.width.mas_equalTo(AdaptationWidth(86));
+    }];
+    
      
      [self.tableView.jobDetailViewModel setProductStateBlock:^(ProductModel *model) {
-         [shareSalary setTitle:[NSString stringWithFormat:@"领￥%.2f",[model.productShareSalary doubleValue]/100] forState:UIControlStateNormal];
+//         [shareSalary setTitle:[NSString stringWithFormat:@"领￥%.2f",[model.productShareSalary doubleValue]/100] forState:UIControlStateNormal];
          model.hasApplyProd.integerValue ?
          [recevieBtn setTitle:@"已领取 去办理" forState:UIControlStateNormal] :
          [recevieBtn setTitle:[NSString stringWithFormat:@"去领取￥%.2f",[model.productSalary doubleValue]/100] forState:UIControlStateNormal];
@@ -103,6 +135,9 @@
                  [recevieBtn setBackgroundColor:[UIColor grayColor]];
                 
              }
+         }
+         if (model.prodTradeStatus.integerValue == 1) {
+             returnBtn.hidden = NO;
          }
 
      }];
@@ -143,6 +178,9 @@
                         viewController:self
                             completion:^(UIAlertAction *action, NSInteger buttonIndex) {
                 if (buttonIndex == 1) {
+                    
+                    [TalkingData trackEvent:@"产品详情-点击【领取返佣】"];
+                    
                     if (self.tableView.jobDetailViewModel.productModel.hasApplyProd.integerValue) {
                         BaseWebVC *vc = [[BaseWebVC alloc]init];
                         [vc reloadForGetWebView:[self.tableView.jobDetailViewModel getProductUrl]];
@@ -161,7 +199,13 @@
             }];
         }
             break;
-            
+        case 1014:{
+            TaskReturnVC *vc = [[TaskReturnVC alloc]init];
+            vc.productApplyId = self.tableView.jobDetailViewModel.productModel.productApplyId;
+            vc.productSubmitType = self.tableView.jobDetailViewModel.productModel.productSubmitType;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
         default:
             break;
     }
@@ -205,7 +249,7 @@
                 [ShareSDK share:SSDKPlatformSubTypeWechatSession parameters:shareParams onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
                     [UserInfo sharedInstance].isAlertShare = YES;
                     [[UserInfo sharedInstance]saveUserInfo:[UserInfo sharedInstance]];
-                   
+                    [TalkingData trackEvent:@"产品详情-点击【分享微信好友】"];
                 }];
                 //小程序分享
 //                [shareParams SSDKSetupWeChatMiniProgramShareParamsByTitle:@"我是天才"
@@ -239,7 +283,7 @@
                 [ShareSDK share:SSDKPlatformSubTypeWechatTimeline parameters:shareParams onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
                     [UserInfo sharedInstance].isAlertShare = YES;
                     [[UserInfo sharedInstance]saveUserInfo:[UserInfo sharedInstance]];
-                    
+                    [TalkingData trackEvent:@"产品详情-点击【分享微信朋友圈】"];
                 }];
             }
                 break;

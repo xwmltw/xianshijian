@@ -86,10 +86,14 @@
     
     WEAKSELF
     [XNetWork requestNetWorkWithUrl:XLogin_Register andModel:dic andSuccessBlock:^(ResponseModel *model) {
+        
         [ProgressHUD showProgressHUDInView:nil withText:@"登录成功" afterDelay:1];
         [UserInfo sharedInstance].phoneName = weakSelf.phoneTextField.text;
         [UserInfo sharedInstance].token = model.data[@"token"];
         [[UserInfo sharedInstance]saveUserInfo:[UserInfo sharedInstance]];
+        //talkingData 数据统计
+        [TalkingData onLogin:self.phoneTextField.text type:TDAccountTypeRegistered name:AppName];
+        
         
 
         [self.navigationController popViewControllerAnimated:YES];

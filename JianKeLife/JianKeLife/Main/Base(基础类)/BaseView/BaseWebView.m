@@ -150,24 +150,46 @@
             return ;
         }
         //        小程序分享
+        
+        
         NSDictionary *dic = [message.body mj_JSONObject];
         NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:dic[@"hdThumbImage"]]];
         NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
-        [shareParams SSDKSetupWeChatMiniProgramShareParamsByTitle:dic[@"title"]
-                                                      description:dic[@"title"]
-                                                       webpageUrl:[NSURL URLWithString:@"https://www.baidu.com/"]
-                                                             path:dic[@"page"]
-                                                       thumbImage:nil
-                                                     hdThumbImage:[UIImage imageWithData:imgData]
-                                                         userName:dic[@"userName"]
-                                                  withShareTicket:YES
-                                                  miniProgramType:[dic[@"type"] integerValue]
-                                               forPlatformSubType:SSDKPlatformSubTypeWechatSession];
-        [ShareSDK share:SSDKPlatformSubTypeWechatSession parameters:shareParams onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
-            [UserInfo sharedInstance].isAlertShare = YES;
-            [[UserInfo sharedInstance]saveUserInfo:[UserInfo sharedInstance]];
+        
+        
+        NSNumber *row = dic[@"type"] ;
+        if (row.integerValue == 0) {
             
-        }];
+            [shareParams SSDKSetupWeChatMiniProgramShareParamsByTitle:dic[@"title"]
+                                                          description:dic[@"title"]
+                                                           webpageUrl:[NSURL URLWithString:@"https://www.baidu.com/"]
+                                                                 path:dic[@"page"]
+                                                           thumbImage:nil
+                                                         hdThumbImage:[UIImage imageWithData:imgData]
+                                                             userName:dic[@"userName"]
+                                                      withShareTicket:YES
+                                                      miniProgramType:[dic[@"type"] integerValue]
+                                                   forPlatformSubType:SSDKPlatformSubTypeWechatSession];
+            [ShareSDK share:SSDKPlatformSubTypeWechatSession parameters:shareParams onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
+                [UserInfo sharedInstance].isAlertShare = YES;
+                [[UserInfo sharedInstance]saveUserInfo:[UserInfo sharedInstance]];
+                
+            }];
+        }else{
+            
+            [shareParams SSDKSetupShareParamsByText:dic[@"title"]
+                                             images:[UIImage imageWithData:imgData]
+                                                url:dic[@"url"]
+                                              title:dic[@"title"]
+                                               type:SSDKContentTypeAuto];
+            [ShareSDK share:SSDKPlatformSubTypeWechatSession parameters:shareParams onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
+                [UserInfo sharedInstance].isAlertShare = YES;
+                [[UserInfo sharedInstance]saveUserInfo:[UserInfo sharedInstance]];
+                
+            }];
+        }
+        
+       
     }
     if ([message.name isEqualToString:@"triggerAppMethod_laxin_Hot"]) {
         [self viewController].tabBarController.selectedIndex = 0;
