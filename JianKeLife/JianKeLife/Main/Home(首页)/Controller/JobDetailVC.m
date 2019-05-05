@@ -200,6 +200,7 @@
         }
             break;
         case 1014:{
+//            NSLog(@"%@",self.tableView.jobDetailViewModel.productModel);
             TaskReturnVC *vc = [[TaskReturnVC alloc]init];
             vc.productApplyId = self.tableView.jobDetailViewModel.productModel.productApplyId;
             vc.productSubmitType = self.tableView.jobDetailViewModel.productModel.productSubmitType;

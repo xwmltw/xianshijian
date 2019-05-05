@@ -446,6 +446,7 @@
 		04B2AA0E2251A1C50094A44B /* SDProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDProgressView.h; sourceTree = "<group>"; };
 		04B2AA0F2251A1C50094A44B /* SDBaseProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBaseProgressView.m; sourceTree = "<group>"; };
 		04B2AA102251A1C50094A44B /* SDLoopProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLoopProgressView.h; sourceTree = "<group>"; };
+		04BC9A73227ECC4900567024 /* JianKeLife.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JianKeLife.entitlements; sourceTree = "<group>"; };
 		04BD1143224A026A0033B774 /* ProfitVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfitVC.h; sourceTree = "<group>"; };
 		04BD1144224A026A0033B774 /* ProfitVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfitVC.m; sourceTree = "<group>"; };
 		04BD1146224A02860033B774 /* ProfitTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfitTableView.h; sourceTree = "<group>"; };
@@ -783,6 +784,7 @@
 		04616FBA222CF66300E46B40 /* JianKeLife */ = {
 			isa = PBXGroup;
 			children = (
+				04BC9A73227ECC4900567024 /* JianKeLife.entitlements */,
 				04BD1151224A10920033B774 /* Vender(功能封装) */,
 				04616FD5222D02A500E46B40 /* Resource */,
 				04616FD4222D028B00E46B40 /* Expand */,
@@ -1599,6 +1601,11 @@
 				TargetAttributes = {
 					04616FB7222CF66300E46B40 = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -1667,7 +1674,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-JianKeLife/Pods-JianKeLife-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-JianKeLife/Pods-JianKeLife-resources.sh",
 				"${PODS_ROOT}/DateTools/DateTools/DateTools/DateTools.bundle",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
@@ -1688,7 +1695,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JianKeLife/Pods-JianKeLife-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JianKeLife/Pods-JianKeLife-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AEF50B7B65972926A699331C /* [CP] Check Pods Manifest.lock */ = {
@@ -2009,6 +2016,7 @@
 			baseConfigurationReference = 403636099D7088BD3E92CABD /* Pods-JianKeLife.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = JianKeLife/JianKeLife.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 72GW2J4CT5;
@@ -2036,6 +2044,7 @@
 			baseConfigurationReference = 860F8E05AEC6477F1F3F78B0 /* Pods-JianKeLife.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = JianKeLife/JianKeLife.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 72GW2J4CT5;

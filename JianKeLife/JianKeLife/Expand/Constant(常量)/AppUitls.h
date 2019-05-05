@@ -23,6 +23,7 @@ static NSString *const APPLOGO = @"LOGO";
 static NSString *const AppScheme = @"jiankelife";
 static NSString *const AMapKey = @"fb8e853ae0912b459da9ae8a1c2b1217";
 static NSString *const TalkingData_AppID =   @"33325C427A76485088AB7D63A0F9CAA2";
+static NSString *const JPAppKey = @"923c85c3da3da6f68b4a715d";
 
 /**通知*/
 static NSString *const UnLoginNotification = @"UnLoginNotification";
