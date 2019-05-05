@@ -158,8 +158,8 @@
         cell = [[ExpectTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ExpectTableViewCell"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.contentView.backgroundColor = XColorWithRGB(248, 248, 248);
+        cell.model = [ExpectCellModel mj_objectWithKeyValues:self.expectViewModel.expectList[indexPath.row]];
     }
-    cell.model = [ExpectCellModel mj_objectWithKeyValues:self.expectViewModel.expectList[indexPath.row]];
    
     return cell;
 }
