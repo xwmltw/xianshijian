@@ -11,6 +11,7 @@
 #import <AMapLocationKit/AMapLocationKit.h>
 #import "UserLocation.h"
 #import "BaseMainTBVC.h"
+#import "BaseMainVC.h"
 #import "WXApi.h"
 #import <ShareSDK/ShareSDK.h>
 
@@ -207,12 +208,15 @@
     // 推送唤醒通知
     if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
         //这里写APP正在运行时，推送过来消息的处理
+        [BaseMainVC JGPushWith:userInfo];
         
     } else if ([UIApplication sharedApplication].applicationState == UIApplicationStateInactive ) {
         //APP在后台运行，推送过来消息的处理
+        [BaseMainVC JGPushWith:userInfo];
        
     } else if ([UIApplication sharedApplication].applicationState == UIApplicationStateBackground) {
         //APP没有运行，推送过来消息的处理
+        [BaseMainVC JGPushWith:userInfo];
         
     }
     //程序在后台时收到通知，点击通知栏进入app

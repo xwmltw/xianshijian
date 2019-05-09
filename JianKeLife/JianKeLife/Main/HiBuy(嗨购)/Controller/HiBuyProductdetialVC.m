@@ -198,11 +198,12 @@
         
     } else {
         
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+            BaseWebVC *vc = [[BaseWebVC alloc]init];
+            [vc reloadForGetWebView:url];
+            [self.navigationController pushViewController:vc animated:YES];
     }
-//    BaseWebVC *vc = [[BaseWebVC alloc]init];
-//    [vc reloadForGetWebView:url];
-//    [self.navigationController pushViewController:vc animated:YES];
+
 }
 #pragma mark -tableview
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

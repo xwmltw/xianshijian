@@ -48,7 +48,7 @@
         return AdaptationWidth(250);
     }
     if (indexPath.row == 1) {
-        return AdaptationWidth(120);
+        return AdaptationWidth(self.jobDetailViewModel.productModel.cell3Width);
     }
     if (indexPath.row == 2) {
         
@@ -112,6 +112,20 @@
                 make.top.mas_equalTo(view).offset(AdaptationWidth(12));
                 
             }];
+            
+            NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+            paragraphStyle.lineBreakMode = NSLineBreakByCharWrapping;
+            NSDictionary * attributes = @{
+                                          NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Regular" size:AdaptationWidth(16)],
+                                          NSParagraphStyleAttributeName: paragraphStyle
+                                          };
+            CGSize textRect = CGSizeMake(AdaptationWidth(235), MAXFLOAT);
+            CGFloat textHeight = [detailtitle.text boundingRectWithSize: textRect
+                                                            options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading
+                                                         attributes:attributes
+                                                            context:nil].size.height;
+            self.jobDetailViewModel.productModel.cell3Width =  AdaptationWidth(textHeight + 103) ;
+            
             
             
             UILabel *cellDetail = [[UILabel alloc]init];

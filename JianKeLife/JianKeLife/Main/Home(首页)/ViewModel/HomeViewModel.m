@@ -26,6 +26,10 @@
     }];
 }
 - (void)requestSpecialData:(NSInteger)index{
+//    NSNumber *isNeedLogin = self.clientGlobalInfo.specialEntryList[index][@"isNeedLogin"];
+//    if (isNeedLogin.integerValue == 1) {
+//        
+//    }
     NSNumber *specialEntryType = self.clientGlobalInfo.specialEntryList[index][@"specialEntryType"];
     NSString *specialId = self.clientGlobalInfo.specialEntryList[index][@"specialEntryId"];
     [XNetWork requestNetWorkWithUrl:Xclick_log andModel:@{@"specialEntryId":specialId} andSuccessBlock:^(ResponseModel *model) {
@@ -46,14 +50,15 @@
             break;
         case 3:
         {
-            BLOCKSELF
-            [XNetWork requestNetWorkWithUrl:Xquery_product_list andModel:@{@"pageQueryReq":[self.pageQueryRedModel mj_keyValues],@"specialEntryId":specialId} andSuccessBlock:^(ResponseModel *model) {
-                [blockSelf.productList addObjectsFromArray:model.data[@"dataRows"]];
-                XBlockExec(blockSelf.responseHotBlock,model.data[@"dataRows"],@(index));
-                
-            } andFailBlock:^(ResponseModel *model) {
-                
-            }];
+            XBlockExec(self.responseHotBlock,specialId,@(index));
+//            BLOCKSELF
+//            [XNetWork requestNetWorkWithUrl:Xquery_product_list andModel:@{@"pageQueryReq":[self.pageQueryRedModel mj_keyValues],@"specialEntryId":specialId} andSuccessBlock:^(ResponseModel *model) {
+////                [blockSelf.productList addObjectsFromArray:model.data[@"dataRows"]];
+//                XBlockExec(blockSelf.responseHotBlock,model.data[@"dataRows"],@(index));
+//
+//            } andFailBlock:^(ResponseModel *model) {
+//
+//            }];
         }
             break;
             

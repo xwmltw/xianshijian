@@ -25,6 +25,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"登录";
+    
+    [self.phoneTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+    
     XCountDownButton *getVerificationCodeButton = [XCountDownButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:getVerificationCodeButton];
     [getVerificationCodeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
@@ -59,6 +62,7 @@
 //     智能无感知验证码
     NSString *captchaid = @"f69c29291f754d9a9942cd98f0eea4ce";
     [self.manager configureVerifyCode:captchaid timeout:10];
+    
     
 }
 - (IBAction)loginBtn:(UIButton *)sender {
@@ -167,5 +171,9 @@
     MyLog(@"%@",message);
 }
 
-
+- (void)textFieldDidChange:(UITextField *)textField{
+    if (self.phoneTextField.text.length >= 11) {
+        self.phoneTextField.text = [self.phoneTextField.text substringToIndex:11];
+    }
+}
 @end

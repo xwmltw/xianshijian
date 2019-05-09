@@ -139,6 +139,9 @@
          if (model.prodTradeStatus.integerValue == 1) {
              returnBtn.hidden = NO;
          }
+         if (model.prodTradeStatus.integerValue != 1) {
+             returnBtn.hidden = YES;
+         }
 
      }];
 }

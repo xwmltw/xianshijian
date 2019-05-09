@@ -13,6 +13,8 @@
 
 @interface SpecialJobListVC ()<UICollectionViewDelegate ,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,WSLWaterFlowLayoutDelegate>
 @property (nonatomic ,strong) UICollectionView *collectionView;
+@property (nonatomic, strong) PageQueryRedModel *pageQueryRedModel;
+@property (nonatomic, strong) NSMutableArray *specialEntryList;
 @end
 
 @implementation SpecialJobListVC
@@ -54,6 +56,15 @@
 //            [weakSelf.footer endRefreshing];
 //        }];
 //    }
+    WEAKSELF
+    [XNetWork requestNetWorkWithUrl:Xquery_product_list andModel:@{@"pageQueryReq":[self.pageQueryRedModel mj_keyValues],@"specialEntryId":self.specialId} andSuccessBlock:^(ResponseModel *model) {
+        [weakSelf.specialEntryList addObjectsFromArray:model.data[@"dataRows"]];
+        
+        [weakSelf.collectionView reloadData];
+    } andFailBlock:^(ResponseModel *model) {
+        
+    }];
+    
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -159,5 +170,17 @@
     return UIEdgeInsetsMake(10, 10, 10, 10);
 }
 
-
+- (PageQueryRedModel *)pageQueryRedModel{
+    if (!_pageQueryRedModel) {
+        _pageQueryRedModel = [[PageQueryRedModel alloc]init];
+    }
+    return _pageQueryRedModel;
+}
+- (NSMutableArray *)specialEntryList{
+    if (!_specialEntryList) {
+        _specialEntryList = [NSMutableArray array];
+        
+    }
+    return _specialEntryList;
+}
 @end

@@ -8,7 +8,13 @@
 
 #import "BaseMainVC.h"
 #import "XControllerViewHelper.h"
+
 #import "LoginVC.h"
+#import "JobDetailVC.h"
+#import "ProfitVC.h"
+#import "MyTaskVC.h"
+#import "SpecialJobListVC.h"
+#import "BaseWebVC.h"
 @interface BaseMainVC ()
 
 @end
@@ -100,6 +106,69 @@
         return ;
     }];
     
+}
+
+/**
+ 极光推送
+
+ @param info 推送参数
+ */
++ (void)JGPushWith:(NSDictionary* )info{
+    
+    NSNumber *type = info[@"type"];
+    switch (type.integerValue) {
+        case 1://打开产品详情
+        {
+//            if (![[UserInfo sharedInstance]isSignIn]) {
+//                LoginVC *vc = [[LoginVC alloc]init];
+//                vc.hidesBottomBarWhenPushed = YES;
+//                [[XControllerViewHelper getTopViewController].navigationController pushViewController:vc animated:YES];
+//                return;
+//            }
+            JobDetailVC *vc = [[JobDetailVC alloc]init];
+            vc.productNo = info[@"productNo"];
+            vc.hidesBottomBarWhenPushed = YES;
+            [[XControllerViewHelper getTopViewController].navigationController pushViewController:vc animated:YES];
+            
+        }
+            break;
+        case 2://特色入口
+        {
+            SpecialJobListVC *vc = [[SpecialJobListVC alloc]init];
+            vc.title = info[@"specialEntryTitle"];
+            vc.specialId = info[@"specialEntryId"];
+            vc.hidesBottomBarWhenPushed = YES;
+            [[XControllerViewHelper getTopViewController].navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 3://到账总收益列表
+        {
+            
+            ProfitVC *vc = [[ProfitVC alloc]init];
+            vc.hidesBottomBarWhenPushed = YES;
+            [[XControllerViewHelper getTopViewController].navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 4://返佣任务列表
+        {
+            
+            MyTaskVC *vc = [[MyTaskVC alloc]init];
+            vc.wmPageSelect = MyTaskTableViewTypeStay;
+            vc.hidesBottomBarWhenPushed = YES;
+            [[XControllerViewHelper getTopViewController].navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 5:{
+            BaseWebVC *vc = [[BaseWebVC alloc]init];
+            [vc reloadForGetWebView:info[@"url"]];
+            vc.hidesBottomBarWhenPushed = YES;
+            [[XControllerViewHelper getTopViewController].navigationController pushViewController:vc animated:YES];
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
 - (void)goToLogin{
     LoginVC *vc = [[LoginVC alloc]init];

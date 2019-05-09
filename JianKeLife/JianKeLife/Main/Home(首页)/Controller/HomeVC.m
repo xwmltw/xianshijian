@@ -381,10 +381,10 @@
         vc.hidesBottomBarWhenPushed = YES;
         [blockSelf.navigationController pushViewController:vc animated:YES];
     }];
-    self.collectionView.homeViewModel.responseHotBlock = ^(NSMutableArray *result ,NSNumber *row) {
+    self.collectionView.homeViewModel.responseHotBlock = ^(NSNumber *result ,NSNumber *row) {
         SpecialJobListVC *vc = [[SpecialJobListVC alloc]init];
         vc.title = blockSelf.clientGlobalInfo.specialEntryList[row.integerValue][@"specialEntryTitle"];
-        vc.specialEntryList = result;
+        vc.specialId = result;
         vc.hidesBottomBarWhenPushed = YES;
         [blockSelf.navigationController pushViewController:vc animated:YES];
     };

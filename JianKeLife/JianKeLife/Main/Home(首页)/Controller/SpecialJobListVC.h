@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SpecialJobListVC : BaseMainVC
-@property (nonatomic ,copy) NSMutableArray *specialEntryList;
+@property (nonatomic ,strong) NSNumber *specialId;
 @end
 
 NS_ASSUME_NONNULL_END

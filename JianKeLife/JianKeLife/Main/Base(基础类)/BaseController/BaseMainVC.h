@@ -29,6 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)getBlackLogin:(UIViewController *)controller;
 - (void)goToLogin;
 - (void)dealloc;
+///推送方法
++ (void)JGPushWith:(NSDictionary* )info;
 @end
 
 NS_ASSUME_NONNULL_END

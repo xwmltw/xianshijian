@@ -28,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic ,copy) NSString *productUrl;
 @property (nonatomic ,assign) NSInteger cellWidth;
 @property (nonatomic ,assign) NSInteger cell2Width;
+@property (nonatomic ,assign) NSInteger cell3Width;
 
 //hasApplyProd (integer, optional): 当前用户是否已经领取过当前产品：1是 0否 ,
 //prodApplyCount (integer, optional): 产品已领取量 ,

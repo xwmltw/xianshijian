@@ -322,10 +322,13 @@ const char *localNotificationQueue = "cn.neebel.xwm.localNotificationQueue";
 -(void)sureBtn{
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     [dic setObject:self.productApplyId forKey:@"productApplyId"];
-    [dic setObject:_txtView.text forKey:@"submitContent"];
+    
     for (NSString *str in self.productType) {
         if ([str isEqualToString:@"1"]) {
             [dic setObject:self.dataArray forKey:@"submitPicUrlArr"];
+        }
+        if ([str isEqualToString:@"2"]) {
+            [dic setObject:_txtView.text forKey:@"submitContent"];
         }
     }
 //    if ([self.productType[0] isEqualToString:@"1"]) {
