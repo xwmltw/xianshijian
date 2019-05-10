@@ -88,4 +88,7 @@ static NSString *const TaskReturnNotification = @"TaskReturnNotification";
 #define Xtb_product_couponBuy       @"/mapi/union/tb_product/couponBuy"//领取产品
 #define Xtb_product_getShareInfo    @"/mapi/union/tb_product/getShareInfo"//分享信息
 #define Xintroduce_new_complete_data    @"/mapi/activity/introduce_new_complete_data"//拉新信息弹窗
+
+
+#define Xget_message_list           @"/mapi/message/list"//消息中心列表
 #endif /* AppUitls_h */

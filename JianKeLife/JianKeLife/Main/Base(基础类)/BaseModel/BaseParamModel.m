@@ -89,6 +89,8 @@ MJCodingImplementation
 //specialEntryList (Array[SpecialEntryInfoVo], optional): 特色入口列表 ,
 //versionInfo (VersionInfoVo, optional): 版本自动更新
 //bannerAdListTBPage (Array[AdInfoVo], optional): 淘宝页面banner广告列表 ,
+//messageCenterRedPoint (integer, optional): 消息中心有无小红点：1有 0无 ,
+//adEntryList (Array[AdEntryInfoVo], optional): 广告入口列表
 @end
 
 @implementation BannerAdList
@@ -123,6 +125,15 @@ MJCodingImplementation
 //url (string, optional): 升级地址 ,
 //version (integer, optional): 版本号 ,
 //versionDesc (string, optional): 版本说明
+@end
+@implementation AdEntryInfoVo
+
+//id (integer, optional): 广告入口id ,
+//adEntryType (integer, optional): 广告入口类型枚举 1: 应用内打开链接, 2:应用外打开链接 3:任务详情 4:淘宝商品详情 5:拼多多商品详情 ,
+//adEntryImgUrl (string, optional): 广告入口图片链接 ,
+//isNeedLogin (integer, optional): 是否需要登录 ,
+//configContent (object, optional): 配置内容(链接/任务id/拼多多商品id/淘宝商品id)
+
 @end
 
 @implementation ResponseModel

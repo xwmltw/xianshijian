@@ -31,6 +31,9 @@
 		0436DD1E224381F2006476C2 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0436DD1D224381F2006476C2 /* UserInfo.m */; };
 		0436DD2122438906006476C2 /* XCountDownButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0436DD2022438906006476C2 /* XCountDownButton.m */; };
 		0436DD2422438D59006476C2 /* BaseParamModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0436DD2322438D59006476C2 /* BaseParamModel.m */; };
+		043D47CD22851647001CF0EC /* MessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D47CC22851647001CF0EC /* MessageVC.m */; };
+		043D47D022852145001CF0EC /* MessageDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D47CF22852145001CF0EC /* MessageDetailVC.m */; };
+		043D47D322856D30001CF0EC /* MessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D47D222856D30001CF0EC /* MessageModel.m */; };
 		0449CDA722685C670051817C /* MyorderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0449CDA622685C670051817C /* MyorderVC.m */; };
 		0449CDAD226881800051817C /* MyOrderTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0449CDAB226881800051817C /* MyOrderTableVC.m */; };
 		0449CDAE226881800051817C /* MyOrderTableVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0449CDAC226881800051817C /* MyOrderTableVC.xib */; };
@@ -249,6 +252,12 @@
 		0436DD2022438906006476C2 /* XCountDownButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCountDownButton.m; sourceTree = "<group>"; };
 		0436DD2222438D59006476C2 /* BaseParamModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseParamModel.h; sourceTree = "<group>"; };
 		0436DD2322438D59006476C2 /* BaseParamModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseParamModel.m; sourceTree = "<group>"; };
+		043D47CB22851647001CF0EC /* MessageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageVC.h; sourceTree = "<group>"; };
+		043D47CC22851647001CF0EC /* MessageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageVC.m; sourceTree = "<group>"; };
+		043D47CE22852145001CF0EC /* MessageDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageDetailVC.h; sourceTree = "<group>"; };
+		043D47CF22852145001CF0EC /* MessageDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageDetailVC.m; sourceTree = "<group>"; };
+		043D47D122856D30001CF0EC /* MessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageModel.h; sourceTree = "<group>"; };
+		043D47D222856D30001CF0EC /* MessageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageModel.m; sourceTree = "<group>"; };
 		0449CDA522685C670051817C /* MyorderVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyorderVC.h; sourceTree = "<group>"; };
 		0449CDA622685C670051817C /* MyorderVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyorderVC.m; sourceTree = "<group>"; };
 		0449CDAA226881800051817C /* MyOrderTableVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyOrderTableVC.h; sourceTree = "<group>"; };
@@ -614,6 +623,17 @@
 				042E183022709A60001BF16B /* LLSearchViewController.m */,
 			);
 			path = "搜索";
+			sourceTree = "<group>";
+		};
+		043D47CA22851620001CF0EC /* 消息通知 */ = {
+			isa = PBXGroup;
+			children = (
+				043D47CB22851647001CF0EC /* MessageVC.h */,
+				043D47CC22851647001CF0EC /* MessageVC.m */,
+				043D47CE22852145001CF0EC /* MessageDetailVC.h */,
+				043D47CF22852145001CF0EC /* MessageDetailVC.m */,
+			);
+			path = "消息通知";
 			sourceTree = "<group>";
 		};
 		0449CDA822685D620051817C /* 我的任务 */ = {
@@ -1296,6 +1316,7 @@
 				04E2FA0B22460817006EE2D5 /* SearchVC.m */,
 				04179DE9225239E1006C9481 /* SpecialJobListVC.h */,
 				04179DEA225239E1006C9481 /* SpecialJobListVC.m */,
+				043D47CA22851620001CF0EC /* 消息通知 */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1546,6 +1567,8 @@
 				B319BF30224747B600C602EA /* ProductModel.m */,
 				049A9588227149F2003F5563 /* LaXinModel.h */,
 				049A9589227149F2003F5563 /* LaXinModel.m */,
+				043D47D122856D30001CF0EC /* MessageModel.h */,
+				043D47D222856D30001CF0EC /* MessageModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1839,6 +1862,7 @@
 				04616FD9222D076800E46B40 /* ProgressHUD.m in Sources */,
 				04112154224106F3003D7F2D /* MyPersonTableViewCell.m in Sources */,
 				0461701E222D195400E46B40 /* XDeviceHelper.m in Sources */,
+				043D47CD22851647001CF0EC /* MessageVC.m in Sources */,
 				0492251F226DC3A0008353CC /* HiBuyViewModel.m in Sources */,
 				B3EB6A98226CCFD600610D16 /* LaXinView.m in Sources */,
 				04B2AA022251A1A90094A44B /* JJOneScrollView.m in Sources */,
@@ -1858,6 +1882,7 @@
 				04DB3CDA226AF15300481B41 /* MyTaskVC.m in Sources */,
 				0436DD1E224381F2006476C2 /* UserInfo.m in Sources */,
 				04E15A34224CB64600D0222E /* TaskDetailModel.m in Sources */,
+				043D47D022852145001CF0EC /* MessageDetailVC.m in Sources */,
 				04616FBD222CF66300E46B40 /* AppDelegate.m in Sources */,
 				04B2A9EB2251A12B0094A44B /* MImaCell.m in Sources */,
 				04616FF2222D0C1600E46B40 /* UIImageView+GIF.m in Sources */,
@@ -1874,6 +1899,7 @@
 				04E15A2B224C70C000D0222E /* TaskViewModel.m in Sources */,
 				04617004222D186300E46B40 /* UITabBar+MKExtension.m in Sources */,
 				04922525226DF359008353CC /* HiBuyProductModel.m in Sources */,
+				043D47D322856D30001CF0EC /* MessageModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

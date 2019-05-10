@@ -21,6 +21,7 @@
 #import "QRcodeView.h"
 #import "XCommonHepler.h"
 #import "MyPersonShareView.h"
+#import "MessageVC.h"
 
 @interface HomeVC ()<WSLWaterFlowLayoutDelegate>
 {
@@ -349,8 +350,11 @@
 
 
 - (void)creatSearchBtn{
+    UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 44)];
+    
     UIButton *searchBtn = [[UIButton alloc]init];
-    searchBtn.frame = CGRectMake(0, 0, AdaptationWidth(343), 30);
+    searchBtn.tag = 1001;
+    searchBtn.frame = CGRectMake(0, 7, AdaptationWidth(325), 30);
     [searchBtn setBackgroundColor:LineColor];
     [searchBtn setImage:[UIImage imageNamed:@"icon_search"] forState:UIControlStateNormal];
     [searchBtn setTitle:@"输入关键词" forState:UIControlStateNormal];
@@ -358,7 +362,16 @@
     [searchBtn.titleLabel setFont:[UIFont systemFontOfSize:AdaptationWidth(14)]];
     [searchBtn addTarget:self action:@selector(btnOnClock:) forControlEvents:UIControlEventTouchUpInside];
     [searchBtn setCornerValue:4];
-    self.navigationItem.titleView = searchBtn;
+    [bgView addSubview:searchBtn];
+    
+    UIButton *messageBtn = [[UIButton alloc]init];
+    messageBtn.tag = 1002;
+    messageBtn.frame = CGRectMake(ScreenWidth-AdaptationWidth(44), 8, AdaptationWidth(28), AdaptationWidth(28));
+    [messageBtn setImage:[UIImage imageNamed:@"icon_noti_message"] forState:UIControlStateNormal];
+    [messageBtn addTarget:self action:@selector(btnOnClock:) forControlEvents:UIControlEventTouchUpInside];
+    [bgView addSubview:messageBtn];
+    
+    self.navigationItem.titleView = bgView;
 }
 - (void)scrollViewSelect{
     WEAKSELF
@@ -403,12 +416,18 @@
 - (void)btnOnClock:(UIButton *)btn{
     
     
-
+    if (btn.tag == 1001) {
+        SearchVC *vc = [[SearchVC alloc]init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        MessageVC *vc = [[MessageVC alloc]init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
     
     
-    SearchVC *vc = [[SearchVC alloc]init];
-    vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 //#pragma mark - js交互
 //- (void)webViewWithScript:(WKScriptMessage *)message{

@@ -43,6 +43,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic ,copy) NSString *registerAgreementUrl;
 @property (nonatomic ,strong) NSArray *specialEntryList;
 @property (nonatomic ,strong) VersionInfo *versionInfo;
+@property (nonatomic ,strong) NSNumber *messageCenterRedPoint;
+@property (nonatomic ,strong) NSArray *adEntryList;
 - (void)setClientGlobalInfoModel;
 + (ClientGlobalInfo *)getClientGlobalInfoModel;
 @end
@@ -72,6 +74,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic ,copy) NSString *url;
 @property (nonatomic ,copy) NSNumber *version;
 @property (nonatomic ,copy) NSString *versionDesc;
+@end
+
+@interface AdEntryInfoVo : ClientGlobalInfo
+@property (nonatomic ,strong) NSNumber *id;
+@property (nonatomic ,strong) NSNumber *adEntryType;
+@property (nonatomic ,strong) NSString *adEntryImgUrl;
+@property (nonatomic ,strong) NSNumber *isNeedLogin;
+@property (nonatomic ,strong) id configContent;
 @end
 
 @interface ResponseModel : BaseParamModel

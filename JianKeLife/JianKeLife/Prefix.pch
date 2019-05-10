@@ -27,6 +27,7 @@
 #import "AppUitls.h"
 #import "Enum.h"
 #import "BaseMainNC.h"
+#import "BaseTableView.h"
 #import "UserInfo.h"
 #import "ProgressHUD.h"
 #import "XNetWork.h"

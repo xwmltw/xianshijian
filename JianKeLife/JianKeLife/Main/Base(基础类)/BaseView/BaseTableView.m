@@ -8,7 +8,7 @@
 
 #import "BaseTableView.h"
 
-@interface BaseTableView ()<UITableViewDelegate,UITableViewDataSource>
+@interface BaseTableView ()
 
 @end
 @implementation BaseTableView
@@ -25,9 +25,7 @@
         self.estimatedSectionHeaderHeight = 0;
         self.estimatedSectionFooterHeight = 0;
         self.estimatedRowHeight = 0;
-        
-        self.delegate = self;
-        self.dataSource = self;
+
         
         MJRefreshStateHeader *header = [MJRefreshStateHeader headerWithRefreshingTarget:self refreshingAction:@selector(headerRefresh)];
         header.lastUpdatedTimeLabel.hidden = YES;
@@ -45,40 +43,7 @@
     }
     return self;
 }
-/**
- *  返回分区数目(默认为1)
- */
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
-}
 
-/**
- *  返回每个分区的个数
- */
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 1;
-}
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *cellId = @"cellId";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-    if (!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellId];
-    }
-    return cell;
-}
-
--(CGFloat )tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 0.1;
-}
-
--(CGFloat )tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 0.1;
-}
-
--(CGFloat )tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 0.1;
-}
 
 /**
  tableView的上拉刷新事件
