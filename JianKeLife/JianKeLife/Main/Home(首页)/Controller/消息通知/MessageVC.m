@@ -7,6 +7,7 @@
 //
 
 #import "MessageVC.h"
+#import "MessageDetailVC.h"
 
 @interface MessageVC ()
 
@@ -99,8 +100,25 @@
     
 }
 - (void)btnOnClick:(UIButton *)btn{
+    switch (btn.tag) {
+        case 1011:
+            [self.navigationController popViewControllerAnimated:YES];
+            break;
+        case 1012:
+        {
+            MessageDetailVC *vc = [[MessageDetailVC alloc]init];
+            vc.messageType = @1;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 1013:
+            
+            break;
+            
+        default:
+            break;
+    }
     
-    [self.navigationController popViewControllerAnimated:YES];
 }
 /*
 #pragma mark - Navigation
