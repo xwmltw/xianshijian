@@ -37,6 +37,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.messageList.count;
+//    return 5;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return AdaptationWidth(164);
@@ -66,6 +67,29 @@
             make.left.mas_equalTo(self.view).offset(10);
             make.width.mas_equalTo(AdaptationWidth(355));
             make.height.mas_equalTo(AdaptationWidth(99));
+        }];
+        
+        UILabel *titleLab = [[UILabel alloc]init];
+        [titleLab setText:self.messageModel.messageTitle];
+        [titleLab setFont:[UIFont systemFontOfSize:AdaptationWidth(16)]];
+        [titleLab setTextColor:LabelMainColor];
+        [headView addSubview:titleLab];
+        [titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(headView).offset(AdaptationWidth(16));
+            make.top.mas_equalTo(headView).offset(AdaptationWidth(16));
+        }];
+        
+        UILabel *detailLab = [[UILabel alloc]init];
+        detailLab.numberOfLines = 0;
+        [detailLab setText:self.messageModel.messageContent];
+        [detailLab setFont:[UIFont systemFontOfSize:AdaptationWidth(14)]];
+        [detailLab setTextColor:LabelAssistantColor];
+        [headView addSubview:detailLab];
+        [detailLab mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(headView).offset(AdaptationWidth(16));
+            make.bottom.mas_equalTo(headView).offset(AdaptationWidth(-29));
+            make.right.mas_equalTo(headView).offset(AdaptationWidth(-16));
+            make.top.mas_equalTo(titleLab.mas_bottom).offset(AdaptationWidth(10));
         }];
     }
     return cell;
