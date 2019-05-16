@@ -107,12 +107,18 @@
         case 1012:
         {
             MessageDetailVC *vc = [[MessageDetailVC alloc]init];
+            vc.title = @"通知";
             vc.messageType = @1;
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
         case 1013:
-            
+        {
+            MessageDetailVC *vc = [[MessageDetailVC alloc]init];
+            vc.title = @"收益";
+            vc.messageType = @2;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
             break;
             
         default:
