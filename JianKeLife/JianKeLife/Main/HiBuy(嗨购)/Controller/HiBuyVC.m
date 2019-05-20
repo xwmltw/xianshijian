@@ -11,6 +11,7 @@
 #import "HiBuyViewModel.h"
 #import "HiBuySearchVC.h"
 #import "LLSearchViewController.h"
+#import "MessageVC.h"
 
 @interface HiBuyVC ()<WMPageControllerDataSource,UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, strong) NSMutableArray *titleData;
@@ -80,7 +81,7 @@
     [super viewDidLoad];
     
     [self reloadData];
-    [self creatSearchBtn];
+//    [self creatSearchBtn];
     
     if (self.itemsWidth > ScreenWidth) {
         UIButton *selectBtn = [[UIButton alloc]init];
@@ -112,6 +113,9 @@
     [searchBtn addTarget:self action:@selector(btnOnClock:) forControlEvents:UIControlEventTouchUpInside];
     [searchBtn setCornerValue:4];
     self.navigationItem.titleView = searchBtn;
+    
+    
+    
 }
 - (void)btnOnClock:(UIButton *)btn{
     switch (btn.tag) {
@@ -136,6 +140,7 @@
             self.bgView.hidden = YES;
         }
             break;
+        
         default:
             break;
     }
@@ -234,7 +239,9 @@
     //根据identifier从缓冲池里去出cell
     UICollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HiBuyTypeCell" forIndexPath:indexPath];
     UIImageView *imageCell = [[UIImageView alloc]init];
-    [imageCell sd_setImageWithURL:[NSURL URLWithString:self.titleData[indexPath.row][@"classifyImgUrl"]]];
+    
+    [imageCell sd_setImageWithURL:[NSURL URLWithString:XNULL_TO_NIL(self.titleData[indexPath.row][@"classifyImgUrl"])] placeholderImage:[UIImage imageNamed:@"今日值享logo定稿"]];
+//    [imageCell sd_setImageWithURL:[NSURL URLWithString:self.titleData[indexPath.row][@"classifyImgUrl"]]];
     [cell.contentView addSubview:imageCell];
     [imageCell mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.right.mas_equalTo(cell);

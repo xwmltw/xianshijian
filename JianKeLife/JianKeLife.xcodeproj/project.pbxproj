@@ -110,6 +110,7 @@
 		0492251F226DC3A0008353CC /* HiBuyViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0492251E226DC3A0008353CC /* HiBuyViewModel.m */; };
 		04922522226DE879008353CC /* HiBuyProductQueryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04922521226DE879008353CC /* HiBuyProductQueryModel.m */; };
 		04922525226DF359008353CC /* HiBuyProductModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04922524226DF359008353CC /* HiBuyProductModel.m */; };
+		049813BB2292A96D00369E71 /* HomeTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 049813BA2292A96D00369E71 /* HomeTableView.m */; };
 		049A958722714156003F5563 /* WJProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 049A958622714156003F5563 /* WJProgressView.m */; };
 		049A958A227149F2003F5563 /* LaXinModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 049A9589227149F2003F5563 /* LaXinModel.m */; };
 		049A958D2271E0BC003F5563 /* SaiXuanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 049A958C2271E0BB003F5563 /* SaiXuanView.m */; };
@@ -392,6 +393,8 @@
 		04922521226DE879008353CC /* HiBuyProductQueryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiBuyProductQueryModel.m; sourceTree = "<group>"; };
 		04922523226DF359008353CC /* HiBuyProductModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiBuyProductModel.h; sourceTree = "<group>"; };
 		04922524226DF359008353CC /* HiBuyProductModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiBuyProductModel.m; sourceTree = "<group>"; };
+		049813B92292A96D00369E71 /* HomeTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeTableView.h; sourceTree = "<group>"; };
+		049813BA2292A96D00369E71 /* HomeTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeTableView.m; sourceTree = "<group>"; };
 		049A958522714156003F5563 /* WJProgressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WJProgressView.h; sourceTree = "<group>"; };
 		049A958622714156003F5563 /* WJProgressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WJProgressView.m; sourceTree = "<group>"; };
 		049A9588227149F2003F5563 /* LaXinModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LaXinModel.h; sourceTree = "<group>"; };
@@ -1294,6 +1297,8 @@
 		0487151A223F848B00679095 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				049813B92292A96D00369E71 /* HomeTableView.h */,
+				049813BA2292A96D00369E71 /* HomeTableView.m */,
 				04E771262241E56600C6E7CE /* HomeCollectionView.h */,
 				04E771272241E56600C6E7CE /* HomeCollectionView.m */,
 				04E7713122422B8300C6E7CE /* HomeHotCollectionViewCell.h */,
@@ -1788,6 +1793,7 @@
 				0436DD2122438906006476C2 /* XCountDownButton.m in Sources */,
 				04DB3CDE226AF17600481B41 /* MytasktableViewVC.m in Sources */,
 				0461701A222D195400E46B40 /* XAlertView.m in Sources */,
+				049813BB2292A96D00369E71 /* HomeTableView.m in Sources */,
 				042E182022705E76001BF16B /* HiBuyShareCodeView.m in Sources */,
 				04E771302242180000C6E7CE /* HomeViewModel.m in Sources */,
 				0436DD2422438D59006476C2 /* BaseParamModel.m in Sources */,
