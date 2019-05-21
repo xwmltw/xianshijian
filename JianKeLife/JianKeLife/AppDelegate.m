@@ -168,7 +168,10 @@
 }
 #pragma mark - 极光
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    
+    [JPUSHService registrationIDCompletionHandler:^(int resCode, NSString *registrationID) {
+        [UserInfo sharedInstance].registrationID = registrationID;
+//        NSLog(@"resCode : %d,registrationID: %@",resCode,registrationID);
+    }];
     /// Required - 注册 DeviceToken
     [JPUSHService registerDeviceToken:deviceToken];
 }

@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 @interface HomeViewModel : NSObject
-
+@property (nonatomic ,strong) NSNumber *listType;
 @property (nonatomic ,strong) ClientGlobalInfo *clientGlobalInfo;
 @property (nonatomic, strong) PageQueryRedModel *pageQueryRedModel;
 @property (nonatomic, strong) NSMutableArray *productList;
@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic ,copy) XBlock responseBannerWebBlock;
 @property (nonatomic ,strong) MJRefreshAutoNormalFooter *footer;
 - (MJRefreshAutoNormalFooter *)creatMjRefresh;
+- (void)requestData;
 - (void)footerRefresh;
 - (void)requestSpecialData:(NSInteger)index;
 - (void)requestBannerData:(NSInteger)index;

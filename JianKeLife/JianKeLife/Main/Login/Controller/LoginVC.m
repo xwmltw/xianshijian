@@ -98,7 +98,7 @@
         //talkingData 数据统计
         [TalkingData onLogin:self.phoneTextField.text type:TDAccountTypeRegistered name:AppName];
         
-        
+        [self upPushInfo];
 
         [self.navigationController popViewControllerAnimated:YES];
         [XNotificationCenter postNotificationName:LoginSuccessNotification object:nil];
@@ -106,6 +106,14 @@
         
     }];
     
+}
+- (void)upPushInfo{
+    NSString *pushid = [NSString stringWithFormat:@"%@",[UserInfo sharedInstance].registrationID];
+    [XNetWork requestNetWorkWithUrl:Xupdate_push andModel:@{@"pushPlatType":@"2",@"pushId":pushid} andSuccessBlock:^(ResponseModel *model) {
+        
+    } andFailBlock:^(ResponseModel *model) {
+        
+    }];
 }
 - (IBAction)protocolBtn:(UIButton *)sender {
     BaseWebVC *vc = [[BaseWebVC alloc]init];

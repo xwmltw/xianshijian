@@ -81,7 +81,7 @@
     [super viewDidLoad];
     
     [self reloadData];
-//    [self creatSearchBtn];
+    [self creatSearchBtn];
     
     if (self.itemsWidth > ScreenWidth) {
         UIButton *selectBtn = [[UIButton alloc]init];

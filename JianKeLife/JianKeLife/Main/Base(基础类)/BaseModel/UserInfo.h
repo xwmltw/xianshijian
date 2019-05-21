@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy)NSString *password;
 @property(nonatomic,copy)NSString *userId;
 @property(nonatomic,copy)NSString *token;
+@property(nonatomic,strong)NSString *registrationID;
 @property(nonatomic,assign)BOOL isAlertShare;
 + (instancetype)sharedInstance;
 - (void)saveUserInfo:(UserInfo *)model;

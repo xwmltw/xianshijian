@@ -33,24 +33,24 @@
     [super viewDidLoad];
     self.view.backgroundColor = XColorWithRGB(248, 248, 248);
     
-    if (self.isFirstType && self.clientGlobalInfo.bannerAdListTBPage.count > 0) {
-        [self.view addSubview:self.sdcycleScrollView];
-        [self.sdcycleScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.view).offset(16);
-            make.right.mas_equalTo(self.view).offset(-16);
-            make.top.mas_equalTo(self.view).offset(AdaptationWidth(12));
-            make.height.mas_equalTo(AdaptationWidth(130));
-        }];
-    }
-    [self.view addSubview:self.dropDownMenu];
+//    if (self.isFirstType && self.clientGlobalInfo.bannerAdListTBPage.count > 0) {
+//        [self.view addSubview:self.sdcycleScrollView];
+//        [self.sdcycleScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.mas_equalTo(self.view).offset(16);
+//            make.right.mas_equalTo(self.view).offset(-16);
+//            make.top.mas_equalTo(self.view).offset(AdaptationWidth(12));
+//            make.height.mas_equalTo(AdaptationWidth(130));
+//        }];
+//    }
+//    [self.view addSubview:self.dropDownMenu];
     
     
 //    self.tableView.tableHeaderView = [self creatHead];
     
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.dropDownMenu.mas_bottom).offset(2);
-//        make.top.mas_equalTo(self.view);
+//        make.top.mas_equalTo(self.dropDownMenu.mas_bottom).offset(2);
+        make.top.mas_equalTo(self.view);
         make.left.right.bottom.mas_equalTo(self.view);
 //        make.bottom.mas_equalTo(self.view).offset(-40);
     }];

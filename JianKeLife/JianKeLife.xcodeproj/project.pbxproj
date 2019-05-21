@@ -34,6 +34,7 @@
 		043D47CD22851647001CF0EC /* MessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D47CC22851647001CF0EC /* MessageVC.m */; };
 		043D47D022852145001CF0EC /* MessageDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D47CF22852145001CF0EC /* MessageDetailVC.m */; };
 		043D47D322856D30001CF0EC /* MessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 043D47D222856D30001CF0EC /* MessageModel.m */; };
+		044833152293E83100483F91 /* SuperProductVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 044833142293E83100483F91 /* SuperProductVC.m */; };
 		0449CDA722685C670051817C /* MyorderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0449CDA622685C670051817C /* MyorderVC.m */; };
 		0449CDAD226881800051817C /* MyOrderTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0449CDAB226881800051817C /* MyOrderTableVC.m */; };
 		0449CDAE226881800051817C /* MyOrderTableVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0449CDAC226881800051817C /* MyOrderTableVC.xib */; };
@@ -96,6 +97,8 @@
 		0467C3102248DA7F002F5344 /* MyInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0467C30F2248DA7F002F5344 /* MyInfoVC.m */; };
 		0467C31322490598002F5344 /* QRcodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0467C31222490598002F5344 /* QRcodeView.m */; };
 		0467C315224905AB002F5344 /* QRcodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0467C314224905AB002F5344 /* QRcodeView.xib */; };
+		046F394922939B7000A21A58 /* ArtScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 046F394722939B6F00A21A58 /* ArtScrollView.m */; };
+		046F394C22939BBB00A21A58 /* HomeMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 046F394B22939BBB00A21A58 /* HomeMainVC.m */; };
 		0476AA0C22375C7500EF7C8E /* libTalkingData.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0476AA0B22375C7500EF7C8E /* libTalkingData.a */; };
 		0476AA102237611C00EF7C8E /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 0476AA0E2237611C00EF7C8E /* UIImage+Extension.m */; };
 		04871503223F766400679095 /* HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04871502223F766400679095 /* HomeVC.m */; };
@@ -259,6 +262,8 @@
 		043D47CF22852145001CF0EC /* MessageDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageDetailVC.m; sourceTree = "<group>"; };
 		043D47D122856D30001CF0EC /* MessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageModel.h; sourceTree = "<group>"; };
 		043D47D222856D30001CF0EC /* MessageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageModel.m; sourceTree = "<group>"; };
+		044833132293E83100483F91 /* SuperProductVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuperProductVC.h; sourceTree = "<group>"; };
+		044833142293E83100483F91 /* SuperProductVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuperProductVC.m; sourceTree = "<group>"; };
 		0449CDA522685C670051817C /* MyorderVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyorderVC.h; sourceTree = "<group>"; };
 		0449CDA622685C670051817C /* MyorderVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyorderVC.m; sourceTree = "<group>"; };
 		0449CDAA226881800051817C /* MyOrderTableVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyOrderTableVC.h; sourceTree = "<group>"; };
@@ -365,6 +370,10 @@
 		0467C31122490598002F5344 /* QRcodeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QRcodeView.h; sourceTree = "<group>"; };
 		0467C31222490598002F5344 /* QRcodeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QRcodeView.m; sourceTree = "<group>"; };
 		0467C314224905AB002F5344 /* QRcodeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QRcodeView.xib; sourceTree = "<group>"; };
+		046F394722939B6F00A21A58 /* ArtScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtScrollView.m; sourceTree = "<group>"; };
+		046F394822939B7000A21A58 /* ArtScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtScrollView.h; sourceTree = "<group>"; };
+		046F394A22939BBB00A21A58 /* HomeMainVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeMainVC.h; sourceTree = "<group>"; };
+		046F394B22939BBB00A21A58 /* HomeMainVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeMainVC.m; sourceTree = "<group>"; };
 		0476AA0A22375C7500EF7C8E /* TalkingData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TalkingData.h; sourceTree = "<group>"; };
 		0476AA0B22375C7500EF7C8E /* libTalkingData.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTalkingData.a; sourceTree = "<group>"; };
 		0476AA0E2237611C00EF7C8E /* UIImage+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extension.m"; sourceTree = "<group>"; };
@@ -1297,6 +1306,8 @@
 		0487151A223F848B00679095 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				046F394822939B7000A21A58 /* ArtScrollView.h */,
+				046F394722939B6F00A21A58 /* ArtScrollView.m */,
 				049813B92292A96D00369E71 /* HomeTableView.h */,
 				049813BA2292A96D00369E71 /* HomeTableView.m */,
 				04E771262241E56600C6E7CE /* HomeCollectionView.h */,
@@ -1313,6 +1324,8 @@
 		0487151B223F849100679095 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				046F394A22939BBB00A21A58 /* HomeMainVC.h */,
+				046F394B22939BBB00A21A58 /* HomeMainVC.m */,
 				04871501223F766400679095 /* HomeVC.h */,
 				04871502223F766400679095 /* HomeVC.m */,
 				04E7714422426A7A00C6E7CE /* JobDetailVC.h */,
@@ -1321,6 +1334,8 @@
 				04E2FA0B22460817006EE2D5 /* SearchVC.m */,
 				04179DE9225239E1006C9481 /* SpecialJobListVC.h */,
 				04179DEA225239E1006C9481 /* SpecialJobListVC.m */,
+				044833132293E83100483F91 /* SuperProductVC.h */,
+				044833142293E83100483F91 /* SuperProductVC.m */,
 				043D47CA22851620001CF0EC /* 消息通知 */,
 			);
 			path = Controller;
@@ -1782,8 +1797,10 @@
 				04AECC97224B8ED600410304 /* ExpectTableView.m in Sources */,
 				B319BF34224748F800C602EA /* JobDetailViewModel.m in Sources */,
 				04BD1163224A112A0033B774 /* FSMediaPicker.m in Sources */,
+				046F394922939B7000A21A58 /* ArtScrollView.m in Sources */,
 				04E771432242623A00C6E7CE /* FeedbackVC.m in Sources */,
 				0467C3102248DA7F002F5344 /* MyInfoVC.m in Sources */,
+				044833152293E83100483F91 /* SuperProductVC.m in Sources */,
 				B319BF31224747B600C602EA /* ProductModel.m in Sources */,
 				041121502241065F003D7F2D /* MyPersonTableView.m in Sources */,
 				04BD116E224A41810033B774 /* ProfitModel.m in Sources */,
@@ -1792,6 +1809,7 @@
 				04BD1177224A540E0033B774 /* WalletTableView.m in Sources */,
 				0436DD2122438906006476C2 /* XCountDownButton.m in Sources */,
 				04DB3CDE226AF17600481B41 /* MytasktableViewVC.m in Sources */,
+				046F394C22939BBB00A21A58 /* HomeMainVC.m in Sources */,
 				0461701A222D195400E46B40 /* XAlertView.m in Sources */,
 				049813BB2292A96D00369E71 /* HomeTableView.m in Sources */,
 				042E182022705E76001BF16B /* HiBuyShareCodeView.m in Sources */,

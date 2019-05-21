@@ -1,20 +1,17 @@
 //
-//  HomeTableView.h
+//  HomeMainVC.h
 //  JianKeLife
 //
-//  Created by yanqb on 2019/5/20.
+//  Created by yanqb on 2019/5/21.
 //  Copyright © 2019年 xwm. All rights reserved.
 //
 
-#import "BaseTableView.h"
+#import "BaseMainVC.h"
 #import "HomeViewModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HomeTableView : BaseTableView
-
+@interface HomeMainVC : BaseMainVC
 @property (nonatomic ,strong) HomeViewModel *homeViewModel;
-
-- (void)initTableView;
 @end
 
 NS_ASSUME_NONNULL_END

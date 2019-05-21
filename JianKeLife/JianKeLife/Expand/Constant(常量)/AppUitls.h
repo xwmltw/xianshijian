@@ -91,4 +91,6 @@ static NSString *const TaskReturnNotification = @"TaskReturnNotification";
 
 
 #define Xget_message_list           @"/mapi/message/list"//消息中心列表
+
+#define Xupdate_push                @"/mapi/global/update_push"//推送信息上传
 #endif /* AppUitls_h */

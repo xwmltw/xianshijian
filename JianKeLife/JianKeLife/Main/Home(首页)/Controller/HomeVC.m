@@ -23,14 +23,14 @@
 #import "MyPersonShareView.h"
 #import "MessageVC.h"
 
-#import "HomeTableView.h"
+#import "HomeMainVC.h"
 
 @interface HomeVC ()<WSLWaterFlowLayoutDelegate>
 {
      WSLWaterFlowLayout * _flow;
 }
 @property (nonatomic ,strong) HomeCollectionView *collectionView;
-@property (nonatomic ,strong) HomeTableView *homeTableView;
+
 @property (nonatomic ,strong) LaXinModel *laXinModel;
 @property (nonatomic ,strong) LaXinView *laXinView;
 @property (nonatomic ,strong) QRcodeView *qrCodeView;
@@ -73,11 +73,12 @@
     }
     
     [self.collectionView.headArray addObject:@(HomeCollectionHeadHot)];
-    self.homeTableView = [[HomeTableView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight) style:UITableViewStylePlain];
-    self.view  = self.homeTableView;
-//    [self scrollViewSelect];
-//    [self specialViewSelect];
-//    [self collectionCellSelect];
+    HomeMainVC *vc = [[HomeMainVC alloc]init];
+  
+    self.view  = vc.view;
+    [self scrollViewSelect];
+    [self specialViewSelect];
+    [self collectionCellSelect];
     
     if (self.clientGlobalInfo.versionInfo)
     [XAlertView alertWithTitle:@"更新提示" message:self.clientGlobalInfo.versionInfo.versionDesc cancelButtonTitle:self.clientGlobalInfo.versionInfo.needForceUpdate.integerValue ? @"":@"取消"confirmButtonTitle:@"更新" viewController:self completion:^(UIAlertAction *action, NSInteger buttonIndex) {

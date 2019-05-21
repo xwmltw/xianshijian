@@ -12,13 +12,13 @@
 
 - (instancetype)init{
     if (self = [super init]) {
-        [self requestData];
+        
     }
     return self;
 }
 - (void)requestData{
     BLOCKSELF
-    [XNetWork requestNetWorkWithUrl:Xproduct_list andModel:@{@"pageQueryReq":[self.pageQueryRedModel mj_keyValues]} andSuccessBlock:^(ResponseModel *model) {
+    [XNetWork requestNetWorkWithUrl:Xproduct_list andModel:@{@"pageQueryReq":[self.pageQueryRedModel mj_keyValues],@"listType":self.listType} andSuccessBlock:^(ResponseModel *model) {
         [blockSelf.productList addObjectsFromArray:model.data[@"dataRows"]];
         XBlockExec(blockSelf.responseBlock,model);
     } andFailBlock:^(ResponseModel *model) {
