@@ -84,6 +84,7 @@ static NSString *const TaskReturnNotification = @"TaskReturnNotification";
 #define Xtb_classify_list           @"/mapi/union/tb_product/classify_list"//查询商品分类信息
 #define Xquery_tb_product_keyword   @"/mapi/global/query_tb_product_keyword"//搜索关键词
 #define Xtb_product_list            @"/mapi/union/tb_product/list" //淘宝商品列表
+#define Xlist_favorite_product      @"/mapi/union/tb_product/list_favorite_product"//x查询淘宝商品（选品商品）
 #define Xtb_product_detail          @"/mapi/union/tb_product/detail"//产品详情
 #define Xtb_product_couponBuy       @"/mapi/union/tb_product/couponBuy"//领取产品
 #define Xtb_product_getShareInfo    @"/mapi/union/tb_product/getShareInfo"//分享信息
@@ -91,6 +92,7 @@ static NSString *const TaskReturnNotification = @"TaskReturnNotification";
 
 
 #define Xget_message_list           @"/mapi/message/list"//消息中心列表
+#define Xred_point_info             @"/mapi/message/red_point_info"//获取小红点信心
 
 #define Xupdate_push                @"/mapi/global/update_push"//推送信息上传
 #endif /* AppUitls_h */

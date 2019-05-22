@@ -64,6 +64,67 @@
         make.centerY.mas_equalTo(cellView);
     }];
     
+    //
+    UIView *cellView2 = [[UIView alloc]init];
+    cellView2.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:cellView2];
+    
+    [cellView2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.mas_equalTo(self.view);
+        make.top.mas_equalTo(cellView.mas_bottom).offset(10);
+        make.height.mas_equalTo(47);
+    }];
+    UILabel *noti = [[UILabel alloc]init];
+    noti.text = @"消息通知";
+    [noti setFont:[UIFont systemFontOfSize:AdaptationWidth(16)]];
+    [noti setTextColor:LabelMainColor];
+    [cellView2 addSubview:noti];
+    [noti mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(cellView2).offset(16);
+        make.centerY.mas_equalTo(cellView2);
+    }];
+    
+    UIButton *bgBtn2 = [[UIButton alloc]init];
+    [bgBtn2 setImage:[UIImage imageNamed:@"icon_right"] forState:UIControlStateNormal];
+    [cellView2 addSubview:bgBtn2];
+    [bgBtn2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(cellView2).offset(-16);
+        make.width.mas_equalTo(30);
+        make.centerY.mas_equalTo(cellView2);
+    }];
+    
+    UILabel *kaiqiLab = [[UILabel alloc]init];
+    UIUserNotificationSettings *setting = [[UIApplication sharedApplication] currentUserNotificationSettings];
+    if (UIUserNotificationTypeNone == setting.types) {
+        kaiqiLab.text = @"避免错误重要通知—去开启";
+    }else{
+        kaiqiLab.text = @"已开启";
+    }
+    [kaiqiLab setFont:[UIFont systemFontOfSize:AdaptationWidth(16)]];
+    [kaiqiLab setTextColor:LabelAssistantColor];
+    [cellView2 addSubview:kaiqiLab];
+    [kaiqiLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(bgBtn2.mas_left).offset(5);
+        make.centerY.mas_equalTo(cellView2);
+    }];
+    
+    UIButton *selectBtn2 = [[UIButton alloc]init];
+    selectBtn2.tag = 403;
+    [selectBtn2 addTarget:self action:@selector(btnOnClock:) forControlEvents:UIControlEventTouchUpInside];
+    selectBtn2.imageEdgeInsets = UIEdgeInsetsMake(0, 60, 0, 0);
+    [cellView2 addSubview:selectBtn2];
+    [selectBtn2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(cellView2).offset(-16);
+        make.left.mas_equalTo(cellView2).offset(16);
+        make.height.mas_equalTo(30);
+        make.centerY.mas_equalTo(cellView2);
+    }];
+    
+    
+    
+    
+
+    
     
     UIButton *getOutBtn = [[UIButton alloc]init];
     getOutBtn.tag = 402;
@@ -105,9 +166,10 @@
                     }];
                 }
             }];
-            
-            
-           
+        }
+            break;
+        case 403:{
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
         }
             break;
         default:

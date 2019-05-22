@@ -20,6 +20,7 @@
 #import "JobDetailVC.h"
 #import "SuperProductVC.h"
 #import "HiBuyProductdetialVC.h"
+#import "HighShareView.h"
 
 #import <ShareSDK/ShareSDK.h>
 #import "LaXinView.h"
@@ -37,6 +38,10 @@
 @property (nonatomic ,strong) UIScrollView *specialScrollViewl;
 @property (nonatomic ,strong) UIScrollView *superScrollViewl;
 @property (nonatomic ,strong) UIView *adEntryView;
+
+@property (nonatomic ,strong) HighShareView *highShareView;
+@property (nonatomic, strong) NSMutableArray *highListAry;
+@property (nonatomic, strong) NSString *highTitle;
 
 @property (nonatomic, strong) NSMutableArray *titleData;
 @property (nonatomic, strong) NSMutableArray *titleWith;
@@ -115,17 +120,23 @@
     [self creatLaXin];
     
     
-//    [self.homeViewModel setResponseBlock:^(id result) {
-//
-//    }];
+    
     WEAKSELF
     [XNetWork requestNetWorkWithUrl:Xtb_classify_list andModel:nil andSuccessBlock:^(ResponseModel *model) {
         [weakSelf.titleData addObjectsFromArray:model.data[@"dataRows"]];
-        
-        [weakSelf gettitles];
+        [XNetWork requestNetWorkWithUrl:Xlist_favorite_product andModel:@{@"pageQueryReq":[[PageQueryRedModel new]mj_keyValues]} andSuccessBlock:^(ResponseModel *model) {
+            weakSelf.highTitle = model.data[@"listName"];
+            [weakSelf.highListAry addObjectsFromArray:model.data[@"dataRows"]];
+            [weakSelf gettitles];
+        } andFailBlock:^(ResponseModel *model) {
+            
+        }];
     } andFailBlock:^(ResponseModel *model) {
         
     }];
+    
+    
+    
 }
 - (void)gettitles{
     [self.titleData enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -165,26 +176,35 @@
         make.height.mas_equalTo(AdaptationWidth(100));
     }];
     
-    UIImageView *image = [[UIImageView alloc]init];
-    [image setImage: [UIImage imageNamed:@"icon_super"]];
-    [self.containerScrollView addSubview:image];
-    [image mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.containerScrollView).offset(AdaptationWidth(16));
-        make.top.mas_equalTo(self.specialScrollViewl.mas_bottom).offset(AdaptationWidth(12));
-    }];
+    if (self.homeViewModel.productList.count) {
+        UIImageView *image = [[UIImageView alloc]init];
+        [image setImage: [UIImage imageNamed:@"icon_super"]];
+        [self.containerScrollView addSubview:image];
+        [image mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.containerScrollView).offset(AdaptationWidth(16));
+            make.top.mas_equalTo(self.specialScrollViewl.mas_bottom).offset(AdaptationWidth(12));
+        }];
+        
+        [self.containerScrollView addSubview:self.superScrollViewl];
+        [self.superScrollViewl mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.containerScrollView).offset(AdaptationWidth(16));
+            make.top.mas_equalTo(image.mas_bottom).offset(AdaptationWidth(19));
+            make.right.mas_equalTo(self.containerScrollView).offset(AdaptationWidth(-16));
+            
+            make.height.mas_equalTo(AdaptationWidth(155));
+        }];
+    }
     
-    [self.containerScrollView addSubview:self.superScrollViewl];
-    [self.superScrollViewl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.containerScrollView).offset(AdaptationWidth(16));
-        make.top.mas_equalTo(image.mas_bottom).offset(AdaptationWidth(19));
-        make.right.mas_equalTo(self.containerScrollView).offset(AdaptationWidth(-16));
-        make.height.mas_equalTo(AdaptationWidth(155));
-    }];
     
     [self.containerScrollView addSubview:self.adEntryView];
     [self.adEntryView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.containerScrollView).offset(AdaptationWidth(16));
-        make.top.mas_equalTo(self.superScrollViewl.mas_bottom).offset(AdaptationWidth(12));
+        if (self.homeViewModel.productList.count) {
+            make.top.mas_equalTo(self.superScrollViewl.mas_bottom).offset(AdaptationWidth(12));
+        }else{
+            make.top.mas_equalTo(self.specialScrollViewl.mas_bottom).offset(AdaptationWidth(12));
+        }
+        
         make.right.mas_equalTo(self.containerScrollView).offset(AdaptationWidth(-16));
         if (self.homeViewModel.clientGlobalInfo.adEntryList.count > 2) {
             make.height.mas_equalTo(AdaptationWidth(159));
@@ -193,10 +213,39 @@
         }
         
     }];
-    
+    if (self.highListAry.count) {
+        [self.containerScrollView addSubview:self.highShareView];
+        [self.highShareView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.containerScrollView).offset(AdaptationWidth(16));
+            make.top.mas_equalTo(self.adEntryView.mas_bottom).offset(AdaptationWidth(12));
+            make.right.mas_equalTo(self.containerScrollView).offset(AdaptationWidth(-16));
+            switch (self.highListAry.count) {
+                case 1:
+                    make.height.mas_equalTo(AdaptationWidth(190));
+                    break;
+                case 2:
+                    make.height.mas_equalTo(AdaptationWidth(310));
+                    break;
+                case 3:
+                    make.height.mas_equalTo(AdaptationWidth(430));
+                    break;
+                    
+                default:
+                    break;
+            }
+            
+            
+        }];
+    }
+
     [self.containerScrollView addSubview:self.wMPageController.view];
     [self.wMPageController.view mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.adEntryView.mas_bottom).offset(AdaptationWidth(16));
+        if (self.highListAry.count) {
+            make.top.equalTo(self.highShareView.mas_bottom).offset(AdaptationWidth(18));
+        }else{
+            make.top.equalTo(self.adEntryView.mas_bottom).offset(AdaptationWidth(16));
+        }
+        
         make.leading.trailing.bottom.equalTo(self.containerScrollView);
         make.width.equalTo(self.containerScrollView);
         make.height.mas_equalTo(ScreenHeight-120);
@@ -696,28 +745,31 @@
     [TalkingData trackEvent:@"首页-点击【广告入口】"];
     NSNumber *adType = self.homeViewModel.clientGlobalInfo.adEntryList[btn.tag-1031][@"adEntryType"];
     NSString *adId = self.homeViewModel.clientGlobalInfo.adEntryList[btn.tag-1031][@"id"];
-    NSString *adDetailUrl = XNULL_TO_NIL(self.homeViewModel.clientGlobalInfo.adEntryList[btn.tag-1031][@"configContent"]);
+    NSNumber *adDetailUrl = XNULL_TO_NIL(self.homeViewModel.clientGlobalInfo.adEntryList[btn.tag-1031][@"configContent"]);
     [XNetWork requestNetWorkWithUrl:Xadvertise_access_log andModel:@{@"adId":adId} andSuccessBlock:^(ResponseModel *model) {
         
     } andFailBlock:^(ResponseModel *model) {
         
     }];
+    if (!adDetailUrl) {
+        return;
+    }
     switch (adType.integerValue) {
         case 1:
         {
             BaseWebVC *vc = [[BaseWebVC alloc]init];
-            [vc reloadForGetWebView:adDetailUrl];
+            [vc reloadForGetWebView:adDetailUrl.description];
             vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
         case 2:
-            [[UIApplication sharedApplication]openURL:[NSURL URLWithString:adDetailUrl]];
+            [[UIApplication sharedApplication]openURL:[NSURL URLWithString:adDetailUrl.description]];
             break;
         case 3:
         {
             JobDetailVC *vc = [[JobDetailVC alloc]init];
-            vc.productNo = adDetailUrl;
+            vc.productNo = adDetailUrl.description;
             vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];
         }
@@ -733,7 +785,7 @@
         case 5:
         {
             BaseWebVC *vc = [[BaseWebVC alloc]init];
-            [vc reloadForGetWebView:adDetailUrl];
+            [vc reloadForGetWebView:adDetailUrl.description];
             vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];
         }
@@ -828,11 +880,9 @@
 - (UIScrollView *)superScrollViewl{
     if (!_superScrollViewl) {
         _superScrollViewl  = [[UIScrollView alloc]init];
-        if (self.homeViewModel.productList.count > 5) {
-            _superScrollViewl.contentSize = CGSizeMake(5 *AdaptationWidth(138 + 120), 0);
-        }else{
-            _superScrollViewl.contentSize = CGSizeMake(self.homeViewModel.productList.count *AdaptationWidth(138), 0);
-        }
+        
+        _superScrollViewl.contentSize = CGSizeMake(self.homeViewModel.productList.count *AdaptationWidth(138) + AdaptationWidth(100), 0);
+        
         _superScrollViewl.showsVerticalScrollIndicator = NO;
         _superScrollViewl.showsHorizontalScrollIndicator = NO;
         _superScrollViewl.pagingEnabled = NO;
@@ -903,19 +953,20 @@
                 
             }];
             
-            if (row > 5 && (row-1) == i) {
+            if ((row-1) == i) {
                 UIButton *allBtn = [[UIButton alloc]init];
                 allBtn.tag = 1059 ;
                 [allBtn setTitle:@"查看全部" forState:UIControlStateNormal];
                 [allBtn setImage:[UIImage imageNamed:@"icon_super_all"] forState:UIControlStateNormal];
                 [allBtn setTitleColor:LabelAssistantColor forState:UIControlStateNormal];
                 [allBtn.titleLabel setFont:[UIFont systemFontOfSize:AdaptationWidth(14)]];
-                allBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 90, 0, 0);
+                allBtn.imageEdgeInsets = UIEdgeInsetsMake(0, AdaptationWidth(58), 0, 0);
+                allBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -AdaptationWidth(37), 0, 0);
                 [allBtn addTarget:self action:@selector(btnOnClickSuper:) forControlEvents:UIControlEventTouchUpInside];
                 [_superScrollViewl addSubview:allBtn];
                 [allBtn mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.centerY.mas_equalTo(self->_superScrollViewl);
-                    make.left.mas_equalTo(view.mas_right);
+                    make.left.mas_equalTo(view.mas_right).offset(AdaptationWidth(15));
                 }];
             }
         }
@@ -1054,6 +1105,21 @@
      
     }
     return _adEntryView;
+}
+- (HighShareView *)highShareView{
+    if (!_highShareView) {
+        _highShareView = [[HighShareView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _highShareView.highListTitle = self.highTitle;
+        _highShareView.highListAry = self.highListAry;
+        [_highShareView creatInitTableView];
+    }
+    return _highShareView;
+}
+- (NSMutableArray *)highListAry {
+    if (!_highListAry) {
+        _highListAry = [NSMutableArray array];
+    }
+    return _highListAry;
 }
 - (ArtScrollView *)containerScrollView {
     if (!_containerScrollView) {

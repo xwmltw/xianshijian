@@ -110,6 +110,9 @@
 		04871528223FC20000679095 /* MyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04871527223FC20000679095 /* MyModel.m */; };
 		048B76DC22530117000C46C6 /* WSLWaterFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 048B76DA22530117000C46C6 /* WSLWaterFlowLayout.m */; };
 		048B76E0225352B8000C46C6 /* MZTimerLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 048B76DE225352B7000C46C6 /* MZTimerLabel.m */; };
+		0491470422951A7100E4F983 /* HighShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0491470322951A7100E4F983 /* HighShareView.m */; };
+		0491470722953FC700E4F983 /* HighShareVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0491470622953FC700E4F983 /* HighShareVC.m */; };
+		0491470A229544FB00E4F983 /* HighShareModelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04914709229544FB00E4F983 /* HighShareModelView.m */; };
 		0492251F226DC3A0008353CC /* HiBuyViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0492251E226DC3A0008353CC /* HiBuyViewModel.m */; };
 		04922522226DE879008353CC /* HiBuyProductQueryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04922521226DE879008353CC /* HiBuyProductQueryModel.m */; };
 		04922525226DF359008353CC /* HiBuyProductModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04922524226DF359008353CC /* HiBuyProductModel.m */; };
@@ -396,6 +399,12 @@
 		048B76DB22530117000C46C6 /* WSLWaterFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSLWaterFlowLayout.h; sourceTree = "<group>"; };
 		048B76DE225352B7000C46C6 /* MZTimerLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZTimerLabel.m; sourceTree = "<group>"; };
 		048B76DF225352B8000C46C6 /* MZTimerLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZTimerLabel.h; sourceTree = "<group>"; };
+		0491470222951A7100E4F983 /* HighShareView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HighShareView.h; sourceTree = "<group>"; };
+		0491470322951A7100E4F983 /* HighShareView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HighShareView.m; sourceTree = "<group>"; };
+		0491470522953FC700E4F983 /* HighShareVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HighShareVC.h; sourceTree = "<group>"; };
+		0491470622953FC700E4F983 /* HighShareVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HighShareVC.m; sourceTree = "<group>"; };
+		04914708229544FB00E4F983 /* HighShareModelView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HighShareModelView.h; sourceTree = "<group>"; };
+		04914709229544FB00E4F983 /* HighShareModelView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HighShareModelView.m; sourceTree = "<group>"; };
 		0492251D226DC3A0008353CC /* HiBuyViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiBuyViewModel.h; sourceTree = "<group>"; };
 		0492251E226DC3A0008353CC /* HiBuyViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiBuyViewModel.m; sourceTree = "<group>"; };
 		04922520226DE879008353CC /* HiBuyProductQueryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiBuyProductQueryModel.h; sourceTree = "<group>"; };
@@ -1299,6 +1308,8 @@
 				04E2FA12224611D3006EE2D5 /* SearchVieModel.m */,
 				B319BF32224748F800C602EA /* JobDetailViewModel.h */,
 				B319BF33224748F800C602EA /* JobDetailViewModel.m */,
+				04914708229544FB00E4F983 /* HighShareModelView.h */,
+				04914709229544FB00E4F983 /* HighShareModelView.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1317,6 +1328,8 @@
 				04E7713322422B8300C6E7CE /* HomeHotCollectionViewCell.xib */,
 				04E2FA0D22460FFC006EE2D5 /* Search */,
 				04E7714722426AB500C6E7CE /* JobDetial */,
+				0491470222951A7100E4F983 /* HighShareView.h */,
+				0491470322951A7100E4F983 /* HighShareView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1336,6 +1349,8 @@
 				04179DEA225239E1006C9481 /* SpecialJobListVC.m */,
 				044833132293E83100483F91 /* SuperProductVC.h */,
 				044833142293E83100483F91 /* SuperProductVC.m */,
+				0491470522953FC700E4F983 /* HighShareVC.h */,
+				0491470622953FC700E4F983 /* HighShareVC.m */,
 				043D47CA22851620001CF0EC /* 消息通知 */,
 			);
 			path = Controller;
@@ -1818,6 +1833,7 @@
 				04616FEC222D09E100E46B40 /* UITextField+Extension.m in Sources */,
 				04E7713822424F5800C6E7CE /* MySetVC.m in Sources */,
 				045E9BCF222E691C0084B777 /* BaseWebVC.m in Sources */,
+				0491470722953FC700E4F983 /* HighShareVC.m in Sources */,
 				04E15A2E224C70F500D0222E /* TaskModel.m in Sources */,
 				0461701B222D195400E46B40 /* XControllerViewHelper.m in Sources */,
 				045E175E224DC7E700323B55 /* RuleAlertView.m in Sources */,
@@ -1831,7 +1847,9 @@
 				B33F95792250F7A20057DB03 /* WaterfallColectionLayout.m in Sources */,
 				04BD114C224A03A80033B774 /* ProfitTableViewCell.m in Sources */,
 				04616FE4222D09D300E46B40 /* UIColor+Extension.m in Sources */,
+				0491470422951A7100E4F983 /* HighShareView.m in Sources */,
 				04B2A9F52251A15E0094A44B /* MFlowLayOut.m in Sources */,
+				0491470A229544FB00E4F983 /* HighShareModelView.m in Sources */,
 				04E7714622426A7A00C6E7CE /* JobDetailVC.m in Sources */,
 				0487150C223F769D00679095 /* MyVC.m in Sources */,
 				04BD1150224A077D0033B774 /* ProfitViewModel.m in Sources */,

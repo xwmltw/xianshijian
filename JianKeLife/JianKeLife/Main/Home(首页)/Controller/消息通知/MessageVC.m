@@ -8,9 +8,13 @@
 
 #import "MessageVC.h"
 #import "MessageDetailVC.h"
+#import "MySetVC.h"
 
 @interface MessageVC ()
-
+@property (nonatomic ,strong) NSDictionary *redDic;
+@property (nonatomic ,strong)UIView *redNoti;
+@property (nonatomic ,strong)UIView *redProfit;
+@property (nonatomic ,strong)UIView *pushView;
 @end
 
 @implementation MessageVC
@@ -22,7 +26,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = XColorWithRGB(248, 248, 248);
-    [self creatUI];
+    self.redDic = [NSDictionary dictionary];
+    WEAKSELF
+    [XNetWork requestNetWorkWithUrl:Xred_point_info andModel:nil andSuccessBlock:^(ResponseModel *model) {
+        weakSelf.redDic  = [NSDictionary dictionaryWithDictionary:model.data];
+        [weakSelf creatUI];
+    } andFailBlock:^(ResponseModel *model) {
+        
+    }];
+    
 }
 -(void)creatUI{
     
@@ -54,6 +66,7 @@
         make.left.mas_equalTo(self.view).offset(20);
         make.height.width.mas_equalTo(AdaptationWidth(40));
     }];
+   
     
     UIView *headView = [[UIView alloc]init];
     [headView setCornerValue:4];
@@ -65,6 +78,8 @@
         make.width.mas_equalTo(AdaptationWidth(355));
         make.height.mas_equalTo(AdaptationWidth(99));
     }];
+   
+    
     
     UIButton *notiBtn = [[UIButton alloc]init];
     notiBtn.tag = 1012;
@@ -80,7 +95,23 @@
         make.top.mas_equalTo(headView);
         make.centerX.mas_equalTo(headView).multipliedBy(0.5);
         make.height.mas_equalTo(AdaptationWidth(99));
+        make.width.mas_equalTo(AdaptationWidth(81));
     }];
+    
+    self.redNoti = [[UIView alloc]init];
+    [self.redNoti setCornerValue:5];
+    self.redNoti.backgroundColor = RedColor;
+    [notiBtn addSubview:self.redNoti];
+    [self.redNoti mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(notiBtn).offset(AdaptationWidth(15));
+        make.right.mas_equalTo(notiBtn).offset(AdaptationWidth(-15));
+        make.width.height.mas_equalTo(10);
+        
+    }];
+    
+    NSNumber *notired = self.redDic[@"noticeMessageRedPoint"];
+    self.redNoti.hidden = notired.integerValue ? NO:YES ;
+    
     
     UIButton *profitBtn = [[UIButton alloc]init];
     profitBtn.tag = 1013;
@@ -96,6 +127,72 @@
         make.top.mas_equalTo(headView);
         make.centerX.mas_equalTo(headView).multipliedBy(1.5);
         make.height.mas_equalTo(AdaptationWidth(99));
+        make.width.mas_equalTo(AdaptationWidth(81));
+    }];
+    
+    self.redProfit = [[UIView alloc]init];
+    [self.redProfit setCornerValue:2];
+    self.redProfit.backgroundColor = RedColor;
+    [profitBtn addSubview:self.redProfit];
+    [self.redProfit mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(profitBtn).offset(AdaptationWidth(15));
+        make.right.mas_equalTo(profitBtn).offset(AdaptationWidth(-15));
+        make.width.height.mas_equalTo(10);
+        
+    }];
+    
+    NSNumber *profitred = self.redDic[@"profitMessageRedPoint"];
+    self.redProfit.hidden = profitred.integerValue ? NO:YES ;
+    
+    [self.view addSubview:self.pushView];
+    [self.pushView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(headView.mas_bottom).offset(10);
+        make.left.mas_equalTo(self.view).offset(10);
+        make.width.mas_equalTo(AdaptationWidth(355));
+        make.height.mas_equalTo(AdaptationWidth(45));
+    }];
+//    UIUserNotificationSettings *setting = [[UIApplication sharedApplication] currentUserNotificationSettings];
+//    if (UIUserNotificationTypeNone == setting.types) {
+//        self.pushView.hidden = NO;
+//    }else{
+//        self.pushView.hidden = YES;
+//    }
+    
+    UIButton *cancelPush = [[UIButton alloc]init];
+    cancelPush.tag = 1014;
+    [cancelPush setImage:[UIImage imageNamed:@"icon_xx_black"] forState:UIControlStateNormal];
+    [cancelPush addTarget:self action:@selector(btnOnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.pushView addSubview:cancelPush];
+    [cancelPush mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.pushView).offset(1);
+        make.left.mas_equalTo(self.pushView).offset(8);
+
+    }];
+    
+    UILabel *titlePush = [[UILabel alloc]init];
+    [titlePush setText:@"避免错过重要通知，请开启系统通知"];
+    [titlePush setFont:[UIFont systemFontOfSize:AdaptationWidth(14)]];
+    [titlePush setTextColor:LabelMainColor];
+    [self.pushView addSubview:titlePush];
+    [titlePush mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(self.pushView).offset(-40);
+        make.centerY.mas_equalTo(self.pushView);
+    }];
+    
+    UIButton *goPush = [[UIButton alloc]init];
+    goPush.tag = 1015;
+    [goPush setBackgroundColor:RedColor];
+    [goPush setCornerValue:AdaptationWidth(15)];
+//    [goPush setBackgroundImage:[UIImage imageNamed:@"icon_message_push"] forState:UIControlStateNormal];
+    [goPush setTitle:@"去开启" forState:UIControlStateNormal];
+    [goPush addTarget:self action:@selector(btnOnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.pushView addSubview:goPush];
+    [goPush mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(self.pushView);
+        make.right.mas_equalTo(self.pushView).offset(-8);
+        make.width.mas_equalTo(AdaptationWidth(80));
+        make.height.mas_equalTo(AdaptationWidth(30));
+        
     }];
     
 }
@@ -106,6 +203,7 @@
             break;
         case 1012:
         {
+            self.redNoti.hidden = YES;
             MessageDetailVC *vc = [[MessageDetailVC alloc]init];
             vc.title = @"通知";
             vc.messageType = @1;
@@ -114,26 +212,34 @@
             break;
         case 1013:
         {
+            self.redProfit.hidden = YES;
             MessageDetailVC *vc = [[MessageDetailVC alloc]init];
             vc.title = @"收益";
             vc.messageType = @2;
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
-            
+        case 1014:{
+            self.pushView.hidden = YES;
+        }
+            break;
+        case 1015:{
+            MySetVC*vc = [[MySetVC alloc]init];
+          
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
         default:
             break;
     }
     
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (UIView *)pushView{
+    if (!_pushView) {
+        _pushView = [[UIView alloc]init];
+        _pushView.backgroundColor = XColorWithRGB(255, 236, 123);
+    }
+    return _pushView;
 }
-*/
 
 @end

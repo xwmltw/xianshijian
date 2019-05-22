@@ -16,6 +16,7 @@
 #import "WXApi.h"
 #import <ShareSDK/ShareSDK.h>
 #import "SaiXuanView.h"
+#import "XControllerViewHelper.h"
 @interface HiBuyTableViewVC ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,JSDropDownMenuDelegate,JSDropDownMenuDataSource>
 @property (nonatomic ,strong) SDCycleScrollView *sdcycleScrollView;
 @property (nonatomic ,strong) JSDropDownMenu *dropDownMenu;
@@ -184,7 +185,7 @@
     HiBuyProductdetialVC *vc = [[HiBuyProductdetialVC alloc]init];
     vc.productId = self.hiBuyViewModel.hiBuyTypeList[indexPath.row][@"id"];
     vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
+    [[XControllerViewHelper getTopViewController].navigationController pushViewController:vc animated:YES];
     
 }
 #pragma mark - SDCycleScrollView delegate
