@@ -9,10 +9,13 @@
 #import "LLSearchViewController.h"
 #import "LLSearchView.h"
 #import "HiBuySearchVC.h"
+#import "SearchVC.h"
 
 
 @interface LLSearchViewController ()<UISearchBarDelegate>
-
+{
+    UIView *titleView;
+}
 @property (nonatomic, strong) UISearchBar *searchBar;
 @property (nonatomic, strong) LLSearchView *searchView;
 @property (nonatomic, strong) NSMutableArray *hotArray;
@@ -45,15 +48,16 @@
 
 - (LLSearchView *)searchView
 {
-    if (!_searchView) {
-        self.searchView = [[LLSearchView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight - 64) hotArray:self.hotArray historyArray:self.historyArray];
+    [_searchView removeFromSuperview];
+//    if (!_searchView) {
+        _searchView = [[LLSearchView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight - 64) hotArray:self.hotArray historyArray:self.historyArray];
         __weak LLSearchViewController *weakSelf = self;
         _searchView.tapAction = ^(NSString *str) {
             HiBuySearchVC *vc = [[HiBuySearchVC alloc]init];
             vc.keyStr = str;
             [weakSelf.navigationController pushViewController:vc animated:YES];
         };
-    }
+//    }
     return _searchView;
 }
 
@@ -67,6 +71,13 @@
     if (!_searchBar.isFirstResponder) {
         [self.searchBar becomeFirstResponder];
     }
+    WEAKSELF
+    [XNetWork requestNetWorkWithUrl:Xquery_tb_product_keyword andModel:nil andSuccessBlock:^(ResponseModel *model) {
+        weakSelf.hotArray = model.data[@"dataRows"];
+        [weakSelf.view addSubview:weakSelf.searchView];
+    } andFailBlock:^(ResponseModel *model) {
+        
+    }];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -87,22 +98,17 @@
 //    [self.view addSubview:self.searchSuggestVC.view];
 //    [self addChildViewController:_searchSuggestVC];
     
-    WEAKSELF
-    [XNetWork requestNetWorkWithUrl:Xquery_tb_product_keyword andModel:nil andSuccessBlock:^(ResponseModel *model) {
-        [weakSelf.hotArray addObjectsFromArray:model.data[@"dataRows"]];
-        [weakSelf.view addSubview:weakSelf.searchView];
-    } andFailBlock:^(ResponseModel *model) {
-        
-    }];
+    
 }
 
 
 - (void)setBarButtonItem
 {
+    
     [self.navigationItem setHidesBackButton:YES];
     // 创建搜索框
-    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(5, 7, self.view.frame.size.width, 30)];
-    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(titleView.frame) - 15, 30)];
+    titleView = [[UIView alloc] initWithFrame:CGRectMake(5, 7, self.view.frame.size.width, 30)];
+    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(58, 0, CGRectGetWidth(titleView.frame) - 78, 30)];
     searchBar.placeholder = @"搜索商品或宝贝标题";
 //    searchBar.backgroundImage = [UIImage imageNamed:@"clearImage"];
     searchBar.delegate = self;
@@ -113,8 +119,23 @@
     UIButton *cancleBtn = [searchBar valueForKey:@"cancelButton"];
     //修改标题和标题颜色
     [cancleBtn setTitle:@"取消" forState:UIControlStateNormal];
-    [cancleBtn setTitleColor:LabelMainColor forState:UIControlStateNormal];
+    [cancleBtn.titleLabel setFont:[UIFont systemFontOfSize:13]];
+    [cancleBtn setTitleColor:XColorWithRGB(96, 96, 96) forState:UIControlStateNormal];
 
+    UIButton *selectBtn = [[UIButton alloc]init];
+    [selectBtn setCornerValue:4];
+    selectBtn.backgroundColor = XColorWithRGB(238, 238, 238);
+//    [selectBtn setImage:[UIImage imageNamed:@"icon_search_select"] forState:UIControlStateNormal];
+    [selectBtn setTitle:@"▼ 商品" forState:UIControlStateNormal];
+    [selectBtn.titleLabel setFont:[UIFont systemFontOfSize:12]];
+    [selectBtn setTitleColor:XColorWithRGB(96, 96, 96) forState:UIControlStateNormal];
+    [selectBtn addTarget:self action:@selector(btnOnclick:) forControlEvents:UIControlEventTouchUpInside];
+    [titleView addSubview:selectBtn];
+    [selectBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.bottom.mas_equalTo(self->titleView);
+        make.width.mas_equalTo(58);
+        make.height.mas_equalTo(30);
+    }];
     
     [titleView addSubview:searchBar];
     self.searchBar = searchBar;
@@ -127,7 +148,7 @@
 
 - (void)presentVCFirstBackClick:(UIButton *)sender
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 
@@ -136,9 +157,27 @@
 {
     [self.searchBar resignFirstResponder];
     
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
-
+- (void)btnOnclick:(UIButton *)btn{
+//    UIButton *actiBtn = [[UIButton alloc]init];
+//    [actiBtn setBorderWidth:1 andColor:XColorWithRGB(238, 238, 238)];
+////    actiBtn.backgroundColor = XColorWithRGB(238, 238, 238);
+//    //    [selectBtn setImage:[UIImage imageNamed:@"icon_search_select"] forState:UIControlStateNormal];
+//    [actiBtn setTitle:@"活动" forState:UIControlStateNormal];
+//    [actiBtn.titleLabel setFont:[UIFont systemFontOfSize:12]];
+//    [actiBtn setTitleColor:XColorWithRGB(96, 96, 96) forState:UIControlStateNormal];
+//    [actiBtn addTarget:self action:@selector(btnOnclick:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:actiBtn];
+//    [actiBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(btn);
+//        make.top.mas_equalTo(btn.mas_bottom);
+//        make.width.mas_equalTo(58);
+//        make.height.mas_equalTo(30);
+//    }];
+    SearchVC *vc = [[SearchVC alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 - (void)setHistoryArrWithStr:(NSString *)str
 {
@@ -168,7 +207,7 @@
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
     [self.searchBar resignFirstResponder];
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar

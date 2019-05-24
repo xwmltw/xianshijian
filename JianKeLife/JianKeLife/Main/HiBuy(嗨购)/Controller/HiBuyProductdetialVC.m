@@ -29,6 +29,8 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     self.tableView.delegate = self;
@@ -39,7 +41,6 @@
         make.top.left.right.mas_equalTo(self.view);
         make.bottom.mas_equalTo(AdaptationWidth(-58));
     }];
-    
     
     UIButton *balckBtn = [[UIButton alloc]init];
     balckBtn.tag = 5021;
@@ -226,8 +227,8 @@
             return AdaptationWidth(146);
             break;
         case 2:{
-            CGFloat width = self.hiBuyDetailModel.cellWidth > AdaptationWidth(500) ? self.hiBuyDetailModel.cellWidth : AdaptationWidth(500);
-            return width ;
+//            CGFloat width = self.hiBuyDetailModel.cellWidth > AdaptationWidth(500) ? self.hiBuyDetailModel.cellWidth : AdaptationWidth(500);
+            return ScreenHeight - AdaptationWidth(50) ;
         }
             break;
             
@@ -269,6 +270,14 @@
                         make.top.mas_equalTo(cell).offset(AdaptationWidth(10));
                     }];
                     
+                    UIImageView *shopImage = [[UIImageView alloc]init];
+                    [shopImage setImage:self.hiBuyDetailModel.shopTitle.length ? [UIImage imageNamed:@"icon_dian_name"]:[UIImage imageNamed:@""]];
+                    [cell.contentView addSubview:shopImage];
+                    [shopImage mas_makeConstraints:^(MASConstraintMaker *make) {
+                        make.left.mas_equalTo(cell).offset(AdaptationWidth(16));
+                        make.top.mas_equalTo(cellDetail.mas_bottom).offset(AdaptationWidth(8));
+                    }];
+                    
                     UILabel *shopLab = [[UILabel alloc]init];
                     
                     shopLab.text = self.hiBuyDetailModel.shopTitle.length ? [NSString stringWithFormat:@"店铺信息 %@",self.hiBuyDetailModel.shopTitle] : @" ";
@@ -276,7 +285,7 @@
                     [shopLab setTextColor:LabelAssistantColor];
                     [cell.contentView addSubview:shopLab];
                     [shopLab mas_makeConstraints:^(MASConstraintMaker *make) {
-                        make.left.mas_equalTo(cell).offset(AdaptationWidth(16));
+                        make.left.mas_equalTo(shopImage.mas_right).offset(AdaptationWidth(2));
                         make.top.mas_equalTo(cellDetail.mas_bottom).offset(AdaptationWidth(5));
                     }];
                     
@@ -340,6 +349,8 @@
                     }];
                     
                     UILabel *expectLab = [[UILabel alloc]init];
+                    expectLab.textAlignment = NSTextAlignmentCenter;
+                    [expectLab setCornerValue:2];
                     expectLab.backgroundColor = XColorWithRGB(255, 227, 227);
                     if (self.hiBuyDetailModel.commissionAmount.doubleValue) {
                         expectLab.hidden = NO;
@@ -354,6 +365,7 @@
                     [expectLab mas_makeConstraints:^(MASConstraintMaker *make) {
                         make.left.mas_equalTo(cell).offset(AdaptationWidth(16));
                         make.bottom.mas_equalTo(cell).offset(AdaptationWidth(-9));
+                        make.width.mas_equalTo(AdaptationWidth(93));
                     }];
                     
                     UIView *line = [[UIView alloc]init];
@@ -411,6 +423,10 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
  
 }
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
+}
+
 ////kvo
 //- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
 //    if ([keyPath isEqualToString:@"scrollView.contentSize"]) {

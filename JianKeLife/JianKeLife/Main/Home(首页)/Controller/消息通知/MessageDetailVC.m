@@ -8,6 +8,9 @@
 
 #import "MessageDetailVC.h"
 #import "MessageModel.h"
+#import "BaseWebVC.h"
+#import "ProfitVC.h"
+#import "MyTaskVC.h"
 
 
 @interface MessageDetailVC ()<UITableViewDelegate,UITableViewDataSource>
@@ -25,6 +28,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.backgroundColor = BackgroundColor;
+    self.tableView.mj_header = nil;
     [self.view addSubview:self.tableView];
     
     WEAKSELF
@@ -34,6 +38,8 @@
     } andFailBlock:^(ResponseModel *model) {
         
     }];
+    //
+    [XNotificationCenter postNotificationName:HomeRedNotification object:nil];
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
@@ -75,6 +81,7 @@
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         self.messageModel = [MessageModel mj_objectWithKeyValues:self.messageList[indexPath.row]];
+        cell.backgroundColor = BackgroundColor;
         UILabel *timeLab = [[UILabel alloc]init];
         [timeLab setText:self.messageModel.createTimeDesc];
       
@@ -84,6 +91,7 @@
         [timeLab mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.mas_equalTo(cell);
             make.top.mas_equalTo(cell).offset(10);
+            make.height.mas_equalTo(AdaptationWidth(20));
         }];
         
         UIView *headView = [[UIView alloc]init];
@@ -94,7 +102,7 @@
             make.top.mas_equalTo(timeLab.mas_bottom).offset(6);
             make.left.mas_equalTo(cell).offset(10);
             make.width.mas_equalTo(AdaptationWidth(355));
-            make.height.mas_equalTo(AdaptationWidth(99));
+            make.bottom.mas_equalTo(cell);
         }];
         
         UILabel *titleLab = [[UILabel alloc]init];
@@ -121,11 +129,57 @@
             make.right.mas_equalTo(headView).offset(AdaptationWidth(-16));
             make.top.mas_equalTo(titleLab.mas_bottom).offset(AdaptationWidth(10));
         }];
+        
+        UILabel *rightLab = [[UILabel alloc]init];
+        
+        [rightLab setText:@"➔"];
+        [rightLab setFont:[UIFont systemFontOfSize:AdaptationWidth(16)]];
+        [rightLab setTextColor:LabelAssistantColor];
+        [headView addSubview:rightLab];
+        [rightLab mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(headView).offset(AdaptationWidth(-16));
+            make.bottom.mas_equalTo(headView).offset(AdaptationWidth(-9));
+        }];
+      
+        
+        
     }
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    MessageModel *model = [MessageModel mj_objectWithKeyValues:self.messageList[indexPath.row]];
+    switch (model.targetPageType.integerValue) {
+        case 0:
+            
+            break;
+        case 1:
+        {
+            if (model.targetPageId.integerValue == 1) {
+                ProfitVC *vc = [[ProfitVC alloc]init];
+                [self.navigationController pushViewController:vc animated:YES];
+            }else{
+                MyTaskVC *vc = [[MyTaskVC alloc]init];
+                vc.wmPageSelect = MyTaskTableViewTypeStay;
+               
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+        }
+            break;
+        case 2:
+        {
+            BaseWebVC *vc = [[BaseWebVC alloc]init];
+            [vc reloadForGetWebView:model.targetUrl];
+            
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
 }
 
 #pragma mark - load

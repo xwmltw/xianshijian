@@ -34,13 +34,14 @@
 @interface HomeMainVC ()<UIScrollViewDelegate,SDCycleScrollViewDelegate,WMPageControllerDelegate,WMPageControllerDataSource,UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, strong) WMPageController *wMPageController;
 @property (nonatomic, strong) ArtScrollView *containerScrollView;
+@property (nonatomic, assign) BOOL canScroll;
 @property (nonatomic, strong) SDCycleScrollView *sdcycleScrollView;
 @property (nonatomic ,strong) UIScrollView *specialScrollViewl;
 @property (nonatomic ,strong) UIScrollView *superScrollViewl;
 @property (nonatomic ,strong) UIView *adEntryView;
 
 @property (nonatomic ,strong) HighShareView *highShareView;
-@property (nonatomic, strong) NSMutableArray *highListAry;
+@property (nonatomic, strong) NSArray *highListAry;
 @property (nonatomic, strong) NSString *highTitle;
 
 @property (nonatomic, strong) NSMutableArray *titleData;
@@ -52,13 +53,14 @@
 @property (nonatomic ,strong) UICollectionView *collectionView;
 @property (nonatomic ,strong) UIView *bgView;
 
+@property (nonatomic ,strong) UIView *redMessage;
+
 @property (nonatomic ,strong) LaXinModel *laXinModel;
 @property (nonatomic ,strong) LaXinView *laXinView;
 @property (nonatomic ,strong) QRcodeView *qrCodeView;
 @property (nonatomic ,strong) JobDetailViewModel *viewModel;
 @property (nonatomic ,strong) MyPersonShareView *myPersonShareView;
 
-@property (nonatomic, assign) BOOL canScroll;
 @end
 
 @implementation HomeMainVC
@@ -67,11 +69,11 @@
 }
 - (void)creatSearchBtn{
     UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 44)];
-    
+    bgView.backgroundColor = XColorWithRGB(201, 237, 255);
     UIButton *searchBtn = [[UIButton alloc]init];
     searchBtn.tag = 1001;
-    searchBtn.frame = CGRectMake(0, 7, AdaptationWidth(325), 30);
-    [searchBtn setBackgroundColor:LineColor];
+    searchBtn.frame = CGRectMake(0, 7, AdaptationWidth(315), 30);
+    [searchBtn setBackgroundColor:[UIColor whiteColor]];
     [searchBtn setImage:[UIImage imageNamed:@"icon_search"] forState:UIControlStateNormal];
     [searchBtn setTitle:@"输入关键词" forState:UIControlStateNormal];
     [searchBtn setTitleColor:LabelAssistantColor forState:UIControlStateNormal];
@@ -82,12 +84,33 @@
     
     UIButton *messageBtn = [[UIButton alloc]init];
     messageBtn.tag = 1002;
-    messageBtn.frame = CGRectMake(ScreenWidth-AdaptationWidth(44), 8, AdaptationWidth(28), AdaptationWidth(28));
+    messageBtn.frame = CGRectMake(ScreenWidth-AdaptationWidth(54), 8, AdaptationWidth(28), AdaptationWidth(28));
     [messageBtn setImage:[UIImage imageNamed:@"icon_noti_message"] forState:UIControlStateNormal];
     [messageBtn addTarget:self action:@selector(btnOnClockNaV:) forControlEvents:UIControlEventTouchUpInside];
     [bgView addSubview:messageBtn];
     
+    self.redMessage = [[UIView alloc]init];
+    [self.redMessage setCornerValue:4];
+    self.redMessage.backgroundColor = RedColor;
+    [messageBtn addSubview:self.redMessage];
+    [self.redMessage mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(messageBtn);
+        make.right.mas_equalTo(messageBtn);
+        make.width.height.mas_equalTo(8);
+    }];
+    
     self.navigationItem.titleView = bgView;
+}
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+//    self.navigationController.navigationBar.barTintColor = XColorWithRGB(201, 237, 255);
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage createImageWithColor:XColorWithRGB(201, 237, 255)] forBarMetrics:UIBarMetricsDefault];
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage createImageWithColor:[UIColor whiteColor]] forBarMetrics:UIBarMetricsDefault];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -100,12 +123,17 @@
         [clientGlobalInfo setClientGlobalInfoModel];
         
         [weakSelf.homeViewModel requestData];
+        weakSelf.homeViewModel.listType = @2;
+        [weakSelf.homeViewModel requestData];
         [weakSelf getData];
     } andFailBlock:^(id result) {
         
     }];
     
-   
+    //
+    _canScroll = YES;
+   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(acceptMsg:) name:kHomeLeaveTopNotification object:nil];
+    [XNotificationCenter addObserver:self selector:@selector(messageRedMsg) name:HomeRedNotification object:nil];
 }
 - (void)getData{
     
@@ -118,15 +146,16 @@
         }];
     
     [self creatLaXin];
-    
-    
+
     
     WEAKSELF
     [XNetWork requestNetWorkWithUrl:Xtb_classify_list andModel:nil andSuccessBlock:^(ResponseModel *model) {
         [weakSelf.titleData addObjectsFromArray:model.data[@"dataRows"]];
         [XNetWork requestNetWorkWithUrl:Xlist_favorite_product andModel:@{@"pageQueryReq":[[PageQueryRedModel new]mj_keyValues]} andSuccessBlock:^(ResponseModel *model) {
             weakSelf.highTitle = model.data[@"listName"];
-            [weakSelf.highListAry addObjectsFromArray:model.data[@"dataRows"]];
+//            [dataAry addObjectsFromArray:model.data[@"dataRows"]];
+            weakSelf.highListAry = [model.data[@"dataRows"] subarrayWithRange:NSMakeRange(0, 3)];
+            
             [weakSelf gettitles];
         } andFailBlock:^(ResponseModel *model) {
             
@@ -156,10 +185,21 @@
     [self setupView];
 }
 - (void)setupView {
+    
+    self.redMessage.hidden = self.clientGlobalInfo.messageCenterRedPoint.integerValue ? NO : YES;
+    
     [self.view addSubview:self.containerScrollView];
     [self.containerScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.leading.bottom.trailing.equalTo(self.view).offset(0);
     }];
+    
+    UIImageView *headImage = [[UIImageView alloc]init];
+    [headImage setImage:[UIImage imageNamed:@"icon_headBG"]];
+    [self.containerScrollView addSubview:headImage];
+    [headImage mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.mas_equalTo(self.containerScrollView);
+    }];
+    
     [self.containerScrollView addSubview:self.sdcycleScrollView];
     [self.sdcycleScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.containerScrollView).offset(AdaptationWidth(16));
@@ -675,24 +715,39 @@
     self.wMPageController.selectIndex = (int)indexPath.row;
     
 }
+#pragma mark - notification
+
+-(void)acceptMsg : (NSNotification *)notification{
+    NSDictionary *userInfo = notification.userInfo;
+    NSString *canScroll = userInfo[@"canScroll"];
+    if ([canScroll isEqualToString:@"1"]) {
+        _canScroll = YES;
+    }
+}
+- (void)messageRedMsg{
+    self.redMessage.hidden = YES;
+}
 #pragma mark - UIScrollViewDelegate
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
-//    CGFloat maxOffsetY = 136;
-//    CGFloat offsetY = scrollView.contentOffset.y;
+    CGFloat maxOffsetY = self.wMPageController.view.Y;
+    CGFloat offsetY = scrollView.contentOffset.y;
 //    self.navigationController.navigationBar.alpha = offsetY/136;
-//    if (offsetY>=maxOffsetY) {
-//        scrollView.contentOffset = CGPointMake(0, maxOffsetY);
-//        //NSLog(@"滑动到顶端");
-//        [[NSNotificationCenter defaultCenter] postNotificationName:@"HomeGoTopNotification" object:nil userInfo:@{@"canScroll":@"1"}];
-//        _canScroll = NO;
-//    } else {
-//        //NSLog(@"离开顶端");
-//        if (!_canScroll) {
-//            scrollView.contentOffset = CGPointMake(0, maxOffsetY);
+    if (offsetY>=maxOffsetY) {
+        scrollView.contentOffset = CGPointMake(0, maxOffsetY);
+        //NSLog(@"滑动到顶端");
+//        if (_canScroll) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:kHomeGoTopNotification object:nil userInfo:@{@"canScroll":@"1"}];
 //        }
-//    }
+        
+        _canScroll = NO;
+    } else {
+        //NSLog(@"离开顶端");
+        if (!_canScroll) {
+            scrollView.contentOffset = CGPointMake(0, maxOffsetY);
+        }
+    }
 }
 #pragma  mark - btn
 - (void)btnOnClockNaV:(UIButton *)btn{
@@ -702,6 +757,13 @@
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }else{
+        
+        if (![[UserInfo sharedInstance]isSignIn]) {
+            [XNetWork unLoginNotification];
+            return;
+        }
+        
+//        self.redMessage.hidden = YES;
         MessageVC *vc = [[MessageVC alloc]init];
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
@@ -752,6 +814,7 @@
         
     }];
     if (!adDetailUrl) {
+        [ProgressHUD showProgressHUDInView:nil withText:@"任务已经过期" afterDelay:1];
         return;
     }
     switch (adType.integerValue) {
@@ -880,8 +943,12 @@
 - (UIScrollView *)superScrollViewl{
     if (!_superScrollViewl) {
         _superScrollViewl  = [[UIScrollView alloc]init];
+        if (self.homeViewModel.productList.count > 5) {
+            _superScrollViewl.contentSize = CGSizeMake(5 *AdaptationWidth(138) + AdaptationWidth(100), 0);
+        }else{
+            _superScrollViewl.contentSize = CGSizeMake(self.homeViewModel.productList.count *AdaptationWidth(138) + AdaptationWidth(100), 0);
+        }
         
-        _superScrollViewl.contentSize = CGSizeMake(self.homeViewModel.productList.count *AdaptationWidth(138) + AdaptationWidth(100), 0);
         
         _superScrollViewl.showsVerticalScrollIndicator = NO;
         _superScrollViewl.showsHorizontalScrollIndicator = NO;
@@ -923,7 +990,7 @@
             }];
             
             UILabel *moneyLab = [[UILabel alloc]init];
-            moneyLab.text = @"立领￥";
+            moneyLab.text = @"领取￥";
             [moneyLab setFont:[UIFont fontWithName:@"PingFangSC-Regular" size:AdaptationWidth(12)]];
             [moneyLab setTextColor:RedColor];
             [view addSubview:moneyLab];
@@ -939,7 +1006,7 @@
             [view addSubview:money];
             [money mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.mas_equalTo(moneyLab.mas_right).offset(AdaptationWidth(2));
-                make.bottom.mas_equalTo(moneyLab);
+                make.bottom.mas_equalTo(moneyLab).offset(2);
                 
             }];
             
@@ -1109,15 +1176,16 @@
 - (HighShareView *)highShareView{
     if (!_highShareView) {
         _highShareView = [[HighShareView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+        [_highShareView setCornerValue:6];
         _highShareView.highListTitle = self.highTitle;
         _highShareView.highListAry = self.highListAry;
         [_highShareView creatInitTableView];
     }
     return _highShareView;
 }
-- (NSMutableArray *)highListAry {
+- (NSArray *)highListAry {
     if (!_highListAry) {
-        _highListAry = [NSMutableArray array];
+        _highListAry = [NSArray array];
     }
     return _highListAry;
 }
@@ -1126,6 +1194,8 @@
         _containerScrollView = [[ArtScrollView alloc] init];
         _containerScrollView.delegate = self;
         _containerScrollView.showsVerticalScrollIndicator = NO;
+        _containerScrollView.backgroundColor = BackgroundColor;
+//        _containerScrollView.autoresizingMask = UIViewAutoresizingNone;
     }
     return _containerScrollView;
 }
@@ -1152,6 +1222,7 @@
         //    self.progressWidth = AdaptationWidth(36); // 这里可以设置不同的宽度
         _wMPageController.progressViewWidths = self.itemsWidthArry;
         _wMPageController.progressHeight = 4;
+//        _wMPageController.view.backgroundColor = BackgroundColor;
         
     }
     return _wMPageController;
@@ -1238,5 +1309,8 @@
     }
     return _myPersonShareView;
 }
-
+- (void)dealloc{
+    [XNotificationCenter removeObserver:HomeRedNotification];
+    [XNotificationCenter removeObserver:self];
+}
 @end

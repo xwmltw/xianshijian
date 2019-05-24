@@ -131,7 +131,7 @@
     }];
     
     self.redProfit = [[UIView alloc]init];
-    [self.redProfit setCornerValue:2];
+    [self.redProfit setCornerValue:5];
     self.redProfit.backgroundColor = RedColor;
     [profitBtn addSubview:self.redProfit];
     [self.redProfit mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -151,12 +151,12 @@
         make.width.mas_equalTo(AdaptationWidth(355));
         make.height.mas_equalTo(AdaptationWidth(45));
     }];
-//    UIUserNotificationSettings *setting = [[UIApplication sharedApplication] currentUserNotificationSettings];
-//    if (UIUserNotificationTypeNone == setting.types) {
-//        self.pushView.hidden = NO;
-//    }else{
-//        self.pushView.hidden = YES;
-//    }
+    UIUserNotificationSettings *setting = [[UIApplication sharedApplication] currentUserNotificationSettings];
+    if (UIUserNotificationTypeNone == setting.types) {
+        self.pushView.hidden = NO;
+    }else{
+        self.pushView.hidden = YES;
+    }
     
     UIButton *cancelPush = [[UIButton alloc]init];
     cancelPush.tag = 1014;

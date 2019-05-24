@@ -276,13 +276,13 @@
             break;
         case 1:
             
-            self.highShareModelView.hiBuyProductQueryModel.orderType = indexPath.row ? @(indexPath.row + 5) : 0;
+            self.highShareModelView.hiBuyProductQueryModel.orderType = indexPath.row ? @(indexPath.row + 5) : @5;
             self.salesIndex = indexPath.row;
             [self.highShareModelView requestTypeDate];
             break;
         case 2:
             
-            self.highShareModelView.hiBuyProductQueryModel.orderType = indexPath.row ? @(indexPath.row + 7) : 0;
+            self.highShareModelView.hiBuyProductQueryModel.orderType = indexPath.row ? @(indexPath.row + 7) : @7;
             self.priceIndex = indexPath.row;
             [self.highShareModelView requestTypeDate];
             break;

@@ -19,6 +19,9 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [self.homeViewModel.productList removeAllObjects];
+    self.homeViewModel.pageQueryRedModel.page = @(1);
+    [self.homeViewModel requestData];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -50,9 +53,10 @@
         make.centerX.mas_equalTo(self.view);
         make.bottom.mas_equalTo(self.view).offset(-10);
     }];
+    self.tableView.mj_header = nil;
     self.tableView.mj_footer = [self.homeViewModel creatMjRefresh];
     self.homeViewModel.listType = self.superType;
-    [self.homeViewModel requestData];
+//    [self.homeViewModel requestData];
     WEAKSELF
     [self.homeViewModel setResponseBlock:^(id result) {
         [weakSelf.tableView.mj_footer endRefreshing];
@@ -94,84 +98,84 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-        
-        UIView *view = [[UIView alloc]init];
-        view.backgroundColor = [UIColor whiteColor];
-        [cell.contentView addSubview:view];
-        [view mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(cell).offset(AdaptationWidth(10));
-            make.left.mas_equalTo(cell).offset(AdaptationWidth(10));
-            make.right.mas_equalTo(cell).offset(AdaptationWidth(-10));
-            make.bottom.mas_equalTo(cell);
-        }];
-        UIImageView *image = [[UIImageView alloc]init];
-        [image sd_setImageWithURL:[NSURL URLWithString:self.homeViewModel.productList[indexPath.row][@"productFirstMainPicUrl"]]];
-       
-        [view addSubview:image];
-        [image mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.top.bottom.mas_equalTo(view);
-            make.width.mas_equalTo(AdaptationWidth(150));
-        }];
-        
-        UILabel *lab = [[UILabel alloc]init];
-        lab.text = self.homeViewModel.productList[indexPath.row][@"productTitle"];
-        [lab setFont:[UIFont fontWithName:@"PingFangSC-Regular" size:AdaptationWidth(16)]];
-        [lab setTextColor:LabelMainColor];
-        [view addSubview:lab];
-        [lab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(image.mas_right).offset(AdaptationWidth(10));
-            make.right.mas_equalTo(view).offset(AdaptationWidth(-10));
-            make.top.mas_equalTo(view).offset(AdaptationWidth(10));
-            
-        }];
-        
-        UILabel *moneyLab = [[UILabel alloc]init];
-        moneyLab.text = @"立领￥";
-        [moneyLab setFont:[UIFont fontWithName:@"PingFangSC-Regular" size:AdaptationWidth(12)]];
-        [moneyLab setTextColor:RedColor];
-        [view addSubview:moneyLab];
-        [moneyLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(image.mas_right).offset(AdaptationWidth(10));
-            make.bottom.mas_equalTo(view).offset(AdaptationWidth(-21));
-            
-        }];
-        UILabel *money = [[UILabel alloc]init];
-        money.text = [NSString stringWithFormat:@"%.2f",[self.homeViewModel.productList[indexPath.row][@"productSalary"] doubleValue]/100];
-        [money setFont:[UIFont fontWithName:@"PingFangSC-Regular" size:AdaptationWidth(18)]];
-        [money setTextColor:RedColor];
-        [view addSubview:money];
-        [money mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(moneyLab.mas_right).offset(AdaptationWidth(2));
-            make.bottom.mas_equalTo(moneyLab);
-            
-        }];
-        
-        UIButton *goBtn = [[UIButton alloc]init];
-        [goBtn setCornerValue:15];
-        goBtn.backgroundColor = XColorWithRGB(255, 149, 149);
-        [goBtn setTitle:@"立即参与" forState:UIControlStateNormal];
-        [goBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [goBtn.titleLabel setFont:[UIFont systemFontOfSize:AdaptationWidth(14)]];
-        [view addSubview:goBtn];
-        [goBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.mas_equalTo(money);
-            make.right.mas_equalTo(view).offset(AdaptationWidth(-10));
-            make.width.mas_equalTo(AdaptationWidth(82));
-            make.height.mas_equalTo(AdaptationWidth(28));
-        }];
-        
-        UILabel *num = [[UILabel alloc]init];
-        num.text = [NSString stringWithFormat:@"已领取%@",self.homeViewModel.productList[indexPath.row][@"prodApplyCount"]];
-        [num setFont:[UIFont fontWithName:@"PingFangSC-Regular" size:AdaptationWidth(10)]];
-        [num setTextColor:LabelAssistantColor];
-        [view addSubview:num];
-        [num mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(goBtn.mas_bottom).offset(AdaptationWidth(3));
-            make.centerX.mas_equalTo(goBtn);
-            
-        }];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
+    UIView *view = [[UIView alloc]init];
+    view.backgroundColor = [UIColor whiteColor];
+    [cell.contentView addSubview:view];
+    [view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(cell).offset(AdaptationWidth(10));
+        make.left.mas_equalTo(cell).offset(AdaptationWidth(10));
+        make.right.mas_equalTo(cell).offset(AdaptationWidth(-10));
+        make.bottom.mas_equalTo(cell);
+    }];
+    UIImageView *image = [[UIImageView alloc]init];
+    [image sd_setImageWithURL:[NSURL URLWithString:self.homeViewModel.productList[indexPath.row][@"productFirstMainPicUrl"]]];
     
+    [view addSubview:image];
+    [image mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.bottom.mas_equalTo(view);
+        make.width.mas_equalTo(AdaptationWidth(150));
+    }];
+    
+    UILabel *lab = [[UILabel alloc]init];
+    lab.text = self.homeViewModel.productList[indexPath.row][@"productTitle"];
+    [lab setFont:[UIFont fontWithName:@"PingFangSC-Regular" size:AdaptationWidth(16)]];
+    [lab setTextColor:LabelMainColor];
+    [view addSubview:lab];
+    [lab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(image.mas_right).offset(AdaptationWidth(10));
+        make.right.mas_equalTo(view).offset(AdaptationWidth(-10));
+        make.top.mas_equalTo(view).offset(AdaptationWidth(10));
+        
+    }];
+    
+    UILabel *moneyLab = [[UILabel alloc]init];
+    moneyLab.text = @"立领￥";
+    [moneyLab setFont:[UIFont fontWithName:@"PingFangSC-Regular" size:AdaptationWidth(12)]];
+    [moneyLab setTextColor:RedColor];
+    [view addSubview:moneyLab];
+    [moneyLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(image.mas_right).offset(AdaptationWidth(10));
+        make.bottom.mas_equalTo(view).offset(AdaptationWidth(-21));
+        
+    }];
+    UILabel *money = [[UILabel alloc]init];
+    money.text = [NSString stringWithFormat:@"%.2f",[self.homeViewModel.productList[indexPath.row][@"productSalary"] doubleValue]/100];
+    [money setFont:[UIFont fontWithName:@"PingFangSC-Regular" size:AdaptationWidth(18)]];
+    [money setTextColor:RedColor];
+    [view addSubview:money];
+    [money mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(moneyLab.mas_right).offset(AdaptationWidth(2));
+        make.bottom.mas_equalTo(moneyLab);
+        
+    }];
+    
+    UIButton *goBtn = [[UIButton alloc]init];
+    goBtn.enabled = NO;
+    [goBtn setCornerValue:15];
+    goBtn.backgroundColor = XColorWithRGB(255, 149, 149);
+    [goBtn setTitle:@"立即参与" forState:UIControlStateNormal];
+    [goBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [goBtn.titleLabel setFont:[UIFont systemFontOfSize:AdaptationWidth(14)]];
+    [view addSubview:goBtn];
+    [goBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(money);
+        make.right.mas_equalTo(view).offset(AdaptationWidth(-10));
+        make.width.mas_equalTo(AdaptationWidth(82));
+        make.height.mas_equalTo(AdaptationWidth(28));
+    }];
+    
+    UILabel *num = [[UILabel alloc]init];
+    num.text = [NSString stringWithFormat:@"已领取%@",self.homeViewModel.productList[indexPath.row][@"prodApplyCount"]];
+    [num setFont:[UIFont fontWithName:@"PingFangSC-Regular" size:AdaptationWidth(10)]];
+    [num setTextColor:LabelAssistantColor];
+    [view addSubview:num];
+    [num mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(goBtn.mas_bottom).offset(AdaptationWidth(3));
+        make.centerX.mas_equalTo(goBtn);
+        
+    }];
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -191,6 +195,7 @@
     self.tableView.tableHeaderView = [self creatHeadView];
     self.homeViewModel.listType = self.superType;
     [self.homeViewModel.productList removeAllObjects];
+    self.homeViewModel.pageQueryRedModel.page = @(1);
     [self.homeViewModel requestData];
     
     [self.superBtn setImage: [UIImage imageNamed:self.superType.integerValue == 1 ? @"icon_super_new" :@"icon_super_quan"] forState:UIControlStateNormal];

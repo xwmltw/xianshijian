@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface HighShareView : BaseTableView
-@property (nonatomic ,strong) NSMutableArray *highListAry;
+@property (nonatomic ,strong) NSArray *highListAry;
 @property (nonatomic ,strong) NSString *highListTitle;
 - (void)creatInitTableView;
 @end

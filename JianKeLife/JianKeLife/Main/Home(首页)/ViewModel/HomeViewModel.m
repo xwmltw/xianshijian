@@ -97,7 +97,7 @@
 }
 - (MJRefreshAutoNormalFooter *)creatMjRefresh{
     self.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRefresh)];
-    [self.footer setTitle:@"" forState:MJRefreshStateIdle];
+    [self.footer setTitle:@"没有更多了" forState:MJRefreshStateIdle];
     [self.footer setTitle:@"正在加载..." forState:MJRefreshStateRefreshing];
     self.footer.stateLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:AdaptationWidth(12)];
     self.footer.stateLabel.textColor = XColorWithRBBA(34, 58, 80, 0.32);

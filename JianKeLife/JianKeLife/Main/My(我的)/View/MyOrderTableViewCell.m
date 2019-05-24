@@ -18,6 +18,8 @@
 - (void)setModel:(MyOrderModel *)model{
     if ([model.orderType isEqualToString:@"天猫"]) {
         [self.logoImage setImage:[UIImage imageNamed:@"icon_tianmao"]];
+    } else if([model.orderType isEqualToString:@"拼多多"]) {
+        [self.logoImage setImage:[UIImage imageNamed:@"icon_pinduoduo"]];
     }else{
         [self.logoImage setImage:[UIImage imageNamed:@"icon_taotao"]];
     }

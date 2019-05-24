@@ -78,9 +78,10 @@
         NSString *text = textArr[i];
         CGFloat width = [self getWidthWithStr:text] + 30;
         if (letfWidth + width + 15 > ScreenWidth) {
-            if (y >= 130 && [title isEqualToString:@"历史搜索"]) {
+//            if (y >= 130 && [title isEqualToString:@"历史搜索"]) {
+            if (textArr.count > 20 && [title isEqualToString:@"历史搜索"]) {
                 [self removeTestDataWithTextArr:textArr index:i];
-                break;
+//                break;
             }
             y += 40;
             letfWidth = 15;
@@ -157,7 +158,8 @@
 
 - (void)removeTestDataWithTextArr:(NSMutableArray *)testArr index:(int)index
 {
-    NSRange range = {index, testArr.count - index - 1};
+//    NSRange range = {index, testArr.count - index -1};
+    NSRange range = {20, testArr.count-20};
     [testArr removeObjectsInRange:range];
     [NSKeyedArchiver archiveRootObject:testArr toFile:KHistorySearchPath];
 }

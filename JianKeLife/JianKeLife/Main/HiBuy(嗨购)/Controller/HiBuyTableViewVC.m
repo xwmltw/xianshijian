@@ -25,6 +25,7 @@
 @property (nonatomic ,strong) UITableView *tableView;
 @property (nonatomic ,strong) UIButton *topBtn;
 @property (nonatomic ,strong) SaiXuanView *saiXuanView;
+@property (nonatomic, assign) BOOL canScroll;
 
 @end
 
@@ -88,6 +89,9 @@
         make.width.height.mas_equalTo(AdaptationWidth(76));
     }];
     [XNotificationCenter addObserver:self selector:@selector(missBackgrond) name:@"backgroundTapped" object:nil];
+    // add notification
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(acceptMsg:) name:kHomeGoTopNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(acceptMsg:) name:kHomeLeaveTopNotification object:nil];//其中一个TAB离开顶部的时候，如果其他几个偏移量不为0的时候，要把他们都置为0
 }
 //
 - (UIView *)creatHead{
@@ -116,6 +120,7 @@
     [self.tableView scrollToRowAtIndexPath:indexPat atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 //    [self.tableView setContentOffset:CGPointMake(0, 0) animated:YES];
 }
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     CGFloat height = self.isFirstType ? AdaptationWidth(300) : AdaptationWidth(ScreenHeight - 100);
     if(scrollView.contentOffset.y < height){
@@ -125,8 +130,33 @@
         self.topBtn.hidden = NO;
         
     }
+    if (!self.canScroll) {
+        [scrollView setContentOffset:CGPointZero];
+    }
+    CGFloat offsetY = scrollView.contentOffset.y;
+    if (offsetY < 0) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kHomeLeaveTopNotification object:nil userInfo:@{@"canScroll":@"1"}];
+    }
    
 }
+#pragma mark - notification
+
+-(void)acceptMsg:(NSNotification *)notification {
+    NSString *notificationName = notification.name;
+    if ([notificationName isEqualToString:kHomeGoTopNotification]) {
+        NSDictionary *userInfo = notification.userInfo;
+        NSString *canScroll = userInfo[@"canScroll"];
+        if ([canScroll isEqualToString:@"1"]) {
+            self.canScroll = YES;
+            self.tableView.showsVerticalScrollIndicator = YES;
+        }
+    }else if([notificationName isEqualToString:kHomeLeaveTopNotification]){
+        self.tableView.contentOffset = CGPointZero;
+        self.canScroll = NO;
+        self.tableView.showsVerticalScrollIndicator = NO;
+    }
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -521,5 +551,6 @@
 }
 - (void)dealloc{
     [XNotificationCenter removeObserver:@"backgroundTapped"];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 @end

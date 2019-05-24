@@ -30,6 +30,11 @@ static NSString *const UnLoginNotification = @"UnLoginNotification";
 static NSString *const LoginSuccessNotification = @"LoginSuccessNotification";
 static NSString *const WXLoginNotification = @"WXLoginNotification";
 static NSString *const TaskReturnNotification = @"TaskReturnNotification";
+static NSString *const HomeRedNotification = @"HomeRedNotification";
+/****进入置顶通知****/
+#define kHomeGoTopNotification               @"Home_Go_Top"
+/****离开置顶通知****/
+#define kHomeLeaveTopNotification            @"Home_Leave_Top"
 /**接口名称*/
 
 #define Xget_global_info            @"/mapi/global/get_global_info" //全局

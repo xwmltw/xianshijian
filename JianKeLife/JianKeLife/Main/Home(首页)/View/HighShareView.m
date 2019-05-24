@@ -99,10 +99,11 @@
         [image sd_setImageWithURL:[NSURL URLWithString:self.hiBuyProductModel.pictUrl] placeholderImage:[UIImage imageNamed:@"今日值享logo定稿"]];
         [view addSubview:image];
         [image mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(view).offset(AdaptationWidth(8));
+//            make.top.mas_equalTo(view).offset(AdaptationWidth(8));
             make.left.mas_equalTo(view).offset(AdaptationWidth(8));
-            make.bottom.mas_equalTo(view).offset(AdaptationWidth(-8));
-            make.width.mas_equalTo(AdaptationWidth(96));
+            make.centerY.mas_equalTo(view);
+//            make.bottom.mas_equalTo(view).offset(AdaptationWidth(-8));
+            make.width.height.mas_equalTo(AdaptationWidth(96));
         }];
         
         UIImageView *numImage = [[UIImageView alloc]init];
@@ -141,6 +142,7 @@
         }];
         
         UILabel *yuguLab = [[UILabel alloc]init];
+        yuguLab.textAlignment = NSTextAlignmentCenter;
         [yuguLab setCornerValue:AdaptationWidth(2)];
         [yuguLab setBorderWidth:1 andColor:RedColor];
         if (self.hiBuyProductModel.commissionAmount.doubleValue) {
@@ -153,7 +155,7 @@
         [view addSubview:yuguLab];
         [yuguLab mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(image.mas_right).offset(AdaptationWidth(14));
-            make.width.mas_equalTo(AdaptationWidth(90));
+            make.width.mas_equalTo(AdaptationWidth(95));
             make.bottom.mas_equalTo(image);
             
         }];
@@ -161,7 +163,7 @@
         UILabel *juanLab = [[UILabel alloc]init];
         [juanLab setCornerValue:AdaptationWidth(2)];
         [juanLab setBorderWidth:1 andColor:XColorWithRGB(255, 157, 0)];
-     
+        juanLab.textAlignment = NSTextAlignmentCenter;
         [juanLab setFont:[UIFont fontWithName:@"PingFangSC-Regular" size:AdaptationWidth(12)]];
         [juanLab setTextColor:XColorWithRGB(255, 157, 0)];
         [view addSubview:juanLab];
@@ -179,7 +181,7 @@
         [view addSubview:unitLab];
         [unitLab mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(image.mas_right).offset(AdaptationWidth(14));
-            make.bottom.mas_equalTo(view).offset(AdaptationWidth(-30));
+            make.bottom.mas_equalTo(view).offset(AdaptationWidth(-35));
             
         }];
         
@@ -190,7 +192,7 @@
         [view addSubview:moneyLab];
         [moneyLab mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(unitLab.mas_right).offset(AdaptationWidth(1));
-            make.bottom.mas_equalTo(unitLab);
+            make.bottom.mas_equalTo(unitLab).offset(AdaptationWidth(3));
             
         }];
         
