@@ -34,6 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = XColorWithRGB(248, 248, 248);
+    [self.view setCornerValue:6];
     
 //    if (self.isFirstType && self.clientGlobalInfo.bannerAdListTBPage.count > 0) {
 //        [self.view addSubview:self.sdcycleScrollView];
@@ -48,7 +49,7 @@
     
     
 //    self.tableView.tableHeaderView = [self creatHead];
-    
+    [self.tableView setCornerValue:6];
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
 //        make.top.mas_equalTo(self.dropDownMenu.mas_bottom).offset(2);

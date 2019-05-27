@@ -293,7 +293,7 @@
     if (self.itemsWidth > ScreenWidth) {
         UIButton *selectBtn = [[UIButton alloc]init];
         
-        [selectBtn setBackgroundColor:[UIColor whiteColor]];
+        [selectBtn setBackgroundColor:BackgroundColor];
         [selectBtn setImage:[UIImage imageNamed:@"icon_down"] forState:UIControlStateNormal];
         [selectBtn addTarget:self action:@selector(btnOnClockSelect:) forControlEvents:UIControlEventTouchUpInside];
         [self.wMPageController.view addSubview:selectBtn];
@@ -618,7 +618,7 @@
     return self.titleData[index][@"classifyName"];
 }
 - (CGRect)pageController:(WMPageController *)pageController preferredFrameForContentView:(WMScrollView *)contentView{
-    return CGRectMake(0, AdaptationWidth(42), ScreenWidth, ScreenHeight-AdaptationWidth(151));
+    return CGRectMake(10, AdaptationWidth(42), ScreenWidth-20, ScreenHeight-AdaptationWidth(151));
 }
 - (CGRect)pageController:(WMPageController *)pageController preferredFrameForMenuView:(WMMenuView *)menuView{
     if (self.itemsWidth > ScreenWidth) {
@@ -1222,7 +1222,7 @@
         //    self.progressWidth = AdaptationWidth(36); // 这里可以设置不同的宽度
         _wMPageController.progressViewWidths = self.itemsWidthArry;
         _wMPageController.progressHeight = 4;
-//        _wMPageController.view.backgroundColor = BackgroundColor;
+        _wMPageController.view.backgroundColor = BackgroundColor;
         
     }
     return _wMPageController;

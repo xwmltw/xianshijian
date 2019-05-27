@@ -192,7 +192,7 @@
         [view addSubview:moneyLab];
         [moneyLab mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(unitLab.mas_right).offset(AdaptationWidth(1));
-            make.bottom.mas_equalTo(unitLab).offset(AdaptationWidth(3));
+            make.bottom.mas_equalTo(unitLab).offset(AdaptationWidth(4));
             
         }];
         
@@ -206,7 +206,7 @@
         [cell.contentView addSubview:oldLab];
         [oldLab mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(moneyLab.mas_right).offset(AdaptationWidth(5));
-            make.centerY.mas_equalTo(moneyLab);
+            make.bottom.mas_equalTo(unitLab);
         }];
         
         if (self.hiBuyProductModel.couponAmount.integerValue > 0) {

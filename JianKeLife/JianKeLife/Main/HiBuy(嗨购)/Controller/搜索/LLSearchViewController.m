@@ -68,9 +68,9 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if (!_searchBar.isFirstResponder) {
-        [self.searchBar becomeFirstResponder];
-    }
+//    if (!_searchBar.isFirstResponder) {
+//        [self.searchBar becomeFirstResponder];
+//    }
     WEAKSELF
     [XNetWork requestNetWorkWithUrl:Xquery_tb_product_keyword andModel:nil andSuccessBlock:^(ResponseModel *model) {
         weakSelf.hotArray = model.data[@"dataRows"];
@@ -84,7 +84,7 @@
 {
     [super viewWillDisappear:animated];
     // 回收键盘
-    [self.searchBar resignFirstResponder];
+//    [self.searchBar resignFirstResponder];
 //    _searchSuggestVC.view.hidden = YES;
 }
 
@@ -139,7 +139,7 @@
     
     [titleView addSubview:searchBar];
     self.searchBar = searchBar;
-    [self.searchBar becomeFirstResponder];
+//    [self.searchBar becomeFirstResponder];
     self.navigationItem.titleView = titleView;
     
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];

@@ -55,15 +55,15 @@
                         <color key="textColor" red="1" green="0.40392156862745099" blue="0.40392156862745099" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="预估收益￥0.02" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Waf-NU-rRO">
-                        <rect key="frame" x="152" y="121.5" width="87" height="15"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="预估收益￥10.02" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Waf-NU-rRO">
+                        <rect key="frame" x="152" y="121.5" width="103" height="15"/>
                         <color key="backgroundColor" red="1" green="0.8901960784313725" blue="0.8901960784313725" alpha="1" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="1" green="0.40392156862745099" blue="0.40392156862745099" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="券￥10.02" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9CO-cV-gGW">
-                        <rect key="frame" x="243" y="121.5" width="56" height="15"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="券￥10.02" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9CO-cV-gGW">
+                        <rect key="frame" x="259" y="121.5" width="70" height="15"/>
                         <color key="backgroundColor" red="1" green="0.95686274509803915" blue="0.81960784313725488" alpha="1" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="1" green="0.61568627450980395" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -84,9 +84,11 @@
                     <constraint firstItem="9CO-cV-gGW" firstAttribute="leading" secondItem="Waf-NU-rRO" secondAttribute="trailing" constant="4" id="KIq-gF-1dd"/>
                     <constraint firstAttribute="trailing" secondItem="AxN-S5-aOf" secondAttribute="trailing" constant="16" id="KhY-Y6-Nzh"/>
                     <constraint firstItem="T8S-M6-oh9" firstAttribute="leading" secondItem="D4U-US-OvH" secondAttribute="trailing" constant="4" id="M22-mu-7Ja"/>
+                    <constraint firstItem="9CO-cV-gGW" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="70:375" id="P4k-g4-zJP"/>
                     <constraint firstItem="AxN-S5-aOf" firstAttribute="leading" secondItem="Uuz-5N-KYY" secondAttribute="trailing" constant="10" id="St9-s4-xld"/>
                     <constraint firstItem="Czs-xg-eEn" firstAttribute="top" secondItem="AxN-S5-aOf" secondAttribute="bottom" constant="5.5" id="Vd2-mM-EKu"/>
                     <constraint firstItem="T8S-M6-oh9" firstAttribute="bottom" secondItem="SAe-uQ-dsX" secondAttribute="bottom" id="WaA-6W-uSf"/>
+                    <constraint firstItem="Waf-NU-rRO" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="103:375" id="c9O-wb-ycl"/>
                     <constraint firstItem="SAe-uQ-dsX" firstAttribute="leading" secondItem="Uuz-5N-KYY" secondAttribute="trailing" constant="10" id="dAK-2d-ycc"/>
                     <constraint firstItem="D4U-US-OvH" firstAttribute="bottom" secondItem="SAe-uQ-dsX" secondAttribute="bottom" constant="3" id="gtU-vH-2yf"/>
                     <constraint firstItem="Waf-NU-rRO" firstAttribute="bottom" secondItem="Uuz-5N-KYY" secondAttribute="bottom" id="hky-ey-S8e"/>
