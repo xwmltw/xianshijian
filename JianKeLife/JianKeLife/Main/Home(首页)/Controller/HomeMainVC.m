@@ -148,7 +148,14 @@
         [XNetWork requestNetWorkWithUrl:Xlist_favorite_product andModel:@{@"pageQueryReq":[[PageQueryRedModel new]mj_keyValues]} andSuccessBlock:^(ResponseModel *model) {
             weakSelf.highTitle = model.data[@"listName"];
 //            [dataAry addObjectsFromArray:model.data[@"dataRows"]];
-            weakSelf.highListAry = [model.data[@"dataRows"] subarrayWithRange:NSMakeRange(0, 3)];
+            NSArray *arry = [NSArray arrayWithArray:model.data[@"dataRows"]];
+            
+            if (arry.count > 3) {
+                weakSelf.highListAry = [model.data[@"dataRows"] subarrayWithRange:NSMakeRange(0, 3)];
+            }else{
+                weakSelf.highListAry = model.data[@"dataRows"];
+            }
+            
             
             [weakSelf gettitles];
         } andFailBlock:^(ResponseModel *model) {
