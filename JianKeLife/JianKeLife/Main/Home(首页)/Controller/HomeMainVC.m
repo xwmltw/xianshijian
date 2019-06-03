@@ -137,13 +137,7 @@
 }
 - (void)getData{
     
-    if (self.clientGlobalInfo.versionInfo)
-        [XAlertView alertWithTitle:@"更新提示" message:self.clientGlobalInfo.versionInfo.versionDesc cancelButtonTitle:self.clientGlobalInfo.versionInfo.needForceUpdate.integerValue ? @"":@"取消"confirmButtonTitle:@"更新" viewController:self completion:^(UIAlertAction *action, NSInteger buttonIndex) {
-            if (buttonIndex == 1) {
-                [[UIApplication sharedApplication]openURL:[NSURL URLWithString:self.clientGlobalInfo.versionInfo.url]];
-                exit(0);
-            }
-        }];
+    
     
     [self creatLaXin];
 
@@ -208,21 +202,27 @@
         make.height.mas_equalTo(AdaptationWidth(130));
     }];
     
-    [self.containerScrollView addSubview:self.specialScrollViewl];
-    [self.specialScrollViewl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.containerScrollView).offset(AdaptationWidth(16));
-        make.top.mas_equalTo(self.sdcycleScrollView.mas_bottom).offset(AdaptationWidth(6));
-        make.right.mas_equalTo(self.containerScrollView).offset(AdaptationWidth(-16));
-        make.height.mas_equalTo(AdaptationWidth(100));
-    }];
-    
+    if (self.homeViewModel.clientGlobalInfo.specialEntryList.count) {
+        [self.containerScrollView addSubview:self.specialScrollViewl];
+        [self.specialScrollViewl mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.containerScrollView).offset(AdaptationWidth(16));
+            make.top.mas_equalTo(self.sdcycleScrollView.mas_bottom).offset(AdaptationWidth(8));
+            make.right.mas_equalTo(self.containerScrollView).offset(AdaptationWidth(-16));
+            make.height.mas_equalTo(AdaptationWidth(100));
+        }];
+    }
+
     if (self.homeViewModel.productList.count) {
         UIImageView *image = [[UIImageView alloc]init];
         [image setImage: [UIImage imageNamed:@"icon_super"]];
         [self.containerScrollView addSubview:image];
         [image mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.containerScrollView).offset(AdaptationWidth(16));
-            make.top.mas_equalTo(self.specialScrollViewl.mas_bottom).offset(AdaptationWidth(12));
+            if (self.homeViewModel.clientGlobalInfo.specialEntryList.count) {
+                make.top.mas_equalTo(self.specialScrollViewl.mas_bottom).offset(AdaptationWidth(12));
+            }else{
+                make.top.mas_equalTo(self.sdcycleScrollView.mas_bottom).offset(AdaptationWidth(8));
+            }
         }];
         
         [self.containerScrollView addSubview:self.superScrollViewl];
@@ -242,7 +242,11 @@
         if (self.homeViewModel.productList.count) {
             make.top.mas_equalTo(self.superScrollViewl.mas_bottom).offset(AdaptationWidth(12));
         }else{
-            make.top.mas_equalTo(self.specialScrollViewl.mas_bottom).offset(AdaptationWidth(12));
+            if (self.homeViewModel.clientGlobalInfo.specialEntryList.count) {
+                make.top.mas_equalTo(self.specialScrollViewl.mas_bottom).offset(AdaptationWidth(12));
+            }else{
+                make.top.mas_equalTo(self.sdcycleScrollView.mas_bottom).offset(AdaptationWidth(8));
+            }
         }
         
         make.right.mas_equalTo(self.containerScrollView).offset(AdaptationWidth(-16));
@@ -806,13 +810,13 @@
     }
     [TalkingData trackEvent:@"首页-点击【广告入口】"];
     NSNumber *adType = self.homeViewModel.clientGlobalInfo.adEntryList[btn.tag-1031][@"adEntryType"];
-    NSString *adId = self.homeViewModel.clientGlobalInfo.adEntryList[btn.tag-1031][@"id"];
+//    NSString *adId = self.homeViewModel.clientGlobalInfo.adEntryList[btn.tag-1031][@"id"];
     NSNumber *adDetailUrl = XNULL_TO_NIL(self.homeViewModel.clientGlobalInfo.adEntryList[btn.tag-1031][@"configContent"]);
-    [XNetWork requestNetWorkWithUrl:Xadvertise_access_log andModel:@{@"adId":adId} andSuccessBlock:^(ResponseModel *model) {
-        
-    } andFailBlock:^(ResponseModel *model) {
-        
-    }];
+//    [XNetWork requestNetWorkWithUrl:Xadvertise_access_log andModel:@{@"adId":adId} andSuccessBlock:^(ResponseModel *model) {
+//
+//    } andFailBlock:^(ResponseModel *model) {
+//
+//    }];
     if (!adDetailUrl) {
         [ProgressHUD showProgressHUDInView:nil withText:@"任务已经过期" afterDelay:1];
         return;

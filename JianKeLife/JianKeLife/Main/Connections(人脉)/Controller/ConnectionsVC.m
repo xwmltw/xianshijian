@@ -171,7 +171,9 @@
 //                blockSelf.myPersonShareView.hidden = NO;
 //                blockSelf.myPersonShareView.QRMainBGView.hidden = YES;
 //                blockSelf.myPersonShareView.btnBlock = [blockSelf shareViewBtnBlock];
-                blockSelf.ruleAlertView.hidden = NO;
+                
+                //规则
+//                blockSelf.ruleAlertView.hidden = NO;
             }
                 break;
                 
@@ -263,7 +265,7 @@
         [_extendTableView setExtendCellSelectBlcok:[self extendCellBlcok]];
         BLOCKSELF
         [_extendTableView setExtendBtnSelectBlcok:^(id result) {
-            blockSelf.ruleAlertView.hidden = NO;
+//            blockSelf.ruleAlertView.hidden = NO;
             
         }];
     }

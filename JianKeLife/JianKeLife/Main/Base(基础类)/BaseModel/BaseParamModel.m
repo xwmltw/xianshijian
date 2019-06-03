@@ -87,7 +87,7 @@ MJCodingImplementation
 //customerContact (string, optional): 客服联系方式 ,
 //registerAgreementUrl (string, optional): 注册协议地址 ,
 //specialEntryList (Array[SpecialEntryInfoVo], optional): 特色入口列表 ,
-//versionInfo (VersionInfoVo, optional): 版本自动更新
+//versionInfo (VersionInfoVo, optional): 版本自动
 //bannerAdListTBPage (Array[AdInfoVo], optional): 淘宝页面banner广告列表 ,
 //messageCenterRedPoint (integer, optional): 消息中心有无小红点：1有 0无 ,
 //adEntryList (Array[AdEntryInfoVo], optional): 广告入口列表
@@ -121,8 +121,8 @@ MJCodingImplementation
 @implementation VersionInfo
 
 
-//needForceUpdate (integer, optional): 强制升级 1是,0否 ,
-//url (string, optional): 升级地址 ,
+//needForceUpdate (integer, optional): 强制 1是,0否 ,
+//url (string, optional): 地址 ,
 //version (integer, optional): 版本号 ,
 //versionDesc (string, optional): 版本说明
 @end

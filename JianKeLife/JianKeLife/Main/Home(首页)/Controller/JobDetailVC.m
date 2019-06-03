@@ -175,7 +175,7 @@
             if(![[UserInfo sharedInstance]isSignIn]) [self getBlackLogin:self];
             
             [XAlertView alertWithTitle:@"提示"
-                               message:self.tableView.jobDetailViewModel.productModel.hasApplyProd.integerValue ? @"您已领取过返佣资格，确认将直接跳转至产品体验链接" : @"确认领取返佣资格？"
+                               message:self.tableView.jobDetailViewModel.productModel.hasApplyProd.integerValue ? @"您已经领取过啦~" : @"确认领取返佣资格？"
                      cancelButtonTitle:@"取消"
                     confirmButtonTitle:@"确定"
                         viewController:self
@@ -185,17 +185,22 @@
                     [TalkingData trackEvent:@"产品详情-点击【领取返佣】"];
                     
                     if (self.tableView.jobDetailViewModel.productModel.hasApplyProd.integerValue) {
-                        BaseWebVC *vc = [[BaseWebVC alloc]init];
-                        [vc reloadForGetWebView:[self.tableView.jobDetailViewModel getProductUrl]];
-                        [self.navigationController pushViewController:vc animated:YES];
+                        if (self.tableView.jobDetailViewModel.getProductUrl.length) {
+                            BaseWebVC *vc = [[BaseWebVC alloc]init];
+                            [vc reloadForGetWebView:[self.tableView.jobDetailViewModel getProductUrl]];
+                            [self.navigationController pushViewController:vc animated:YES];
+                        }
+                        
                         return ;
                     }
                     [self.tableView.jobDetailViewModel requestReceive];
                     BLOCKSELF
                     [self.tableView.jobDetailViewModel setProductReceiveBlock:^(id result) {
-                        BaseWebVC *vc = [[BaseWebVC alloc]init];
-                        [vc reloadForGetWebView:[blockSelf.tableView.jobDetailViewModel getProductUrl]];
-                        [blockSelf.navigationController pushViewController:vc animated:YES];
+                        if (blockSelf.tableView.jobDetailViewModel.getProductUrl.length) {
+                            BaseWebVC *vc = [[BaseWebVC alloc]init];
+                            [vc reloadForGetWebView:[blockSelf.tableView.jobDetailViewModel getProductUrl]];
+                            [blockSelf.navigationController pushViewController:vc animated:YES];
+                        }
                     }];
                     
                 }
