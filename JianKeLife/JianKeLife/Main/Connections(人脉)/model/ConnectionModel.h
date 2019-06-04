@@ -18,8 +18,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic ,copy) NSString *ruleText;
 @property(nonatomic ,copy) NSNumber *secondConnectionsCount;
 @property(nonatomic ,copy) NSNumber *totalCount;
-
-
+@property(nonatomic ,copy) NSString *inviteCode;
+@property(nonatomic ,copy) NSNumber *connectionProfitAmtOfThisWeek;
+@property(nonatomic ,copy) NSNumber *firstConnectionsCountOfThisWeek;
+@property(nonatomic ,copy) NSNumber *secondConnectionsCountOfThisWeek;
 //connectionsInviteRegUrl (string, optional): 人脉推广注册链接 ,
 //firstConnectionsCount (integer, optional): 一级人脉数 ,
 //firstCut (number, optional): 一级人脉佣金比例 ,
@@ -27,6 +29,10 @@ NS_ASSUME_NONNULL_BEGIN
 //ruleText (string, optional): 奖励规则 ,
 //secondConnectionsCount (integer, optional): 二级人脉数 ,
 //totalCount (integer, optional): 已邀请人脉总数
+//inviteCode (string, optional): 当前登录用户推广码 ,
+//connectionProfitAmtOfThisWeek (integer, optional): 本周人脉收益(分) ,
+//firstConnectionsCountOfThisWeek (integer, optional): 本周新增一级人脉数 ,
+//secondConnectionsCountOfThisWeek (integer, optional): 本周新增二级人脉数
 @end
 @interface ConnectionFirstModel :NSObject
 @property(nonatomic ,copy) NSNumber *firstConnectionsCount;

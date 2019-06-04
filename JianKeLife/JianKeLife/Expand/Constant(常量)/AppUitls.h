@@ -10,8 +10,8 @@
 #define AppUitls_h
 /** APP配置信息*/
 #ifdef DEBUG
-#define SERVICEURL @"https://mapi.xianshijian.com" // 正式环境
-//#define SERVICEURL @"http://jkl-mapi.pdl001.com" // 测试环境
+//#define SERVICEURL @"https://mapi.xianshijian.com" // 正式环境
+#define SERVICEURL @"http://jkl-mapi.pdl001.com" // 测试环境
 //#define SERVICEURL @"http://192.168.5.126:8053"
 #else
 #define SERVICEURL @"https://mapi.xianshijian.com" // 正式环境
@@ -82,6 +82,7 @@ static NSString *const HomeRedNotification = @"HomeRedNotification";
 #define Xestimate_list_2             @"/mapi/profit/estimate_list_2"//查询预计收益all列表
 
 #define Xget_connections_info       @"/mapi/ctm/get_connections_info"//获取人脉信息
+#define Xlist_member_task           @"/mapi/ctm/list_member_task"//会员信息
 #define Xget_first_connections_info @"/mapi/ctm/get_first_connections_info"//一级人脉
 #define Xget_second_connections_info       @"/mapi/ctm/get_second_connections_info"//二级人脉
 

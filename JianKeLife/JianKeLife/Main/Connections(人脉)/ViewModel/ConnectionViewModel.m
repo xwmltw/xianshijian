@@ -9,6 +9,7 @@
 #import "ConnectionViewModel.h"
 
 @implementation ConnectionViewModel
+
 - (void)requestData{
     BLOCKSELF
     [XNetWork requestNetWorkWithUrl:Xget_connections_info andModel:nil andSuccessBlock:^(ResponseModel *model) {
@@ -18,6 +19,15 @@
         
     }];
   
+}
+- (void)requestVIPData{
+    WEAKSELF
+    [XNetWork requestNetWorkWithUrl:Xlist_member_task andModel:nil andSuccessBlock:^(ResponseModel *model) {
+        [weakSelf.memberList addObjectsFromArray:model.data[@"taskList"]];
+        XBlockExec(weakSelf.memberRequestBlcok ,model.data[@"singleConsume"]);
+    } andFailBlock:^(ResponseModel *model) {
+        
+    }];
 }
 - (void)requestFirstData{
     BLOCKSELF
@@ -53,6 +63,12 @@
         _connectionList = [NSMutableArray array];
     }
     return _connectionList;
+}
+- (NSMutableArray *)memberList{
+    if (!_memberList) {
+        _memberList = [NSMutableArray array];
+    }
+    return _memberList;
 }
 - (PageQueryRedModel *)pageQueryRedModel{
     if (!_pageQueryRedModel) {

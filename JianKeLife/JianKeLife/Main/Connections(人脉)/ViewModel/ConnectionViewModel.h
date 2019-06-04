@@ -14,11 +14,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic ,strong) ConnectionModel *connectionModel;
 @property (nonatomic ,copy) XBlock connectionRequestBlcok;
 @property (nonatomic, strong) NSMutableArray *connectionList;
+@property (nonatomic, strong) NSMutableArray *memberList;
+@property (nonatomic ,copy) XBlock memberRequestBlcok;
 @property (nonatomic, strong) PageQueryRedModel *pageQueryRedModel;
 @property (nonatomic ,strong) MJRefreshAutoNormalFooter *footer;
 - (MJRefreshAutoNormalFooter *)creatMjRefresh;
 - (void)footerRefresh;
 - (void)requestData;
+- (void)requestVIPData;
 - (void)requestFirstData;
 @end
 

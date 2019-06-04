@@ -177,6 +177,7 @@
 		04CB941C224B4DC300C9DF13 /* InPutPasswordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CB941B224B4DC300C9DF13 /* InPutPasswordView.xib */; };
 		04CEC254226D9F5F00F94707 /* JSDropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CEC251226D9F5F00F94707 /* JSDropDownMenu.m */; };
 		04CEC255226D9F5F00F94707 /* ico_make.png in Resources */ = {isa = PBXBuildFile; fileRef = 04CEC252226D9F5F00F94707 /* ico_make.png */; };
+		04D5BDDF22A4F7F800B0CCEB /* VIPInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D5BDDE22A4F7F800B0CCEB /* VIPInfoVC.m */; };
 		04DB3CDA226AF15300481B41 /* MyTaskVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DB3CD9226AF15300481B41 /* MyTaskVC.m */; };
 		04DB3CDE226AF17600481B41 /* MytasktableViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DB3CDC226AF17600481B41 /* MytasktableViewVC.m */; };
 		04DB3CDF226AF17600481B41 /* MytasktableViewVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04DB3CDD226AF17600481B41 /* MytasktableViewVC.xib */; };
@@ -525,6 +526,8 @@
 		04CEC251226D9F5F00F94707 /* JSDropDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSDropDownMenu.m; sourceTree = "<group>"; };
 		04CEC252226D9F5F00F94707 /* ico_make.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_make.png; sourceTree = "<group>"; };
 		04CEC253226D9F5F00F94707 /* JSDropDownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSDropDownMenu.h; sourceTree = "<group>"; };
+		04D5BDDD22A4F7F800B0CCEB /* VIPInfoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VIPInfoVC.h; sourceTree = "<group>"; };
+		04D5BDDE22A4F7F800B0CCEB /* VIPInfoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VIPInfoVC.m; sourceTree = "<group>"; };
 		04DB3CD8226AF15300481B41 /* MyTaskVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyTaskVC.h; sourceTree = "<group>"; };
 		04DB3CD9226AF15300481B41 /* MyTaskVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyTaskVC.m; sourceTree = "<group>"; };
 		04DB3CDB226AF17600481B41 /* MytasktableViewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MytasktableViewVC.h; sourceTree = "<group>"; };
@@ -1241,6 +1244,8 @@
 				041121482240E98E003D7F2D /* ConnectionsVC.xib */,
 				B34FACE0224D189400F3E3E1 /* MyPersonSecondVC.h */,
 				B34FACE1224D189400F3E3E1 /* MyPersonSecondVC.m */,
+				04D5BDDD22A4F7F800B0CCEB /* VIPInfoVC.h */,
+				04D5BDDE22A4F7F800B0CCEB /* VIPInfoVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1815,6 +1820,7 @@
 				046F394922939B7000A21A58 /* ArtScrollView.m in Sources */,
 				04E771432242623A00C6E7CE /* FeedbackVC.m in Sources */,
 				0467C3102248DA7F002F5344 /* MyInfoVC.m in Sources */,
+				04D5BDDF22A4F7F800B0CCEB /* VIPInfoVC.m in Sources */,
 				044833152293E83100483F91 /* SuperProductVC.m in Sources */,
 				B319BF31224747B600C602EA /* ProductModel.m in Sources */,
 				041121502241065F003D7F2D /* MyPersonTableView.m in Sources */,
