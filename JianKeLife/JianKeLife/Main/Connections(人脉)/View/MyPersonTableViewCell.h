@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *labMoney;
 @property (weak, nonatomic) IBOutlet UILabel *labNum;
 @property (weak, nonatomic) IBOutlet UIImageView *rightImage;
+@property (weak, nonatomic) IBOutlet UIImageView *headImage;
 @property (nonatomic ,strong) ConnectionFirstModel *connectionFirstModel;
 @end
 

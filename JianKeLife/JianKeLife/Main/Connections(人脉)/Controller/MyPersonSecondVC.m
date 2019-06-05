@@ -56,7 +56,7 @@
     
     MyPersonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyPersonTableViewCell2"];
     if (!cell) {
-        cell = [[[NSBundle mainBundle]loadNibNamed:@"MyPersonTableViewCell" owner:self options:nil]lastObject];
+        cell = [[[NSBundle mainBundle]loadNibNamed:@"MyPersonTableViewCell2" owner:self options:nil]lastObject];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     cell.connectionFirstModel = [ConnectionFirstModel mj_objectWithKeyValues:self.myPersonSecondList[indexPath.row]];

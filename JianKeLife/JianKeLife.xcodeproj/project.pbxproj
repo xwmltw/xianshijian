@@ -116,6 +116,8 @@
 		0492251F226DC3A0008353CC /* HiBuyViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0492251E226DC3A0008353CC /* HiBuyViewModel.m */; };
 		04922522226DE879008353CC /* HiBuyProductQueryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04922521226DE879008353CC /* HiBuyProductQueryModel.m */; };
 		04922525226DF359008353CC /* HiBuyProductModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04922524226DF359008353CC /* HiBuyProductModel.m */; };
+		04929CC322A790CA004D4678 /* MyConnectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04929CC222A790CA004D4678 /* MyConnectionVC.m */; };
+		04929CC622A7A5DC004D4678 /* MySecondConnectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04929CC522A7A5DC004D4678 /* MySecondConnectionVC.m */; };
 		049813BB2292A96D00369E71 /* HomeTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 049813BA2292A96D00369E71 /* HomeTableView.m */; };
 		049A958722714156003F5563 /* WJProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 049A958622714156003F5563 /* WJProgressView.m */; };
 		049A958A227149F2003F5563 /* LaXinModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 049A9589227149F2003F5563 /* LaXinModel.m */; };
@@ -412,6 +414,10 @@
 		04922521226DE879008353CC /* HiBuyProductQueryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiBuyProductQueryModel.m; sourceTree = "<group>"; };
 		04922523226DF359008353CC /* HiBuyProductModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiBuyProductModel.h; sourceTree = "<group>"; };
 		04922524226DF359008353CC /* HiBuyProductModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiBuyProductModel.m; sourceTree = "<group>"; };
+		04929CC122A790C9004D4678 /* MyConnectionVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyConnectionVC.h; sourceTree = "<group>"; };
+		04929CC222A790CA004D4678 /* MyConnectionVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyConnectionVC.m; sourceTree = "<group>"; };
+		04929CC422A7A5DC004D4678 /* MySecondConnectionVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MySecondConnectionVC.h; sourceTree = "<group>"; };
+		04929CC522A7A5DC004D4678 /* MySecondConnectionVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MySecondConnectionVC.m; sourceTree = "<group>"; };
 		049813B92292A96D00369E71 /* HomeTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeTableView.h; sourceTree = "<group>"; };
 		049813BA2292A96D00369E71 /* HomeTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeTableView.m; sourceTree = "<group>"; };
 		049A958522714156003F5563 /* WJProgressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WJProgressView.h; sourceTree = "<group>"; };
@@ -1246,6 +1252,10 @@
 				B34FACE1224D189400F3E3E1 /* MyPersonSecondVC.m */,
 				04D5BDDD22A4F7F800B0CCEB /* VIPInfoVC.h */,
 				04D5BDDE22A4F7F800B0CCEB /* VIPInfoVC.m */,
+				04929CC122A790C9004D4678 /* MyConnectionVC.h */,
+				04929CC222A790CA004D4678 /* MyConnectionVC.m */,
+				04929CC422A7A5DC004D4678 /* MySecondConnectionVC.h */,
+				04929CC522A7A5DC004D4678 /* MySecondConnectionVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1850,6 +1860,7 @@
 				04616FFC222D14C600E46B40 /* UIView+Extension.m in Sources */,
 				04FE8158226F401600CC3398 /* MyOrderInfoVC.m in Sources */,
 				04B2AA052251A1A90094A44B /* JJPhoto.m in Sources */,
+				04929CC622A7A5DC004D4678 /* MySecondConnectionVC.m in Sources */,
 				B33F95792250F7A20057DB03 /* WaterfallColectionLayout.m in Sources */,
 				04BD114C224A03A80033B774 /* ProfitTableViewCell.m in Sources */,
 				04616FE4222D09D300E46B40 /* UIColor+Extension.m in Sources */,
@@ -1870,6 +1881,7 @@
 				04AECC9D224B95EE00410304 /* ExpectModel.m in Sources */,
 				04BD1160224A112A0033B774 /* GKImageCropOverlayView.m in Sources */,
 				04E2FA1022461028006EE2D5 /* SearchCollectionView.m in Sources */,
+				04929CC322A790CA004D4678 /* MyConnectionVC.m in Sources */,
 				04871525223FC1D600679095 /* MyViewModel.m in Sources */,
 				04871509223F768800679095 /* TaskVC.m in Sources */,
 				04B2AA122251A1C50094A44B /* SDLoopProgressView.m in Sources */,

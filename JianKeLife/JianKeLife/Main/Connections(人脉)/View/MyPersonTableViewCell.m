@@ -17,7 +17,8 @@
     }
     
     self.labMoney.text = [NSString stringWithFormat:@"已为您赚取￥%.2f",[connectionFirstModel.profitAmt doubleValue]/100];
-    self.labNum.text = [NSString stringWithFormat:@"二级人脉%@人",connectionFirstModel.firstConnectionsCount.description];
+    self.labNum.text = [NSString stringWithFormat:@"普通人脉%@人",connectionFirstModel.firstConnectionsCount.description];
+    [self.headImage sd_setImageWithURL:[NSURL URLWithString:connectionFirstModel.headLogo]];
 }
 - (void)awakeFromNib {
     [super awakeFromNib];

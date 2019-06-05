@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ConnectionViewModel : NSObject
 @property (nonatomic ,strong) ConnectionModel *connectionModel;
 @property (nonatomic ,copy) XBlock connectionRequestBlcok;
+@property (nonatomic ,copy) XBlock firstRequestBlcok;
 @property (nonatomic, strong) NSMutableArray *connectionList;
 @property (nonatomic, strong) NSMutableArray *memberList;
 @property (nonatomic ,copy) XBlock memberRequestBlcok;
