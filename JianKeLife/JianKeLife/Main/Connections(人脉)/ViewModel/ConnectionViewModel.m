@@ -23,7 +23,8 @@
 - (void)requestVIPData{
     WEAKSELF
     [XNetWork requestNetWorkWithUrl:Xlist_member_task andModel:nil andSuccessBlock:^(ResponseModel *model) {
-        [weakSelf.memberList addObjectsFromArray:model.data[@"taskList"]];
+        
+        weakSelf.memberList = model.data[@"taskList"];
         XBlockExec(weakSelf.memberRequestBlcok ,model.data[@"singleConsume"]);
     } andFailBlock:^(ResponseModel *model) {
         

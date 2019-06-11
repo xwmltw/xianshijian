@@ -94,8 +94,8 @@
             make.right.mas_equalTo(cell).offset(AdaptationWidth(-8));
             make.bottom.mas_equalTo(cell);
         }];
+        
         UIImageView *image = [[UIImageView alloc]init];
-//        [image sd_setImageWithURL:[NSURL URLWithString:self.hiBuyProductModel.pictUrl]];
         [image sd_setImageWithURL:[NSURL URLWithString:self.hiBuyProductModel.pictUrl] placeholderImage:[UIImage imageNamed:@"今日值享logo定稿"]];
         [view addSubview:image];
         [image mas_makeConstraints:^(MASConstraintMaker *make) {

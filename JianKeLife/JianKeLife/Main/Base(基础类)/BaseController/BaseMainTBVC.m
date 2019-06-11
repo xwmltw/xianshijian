@@ -41,7 +41,7 @@
 //    [self setChildViewController:taskVC Image:@"icon_task_unselect" selectedImage:@"icon_task_select" title:@"嗨购"];
     
     VIPInfoVC *connectionsVC = [[VIPInfoVC alloc]init];
-    [self setChildViewController:connectionsVC Image:@"icon_relationship_unselect" selectedImage:@"icon_relationship_select" title:@"收益"];
+    [self setChildViewController2:connectionsVC Image:@"icon_relationship_unselect" selectedImage:@"icon_relationship_select" title:@"享赚"];
 
     MyVC *myVC = [[MyVC alloc]init];
     [self setChildViewController:myVC Image:@"icon_me_unselect" selectedImage:@"icon_me_select" title:@"我的"];
@@ -65,8 +65,31 @@
     UIImage *mySelectedImage = [UIImage imageNamed:selectedImage];
     mySelectedImage = [mySelectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     Vc.tabBarItem.selectedImage = mySelectedImage;
-    [Vc.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:LabelMainColor,NSFontAttributeName:[UIFont systemFontOfSize:AdaptationWidth(10)]} forState:UIControlStateNormal];
+    [Vc.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:XColorWithRGB(124, 124, 124),NSFontAttributeName:[UIFont systemFontOfSize:AdaptationWidth(10)]} forState:UIControlStateNormal];
     [Vc.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:blueColor,NSFontAttributeName:[UIFont systemFontOfSize:AdaptationWidth(10)]} forState:UIControlStateSelected];
+    Vc.tabBarItem.title = title;
+    [self addChildViewController:NA_VC];
+}
+/**
+ *
+ *  设置单个tabBarButton
+ *
+ *  @param Vc            每一个按钮对应的控制器
+ *  @param image         每一个按钮对应的普通状态下图片
+ *  @param selectedImage 每一个按钮对应的选中状态下的图片
+ *  @param title         每一个按钮对应的标题
+ */
+- (void)setChildViewController2:(UIViewController *)Vc Image:(NSString *)image selectedImage:(NSString *)selectedImage title:(NSString *)title
+{
+    BaseMainNC *NA_VC = [[BaseMainNC alloc] initWithRootViewController:Vc];
+    UIImage *myImage = [UIImage imageNamed:image];
+    myImage = [myImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    Vc.tabBarItem.image = myImage;
+    UIImage *mySelectedImage = [UIImage imageNamed:selectedImage];
+    mySelectedImage = [mySelectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    Vc.tabBarItem.selectedImage = mySelectedImage;
+    [Vc.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:XColorWithRGB(124, 124, 124),NSFontAttributeName:[UIFont systemFontOfSize:AdaptationWidth(10)]} forState:UIControlStateNormal];
+    [Vc.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:XColorWithRGB(237, 204, 151),NSFontAttributeName:[UIFont systemFontOfSize:AdaptationWidth(10)]} forState:UIControlStateSelected];
     Vc.tabBarItem.title = title;
     [self addChildViewController:NA_VC];
 }

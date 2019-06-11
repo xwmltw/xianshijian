@@ -20,7 +20,10 @@
 @end
 
 @implementation CashWithdrawalVC
-
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"提现";
@@ -35,8 +38,9 @@
     BLOCKSELF
     [XNetWork requestNetWorkWithUrl:Xquery_withdraw_cfg andModel:nil andSuccessBlock:^(ResponseModel *model) {
         blockSelf.cashWithdrawalModel = [CashWithdrawalModel mj_objectWithKeyValues:model.data];
-        blockSelf.firstLab.text = blockSelf.cashWithdrawalModel.withdrawRuleDesc[0];
-        blockSelf.detailbLab.text = blockSelf.cashWithdrawalModel.withdrawRuleDesc[1];
+        
+        blockSelf.firstLab.text = blockSelf.cashWithdrawalModel.withdrawRuleDesc.count ? blockSelf.cashWithdrawalModel.withdrawRuleDesc[0] :@"";
+        blockSelf.detailbLab.text = blockSelf.cashWithdrawalModel.withdrawRuleDesc.count > 1 ? blockSelf.cashWithdrawalModel.withdrawRuleDesc[1] :@"";
         
     } andFailBlock:^(ResponseModel *model) {
         
@@ -57,7 +61,11 @@
                 [ProgressHUD showProgressHUDInView:nil withText:@"请输入提现金额" afterDelay:1];
                 return;
             }
-            if ([self.moneyTextField.text doubleValue] < [self.cashWithdrawalModel.minwithdrawAmount doubleValue]/100) {
+            if (self.cashWithdrawalModel.isFirstWithdraw.integerValue == 1 && [self.moneyTextField.text doubleValue] > [self.cashWithdrawalModel.firstMaxWithdrawAmount doubleValue]/100) {
+                [ProgressHUD showProgressHUDInView:nil withText:[NSString stringWithFormat:@"首次提现最高可提现金额%.2f",[self.cashWithdrawalModel.firstMaxWithdrawAmount doubleValue]/100] afterDelay:1];
+                return;
+            }
+            if (self.cashWithdrawalModel.isFirstWithdraw.integerValue == 0 && [self.moneyTextField.text doubleValue] < [self.cashWithdrawalModel.minwithdrawAmount doubleValue]/100) {
                 [ProgressHUD showProgressHUDInView:nil withText:[NSString stringWithFormat:@"最低提现金额%.2f",[self.cashWithdrawalModel.minwithdrawAmount doubleValue]/100] afterDelay:1];
                 return;
             }
@@ -151,7 +159,7 @@
                     return;
                 }
                 
-                [XNetWork requestNetWorkWithUrl:Xcheck_pwd andModel:@{@"check_pwd":blockSelf.inPutPasswordView.passwordTF.text} andSuccessBlock:^(ResponseModel *model) {
+                [XNetWork requestNetWorkWithUrl:Xcheck_pwd andModel:@{@"moneyPwd":blockSelf.inPutPasswordView.passwordTF.text} andSuccessBlock:^(ResponseModel *model) {
                     [blockSelf wxInfo];//微信登录
                 } andFailBlock:^(ResponseModel *model) {
                     
@@ -186,7 +194,7 @@
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     [dic setValue:self.inPutPasswordView.passwordTF.text forKey:@"moneyPwd"];
     [dic setValue:openid forKey:@"openId"];
-    [dic setValue:[self serviceAmoutStr] forKey:@"serviceAmount"];
+    [dic setValue:@([[self serviceAmoutStr] doubleValue]*100) forKey:@"serviceAmount"];
     [dic setValue:@([self.moneyTextField.text doubleValue]*100) forKey:@"withdrawAmount"];
     BLOCKSELF
     [XNetWork requestNetWorkWithUrl:Xwechat_cash_withdraw andModel:dic andSuccessBlock:^(ResponseModel *model) {
@@ -229,4 +237,5 @@
     }
     return _inPutPasswordView;
 }
+
 @end

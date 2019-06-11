@@ -56,6 +56,25 @@
 }
 
 - (void)getData{
+    
+    //创建列队组
+    dispatch_group_t group = dispatch_group_create();
+    //获取全局并发队列
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_group_async(group, queue, ^{
+        
+    });
+    dispatch_group_async(group, queue, ^{
+        
+    });
+    dispatch_group_async(group, queue, ^{
+        
+    });
+    // 当并发队列组中的任务执行完毕后才会执行这里的代码
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        // 合并图片
+    });
+    
     [self.connectionViewModel requestData];
     WEAKSELF
     [self.connectionViewModel setConnectionRequestBlcok:^(id result) {
@@ -88,7 +107,7 @@
     
     UIImageView *headerImage = [[UIImageView alloc]init];
     [headerImage setCornerValue:AdaptationWidth(24)];
-    [headerImage sd_setImageWithURL:[NSURL URLWithString:self.myViewModel.myModel.headLogo] placeholderImage:[UIImage imageNamed:@"icon_profit_head"]];
+    [headerImage sd_setImageWithURL:[NSURL URLWithString:self.myViewModel.myModel.headLogo] placeholderImage:[UIImage imageNamed:@"默认头像"]];
 //    [headerImage setImage:[UIImage imageNamed:@"icon_profit_head"]];
     [headView addSubview:headerImage];
     [headerImage mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -152,7 +171,7 @@
     UILabel *groupNum = [[UILabel alloc]init];
     [groupNum setText:[NSString stringWithFormat:@"(%@人)",self.connectionViewModel.connectionModel.totalCount.description]];
     [groupNum setFont:[UIFont systemFontOfSize:AdaptationWidth(16)]];
-    [groupNum setTextColor:[UIColor whiteColor]];
+    [groupNum setTextColor:XColorWithRGB(124, 124, 124)];
     [connecttionView addSubview:groupNum];
     [groupNum mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(mygroupImage);
@@ -215,7 +234,7 @@
             
         }];
         UILabel *vipNoLab = [[UILabel alloc]init];
-        [vipNoLab setText:[NSString stringWithFormat:@"享赚普通会员页"]];
+        [vipNoLab setText:[NSString stringWithFormat:@"普通会员权益"]];
         [vipNoLab setFont:[UIFont systemFontOfSize:AdaptationWidth(16)]];
         [vipNoLab setTextColor:XColorWithRGB(124, 124, 124)];
         [view addSubview:vipNoLab];
@@ -987,83 +1006,83 @@
 }
 - (UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     static NSString *identifier = @"VipTableViewCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    if (!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    
+        UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
-    BOOL state = self.connectionViewModel.memberList[indexPath.row][@"hasDone"];
-    NSNumber *taskCode = self.connectionViewModel.memberList[indexPath.row][@"taskCode"];
-    UIImageView *cellImage = [[UIImageView alloc]init];
-    [cellImage setImage:state ? [UIImage imageNamed:@"icon_vip_vipState"] :[UIImage imageNamed:@"icon_vip_state"]];
-    [cell.contentView addSubview:cellImage];
-    [cellImage mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(cell).offset(AdaptationWidth(14));
-        make.top.mas_equalTo(cell).offset(AdaptationWidth(18));
-        make.width.height.mas_equalTo(AdaptationWidth(14));
-    }];
-    
-    UILabel *celltitle = [[UILabel alloc]init];
-    [celltitle setText:self.connectionViewModel.memberList[indexPath.row][@"name"]];
-    [celltitle setFont:[UIFont systemFontOfSize:AdaptationWidth(16)]];
-    [celltitle setTextColor:LabelMainColor];
-    [cell.contentView addSubview:celltitle];
-    [celltitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(cellImage.mas_right).offset(AdaptationWidth(5));
-        make.centerY.mas_equalTo(cellImage);
-    }];
-    
-    UILabel *cellDetail = [[UILabel alloc]init];
-    [cellDetail setText:self.connectionViewModel.memberList[indexPath.row][@"desc"]];
-    [cellDetail setFont:[UIFont systemFontOfSize:AdaptationWidth(12)]];
-    [cellDetail setTextColor:XColorWithRGB(124, 124, 124)];
-    [cell.contentView addSubview:cellDetail];
-    [cellDetail mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(celltitle);
-        make.right.mas_equalTo(cell).offset(AdaptationWidth(-14));
-        make.top.mas_equalTo(celltitle.mas_bottom).offset(AdaptationWidth(4));
-    }];
-    
-    UILabel *cellState = [[UILabel alloc]init];
-    cellState.hidden = state ? NO : YES;
-    [cellState setText:[NSString stringWithFormat:@"未完成"]];
-    [cellState setFont:[UIFont systemFontOfSize:AdaptationWidth(12)]];
-    [cellState setTextColor:XColorWithRGB(124, 124, 124)];
-    [cell.contentView addSubview:cellState];
-    [cellState mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(cellImage);
-        make.right.mas_equalTo(cell).offset(AdaptationWidth(-14));
-        
-    }];
-    
-    UIImageView *stateImage = [[UIImageView alloc]init];
-    stateImage.hidden = state ? YES : NO;
-    [stateImage setImage:[UIImage imageNamed:@"icon_vip_finish"]];
-    [cell.contentView addSubview:stateImage];
-    [stateImage mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(cell).offset(AdaptationWidth(-14));
-        make.centerY.mas_equalTo(cell);
-        
-    }];
-    
-    if (taskCode.integerValue == 104) {
-        cellState.hidden = YES;
-        UIButton *allBtn = [[UIButton alloc]init];
-        [allBtn setTitle:@"立即邀请" forState:UIControlStateNormal];
-        [allBtn setBackgroundImage:[UIImage imageNamed:@"icon_vip_xiao"] forState:UIControlStateNormal];
-        [allBtn setTitleColor:XColorWithRGB(155, 104, 0) forState:UIControlStateNormal];
-        [allBtn.titleLabel setFont:[UIFont systemFontOfSize:AdaptationWidth(12)]];
-//        allBtn.imageEdgeInsets = UIEdgeInsetsMake(0, AdaptationWidth(58), 0, 0);
-        allBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -AdaptationWidth(10), 0, 0);
-        [allBtn addTarget:self action:@selector(btnOnClickXiao:) forControlEvents:UIControlEventTouchUpInside];
-        [cell.contentView addSubview:allBtn];
-        [allBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.mas_equalTo(cell);
-            make.right.mas_equalTo(cell).offset(AdaptationWidth(-18));
-            make.width.mas_equalTo(AdaptationWidth(70));
+        NSNumber *state = self.connectionViewModel.memberList[indexPath.row][@"hasDone"];
+        NSNumber *taskCode = self.connectionViewModel.memberList[indexPath.row][@"taskCode"];
+        UIImageView *cellImage = [[UIImageView alloc]init];
+        [cellImage setImage:state.integerValue ? [UIImage imageNamed:@"icon_vip_vipState"] :[UIImage imageNamed:@"icon_vip_state"]];
+        [cell.contentView addSubview:cellImage];
+        [cellImage mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(cell).offset(AdaptationWidth(14));
+            make.top.mas_equalTo(cell).offset(AdaptationWidth(18));
+            make.width.height.mas_equalTo(AdaptationWidth(14));
         }];
-        self.paramsExt = [ self.connectionViewModel.memberList[indexPath.row][@"paramsExt"] mj_JSONObject];
-    }
+        
+        UILabel *celltitle = [[UILabel alloc]init];
+        [celltitle setText:self.connectionViewModel.memberList[indexPath.row][@"name"]];
+        [celltitle setFont:[UIFont systemFontOfSize:AdaptationWidth(16)]];
+        [celltitle setTextColor:LabelMainColor];
+        [cell.contentView addSubview:celltitle];
+        [celltitle mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(cellImage.mas_right).offset(AdaptationWidth(5));
+            make.centerY.mas_equalTo(cellImage);
+        }];
+        
+        UILabel *cellDetail = [[UILabel alloc]init];
+        [cellDetail setText:self.connectionViewModel.memberList[indexPath.row][@"desc"]];
+        [cellDetail setFont:[UIFont systemFontOfSize:AdaptationWidth(12)]];
+        [cellDetail setTextColor:XColorWithRGB(124, 124, 124)];
+        [cell.contentView addSubview:cellDetail];
+        [cellDetail mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(celltitle);
+            make.right.mas_equalTo(cell).offset(AdaptationWidth(-14));
+            make.top.mas_equalTo(celltitle.mas_bottom).offset(AdaptationWidth(4));
+        }];
+        
+        UILabel *cellState = [[UILabel alloc]init];
+        cellState.hidden = state.integerValue ? YES : NO;
+        [cellState setText:[NSString stringWithFormat:@"未完成"]];
+        [cellState setFont:[UIFont systemFontOfSize:AdaptationWidth(12)]];
+        [cellState setTextColor:XColorWithRGB(124, 124, 124)];
+        [cell.contentView addSubview:cellState];
+        [cellState mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.mas_equalTo(cellImage);
+            make.right.mas_equalTo(cell).offset(AdaptationWidth(-14));
+            
+        }];
+        
+        UIImageView *stateImage = [[UIImageView alloc]init];
+        stateImage.hidden = state.integerValue ? NO : YES;
+        [stateImage setImage:[UIImage imageNamed:@"icon_vip_finish"]];
+        [cell.contentView addSubview:stateImage];
+        [stateImage mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(cell).offset(AdaptationWidth(-14));
+            make.centerY.mas_equalTo(cell);
+            
+        }];
+        
+        if (taskCode.integerValue == 104) {
+            cellState.hidden = YES;
+            UIButton *allBtn = [[UIButton alloc]init];
+            [allBtn setTitle:@"立即邀请" forState:UIControlStateNormal];
+            [allBtn setBackgroundImage:[UIImage imageNamed:@"icon_vip_xiao"] forState:UIControlStateNormal];
+            [allBtn setTitleColor:XColorWithRGB(155, 104, 0) forState:UIControlStateNormal];
+            [allBtn.titleLabel setFont:[UIFont systemFontOfSize:AdaptationWidth(12)]];
+            //        allBtn.imageEdgeInsets = UIEdgeInsetsMake(0, AdaptationWidth(58), 0, 0);
+            allBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -AdaptationWidth(10), 0, 0);
+            [allBtn addTarget:self action:@selector(btnOnClickXiao:) forControlEvents:UIControlEventTouchUpInside];
+            [cell.contentView addSubview:allBtn];
+            [allBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerY.mas_equalTo(cell);
+                make.right.mas_equalTo(cell).offset(AdaptationWidth(-18));
+                make.width.mas_equalTo(AdaptationWidth(70));
+            }];
+            self.paramsExt = [ self.connectionViewModel.memberList[indexPath.row][@"paramsExt"] mj_JSONObject];
+        }
+    
+    
     
     return cell;
 }

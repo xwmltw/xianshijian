@@ -33,7 +33,7 @@
     [self.view addSubview:self.tableView];
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
-    self.tableView.mj_footer = [self.connectionViewModel creatMjRefresh];
+//    self.tableView.mj_footer = [self.connectionViewModel creatMjRefresh];
 
     [self.connectionViewModel requestData];
     WEAKSELF
