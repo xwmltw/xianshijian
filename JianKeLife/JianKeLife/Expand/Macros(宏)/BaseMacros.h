@@ -77,7 +77,7 @@ return _instance;\
 #define XNULL_TO_NIL(obj) ({ __typeof__ (obj) __obj = (obj); __obj == [NSNull null] ? nil : obj; })
 
 /** block self*/
-
+#define STRONGSELF typeof(self) __Strong strongSelf = self;
 #define WEAKSELF typeof(self) __weak weakSelf = self;
 #define BLOCKSELF typeof(self) __block blockSelf = self;
 #define XBlockExec(block, ...) if (block) { block(__VA_ARGS__); };

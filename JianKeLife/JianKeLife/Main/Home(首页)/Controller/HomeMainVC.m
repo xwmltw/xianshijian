@@ -734,6 +734,7 @@
     if ([canScroll isEqualToString:@"1"]) {
         _canScroll = YES;
     }
+    
 }
 - (void)messageRedMsg{
     self.redMessage.hidden = YES;

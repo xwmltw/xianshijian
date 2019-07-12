@@ -151,11 +151,14 @@
             self.canScroll = YES;
             self.tableView.showsVerticalScrollIndicator = YES;
         }
+
     }else if([notificationName isEqualToString:kHomeLeaveTopNotification]){
         self.tableView.contentOffset = CGPointZero;
         self.canScroll = NO;
         self.tableView.showsVerticalScrollIndicator = NO;
+        
     }
+    
 }
 
 #pragma mark - Table view data source
